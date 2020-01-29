@@ -80,9 +80,11 @@ use View;
            $mailData = $first_name;
             $content = str_replace("{button}", '  <a href="' . $baseUrl . '" type="button" class="btn btn-primary">Click Here</a>', $mailData);
 
-            Mail::to('gurinder@yopmail.com')->send(new \App\Mail\ForgetMail($content));
- 
-          return response()->json(['status'=>0,'message'=>'Link has been sent']); 
+          //  Mail::to('gurinder@yopmail.com')->send(new \App\Mail\ForgetMail($content));
+                // Mail::raw('Hi, welcome user!', function ($message) {
+                // $message->to('gurinder@yopmail.com') ->subject('Forget Email');
+                // });
+          return response()->json(['status'=>1,'message'=>'Link has been sent']); 
 
         } catch (Exception $ex) {
                   return response()->json(['status'=>0,'message'=>$ex->getMessage()]);  
