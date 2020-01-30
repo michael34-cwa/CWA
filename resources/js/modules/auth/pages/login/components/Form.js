@@ -23,7 +23,7 @@ const Form = ({
   <form className="form" role="form" onSubmit={handleSubmit} noValidate>
     <h2 className="card-title">Administrator Login</h2>
     <div className="form-group">
-<<<<<<< HEAD
+
       <label htmlFor="email" className="sr-only">Email</label>
       <i class="fa fa-envelope-o" aria-hidden="true"></i>
       <input type="text"
@@ -49,47 +49,7 @@ const Form = ({
              onChange={e => handleChange(e.target.name, e.target.value)}
              required/>
       {errors.has('password') && <div className="invalid-feedback">{errors.first('password')}</div>}
-=======
-      <label htmlFor="email" className="sr-only">
-        Email
-      </label>
-      <input
-        type="text"
-        className={`form-control form-control-lg rounded-0 ${errors.has(
-          "email"
-        ) && "is-invalid"}`}
-        name="email"
-        id="email"
-        placeholder="Email address"
-        value={email || ""}
-        onChange={e => handleChange(e.target.name, e.target.value)}
-        required
-        autoFocus
-      />
-      {errors.has("email") && (
-        <div className="invalid-feedback">{errors.first("email")}</div>
-      )}
-    </div>
-    <div className="form-group">
-      <label htmlFor="password" className="sr-only">
-        Password
-      </label>
-      <input
-        type="password"
-        className={`form-control form-control-lg rounded-0 ${errors.has(
-          "password"
-        ) && "is-invalid"}`}
-        id="password"
-        name="password"
-        placeholder="Password"
-        value={password || ""}
-        onChange={e => handleChange(e.target.name, e.target.value)}
-        required
-      />
-      {errors.has("password") && (
-        <div className="invalid-feedback">{errors.first("password")}</div>
-      )}
->>>>>>> 3e7160266cac99ebe24720c38e46239aaeae2b9d
+
     </div>
     <div>
       <label className="custom-control custom-checkbox">
@@ -103,23 +63,12 @@ const Form = ({
         <span className="custom-control-description small"></span>
       </label>
     </div>
-<<<<<<< HEAD
+
     <button className="btn btn-lg btn-primary btn-block"
             type="submit"
             disabled={errors.any()}>Log In</button>
-    <p class="logintext"> <Link to='/register'>Register </Link> <b>Or</b> <Link to='/forgot'>Forgot Password ?</Link> </p>
-=======
-    <button
-      className="btn btn-lg btn-primary btn-block"
-      type="submit"
-      disabled={errors.any()}
-    >
-      Sign In
-    </button>
-    <p>
-      Forgot Password ? <Link to="/reset">Click here</Link>
-    </p>
->>>>>>> 3e7160266cac99ebe24720c38e46239aaeae2b9d
+    <p class="logintext"> <Link to='/register'>Register </Link> <b>Or</b> <Link to='/reset'>Forgot Password ?</Link> </p>
+
   </form>
 );
 

@@ -107,15 +107,18 @@ class Page extends Component {
       handleSubmit: this.handleSubmit
     };
     
-    return (<div className="container py-5">
+    return (<div className="container login-page">
       <div className="row">
         <div className="col-md-12">
           <div className="row">
-            <div className="mx-auto">
+            <div className="login">
               <span className="anchor"/>
               <div className="card has-shadow">
                 <div className="card-body">
+                 <div class="logo-area">CWA</div>
+                 <div class="login-wrapper">
                   <Form {...props}  />
+                   </div>
                 </div>
               </div>
             </div>

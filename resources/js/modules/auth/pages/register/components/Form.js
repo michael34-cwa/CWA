@@ -16,9 +16,10 @@ const propTypes = {
 
 const Form = ({ name, email, password, passwordConfirmation, errors, handleChange, handleSubmit }) => {
   return (<form className="form" role="form" onSubmit={handleSubmit} noValidate>
-    <h2 className="card-title">Sign up</h2>
+    <h2 className="card-title">Register Here</h2>
     <div className="form-group">
       <label htmlFor="name" className="sr-only">Email</label>
+      <i class="fa fa-user" aria-hidden="true"></i>
       <input type="text"
              className={`form-control form-control-lg rounded-0 ${errors.has('name') && 'is-invalid'}`}
              name="name"
@@ -32,6 +33,7 @@ const Form = ({ name, email, password, passwordConfirmation, errors, handleChang
     </div>
     <div className="form-group">
       <label htmlFor="email" className="sr-only">Email</label>
+      <i class="fa fa-envelope-o" aria-hidden="true"></i>
       <input type="email"
              className={`form-control form-control-lg rounded-0 ${errors.has('email') && 'is-invalid'}`}
              name="email"
@@ -45,6 +47,7 @@ const Form = ({ name, email, password, passwordConfirmation, errors, handleChang
     </div>
     <div className="form-group">
       <label htmlFor="password" className="sr-only">Password</label>
+       <i class="fa fa-key" aria-hidden="true"></i>
       <input type="password"
              className={`form-control form-control-lg rounded-0 ${errors.has('password') && 'is-invalid'}`}
              id="password"
@@ -57,6 +60,7 @@ const Form = ({ name, email, password, passwordConfirmation, errors, handleChang
     </div>
     <div className="form-group">
       <label htmlFor="passwordConfirmation" className="sr-only">Confirm Password</label>
+       <i class="fa fa-key" aria-hidden="true"></i>
       <input type="password"
              className={`form-control form-control-lg rounded-0 ${errors.has('passwordConfirmation') && 'is-invalid'}`}
              id="passwordConfirmation"
@@ -69,8 +73,8 @@ const Form = ({ name, email, password, passwordConfirmation, errors, handleChang
     </div>
     <button className="btn btn-lg btn-primary btn-block"
             type="submit"
-            disabled={errors.any()}>Sign Up</button>
-    <p>Back to<Link to="/login" className="btn btn-link">Login</Link></p>
+            disabled={errors.any()}>Register</button>
+   <p class="logintext"> <Link to='/login'>Login</Link> </p>
   </form>)
 }
 

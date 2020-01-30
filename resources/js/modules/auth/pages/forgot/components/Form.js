@@ -21,6 +21,7 @@ const Form = ({ email, successMesg, errors, handleChange, handleSubmit }) => {
         <label htmlFor="email" className="sr-only">
           Email
         </label>
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
         <input
           type="email"
           className={`form-control form-control-lg rounded-0 ${errors.has(
@@ -28,7 +29,7 @@ const Form = ({ email, successMesg, errors, handleChange, handleSubmit }) => {
           ) && "is-invalid"}`}
           name="email"
           id="email"
-          placeholder="Email address"
+          placeholder="Enter Email address"
           value={email || ""}
           onChange={e => handleChange(e.target.name, e.target.value)}
           required
@@ -47,14 +48,8 @@ const Form = ({ email, successMesg, errors, handleChange, handleSubmit }) => {
         Submit
       </button>
      {successMesg ? <div className="valid-feedback">{successMesg}</div> : ''}
- 
-      <p>
-        Back to
-        <Link to="/login" className="btn btn-link">
-          Login
-        </Link>
-      </p>
-    </form>
+  <p class="logintext"> <Link to='/login'>Login</Link> </p>
+     </form>
   );
 };
 
