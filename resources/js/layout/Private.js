@@ -24,7 +24,7 @@ function PrivateLayout({ children }) {
       <main style={{ minHeight: "100vh" }}>
         <SideMenu />
         {children}
-        <ScrollTop />
+        <ScrollTop />  
       </main>
       <Footer />
     </div>
