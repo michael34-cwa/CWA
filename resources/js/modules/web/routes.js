@@ -3,7 +3,7 @@ import { lazy } from 'react'
 
 const routes = [
   {
-    path: "/",
+    path: "/test",
     exact: true,
     auth: true,
     component: lazy(() => import("./pages/home/index"))
