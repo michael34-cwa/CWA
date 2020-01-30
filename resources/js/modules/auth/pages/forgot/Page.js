@@ -6,10 +6,9 @@ import _ from 'lodash'
 import { Redirect } from 'react-router-dom'
 import { forgot } from '../../service'
 import ReeValidate from 'ree-validate'
-
-// import components
+ // import components
 import Form from './components/Form'
-
+ 
 // initialize component
 class Page extends Component {
   static displayName = 'ForgotPage'
@@ -26,12 +25,13 @@ class Page extends Component {
     })
     
     this.state = {
-      credentials: { 
-        email: '', 
+      credentials: {
+        email: ""
       },
-      errors: this.validator.errors,
+      successMesg:'',
+      errors: this.validator.errors, 
       fields: this.validator.fields
-    }
+    };
     
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -48,7 +48,7 @@ class Page extends Component {
   // event to handle input change
   handleChange(name, value) {
     const { errors } = this.validator
-
+    this.setState({ successMesg: "" }); 
     this.setState({credentials: { ...this.state.credentials, [name]: value }})
     errors.remove(name)
     
@@ -74,23 +74,25 @@ class Page extends Component {
   }
   
   submit(credentials) {
-    this.props.dispatch(forgot(credentials))
-      .catch(({ error, statusCode }) => {
-        const { errors } = this.validator
-        
-        if (statusCode === 422) {
-          _.forOwn(error, (message, field) => {
-            errors.add(field, message);
-          });
-        } else if (statusCode === 401) {
-          errors.add('password', error);
-        }
-        
-        this.setState({ errors })
+
+    this.props
+      .dispatch(forgot(credentials))
+      .then(res => {  
+           this.setState({ successMesg: res });  
       })
+      .catch(({ error, statusCode }) => {
+        const { errors } = this.validator;
+
+        if (statusCode === 401) {
+          errors.add("email", error);
+        }
+
+        this.setState({ errors });
+      });
   }
   
   render() {
+ 
     // check if user is authenticated then redirect him to home page
     if (this.props.isAuthenticated) {
       return <Redirect to="/" />
@@ -98,11 +100,12 @@ class Page extends Component {
     
     const {   email  } = this.state.credentials
     const props = {
-       email, 
+      email,
+      successMesg: this.state.successMesg,
       errors: this.state.errors,
       handleChange: this.handleChange,
-      handleSubmit: this.handleSubmit,
-    }
+      handleSubmit: this.handleSubmit
+    };
     
     return (<div className="container py-5">
       <div className="row">

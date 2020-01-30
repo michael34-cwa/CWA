@@ -101,16 +101,11 @@ export function forgot(credentials) {
     new Promise((resolve, reject) => {
       Http.post("auth/reset_password", Transformer.send(credentials))
         .then(res => {
-          const data = Transformer.fetch(res.data);
-          console.log(data);
-        
-          // dispatch(authActions.authLogin(data.accessToken));
-          // return resolve();
-           return resolve();
+          const data = Transformer.fetch(res.data);   
+          return resolve(data);
         })
         .catch(err => {
-          alert('ed');
-          const statusCode = 'cewdewdcewd';
+          const statusCode = err.response.status;
           const data = {
             error: null,
             statusCode
