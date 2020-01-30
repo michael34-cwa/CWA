@@ -49,15 +49,24 @@ use View;
 
 //Check Email Exit
             if (empty($userData) && $userData == '') {
-            return response()->json(['status'=>0,'message'=>'User email not valid']); 
+
+                     return response()->json([
+                "error" => "invalid_credentials",
+                "message" => "The user email were incorrect."
+            ], 401);
+          //  return response()->json(['status'=>0,'message'=>'User email not valid']); 
             }
 //Check User Activation
             $user = \Sentinel::findById($userData->id);
             $activation = \Activation::exists($user);
 
             if (!empty($activation) && $activation != '') {
-              return response()->json(['status'=>0,'message'=>'User not activeted']); 
+        
            
+          return response()->json([
+                "error" => "invalid_credentials",
+                "message" => "User not activeted."
+            ], 401);
             }
             $user_sentinal = \Sentinel::findById($userData->id);
  
@@ -80,9 +89,12 @@ use View;
            $mailData = $first_name;
             $content = str_replace("{button}", '  <a href="' . $baseUrl . '" type="button" class="btn btn-primary">Click Here</a>', $mailData);
 
-            Mail::to('gurinder@yopmail.com')->send(new \App\Mail\ForgetMail($content));
+          //  Mail::to('gurinder@yopmail.com')->send(new \App\Mail\ForgetMail($content));
+                // Mail::raw('Hi, welcome user!', function ($message) {
+                // $message->to('gurinder@yopmail.com') ->subject('Forget Email');
+                // });
  
-          return response()->json(['status'=>0,'message'=>'Link has been sent']); 
+          return response()->json( 'Link has been sent',200); 
 
         } catch (Exception $ex) {
                   return response()->json(['status'=>0,'message'=>$ex->getMessage()]);  

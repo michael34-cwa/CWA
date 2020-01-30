@@ -3,13 +3,18 @@ import { lazy } from 'react'
 
 export default [
   {
-    path: '/login',
+    path: "/login",
     exact: true,
-    component: lazy(() => import('./pages/login/index')),
+    component: lazy(() => import("./pages/login/index"))
   },
   {
-    path: '/register',
+    path: "/register",
     exact: true,
-    component: lazy(() => import('./pages/register/index')),
+    component: lazy(() => import("./pages/register/index"))
   },
-]
+  {
+    path: "/reset",
+    exact: true,
+    component: lazy(() => import("./pages/forgot/index"))
+  }
+];
