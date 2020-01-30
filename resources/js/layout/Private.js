@@ -19,7 +19,7 @@ const propTypes = {
 function PrivateLayout({ children }) {
   return <div style={containerStyle}>
     <Navigation/>
-    <main style={{ minHeight: '100vh'}}>
+    <main>
       { children }
       <ScrollTop />
     </main>

@@ -14,14 +14,15 @@ const propTypes = {
 
 const Form = ({ email, password, remember, errors, handleChange, handleSubmit }) => (
   <form className="form" role="form" onSubmit={handleSubmit} noValidate>
-    <h2 className="card-title">Please sign in</h2>
+    <h2 className="card-title">Administrator Login</h2>
     <div className="form-group">
       <label htmlFor="email" className="sr-only">Email</label>
+      <i class="fa fa-envelope-o" aria-hidden="true"></i>
       <input type="text"
              className={`form-control form-control-lg rounded-0 ${errors.has('email') && 'is-invalid'}`}
              name="email"
              id="email"
-             placeholder="Email address"
+             placeholder="Enter Email address"
              value={email || ''}
              onChange={e => handleChange(e.target.name, e.target.value)}
              required
@@ -30,11 +31,12 @@ const Form = ({ email, password, remember, errors, handleChange, handleSubmit })
     </div>
     <div className="form-group">
       <label htmlFor="password" className="sr-only">Password</label>
+      <i class="fa fa-key" aria-hidden="true"></i>
       <input type="password"
              className={`form-control form-control-lg rounded-0 ${errors.has('password') && 'is-invalid'}`}
              id="password"
              name="password"
-             placeholder="Password"
+             placeholder="Enter Password"
              value={password || ''}
              onChange={e => handleChange(e.target.name, e.target.value)}
              required/>
@@ -52,8 +54,8 @@ const Form = ({ email, password, remember, errors, handleChange, handleSubmit })
     </div>
     <button className="btn btn-lg btn-primary btn-block"
             type="submit"
-            disabled={errors.any()}>Sign In</button>
-    <p>Forgot Password ? <Link to='/forgot'>Click here</Link></p>
+            disabled={errors.any()}>Log In</button>
+    <p class="logintext"> <Link to='/register'>Register </Link> <b>Or</b> <Link to='/forgot'>Forgot Password ?</Link> </p>
   </form>
 )
 

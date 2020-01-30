@@ -6,9 +6,6 @@ import PropTypes from 'prop-types'
 import ScrollTop from '../common/scroll-top/index'
 import Footer from '../common/footer/index'
 
-const containerStyle = {
-  paddingTop: '3.5rem',
-}
 
 const displayName = 'Public Layout'
 const propTypes = {
@@ -17,8 +14,8 @@ const propTypes = {
 
 function PublicLayout({ children }) {
   return (
-    <div style={containerStyle}>
-      <main style={{ minHeight: "calc(100vh - 112px)" }}>
+    <div class="mainwrapper">
+      <main class="mainheight">
         {children}
         <ScrollTop />
       </main>

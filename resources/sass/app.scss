@@ -1,10 +1,14 @@
 // Bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "../../node_modules/font-awesome/scss/font-awesome";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,700i,900&display=swap');
 
 /*
  * Dashboard
  */
+ body{
+ 	font-family: 'Roboto', sans-serif;
+ }
 
 header {
   padding: 30px 0;
@@ -15,9 +19,77 @@ section {
 }
 
 .has-shadow {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 0.625rem;
+    box-shadow: 6px 11px 41px -28px #a99de7;
 }
-
+  
 .show > .dropdown-menu {
   display: block;
+}
+
+.login {
+    width: 90%;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+.login .form-control-lg {
+    font-size: 14px;
+    border: 0;
+    border-bottom: 2px solid #d4d4d4;
+    outline: 0;
+    box-shadow: 0 0 0 !important;
+    padding-left: 30px;
+}
+.login-wrapper i.fa {
+    position: absolute;
+    top: 9px;
+}
+.login-wrapper .form-group{
+	position: relative;
+}
+.login .form-control-lg.focus-visible {
+    border-bottom: 2px solid #017bff;
+}
+main.mainheight {
+    min-height: calc(100vh - 34px);
+}
+.container.login-page {
+    height: 93.9vh;
+}
+.container.login-page .row {
+    align-items: center;
+    height: 100%;
+}
+.card-title {
+    margin-bottom: 0.75rem;
+    font-size: 20px;
+    text-align: center;
+}
+.bg-black{
+	background-color: #000;
+}
+footer.sticky-bottom.py-2.bg-black {
+    font-size: 12px;
+}
+.logo-area {
+    text-align: center;
+    font-size: 55px;
+    font-weight: bold;
+    color: #017bff;
+}
+.login-wrapper {
+    max-width: 90%;
+    margin: 0 auto;
+}
+p.logintext {
+    margin: 10px 0 0 0;
+    text-align: center;
+}
+
+
+@media(min-height:0px) and (max-height:450px) {
+  .container.login-page {
+    height: 120vh;
+}
 }
