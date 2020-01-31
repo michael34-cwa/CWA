@@ -37,7 +37,7 @@ class RegisterController extends Controller
                     'scope' => '',
                 ],
             ]);
-
+   
             return json_decode((string)$response->getBody(), true);
         } catch (\Exception $e) {
             dd($e->getMessage(), $e->getCode(), $e->getTrace());

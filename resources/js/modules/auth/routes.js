@@ -3,7 +3,7 @@ import { lazy } from 'react'
 
 export default [
   {
-    path: "/login",
+    path: "/admin",
     exact: true,
     component: lazy(() => import("./pages/login/index"))
   },
