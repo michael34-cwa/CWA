@@ -21,10 +21,12 @@ function PrivateLayout({ children }) {
     <div style={containerStyle}>
       <Navigation />
 
-      <main style={{ minHeight: "100vh" }}>
-        <SideMenu />
-        {children}
-        <ScrollTop />  
+      <main class="dashbard-area">
+        <div class="dashbard-inner">
+          <SideMenu />
+          {children}
+          <ScrollTop />
+        </div>
       </main>
       <Footer />
     </div>

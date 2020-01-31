@@ -20,7 +20,7 @@ class LoginController extends Controller
         ], [
             'email.exists' => 'The user credentials were incorrect.',
         ]);
-                          die();
+                          //die();
 //         //Check user activation 
 //            $user = \Sentinel::findById($userData->id);   
 //            $activation = \Activation::exists($user);
