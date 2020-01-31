@@ -118,6 +118,7 @@ class Page extends Component {
     }
 
     return (<div className="container login-page">
+ 
       <div className="row">
         <div className="col-md-12">
           <div className="row">
