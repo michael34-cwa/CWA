@@ -48,8 +48,8 @@ class sideMenu extends Component {
             <p>Dummy Heading</p>
             {/* <SubMenu title="Home" icon={faHome} items={submenus[0]} /> */}
             <NavItem>
-              <NavLink tag={Link} to={"/about"}>
-                About
+              <NavLink tag={Link} to={"/students"}>
+                Students
               </NavLink>
             </NavItem>
           </Nav>
