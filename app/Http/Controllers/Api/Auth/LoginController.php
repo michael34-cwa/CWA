@@ -20,13 +20,15 @@ class LoginController extends Controller
         ], [
             'email.exists' => 'The user credentials were incorrect.',
         ]);
-                          //die();
-//         //Check user activation 
-//            $user = \Sentinel::findById($userData->id);   
-//            $activation = \Activation::exists($user);
-//            if (!empty($activation) && $activation != '') {
-//             return response()->json('User are not activated', 401);
-//            }
+                      
+        //Check user activation 
+           $user = \Sentinel::findById(8);   
+           $activation =   Activation::completed($user); 
+         
+           if (empty($activation) && $activation == '') {
+            return response()->json(['message'=>'User are not activated'], 401);
+           }
+
 // //Check authenticate user
 //             $authenticate_user = \Sentinel::authenticate($request->all());
 //             if (empty($authenticate_user) && $authenticate_user == '') {
