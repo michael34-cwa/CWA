@@ -23,13 +23,15 @@ const propTypes = {
 const PrivateHeader = ({ user, showNavigation, showDropdown, toggleDropdown, logout }) => (
   <Collapse className="navbar-collapse" isOpen={showNavigation}>
     <ul className="navbar-nav mr-auto">
-      <NavItem path="/">Home</NavItem>
+     
      </ul>
     
     <ul className="navbar-nav">
+<NavItem path="/">Home</NavItem>
       <Dropdown isOpen={showDropdown} toggle={toggleDropdown}>
+     
         <DropdownToggle nav caret>
-          { user.name }
+           My Account{ user.name }
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-right">
           <Link className='dropdown-item' to={`/users/${user.id}/edit`}>
