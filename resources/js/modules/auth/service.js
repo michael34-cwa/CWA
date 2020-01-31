@@ -27,37 +27,37 @@ export function fetchUser() {
  * @returns {function(*)}
  */
 export function login(credentials) {
-  return dispatch => (
+  return dispatch =>
     new Promise((resolve, reject) => {
-      Http.post('auth/login', credentials)
+      Http.post("auth/login", credentials)
         .then(res => {
-          const data = Transformer.fetch(res.data)
-          dispatch(authActions.authLogin(data.accessToken))
-          return resolve()
+          const data = Transformer.fetch(res.data);
+          dispatch(authActions.authLogin(data.accessToken));
+          return resolve();
         })
-        .catch((err) => {
+        .catch(err => {
           const statusCode = err.response.status;
           const data = {
             error: null,
-            statusCode,
+            statusCode
           };
 
           if (statusCode === 422) {
             const resetErrors = {
               errors: err.response.data.errors,
               replace: false,
-              searchStr: '',
-              replaceStr: '',
+              searchStr: "",
+              replaceStr: ""
             };
             data.error = Transformer.resetValidationFields(resetErrors);
           } else if (statusCode === 401) {
             data.error = err.response.data.message;
           }
           return reject(data);
-        })
-    })
-  )
+        });
+    });
 }
+
 
 export function register(credentials) {
   return dispatch => (
