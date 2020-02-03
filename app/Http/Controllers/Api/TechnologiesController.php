@@ -97,7 +97,7 @@ class TechnologiesController  extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleRequest $request, $id)
+    public function update(TechnologiesRequest $request, $id)
     {
         $article = Technologies::findOrFail($id);
 
