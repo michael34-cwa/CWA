@@ -104,7 +104,7 @@ export function articleListRequest({ pageNumber = 1, url = "/technologies" }) {
          };
        }
 
-export function articleEditRequest(id) {
+export function articleEditRequest(id) { 
   return dispatch => {
     Http.get(`technologies/${id}`)
       .then(res => {

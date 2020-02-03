@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import MyEditor from '../../../../../common/wysiwyg-editor/index'
-
+ 
 const displayName = 'ArticleFrom'
 const propTypes = {
   article: PropTypes.object.isRequired,

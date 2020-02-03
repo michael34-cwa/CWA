@@ -17,7 +17,7 @@ class Page extends Component {
     dispatch: PropTypes.func.isRequired,
   }
   
-  constructor(props) {
+  constructor(props) {  
     super(props)
     
     this.validator = new ReeValidate({
