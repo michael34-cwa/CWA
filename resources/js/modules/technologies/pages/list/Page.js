@@ -72,10 +72,10 @@ class Page extends Component {
         <table className="table table-responsive table-striped">
           <thead className="thead-inverse">
             <tr>
-              <th>#</th>
+              <th>Sr. No.</th>
               <th>Technology Name</th>
-              <th>Created At</th>
-              <th>Updated At</th>
+              <th>Created Date</th>
+              <th>Updated Date</th>
               <th>
                 <Link to="/technologies/create" className="btn btn-success">
                   Add
