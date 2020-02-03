@@ -74,7 +74,7 @@ const Form = ({ name, email, password, passwordConfirmation, errors, handleChang
     <button className="btn btn-lg btn-primary btn-block"
             type="submit"
             disabled={errors.any()}>Register</button>
-   <p class="logintext"> <Link to='/login'>Login</Link> </p>
+   <p class="logintext"> <Link to='/admin'>Login</Link> </p>
   </form>)
 }
 

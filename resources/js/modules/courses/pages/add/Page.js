@@ -88,7 +88,7 @@ class Page extends Component {
   }
   
   render() {
-    return <div className="col-sm-9 ml-sm-auto col-md-10 pt-3">
+    return <div className="dashboard-right">
       <h1>Edit</h1>
       <Form {...this.state}
             onChange={this.handleChange}
