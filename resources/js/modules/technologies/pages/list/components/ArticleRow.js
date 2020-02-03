@@ -19,7 +19,7 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
       <td>{article.updatedAt && article.updatedAt.format("MMMM, DD YYYY")}</td>
       <td>
         <div className="btn-group" role="group" aria-label="Actions">
-          <Link className="btn btn-primary" to={`articles/${article.id}/edit`}>
+          <Link className="btn btn-primary" to={`technologies/${article.id}/edit`}>
             Edit
           </Link>
           <button

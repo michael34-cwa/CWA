@@ -5,6 +5,7 @@ import Article from '../../Article'
 import Page from './Page'
 
 const mapStateToProps = (state, router) => {
+ 
   const { params } = router.match
   const article = state.articles.data.find(article => article.id === Number(params.id))
   return {

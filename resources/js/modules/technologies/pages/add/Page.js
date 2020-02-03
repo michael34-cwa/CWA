@@ -7,7 +7,9 @@ import ReeValidate from 'ree-validate'
 
 // import components
 import Form from './components/Form'
-
+import ReactDOM from "react-dom";
+import { Redirect } from "react-router-dom";
+ 
 class Page extends Component {
   static displayName = 'AddArticle'
   static propTypes = {
@@ -71,18 +73,22 @@ class Page extends Component {
   }
   
   submit(article) {
-    this.props.dispatch(articleAddRequest(article))
+    this.props
+      .dispatch(articleAddRequest(article))
+      .then(res => { 
+     <Redirect to="/" />;
+
+      })
       .catch(({ error, statusCode }) => {
-        const { errors } = this.validator
-  
+        const { errors } = this.validator; 
         if (statusCode === 422) {
           _.forOwn(error, (message, field) => {
             errors.add(field, message);
           });
         }
-  
-        this.setState({ errors })
-      })
+
+        this.setState({ errors });
+      });
   }
   
   render() {
