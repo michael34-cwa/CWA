@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Article from './Article'
 
 class Articles extends Component {
-  static displayName = 'Articles'
+  static displayName = 'Stuents'
   static propTypes = {
     articles: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired,

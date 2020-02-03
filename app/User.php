@@ -39,8 +39,8 @@ class User extends Authenticatable
     ];
 
        static function GetUserByMail($email)
-    {
-        return $userData = static::whereEmail($email)->first();
+    { 
+        return  static::whereEmail($email)->first();
 
     }
     /**

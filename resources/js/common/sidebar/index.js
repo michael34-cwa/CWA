@@ -8,7 +8,7 @@ import {
   DropdownMenu,
   NavLink
 } from "reactstrap";
-
+import { BrowserRouter, Link, Router, Route } from "react-router-dom";
 const sideMenu = props => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -21,7 +21,7 @@ const sideMenu = props => {
           <DropdownToggle nav caret>
             <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
           </DropdownToggle>
-          <DropdownMenu>
+          {/* <DropdownMenu>
             <DropdownItem header>
               <i class="fa fa-adjust" aria-hidden="true"></i> Header
             </DropdownItem>
@@ -35,19 +35,24 @@ const sideMenu = props => {
             <DropdownItem>
               <i class="fa fa-adjust" aria-hidden="true"></i> Another Action
             </DropdownItem>
-          </DropdownMenu>
+          </DropdownMenu> */}
         </Dropdown>
         <NavItem>
-          <NavLink href="#">
-            <i class="fa fa-adjust" aria-hidden="true"></i> Link
-          </NavLink>
+          <Link to="/technologies">
+            <i class="fa fa-adjust" aria-hidden="true"></i> Technologies
+          </Link>
         </NavItem>
         <NavItem>
-          <NavLink href="#">
-            <i class="fa fa-adjust" aria-hidden="true"></i> Another Link
-          </NavLink>
+          <Link to="/courses">
+            <i class="fa fa-adjust" aria-hidden="true"></i> Courses
+          </Link>
         </NavItem>
         <NavItem>
+          <Link to="/articles">
+            <i class="fa fa-adjust" aria-hidden="true"></i> Students
+          </Link>
+        </NavItem>
+        {/* <NavItem>
           <NavLink href="#">
             <i class="fa fa-adjust" aria-hidden="true"></i> Another Link
           </NavLink>
@@ -76,7 +81,7 @@ const sideMenu = props => {
           <NavLink href="#">
             <i class="fa fa-adjust" aria-hidden="true"></i> Another Link
           </NavLink>
-        </NavItem>
+        </NavItem> */}
       </Nav>
     </div>
   );

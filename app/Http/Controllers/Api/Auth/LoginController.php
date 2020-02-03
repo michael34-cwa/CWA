@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use Activation;
+use App\Model\User;
 use Cartalyst\Sentinel\Sentinel;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Cartalyst\Sentinel\Users\UserInterface;
@@ -22,18 +23,19 @@ class LoginController extends Controller
         ]);
                       
         //Check user activation 
-           $user = \Sentinel::findById(8);   
+          $userData =  \App\User::GetUserByMail($input['email']);   
+           $user = \Sentinel::findById($userData->id);   
            $activation =   Activation::completed($user); 
          
            if (empty($activation) && $activation == '') {
             return response()->json(['message'=>'User are not activated'], 401);
            }
 
-// //Check authenticate user
-//             $authenticate_user = \Sentinel::authenticate($request->all());
-//             if (empty($authenticate_user) && $authenticate_user == '') {
-//                  return response()->json('User are not valid', 401);
-//             }   
+//Check authenticate user
+            $authenticate_user = \Sentinel::authenticate($request->all());
+            if (empty($authenticate_user) && $authenticate_user == '') {
+                 return response()->json(['message'=>'User are not valid'],401);
+            }   
 
         request()->request->add([
             'grant_type' => 'password',

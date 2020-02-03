@@ -26,4 +26,10 @@ Route::group(["prefix" => "{$api_version}"], function() {
     // register articles routes
     Route::prefix('articles')
         ->group(base_path('routes/api/articles.php'));
+            // register courses routes
+    Route::prefix('courses')
+        ->group(base_path('routes/api/courses.php'));
+    Route::prefix('technologies')
+        ->group(base_path('routes/api/technologies.php'));
 });
+

@@ -19,10 +19,10 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->user()->is_admin) {
-            return Article::loadAll();
-        }
-        return Article::loadAllMine($request->user()->id);
+        // if ($request->user()->is_admin) {
+        //     return Article::loadAll();
+        // }
+        return Article::loadAll();
     }
 
     /**
