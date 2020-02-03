@@ -20,13 +20,11 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
-      title: 'required|min:3',
-      content: 'required|min:10',
-      description: 'required|min:10',
+      title: 'required|min:1', 
     })
     
     const article = this.props.article.toJson()
-    
+ 
     this.state = {
       article,
       errors: this.validator.errors
@@ -37,12 +35,11 @@ class Page extends Component {
   }
 
   UNSAFE_componentWillMount() {
-    this.loadArticle()
+    this.loadArticle();
   }
   
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const article = nextProps.article.toJson()
-    
+    const article = nextProps.article.toJson() 
     if (!_.isEqual(this.state.article, article)) {
       this.setState({ article })
     }
@@ -50,8 +47,8 @@ class Page extends Component {
   }
   
   loadArticle() {
-    const { match, article, dispatch } = this.props
-    
+    const { match, article, dispatch } = this.props 
+   
     if (!article.id) {
       dispatch(articleEditRequest(match.params.id))
     }
@@ -102,7 +99,7 @@ class Page extends Component {
   
   renderForm() {
     const { article } = this.props
-    
+ 
     if (article.id) {
       return <Form {...this.state}
                    onChange={this.handleChange}
