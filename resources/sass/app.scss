@@ -110,6 +110,8 @@ p.logintext {
   left: 0;
   top: 0;
   width: 280px;
+   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2784313725490196);
+   height: 100%;
 }
 .dashboard-right {
   margin-left: 280px;
@@ -168,12 +170,13 @@ p.logintext {
   color: #000;
   text-transform: uppercase;
   background-color: #fff;
-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2784313725490196);
+
 
 }
 
 .side-menu ul {
   padding-top: 20px;
+
 }
 
 .side-menu ul li a:after {
