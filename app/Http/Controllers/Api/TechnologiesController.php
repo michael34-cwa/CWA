@@ -99,13 +99,11 @@ class TechnologiesController  extends Controller
      */
     public function update(TechnologiesRequest $request, $id)
     {
-        $article = Technologies::findOrFail($id);
+        $technologies = Technologies::findOrFail($id);
+        $technologies->technology_name = $request->title; 
+        $technologies->save();
 
-        $data = $request->validated();
-        $data['slug'] = Str::slug($data['title']);
-        $article->update($data);
-
-        return response()->json($article, 200);
+        return response()->json($technologies, 200);
     }
 
     /**
