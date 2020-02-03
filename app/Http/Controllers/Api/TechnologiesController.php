@@ -75,11 +75,7 @@ class TechnologiesController  extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
-    {
-        if (!$request->user()->is_admin) {
-            return Technologies::mine($request->user()->id)->findOrFail($id);
-        }
-
+    { 
         return Technologies::findOrFail($id);
     }
 

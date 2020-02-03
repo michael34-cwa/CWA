@@ -16,7 +16,7 @@ export function articleAddRequest(params) {
       Http.post("/technologies", transformRequest(params))
         .then(res => {
           dispatch(articleActions.add(transformResponse(res.data)));
-          return resolve();
+          return resolve(res);
         })
         .catch(err => {
           const statusCode = err.response.status;
@@ -104,7 +104,7 @@ export function articleListRequest({ pageNumber = 1, url = "/technologies" }) {
          };
        }
 
-export function articleEditRequest(id) {
+export function articleEditRequest(id) { 
   return dispatch => {
     Http.get(`technologies/${id}`)
       .then(res => {
