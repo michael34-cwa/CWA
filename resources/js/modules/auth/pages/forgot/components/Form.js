@@ -47,8 +47,8 @@ const Form = ({ email, successMesg, errors, handleChange, handleSubmit }) => {
       >
         Submit
       </button>
-     {successMesg ? <div className="valid-feedback">{successMesg}</div> : ''}
-  <p class="logintext"> <Link to='/login'>Login</Link> </p>
+     {successMesg ? <div className="suess-msg text-center">{successMesg}</div> : ''}
+  <p class="logintext"> <Link to='/admin'>Login</Link> </p>
      </form>
   );
 };

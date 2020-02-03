@@ -94,7 +94,7 @@ use View;
                 // $message->to('gurinder@yopmail.com') ->subject('Forget Email');
                 // });
  
-          return response()->json( 'Link has been sent',200); 
+          return response()->json( 'We have e-mailed your password reset link!',200); 
 
         } catch (Exception $ex) {
                   return response()->json(['status'=>0,'message'=>$ex->getMessage()]);  

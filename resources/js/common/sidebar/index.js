@@ -17,11 +17,11 @@ const sideMenu = props => {
   return (
     <div className="side-menu">
       <Nav vertical>
-        <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
+        {/*<Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle nav caret>
             <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
           </DropdownToggle>
-          {/* <DropdownMenu>
+           <DropdownMenu>
             <DropdownItem header>
               <i class="fa fa-adjust" aria-hidden="true"></i> Header
             </DropdownItem>
@@ -35,8 +35,13 @@ const sideMenu = props => {
             <DropdownItem>
               <i class="fa fa-adjust" aria-hidden="true"></i> Another Action
             </DropdownItem>
-          </DropdownMenu> */}
-        </Dropdown>
+          </DropdownMenu> 
+        </Dropdown>*/}
+        <NavItem>
+          <Link to="/">
+             <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
+          </Link>
+        </NavItem>
         <NavItem>
           <Link to="/technologies">
             <i class="fa fa-adjust" aria-hidden="true"></i> Technologies
