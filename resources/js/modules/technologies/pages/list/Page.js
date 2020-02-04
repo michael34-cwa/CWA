@@ -69,7 +69,8 @@ class Page extends Component {
     return (
       <main className="dashboard-right" role="main">
         <h1>Technologies</h1>
-        <table className="table table-responsive table-striped">
+        <div className="table-responsive">
+        <table className="table  table-striped">
           <thead className="thead-inverse">
             <tr>
               <th>Sr. No.</th>
@@ -85,6 +86,7 @@ class Page extends Component {
           </thead>
           <tbody>{this.renderArticles()}</tbody>
         </table>
+        </div>
         <Pagination meta={this.props.meta} onChange={this.pageChange} />
       </main>
     );
