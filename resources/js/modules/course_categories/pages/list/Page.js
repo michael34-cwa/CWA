@@ -78,7 +78,7 @@ class Page extends Component {
               <th>Created Date</th>
               <th>Updated Date</th>
               <th>
-                <Link to="/technologies/create" className="btn btn-success">
+                <Link to="/course_categories/create" className="btn btn-success">
                   Add
                 </Link>
               </th>

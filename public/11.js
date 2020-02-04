@@ -60,18 +60,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
-/***/ "./resources/js/modules/course_categories/store/action-types.js":
-/*!**********************************************************************!*\
-  !*** ./resources/js/modules/course_categories/store/action-types.js ***!
-  \**********************************************************************/
-/*! exports provided: ARTICLE_LIST, ARTICLE_ADD, ARTICLE_UPDATE, ARTICLE_REMOVE, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ARTICLE_LIST\", function() { return ARTICLE_LIST; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ARTICLE_ADD\", function() { return ARTICLE_ADD; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ARTICLE_UPDATE\", function() { return ARTICLE_UPDATE; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ARTICLE_REMOVE\", function() { return ARTICLE_REMOVE; });\nvar ARTICLE_LIST = 'ARTICLE_LIST';\nvar ARTICLE_ADD = 'ARTICLE_ADD';\nvar ARTICLE_UPDATE = 'ARTICLE_UPDATE';\nvar ARTICLE_REMOVE = 'ARTICLE_REMOVE';\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  ARTICLE_LIST: ARTICLE_LIST,\n  ARTICLE_ADD: ARTICLE_ADD,\n  ARTICLE_UPDATE: ARTICLE_UPDATE,\n  ARTICLE_REMOVE: ARTICLE_REMOVE\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvbW9kdWxlcy9jb3Vyc2VfY2F0ZWdvcmllcy9zdG9yZS9hY3Rpb24tdHlwZXMuanM/MDUwMCJdLCJuYW1lcyI6WyJBUlRJQ0xFX0xJU1QiLCJBUlRJQ0xFX0FERCIsIkFSVElDTEVfVVBEQVRFIiwiQVJUSUNMRV9SRU1PVkUiXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBTyxJQUFNQSxZQUFZLEdBQUcsY0FBckI7QUFDQSxJQUFNQyxXQUFXLEdBQUcsYUFBcEI7QUFDQSxJQUFNQyxjQUFjLEdBQUcsZ0JBQXZCO0FBQ0EsSUFBTUMsY0FBYyxHQUFHLGdCQUF2QjtBQUVRO0FBQ2JILGNBQVksRUFBWkEsWUFEYTtBQUViQyxhQUFXLEVBQVhBLFdBRmE7QUFHYkMsZ0JBQWMsRUFBZEEsY0FIYTtBQUliQyxnQkFBYyxFQUFkQTtBQUphLENBQWYiLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvbW9kdWxlcy9jb3Vyc2VfY2F0ZWdvcmllcy9zdG9yZS9hY3Rpb24tdHlwZXMuanMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY29uc3QgQVJUSUNMRV9MSVNUID0gJ0FSVElDTEVfTElTVCdcclxuZXhwb3J0IGNvbnN0IEFSVElDTEVfQUREID0gJ0FSVElDTEVfQUREJ1xyXG5leHBvcnQgY29uc3QgQVJUSUNMRV9VUERBVEUgPSAnQVJUSUNMRV9VUERBVEUnXHJcbmV4cG9ydCBjb25zdCBBUlRJQ0xFX1JFTU9WRSA9ICdBUlRJQ0xFX1JFTU9WRSdcclxuXHJcbmV4cG9ydCBkZWZhdWx0IHtcclxuICBBUlRJQ0xFX0xJU1QsXHJcbiAgQVJUSUNMRV9BREQsXHJcbiAgQVJUSUNMRV9VUERBVEUsXHJcbiAgQVJUSUNMRV9SRU1PVkUsXHJcbn0iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/modules/course_categories/store/action-types.js\n");
-
-/***/ }),
-
 /***/ "./resources/js/modules/course_categories/store/actions.js":
 /*!*****************************************************************!*\
   !*** ./resources/js/modules/course_categories/store/actions.js ***!
