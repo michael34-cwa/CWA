@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 <?php  
+=======
+<?php
+
+>>>>>>> 85c9312bae3cbf86d936c3a44148e914f6a331d6
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
@@ -17,9 +22,13 @@ class CourseCategories extends Model
      *
      * @var string
      */
+<<<<<<< HEAD
  
     protected $table = 'course_categories'; 
  
+=======
+    protected $table = 'course_categories';
+>>>>>>> 85c9312bae3cbf86d936c3a44148e914f6a331d6
 
     protected $fillable = ['category_name'];
 
