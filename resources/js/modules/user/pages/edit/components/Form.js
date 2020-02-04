@@ -12,8 +12,9 @@ const propTypes = {
 const Form = ({ user, errors, onChange, onSubmit }) => {
   return <form onSubmit={e => onSubmit(e)}>
     <div className="form-group row">
-      <label htmlFor="name" className="col-sm-2 col-form-label">Name</label>
-      <div className="col-sm-10">
+
+      <label htmlFor="name" className="col-md-12">Name</label>
+      <div className="col-md-12">
         <input type="text"
                id="name"
                name="name"
@@ -25,8 +26,8 @@ const Form = ({ user, errors, onChange, onSubmit }) => {
       </div>
     </div>
     <div className="form-group row">
-      <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
-      <div className="col-sm-10">
+      <label htmlFor="email" className="col-md-12">Email</label>
+      <div className="col-md-12">
         <input type="email"
                id="email"
                name="email"
@@ -38,8 +39,8 @@ const Form = ({ user, errors, onChange, onSubmit }) => {
       </div>
     </div>
     <div className="form-group row">
-      <label htmlFor="phone" className="col-sm-2 col-form-label">Phone</label>
-      <div className="col-sm-10">
+      <label htmlFor="phone" className="col-md-12">Phone</label>
+      <div className="col-md-12">
         <input type="text"
                id="phone"
                name="phone"
@@ -51,8 +52,8 @@ const Form = ({ user, errors, onChange, onSubmit }) => {
       </div>
     </div>
     <div className="form-group row">
-      <label htmlFor="about" className="col-sm-2 col-form-label">About</label>
-      <div className="col-sm-10">
+      <label htmlFor="about" className="col-md-12">About</label>
+      <div className="col-md-12">
         <textarea id="about"
                   name="about"
                   className={`form-control ${errors.has('about') && 'is-invalid'}`}
@@ -64,7 +65,7 @@ const Form = ({ user, errors, onChange, onSubmit }) => {
       </div>
     </div>
     <div className="form-group row">
-      <div className="col-sm-10 ml-auto">
+      <div className="col-sm-12 ml-auto">
         <button disabled={errors.any()} type="submit" className="btn btn-primary">Update</button>
       </div>
     </div>

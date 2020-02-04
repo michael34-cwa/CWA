@@ -20,10 +20,10 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
   return (
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group row">
-        <label htmlFor="category_name" className="col-sm-2 col-form-label">
+        <label htmlFor="category_name" className="col-md-12 col-form-label">
           Category Name
         </label>
-        <div className="col-sm-10">
+        <div className="col-md-12">
           <input
             type="text"
             id="category_name"
@@ -40,7 +40,7 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
       </div>
 
       <div className="form-group row">
-        <div className="col-sm-10 ml-auto">
+        <div className="col-sm-12 ml-auto">
           <button
             disabled={errors.any()}
             type="submit"
