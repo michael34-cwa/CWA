@@ -109,7 +109,7 @@ class Page extends Component {
   
   render() {
  
-    return <main className="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">  
+    return <main className="dashboard-right" role="main">  
     <div class="card">
       <div class="card-body bg-white"> 
       <h1>Update Category Name</h1>
