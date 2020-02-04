@@ -21,7 +21,7 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
          <div className="btn-group" role="group" aria-label="Actions">
            <Link
              className="btn btn-primary"
-             to={`technologies/${article.id}/edit`}
+             to={`course_categories/${article.id}/edit`}
            >
              Edit
            </Link>

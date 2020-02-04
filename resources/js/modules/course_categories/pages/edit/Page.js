@@ -108,9 +108,14 @@ class Page extends Component {
   }
   
   render() {
+<<<<<<< HEAD
     return <main className="dashboard-right" role="main">
     <div class="card"><div class="card-body bg-white">
       <h1>Update Technology Name</h1>
+=======
+    return <main className="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+      <h1>Update Category Name</h1>
+>>>>>>> 5c16bd6b2af9b7506bd3d055fabb337b9af62e2a
       { this.renderForm() }
       </div>
       </div>

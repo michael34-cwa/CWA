@@ -26,11 +26,11 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
         <div className="col-sm-10">
           <input
             type="text"
-            id="technology_name"
-            name="technology_name"
+            id="category_name"
+            name="category_name"
             className={`form-control ${errors.has("title") && "is-invalid"}`}
             placeholder="Title"
-            value={article.technology_name || ""}
+            value={article.category_name || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
           {errors.has("title") && (
