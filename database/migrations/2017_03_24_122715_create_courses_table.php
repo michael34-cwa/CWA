@@ -19,8 +19,6 @@ class CreateCoursesTable extends Migration
            $table->text('course_description')->nullable();
            $table->text('cat_id')->nullable();
            $table->boolean('is_active')->default(false);
-           $table->timestamp('published_at')->nullable();
-           $table->softDeletes();
            $table->timestamps();
         });
     }
