@@ -1,5 +1,5 @@
-<?php
-
+ 
+<?php   
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
@@ -17,9 +17,11 @@ class CourseCategories extends Model
      * The table associated with the model.
      *
      * @var string
-     */
-    protected $table = 'course_categories';
-
+     */ 
+ 
+    protected $table = 'course_categories'; 
+ 
+ 
     protected $fillable = ['category_name'];
 
     /**

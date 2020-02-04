@@ -18,8 +18,8 @@ class CoursesController  extends Controller
      * @return LengthAwarePaginator|mixed
      */
     public function index(Request $request)
-    {  
-        return Courses::loadAll();
+    {   
+         return Courses::with('getCategory')->latest()->paginate();  
     }
 
     /**
@@ -81,10 +81,10 @@ class CoursesController  extends Controller
     public function show(Request $request, $id)
     {
         if (!$request->user()->is_admin) {
-            return Article::mine($request->user()->id)->findOrFail($id);
+            return Courses::mine($request->user()->id)->findOrFail($id);
         }
 
-        return Article::findOrFail($id);
+        return Courses::findOrFail($id);
     }
 
     /**
@@ -105,13 +105,26 @@ class CoursesController  extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleRequest $request, $id)
-    {
-        $article = Article::findOrFail($id);
+    // public function update(ArticleRequest $request, $id)
+    // {
+    //     $article = Courses::findOrFail($id);
 
-        $data = $request->validated();
-        $data['slug'] = Str::slug($data['title']);
-        $article->update($data);
+    //     $data = $request->validated();
+    //     $data['slug'] = Str::slug($data['title']);
+    //     $article->update($data);
+
+    //     return response()->json($article, 200);
+    // }
+
+      public function update(Request $request, $id)
+    {
+      
+         $data = $request->all();
+         $article = Courses::findOrFail($id); 
+         $article['course_name'] =  $data['course_name'];
+         $article['course_description'] =  $data['course_description'];
+         $article['is_active'] =  $data['is_active']; 
+         $article->save();
 
         return response()->json($article, 200);
     }
@@ -124,7 +137,7 @@ class CoursesController  extends Controller
      */
     public function delete($id)
     {
-        $article = Article::findOrFail($id);
+        $article = Courses::findOrFail($id);
 
         $article->delete();
 

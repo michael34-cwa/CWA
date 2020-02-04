@@ -230,6 +230,18 @@ background-color: #ededff;
 .dashboard-right .table th, .dashboard-right .table td {
     vertical-align: middle;
 }
+
+.boxessection i {
+    font-size: 62px;
+    margin-bottom: 20px;
+ color: #017bff;
+}
+
+.boxessection h2 {
+    font-size: 22px;
+    color: #017bff;
+}
+
 @media(min-height:0px) and (max-height:450px) {
   .container.login-page {
     height: 150vh;
