@@ -61,8 +61,9 @@ class TechnologiesController  extends Controller
      */
     public function store(TechnologiesRequest $request)
     { 
-       $technologies = new Technologies;
-       $technologies->technology_name = $request->title; 
+
+       $technologies = new Technologies($request->validated());
+       $technologies->technology_name = $request->technology_name; 
        $technologies->save(); 
       return response()->json($technologies, 201);
     }
@@ -100,7 +101,7 @@ class TechnologiesController  extends Controller
     public function update(TechnologiesRequest $request, $id)
     {
         $technologies = Technologies::findOrFail($id);
-        $technologies->technology_name = $request->title; 
+        $technologies->technology_name = $request->technology_name; 
         $technologies->save();
 
         return response()->json($technologies, 200);
