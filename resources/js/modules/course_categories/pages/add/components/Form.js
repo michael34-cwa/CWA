@@ -20,21 +20,21 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
   return (
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group row">
-        <label htmlFor="technology_name" className="col-sm-2 col-form-label">
+        <label htmlFor="category_name" className="col-sm-2 col-form-label">
           Category Name
         </label>
         <div className="col-sm-10">
           <input
             type="text"
-            id="technology_name"
-            name="technology_name"
-            className={`form-control ${errors.has("technology_name") && "is-invalid"}`}
+            id="category_name"
+            name="category_name"
+            className={`form-control ${errors.has("category_name") && "is-invalid"}`}
             placeholder="Category Name"
-            value={article.technology_name || ""}
+            value={article.category_name || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
-          {errors.has("technology_name") && (
-            <div className="invalid-feedback">{errors.first("technology_name")}</div>
+          {errors.has("category_name") && (
+            <div className="invalid-feedback">{errors.first("category_name")}</div>
           )}
         </div>
       </div>

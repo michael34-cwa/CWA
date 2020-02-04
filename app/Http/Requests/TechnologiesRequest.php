@@ -24,7 +24,13 @@ class TechnologiesRequest extends FormRequest
     public function rules()
     {
         return [
-             'technology_name' => 'required|min:2', 
+             'category_name' => 'required|min:2', 
         ];
     }
+    public function attributes()
+{
+    return [
+        'category_name' => 'Category Name',
+    ];
+}
 }

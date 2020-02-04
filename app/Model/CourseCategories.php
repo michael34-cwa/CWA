@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Technologies extends Model
+class CourseCategories extends Model
 {
     // use soft delete instead of permanent delete
  //   use SoftDeletes;
@@ -18,7 +18,7 @@ class Technologies extends Model
      *
      * @var string
      */
-    protected $table = 'technologies';
+    protected $table = 'course_categories';
 
     protected $fillable = ['category_name'];
 
