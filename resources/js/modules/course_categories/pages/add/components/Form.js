@@ -21,7 +21,7 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group row">
         <label htmlFor="technology_name" className="col-sm-2 col-form-label">
-          Technology Name
+          Category Name
         </label>
         <div className="col-sm-10">
           <input
@@ -29,7 +29,7 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
             id="technology_name"
             name="technology_name"
             className={`form-control ${errors.has("technology_name") && "is-invalid"}`}
-            placeholder="Technology Name"
+            placeholder="Category Name"
             value={article.technology_name || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
@@ -46,7 +46,7 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
             type="submit"
             className="btn btn-primary"
           >
-            Add
+            Add Course Category
           </button>
         </div>
       </div>
