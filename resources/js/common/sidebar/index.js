@@ -39,12 +39,12 @@ const sideMenu = props => {
         </Dropdown>*/}
         <NavItem>
           <Link to="/">
-             <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
+            <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
           </Link>
         </NavItem>
         <NavItem>
-          <Link to="/technologies">
-            <i class="fa fa-cog" aria-hidden="true"></i> Technologies
+          <Link to="/course_categories">
+            <i class="fa fa-cog" aria-hidden="true"></i> Course Categories
           </Link>
         </NavItem>
         <NavItem>

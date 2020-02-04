@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Model\Technologies;
+use App\Model\CourseCategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TechnologiesRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class TechnologiesController  extends Controller
+class CourseCategoriesController  extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class TechnologiesController  extends Controller
      */
     public function index(Request $request)
     {  
-        return Technologies::loadAll();
+        return CourseCategories::loadAll();
     }
 
     /**
@@ -28,8 +28,8 @@ class TechnologiesController  extends Controller
      * @return mixed
      */
     public function publishedArticles()
-    {
-        return Technologies::loadAllPublished();
+    {  
+        return CourseCategories::loadAllPublished();
     }
 
     /**
@@ -40,7 +40,7 @@ class TechnologiesController  extends Controller
      */
     public function publishedArticle($slug)
     {
-        return Technologies::loadPublished($slug);
+        return CourseCategories::loadPublished($slug);
     }
 
     /**
@@ -62,7 +62,7 @@ class TechnologiesController  extends Controller
     public function store(TechnologiesRequest $request)
     { 
 
-       $technologies = new Technologies($request->validated());
+       $technologies = new CourseCategories($request->validated());
        $technologies->technology_name = $request->technology_name; 
        $technologies->save(); 
       return response()->json($technologies, 201);
@@ -77,7 +77,7 @@ class TechnologiesController  extends Controller
      */
     public function show(Request $request, $id)
     { 
-        return Technologies::findOrFail($id);
+        return CourseCategories::findOrFail($id);
     }
 
     /**
@@ -100,7 +100,7 @@ class TechnologiesController  extends Controller
      */
     public function update(TechnologiesRequest $request, $id)
     {
-        $technologies = Technologies::findOrFail($id);
+        $technologies = CourseCategories::findOrFail($id);
         $technologies->technology_name = $request->technology_name; 
         $technologies->save();
 
@@ -115,7 +115,7 @@ class TechnologiesController  extends Controller
      */
     public function delete($id)
     {
-        $article = Technologies::findOrFail($id);
+        $article = CourseCategories::findOrFail($id);
 
         $article->delete();
 

@@ -13,7 +13,7 @@ function transformResponse(params) {
 export function articleAddRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.post("/technologies", transformRequest(params))
+      Http.post("/course_categories", transformRequest(params))
         .then(res => {
           dispatch(articleActions.add(transformResponse(res.data)));
           return resolve(res);
@@ -24,7 +24,7 @@ export function articleAddRequest(params) {
             error: null,
             statusCode
           };
-      
+
           if (statusCode === 422) {
             const resetErrors = {
               errors: err.response.data,
@@ -45,7 +45,7 @@ export function articleAddRequest(params) {
 export function articleUpdateRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.patch(`technologies/${params.id}`, transformRequest(params))
+      Http.patch(`course_categories/${params.id}`, transformRequest(params))
         .then(res => {
           dispatch(articleActions.add(transformResponse(res.data)));
           return resolve();
@@ -76,7 +76,7 @@ export function articleUpdateRequest(params) {
 
 export function articleRemoveRequest(id) {
   return dispatch => {
-    Http.delete(`technologies/${id}`)
+    Http.delete(`course_categories/${id}`)
       .then(() => {
         dispatch(articleActions.remove(id));
       })
@@ -87,7 +87,7 @@ export function articleRemoveRequest(id) {
   }
 }
 
-export function articleListRequest({ pageNumber = 1, url = "/technologies" }) {
+export function articleListRequest({ pageNumber = 1, url = "/course_categories" }) {
          return dispatch => {
            if (pageNumber > 1) {
              url = url + `?page=${pageNumber}`;
@@ -106,8 +106,8 @@ export function articleListRequest({ pageNumber = 1, url = "/technologies" }) {
 
 export function articleEditRequest(id) { 
   return dispatch => {
-    Http.get(`technologies/${id}`)
-      .then(res => { 
+    Http.get(`course_categories/${id}`)
+      .then(res => {
         dispatch(articleActions.add(transformResponse(res.data)));
       })
       .catch(err => {
@@ -119,7 +119,7 @@ export function articleEditRequest(id) {
 
 export function articleFetchRequest(slug) {
   return dispatch => {
-    Http.get(`technologies/published/${slug}`)
+    Http.get(`course_categories/published/${slug}`)
       .then(res => {
         dispatch(articleActions.add(transformResponse(res.data)));
       })
