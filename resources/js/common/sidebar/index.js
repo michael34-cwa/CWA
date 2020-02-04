@@ -44,17 +44,17 @@ const sideMenu = props => {
         </NavItem>
         <NavItem>
           <Link to="/technologies">
-            <i class="fa fa-adjust" aria-hidden="true"></i> Technologies
+            <i class="fa fa-cog" aria-hidden="true"></i> Technologies
           </Link>
         </NavItem>
         <NavItem>
           <Link to="/courses">
-            <i class="fa fa-adjust" aria-hidden="true"></i> Courses
+            <i class="fa fa-globe" aria-hidden="true"></i> Courses
           </Link>
         </NavItem>
         <NavItem>
           <Link to="/articles">
-            <i class="fa fa-adjust" aria-hidden="true"></i> Students
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i> Students
           </Link>
         </NavItem>
         {/* <NavItem>

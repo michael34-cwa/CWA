@@ -11,7 +11,7 @@ const propTypes = {
 
 const Form = ({ article, errors, onChange, onSubmit }) => {
   
-  function handleChange(name, value) {
+  function handleChange(name, value) { 
     if (value !== article[name]) {
       onChange(name, value)
     }
@@ -26,8 +26,8 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
         <div className="col-sm-10">
           <input
             type="text"
-            id="title"
-            name="title"
+            id="technology_name"
+            name="technology_name"
             className={`form-control ${errors.has("title") && "is-invalid"}`}
             placeholder="Title"
             value={article.technology_name || ""}

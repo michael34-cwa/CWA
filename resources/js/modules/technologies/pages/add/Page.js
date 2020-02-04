@@ -21,8 +21,8 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
-      title: 'required|min:1', 
-    })
+      technology_name: "required|min:2"
+    });
     
     const article = this.props.article.toJson()
     
@@ -75,14 +75,14 @@ class Page extends Component {
   submit(article) {
     this.props
       .dispatch(articleAddRequest(article))
-      .then(res => { 
-     <Redirect to="/" />;
+      .then(res => {  
 
       })
-      .catch(({ error, statusCode }) => {
-        const { errors } = this.validator; 
-        if (statusCode === 422) {
+      .catch(({ error, statusCode }) => { 
+        const { errors } = this.validator;  
+         if (statusCode === 422) { 
           _.forOwn(error, (message, field) => {
+            console.log(message);
             errors.add(field, message);
           });
         }
@@ -92,12 +92,12 @@ class Page extends Component {
   }
   
   render() {
-    return <div className="dashboard-right">
-      <h1>Add</h1>
+    return <div className="dashboard-right"><div class="card"><div class="card-body bg-white">
+      <h1>Add New technology</h1>
       <Form {...this.state}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit} />
-    </div>
+    </div></div></div>
   }
 }
 

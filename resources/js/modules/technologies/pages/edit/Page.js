@@ -20,8 +20,8 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
-      title: 'required|min:1', 
-    })
+      technology_name: "required|min:1"
+    });
     
     const article = this.props.article.toJson()
  
@@ -108,8 +108,8 @@ class Page extends Component {
   }
   
   render() {
-    return <main className="dashboard-right" role="main">
-      <h1>Edit</h1>
+    return <main className="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+      <h1>Update Technology Name</h1>
       { this.renderForm() }
     </main>
   }
