@@ -90,6 +90,7 @@ class Page extends Component {
   
   render() {
     return <main className="dashboard-right" role="main">
+    <div class="card"><div class="card-body bg-white">
       <h1>Profile</h1>
   
       <section className="row">
@@ -99,6 +100,8 @@ class Page extends Component {
                 onSubmit={this.handleSubmit}/>
         </div>
       </section>
+       </div>
+        </div>
     </main>
   }
 }
