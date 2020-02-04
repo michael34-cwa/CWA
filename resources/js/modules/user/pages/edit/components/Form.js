@@ -25,7 +25,9 @@ const Form = ({ user, errors, onChange, onSubmit }) => {
         {errors.has('name') && <div className="invalid-feedback">{errors.first('name')}</div>}
       </div>
     </div>
-    <div className="form-group row">
+    <div className="row">
+<div className="col-md-6">
+ <div className="form-group row">
       <label htmlFor="email" className="col-md-12">Email</label>
       <div className="col-md-12">
         <input type="email"
@@ -38,7 +40,9 @@ const Form = ({ user, errors, onChange, onSubmit }) => {
         {errors.has('email') && <div className="invalid-feedback">{errors.first('email')}</div>}
       </div>
     </div>
-    <div className="form-group row">
+</div>
+<div className="col-md-6">
+ <div className="form-group row">
       <label htmlFor="phone" className="col-md-12">Phone</label>
       <div className="col-md-12">
         <input type="text"
@@ -51,6 +55,10 @@ const Form = ({ user, errors, onChange, onSubmit }) => {
         {errors.has('phone') && <div className="invalid-feedback">{errors.first('phone')}</div>}
       </div>
     </div>
+</div>
+    </div>
+   
+   
     <div className="form-group row">
       <label htmlFor="about" className="col-md-12">About</label>
       <div className="col-md-12">

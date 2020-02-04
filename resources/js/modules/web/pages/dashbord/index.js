@@ -102,9 +102,17 @@ class dashBord extends Component {
                             </div>
                         </div>
                     </div>
-                  
-
-                </div>
+                   </div>
+                   <div class="row mb-20">
+                   <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                            <h3>Course Categories</h3>
+                            <p>You can add edit and update your Course Categories</p>
+                            </div>
+                            </div>
+                            </div>
+                             </div>
                 
           </div>
         );
