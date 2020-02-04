@@ -67,7 +67,7 @@ const Form = ({
     <button className="btn btn-lg btn-primary btn-block"
             type="submit"
             disabled={errors.any()}>Log In</button>
-    <p class="logintext"> <Link to='/register'>Register </Link> <b>Or</b> <Link to='/reset'>Forgot Password ?</Link> </p>
+    <p class="logintext"> <Link to='/reset'>Forgot Password ?</Link> </p>
 
   </form>
 );
