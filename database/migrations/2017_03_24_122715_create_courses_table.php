@@ -17,8 +17,7 @@ class CreateCoursesTable extends Migration
            $table->increments('id');
            $table->string('course_name');
            $table->text('course_description')->nullable();
-           $table->text('cat_id')->nullable();
-           $table->boolean('is_active')->default(false);
+            $table->boolean('is_active')->default(false);
            $table->timestamps();
         });
     }

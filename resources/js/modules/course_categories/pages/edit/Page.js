@@ -20,7 +20,7 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
-      technology_name: "required|min:1"
+      category_name: "required|min:1"
     });
     
     const article = this.props.article.toJson()
@@ -76,7 +76,7 @@ class Page extends Component {
       .then((success) => {
         if (success) {
           this.submit(article)
-        } else {
+         } else {
           this.setState({ errors })
         }
       })
