@@ -174,7 +174,7 @@ background-color: #fff;
   display: block;
   padding: 8px 20px;
   color: #000;
-  text-transform: uppercase;
+text-transform: capitalize;
   background-color: #fff;
 /*box-shadow: inset 0px 0px 15px 0px rgba(1, 123, 255, 0.2);*/
 border-bottom: 1px dashed #9fcdff;
@@ -225,9 +225,10 @@ background-color: #ededff;
 .table-responsive {
     background-color: #fff;
     box-shadow: 6px 11px 41px -28px #a99de7;
+    margin-bottom: 20px;
 }
-.table-responsive tr td {
-    width: 20%;
+.dashboard-right .table th, .dashboard-right .table td {
+    vertical-align: middle;
 }
 @media(min-height:0px) and (max-height:450px) {
   .container.login-page {

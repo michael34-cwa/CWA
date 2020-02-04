@@ -15,9 +15,11 @@ class UsersTableSeeder extends Seeder
         factory(App\User::class, 50)->create();
 
         \App\User::create([
-            'name' => 'Moeen Basra',
-            'email' => 'm.basra@live.com',
-            'password' => bcrypt('secret'),
+            'name' => 'Dev Admin',
+            'first_name' => 'Dev',
+            'last_name' => 'admin',
+            'email' => 'admin@yopmail.com',
+            'password' => bcrypt('123456'),
             'is_admin' => true,
             'remember_token' => Str::random(10),
         ]);
