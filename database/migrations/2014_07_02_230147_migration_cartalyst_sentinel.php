@@ -102,13 +102,14 @@ class MigrationCartalystSentinel extends Migration
             $table->timestamp('last_login')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->timestamps();
+            $table->boolean('is_admin')->default(0);
+            $table->text('ip_address')->nullable();
+             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique('email');
+          
         });
     }
-
     /**
      * Reverse the migrations.
      *
