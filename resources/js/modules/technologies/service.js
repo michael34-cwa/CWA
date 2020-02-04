@@ -24,7 +24,7 @@ export function articleAddRequest(params) {
             error: null,
             statusCode
           };
-
+      
           if (statusCode === 422) {
             const resetErrors = {
               errors: err.response.data,
