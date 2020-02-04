@@ -12,26 +12,29 @@ const propTypes = {
 
 const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
    return (
-    <tr key={index}>
-      <th scope="row">{index + 1}</th>
-      <td>{article.technology_name}</td>
-      <td>{article.createdAt && article.createdAt.format("MMMM, DD YYYY")}</td>
-      <td>{article.updatedAt && article.updatedAt.format("MMMM, DD YYYY")}</td>
-      <td>
-        <div className="btn-group" role="group" aria-label="Actions">
-          <Link className="btn btn-primary" to={`technologies/${article.id}/edit`}>
-            Edit
-          </Link>
-          <button
-            className="btn btn-danger"
-            onClick={() => handleRemove(article.id)}
-          >
-            Delete
-          </button>
-        </div>
-      </td>
-    </tr>
-  );
+     <tr key={index}>
+       <th scope="row">{index + 1}</th>
+       <td>{article.category_name}</td>
+       <td>{article.createdAt && article.createdAt.format("MMMM, DD YYYY")}</td>
+       <td>{article.updatedAt && article.updatedAt.format("MMMM, DD YYYY")}</td>
+       <td>
+         <div className="btn-group" role="group" aria-label="Actions">
+           <Link
+             className="btn btn-primary"
+             to={`technologies/${article.id}/edit`}
+           >
+             Edit
+           </Link>
+           <button
+             className="btn btn-danger"
+             onClick={() => handleRemove(article.id)}
+           >
+             Delete
+           </button>
+         </div>
+       </td>
+     </tr>
+   );
 }
 
 ArticleRow.displayName = displayName

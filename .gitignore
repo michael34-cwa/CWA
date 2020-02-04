@@ -6,7 +6,7 @@ Homestead.json
 Homestead.yaml
 .env
 _ide_helper.php
-
+/public
 /public/storage
 /public/hot
 /public/js/
@@ -19,4 +19,4 @@ resources/js/modules/auth/.DS_Store
 .DS_Store
 .env.docker
 .env.travis
-.eslintrc.js
+.eslintrc.js 
