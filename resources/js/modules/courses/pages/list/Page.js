@@ -37,18 +37,15 @@ class Page extends Component {
   
   togglePublish(id) {
     const article = this.props.articles.find(article => (article.id === id))
-    
+     
     if (!article)
-      return
-  
-    article.published = !article.published
-    if (article.published) {
-      article.publishedAt = moment()
+      return 
+    if (article.isActive) {
+      article.isActive = 0;
     } else {
-      article.publishedAt = null
+      article.isActive = 1;
     }
-    
-    this.props.dispatch(articleUpdateRequest(article.toJson()))
+     this.props.dispatch(articleUpdateRequest(article.toJson()))
   }
   
   handleRemove(id) {
@@ -66,28 +63,32 @@ class Page extends Component {
   }
   
   render() {
-    return <main className="dashboard-right" role="main">
-      <h1>Articles</h1>
-      <div className="table-responsive">
-      <table className="table  table-striped">
-        <thead className="thead-inverse">
-        <tr>
-          <th>#</th>
-          <th>Technology</th>
-          {/* <th>Description</th>
-          <th>Created At</th>
-          <th>Updated At</th>
-          <th>Published At</th> */}
-          <th><Link to='/articles/create' className="btn btn-success">Add</Link></th>
-        </tr>
-        </thead>
-        <tbody>
-        { this.renderArticles() }
-        </tbody>
-      </table>
-      </div>
-      <Pagination meta={this.props.meta} onChange={this.pageChange}/>
+    return (
+      <main className="dashboard-right" role="main">
+        <h1>Courses</h1>
+        <div className="table-responsive">
+          <table className="table  table-striped">
+            <thead className="thead-inverse">
+              <tr>
+                <th>#</th>
+                <th>Course Name</th>
+                <th>Course Description</th>
+                <th>Category</th>
+                <th>Created Date</th>
+                <th>Updated Date</th>
+                <th>
+                  <Link to="/courses/create" className="btn btn-success">
+                    Add
+                  </Link>
+                </th>
+              </tr>
+            </thead>
+            <tbody>{this.renderArticles()}</tbody>
+          </table>
+        </div> 
+        <Pagination meta={this.props.meta} onChange={this.pageChange} />
       </main>
+    );
   }
 }
 

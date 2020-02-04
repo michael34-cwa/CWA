@@ -21,13 +21,10 @@ const propTypes = {
 
 // initiate comppnent
 const PrivateHeader = ({ user, showNavigation, showDropdown, toggleDropdown, logout }) => (
-  <Collapse className="navbar-collapse" isOpen={showNavigation}>
-    <ul className="navbar-nav mr-auto">
-     
-     </ul>
+  <Collapse className="navbar-collapse justify-content-end" isOpen={showNavigation}>
+  
     
-    <ul className="navbar-nav">
-<NavItem path="/">Home</NavItem>
+    <ul className="navbar-nav ">
       <Dropdown isOpen={showDropdown} toggle={toggleDropdown}>
      
         <DropdownToggle nav caret>

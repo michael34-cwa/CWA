@@ -10,15 +10,13 @@ class Article extends Model {
   }
 
   initialize(props) {
-    super.initialize(props)
-
-//    this.slug = props.slug || ''
-    this.technology = props.technology || "";
-    // this.description = props.description || ''
-    // this.content = props.content || ''
-    // this.published = props.published || false
-    // this.publishedAt = props.publishedAt ? moment(props.publishedAt) : null
-
+    super.initialize(props) 
+     this.courseName = props.courseName || "";
+    this.courseDescription = props.courseDescription || "";
+    this.catId = props.getCategory.categoryName || "";
+    this.isActive = props.isActive || false; 
+    this.createdAt = props.createdAt ? moment(props.createdAt) : null;
+    this.updatedAt = props.updatedAt ? moment(props.updatedAt) : null; 
     // relate user model
     this.user = props.user ? new User(props.user) : null
   }
