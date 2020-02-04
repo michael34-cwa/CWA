@@ -68,17 +68,17 @@ class Page extends Component {
   render() {
     return (
       <main className="dashboard-right" role="main">
-        <h1>Technologies</h1>
+        <h1>Course Categories</h1>
         <div className="table-responsive">
         <table className="table  table-striped">
           <thead className="thead-inverse">
             <tr>
               <th>Sr. No.</th>
-              <th>Technology Name</th>
+              <th>Category Name</th>
               <th>Created Date</th>
               <th>Updated Date</th>
               <th>
-                <Link to="/technologies/create" className="btn btn-success">
+                <Link to="/course_categories/create" className="btn btn-success">
                   Add
                 </Link>
               </th>

@@ -9,8 +9,9 @@ class Article extends Model {
   }
 
   initialize(props) {  
+    console.log(props);
     super.initialize(props)  
-    this.technology_name = props.technologyName || "";
+    this.category_name = props.categoryName || "";
     this.created_at = props.created_at || "";
     this.updated_at = props.updated_at || ""; 
     // relate user model
