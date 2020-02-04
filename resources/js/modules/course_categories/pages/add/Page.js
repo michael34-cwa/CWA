@@ -76,7 +76,7 @@ class Page extends Component {
     this.props
       .dispatch(articleAddRequest(article))
       .then(res => {  
-
+        
       })
       .catch(({ error, statusCode }) => { 
         const { errors } = this.validator;  

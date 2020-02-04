@@ -16,7 +16,7 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
       <th scope="row">{index + 1}</th>
       <td>{article.courseName}</td>
       <td>{article.courseDescription}</td>
-      <td>{article.catId}</td>
+      <td>{article.catId.categoryName}</td>
       <td>{article.createdAt && article.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{article.updatedAt && article.updatedAt.format("MMMM, DD YYYY")}</td>
       <td>
@@ -26,7 +26,7 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
               className="btn btn-warning"
               onClick={() => togglePublish(article.id)}
             >
-              Un Active
+              In Active
             </button>
           ) : (
             <button
@@ -36,9 +36,9 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
               Active
             </button>
           )}
-          <Link className="btn btn-primary" to={`articles/${article.id}/edit`}>
+          {/* <Link className="btn btn-primary" to={`articles/${article.id}/edit`}>
             Edit
-          </Link>
+          </Link> */}
           <button
             className="btn btn-danger"
             onClick={() => handleRemove(article.id)}
