@@ -11,7 +11,7 @@ const propTypes = {
 
 const Form = ({ article, errors, onChange, onSubmit }) => {
   
-  function handleChange(name, value) {
+  function handleChange(name, value) { 
     if (value !== article[name]) {
       onChange(name, value)
     }
@@ -20,15 +20,17 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
   return (
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group row">
-        <label htmlFor="title" className="col-sm-2 col-form-label">Technology Name</label>
+        <label htmlFor="title" className="col-sm-2 col-form-label">
+          Title
+        </label>
         <div className="col-sm-10">
           <input
             type="text"
-            id="title"
-            name="title"
+            id="technology_name"
+            name="technology_name"
             className={`form-control ${errors.has("title") && "is-invalid"}`}
-            placeholder="Technology Name"
-            value={article.title || ""}
+            placeholder="Title"
+            value={article.technology_name || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
           {errors.has("title") && (
@@ -44,7 +46,7 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
             type="submit"
             className="btn btn-primary"
           >
-            Add
+            Update
           </button>
         </div>
       </div>

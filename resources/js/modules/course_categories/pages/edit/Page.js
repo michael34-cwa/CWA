@@ -2,30 +2,29 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleAddRequest } from '../../service'
+import { articleEditRequest, articleUpdateRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 
 // import components
 import Form from './components/Form'
-import ReactDOM from "react-dom";
-import { Redirect } from "react-router-dom";
- 
+
 class Page extends Component {
-  static displayName = 'AddArticle'
+  static displayName = 'EditArticle'
   static propTypes = {
-    article: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+    article: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
   }
   
-  constructor(props) {  
+  constructor(props) {
     super(props)
     
     this.validator = new ReeValidate({
-      title: 'required|min:1', 
-    })
+      technology_name: "required|min:1"
+    });
     
     const article = this.props.article.toJson()
-    
+ 
     this.state = {
       article,
       errors: this.validator.errors
@@ -34,23 +33,34 @@ class Page extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
+
+  UNSAFE_componentWillMount() {
+    this.loadArticle();
+  }
   
-  componentWillReceiveProps(nextProps) {
-    const article = nextProps.article.toJson()
-    
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const article = nextProps.article.toJson() 
     if (!_.isEqual(this.state.article, article)) {
       this.setState({ article })
     }
     
   }
   
+  loadArticle() {
+    const { match, article, dispatch } = this.props 
+   
+    if (!article.id) {
+      dispatch(articleEditRequest(match.params.id))
+    }
+  }
+  
   handleChange(name, value) {
     const { errors } = this.validator
-  
+    
     this.setState({ article: { ...this.state.article, [name]: value} })
-  
+    
     errors.remove(name)
-  
+    
     this.validator.validate(name, value)
       .then(() => {
         this.setState({ errors })
@@ -73,31 +83,35 @@ class Page extends Component {
   }
   
   submit(article) {
-    this.props
-      .dispatch(articleAddRequest(article))
-      .then(res => { 
-     <Redirect to="/" />;
-
-      })
+    this.props.dispatch(articleUpdateRequest(article))
       .catch(({ error, statusCode }) => {
-        const { errors } = this.validator; 
+        const { errors } = this.validator
+        
         if (statusCode === 422) {
           _.forOwn(error, (message, field) => {
             errors.add(field, message);
           });
         }
-
-        this.setState({ errors });
-      });
+        
+        this.setState({ errors })
+      })
+  }
+  
+  renderForm() {
+    const { article } = this.props
+ 
+    if (article.id) {
+      return <Form {...this.state}
+                   onChange={this.handleChange}
+                   onSubmit={this.handleSubmit} />
+    }
   }
   
   render() {
-    return <div className="dashboard-right"><div class="card"><div class="card-body bg-white">
-      <h1>Add</h1>
-      <Form {...this.state}
-            onChange={this.handleChange}
-            onSubmit={this.handleSubmit} />
-    </div></div></div>
+    return <main className="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+      <h1>Update Technology Name</h1>
+      { this.renderForm() }
+    </main>
   }
 }
 

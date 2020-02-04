@@ -3,19 +3,19 @@ import { lazy } from 'react'
 
 export default [
   {
-    path: "/technologies",
+    path: "/course_categories",
     exact: true,
     auth: true,
     component: lazy(() => import("./pages/list/index"))
   },
   {
-    path: "/technologies/create",
+    path: "/course_categories/create",
     exact: true,
     auth: true,
     component: lazy(() => import("./pages/add/index"))
   },
   {
-    path: "/technologies/:id/edit",
+    path: "/course_categories/:id/edit",
     exact: true,
     auth: true,
     component: lazy(() => import("./pages/edit/index"))
