@@ -19,4 +19,4 @@ resources/js/modules/auth/.DS_Store
 .DS_Store
 .env.docker
 .env.travis
-.eslintrc.js
+.eslintrc.js 
