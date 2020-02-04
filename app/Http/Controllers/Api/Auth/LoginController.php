@@ -19,7 +19,7 @@ class LoginController extends Controller
             'email' => 'required|email|exists:users,email',
             'password' => 'required|min:6',
         ], [
-            'email.exists' => 'The email is not valid.',
+            'email.exists' => 'Please enter a valid email address.',
         ]);
                       
         //Check user activation 
@@ -28,13 +28,13 @@ class LoginController extends Controller
            $activation =   Activation::completed($user); 
          
            if (empty($activation) && $activation == '') {
-            return response()->json(['message'=>'User are not activated'], 401);
+            return response()->json(['message'=>'The account is not activated yet.'], 401);
            }
 
 //Check authenticate user
             $authenticate_user = \Sentinel::authenticate($request->all());
             if (empty($authenticate_user) && $authenticate_user == '') {
-                 return response()->json(['message'=>'Password are not valid.'],401);
+                 return response()->json(['message'=>'Sorry, this password is incorrect. Plesae try again.'],401);
             }   
 
         request()->request->add([
