@@ -63,7 +63,7 @@ class CourseCategoriesController  extends Controller
     { 
 
        $technologies = new CourseCategories($request->validated());
-       $technologies->technology_name = $request->technology_name; 
+       $technologies->category_name = $request->category_name; 
        $technologies->save(); 
       return response()->json($technologies, 201);
     }
@@ -101,7 +101,7 @@ class CourseCategoriesController  extends Controller
     public function update(TechnologiesRequest $request, $id)
     {
         $technologies = CourseCategories::findOrFail($id);
-        $technologies->technology_name = $request->technology_name; 
+        $technologies->category_name = $request->category_name; 
         $technologies->save();
 
         return response()->json($technologies, 200);
