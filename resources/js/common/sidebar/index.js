@@ -52,12 +52,7 @@ const sideMenu = props => {
             <i class="fa fa-globe" aria-hidden="true"></i> Courses
           </Link>
         </NavItem>
-        <NavItem>
-          <Link to="/articles">
-            <i class="fa fa-graduation-cap" aria-hidden="true"></i> Students
-          </Link>
-        </NavItem>
-        {/* <NavItem>
+          {/* <NavItem>
           <NavLink href="#">
             <i class="fa fa-adjust" aria-hidden="true"></i> Another Link
           </NavLink>
