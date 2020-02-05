@@ -3,7 +3,8 @@ import {
   ARTICLE_UPDATE,
   ARTICLE_REMOVE,
   ARTICLE_LIST,
-} from './action-types'
+  CATEGORY_LIST
+} from "./action-types";
 
 const initialState = {
   currentPage: 0,
@@ -19,17 +20,19 @@ const initialState = {
 }
 
 const reducer = (state = initialState, { type, payload = null }) => {
-  switch(type) {
+  switch (type) {
     case ARTICLE_ADD:
-      return add(state, payload)
+      return add(state, payload);
     case ARTICLE_UPDATE:
-      return update(state, payload)
+      return update(state, payload);
     case ARTICLE_REMOVE:
-      return remove(state, payload)
+      return remove(state, payload);
     case ARTICLE_LIST:
-      return list(state, payload)
+      return list(state, payload);
+    case CATEGORY_LIST:
+      return catList(state, payload);
     default:
-      return state
+      return state;
   }
 }
 
@@ -66,6 +69,12 @@ function list(state, payload) {
   state = Object.assign({}, payload)
 
   return state
+}
+
+function catList(state, payload) {
+  state = Object.assign({}, payload);
+
+  return state;
 }
 
 export default reducer

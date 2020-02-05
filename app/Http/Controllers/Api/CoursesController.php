@@ -33,6 +33,17 @@ class CoursesController  extends Controller
     }
 
     /**
+     * get all published articles
+     *
+     * @return mixed
+     */
+    public function coursesCategoryList()
+    {
+        return Courses::all();
+    }
+
+    
+    /**
      * Get single published article
      *
      * @param $slug

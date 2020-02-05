@@ -104,6 +104,23 @@ export function articleListRequest({ pageNumber = 1, url = "/courses" }) {
          };
        }
 
+       export function categoryListRequest({ url = "/courses_category_list" }) {
+         return dispatch => {
+           if (pageNumber > 1) {
+             url = url + `?page=${pageNumber}`;
+           }
+    
+           Http.get(url)
+             .then(res => { 
+               dispatch(articleActions.list(transformResponse(res.data)));
+             })
+             .catch(err => {
+               // TODO: handle err
+               console.error(err.response);
+             });
+         };
+       }
+       
 export function articleEditRequest(id) {
   return dispatch => {
     Http.get(`courses/${id}`)
