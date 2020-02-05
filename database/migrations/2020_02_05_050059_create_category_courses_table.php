@@ -15,7 +15,10 @@ class CreateCategoryCoursesTable extends Migration
     {
         Schema::create('category_courses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->integer('course_id')->unsigned();
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->integer('cat_id')->unsigned();
+            $table->foreign('cat_id')->references('id')->on('course_categories')->onDelete('cascade');
         });
     }
 
