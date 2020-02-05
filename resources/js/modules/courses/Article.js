@@ -10,6 +10,7 @@ class Article extends Model {
   }
 
   initialize(props) {
+    //console.log(props.getCategory);
     super.initialize(props) 
      this.courseName = props.courseName || "";
     this.courseDescription = props.courseDescription || "";

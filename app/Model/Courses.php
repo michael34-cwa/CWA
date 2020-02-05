@@ -41,9 +41,8 @@ class Courses extends Model
      */
 
    public function getCategory()
-    {  
-  return  $this->hasOne('App\Model\CourseCategories', 'id', 'cat_id'); 
- 
+    {   
+    return $this->belongsToMany('App\Model\CourseCategories', 'category_courses', 'course_id', 'cat_id'); 
      }
 
  

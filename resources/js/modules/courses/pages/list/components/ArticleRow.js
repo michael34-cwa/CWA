@@ -10,13 +10,19 @@ const propTypes = {
   handleRemove: PropTypes.func.isRequired,
 }
 
-const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
+const ArticleRow = ({ index, article, togglePublish, handleRemove }) => { 
   return (
     <tr key={index}>
       <th scope="row">{index + 1}</th>
       <td>{article.courseName}</td>
       <td>{article.courseDescription}</td>
-      <td>{article.catId.categoryName}</td>
+      <td>
+        {article.catId.map(function(item, index) {
+          return <span>{item.categoryName}</span>;
+        }).reduce((prev, curr) => [prev, ', ', curr])}
+      </td>
+ 
+
       <td>{article.createdAt && article.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{article.updatedAt && article.updatedAt.format("MMMM, DD YYYY")}</td>
       <td>
