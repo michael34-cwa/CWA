@@ -4,8 +4,10 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { articleEditRequest, articleUpdateRequest } from '../../service'
 import ReeValidate from 'ree-validate'
+import { NavItem } from 'reactstrap'
 
 // import components
+
 import Form from './components/Form'
 
 class Page extends Component {
@@ -20,7 +22,7 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
-      category_name: "required|min:1"
+      category_name: "required|min:2"
     });
     
     const article = this.props.article.toJson()
@@ -32,6 +34,8 @@ class Page extends Component {
     
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+
+    
   }
 
   UNSAFE_componentWillMount() {
@@ -84,6 +88,9 @@ class Page extends Component {
   
   submit(article) {
     this.props.dispatch(articleUpdateRequest(article))
+   .then(res => {  
+     <Alert severity="error">This is an error alert — check it out!</Alert>;
+      })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator
         

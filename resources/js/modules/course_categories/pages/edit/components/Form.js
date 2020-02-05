@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types' 
  
 const displayName = 'ArticleFrom'
 const propTypes = {
@@ -10,7 +10,7 @@ const propTypes = {
 }
 
 const Form = ({ article, errors, onChange, onSubmit }) => {
-  
+   
   function handleChange(name, value) { 
     if (value !== article[name]) {
       onChange(name, value)
@@ -28,13 +28,16 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
             type="text"
             id="category_name"
             name="category_name"
-            className={`form-control ${errors.has("title") && "is-invalid"}`}
+            className={`form-control ${errors.has("category_name") &&
+              "is-invalid"}`}
             placeholder="Title"
             value={article.category_name || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
-          {errors.has("title") && (
-            <div className="invalid-feedback">{errors.first("title")}</div>
+          {errors.has("category_name") && (
+            <div className="invalid-feedback">
+              {errors.first("category_name")}
+            </div>
           )}
         </div>
       </div>

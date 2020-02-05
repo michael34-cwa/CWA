@@ -12,6 +12,7 @@ import {
   ARTICLE_REMOVE,
   ARTICLE_LIST,
 } from './action-types';
+import { toast } from "react-toastify";
 
 export function add(payload) {
   return {
@@ -39,4 +40,13 @@ export function list(payload) {
     type: ARTICLE_LIST,
     payload
   }
+}
+
+export function incrementAction() {
+  return function(dispatch) {
+    dispatch({
+      type: INCREMENT
+    });
+    toast.success("MY SUCCESS");
+  };
 }
