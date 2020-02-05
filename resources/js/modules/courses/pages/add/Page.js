@@ -19,10 +19,9 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
-      title: 'required|min:3',
-      content: 'required|min:10',
-      description: 'required|min:10',
-    })
+      course_name: "required|min:2",
+      course_description: "required|min:2"
+    });
     
     const article = this.props.article.toJson()
     

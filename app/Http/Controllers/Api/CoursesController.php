@@ -6,7 +6,7 @@ use App\Model\Courses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\CoursesRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class CoursesController  extends Controller
@@ -56,19 +56,19 @@ class CoursesController  extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param ArticleRequest $request
+     * @param CoursesRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticleRequest $request)
+    public function store(CoursesRequest $request)
     {
-        $user = $request->user();
+        
+        $course = new Courses($request->validated());
+        $course->course_name = $request->course_name;
+        $course->course_description = $request->course_description;
+        $course->is_active = $request->is_active;
+        $course->save();
 
-        $article = new Courses($request->validated());
-        $article->slug = Str::slug($request->get('title'));
-
-        $user->articles()->save($article);
-
-        return response()->json($article, 201);
+        return response()->json($course, 201);
     }
 
     /**

@@ -19,7 +19,7 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
       <td>
         {article.catId.map(function(item, index) {
           return <span>{item.categoryName}</span>;
-        }).reduce((prev, curr) => [prev, ', ', curr])}
+        }).reduce((prev, curr) => [prev, ' ', curr])}
       </td>
  
 

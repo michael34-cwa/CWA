@@ -76,11 +76,11 @@ class Page extends Component {
                 <th>Category</th>
                 <th>Created Date</th>
                 <th>Updated Date</th>
-                {/* <th>
+                <th>
                   <Link to="/courses/create" className="btn btn-success">
                     Add
                   </Link>
-                </th> */}
+                </th>
               </tr>
             </thead>
             <tbody>{this.renderArticles()}</tbody>

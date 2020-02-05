@@ -92,7 +92,7 @@ export function articleListRequest({ pageNumber = 1, url = "/courses" }) {
            if (pageNumber > 1) {
              url = url + `?page=${pageNumber}`;
            }
-    console.log(url);
+    
            Http.get(url)
              .then(res => { 
                dispatch(articleActions.list(transformResponse(res.data)));
