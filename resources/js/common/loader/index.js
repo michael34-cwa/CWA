@@ -14,7 +14,7 @@ const LoadingComponent = ({isLoading, error}) => {
   // Handle the loading state
   if (isLoading) { 
     return (
-      <div className="d-flex align-items-center justify-content-center w-100">
+      <div className="pageloader">
         <CircularProgress />
       </div>
     );
