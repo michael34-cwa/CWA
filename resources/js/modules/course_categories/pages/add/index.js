@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import Article from '../../Article'
 
-// import components
+// import components test
 import Page from './Page'
 
 const mapStateToProps = () => {
@@ -10,5 +10,4 @@ const mapStateToProps = () => {
     article
   }
 }
-
 export default connect(mapStateToProps)(Page)
