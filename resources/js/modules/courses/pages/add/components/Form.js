@@ -5,8 +5,7 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem"; 
 
 const displayName = 'ArticleFrom'
-const propTypes = {
-  dataList: PropTypes.object.isRequired,
+const propTypes = { 
   article: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,

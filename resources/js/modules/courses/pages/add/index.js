@@ -6,10 +6,11 @@ import Page from './Page'
 
 const mapStateToProps = state => {
   const { dataList} = state.courses; 
+  let dataLists = dataList ? dataList : [];
   const article = new Article({});
   return {
     article,
-    dataList: dataList
+    dataList: dataLists
   };
 };
 
