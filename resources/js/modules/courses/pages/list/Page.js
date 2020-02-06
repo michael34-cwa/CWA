@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { articleListRequest, articleUpdateRequest, articleRemoveRequest,categoryListRequest } from '../../service'
+import { articleListRequest, articleUpdateRequest, articleRemoveRequest } from '../../service'
 
 // import components
 import ArticleRow from './components/ArticleRow'
@@ -28,8 +28,7 @@ class Page extends Component {
 
   UNSAFE_componentWillMount() {
     const { dispatch } = this.props;
-    dispatch(categoryListRequest({}));
-    dispatch(articleListRequest({}));
+     dispatch(articleListRequest({}));
   }
 
   pageChange(pageNumber) {
