@@ -87,6 +87,8 @@ class Page extends Component {
   }
   
   render() {
+          console.log("this.props.dataList");
+          console.log(this.props);
     return <div className="dashboard-right">
       <h1>Edit</h1>
       <Form {...this.state}

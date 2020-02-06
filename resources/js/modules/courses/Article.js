@@ -9,8 +9,7 @@ class Article extends Model {
   }
 
   initialize(props) {
-     super.initialize(props)  
- 
+     super.initialize(props)   
      this.courseName = props.courseName || "";
     this.courseDescription = props.courseDescription || "";
     this.catId = props.getCategory|| "";

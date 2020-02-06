@@ -10,62 +10,63 @@ import Pagination from './components/Pagination'
 import { Link } from 'react-router-dom'
 
 class Page extends Component {
-
-  static displayName = 'ArticlesPage'
+  static displayName = "ArticlesPage";
   static propTypes = {
- 
+    dataList: PropTypes.array.isRequired,
     meta: PropTypes.object.isRequired,
     articles: PropTypes.array.isRequired,
-    dispatch: PropTypes.func.isRequired,
-  }
-  
+    dispatch: PropTypes.func.isRequired
+  };
+
   constructor(props) {
-    super(props)
-    
-    this.togglePublish = this.togglePublish.bind(this)
-    this.handleRemove = this.handleRemove.bind(this)
-    this.pageChange = this.pageChange.bind(this)
+    super(props);
+
+    this.togglePublish = this.togglePublish.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
+    this.pageChange = this.pageChange.bind(this);
   }
-  
+
   UNSAFE_componentWillMount() {
-    const { dispatch } = this.props
-   dispatch(categoryListRequest({}));
-     dispatch(articleListRequest({}))
-        
+    const { dispatch } = this.props;
+    dispatch(categoryListRequest({}));
+    dispatch(articleListRequest({}));
   }
-  
+
   pageChange(pageNumber) {
-     this.props.dispatch(articleListRequest({ pageNumber }))
-   
+    this.props.dispatch(articleListRequest({ pageNumber }));
   }
-  
+
   togglePublish(id) {
-    const article = this.props.articles.find(article => (article.id === id))
-     
-    if (!article)
-      return 
+    const article = this.props.articles.find(article => article.id === id);
+
+    if (!article) return;
     if (article.isActive) {
       article.isActive = 0;
     } else {
       article.isActive = 1;
     }
-     this.props.dispatch(articleUpdateRequest(article.toJson()))
+    this.props.dispatch(articleUpdateRequest(article.toJson()));
   }
-  
+
   handleRemove(id) {
-    this.props.dispatch(articleRemoveRequest(id))
+    this.props.dispatch(articleRemoveRequest(id));
   }
-  
+
   renderArticles() {
-       return this.props.articles.map((article, index) => {
-      return <ArticleRow key={index}
-                         article={article}
-                         index={index}
-                         togglePublish={this.togglePublish}
-                         handleRemove={this.handleRemove}/>
-    })
+ 
+    return this.props.articles.map((article, index) => {
+      return (
+        <ArticleRow
+          key={index}
+          article={article}
+          index={index}
+          togglePublish={this.togglePublish}
+          handleRemove={this.handleRemove}
+        />
+      );
+    });
   }
-  
+
   render() {
     return (
       <main className="dashboard-right" role="main">
@@ -89,7 +90,7 @@ class Page extends Component {
             </thead>
             <tbody>{this.renderArticles()}</tbody>
           </table>
-        </div> 
+        </div>
         <Pagination meta={this.props.meta} onChange={this.pageChange} />
       </main>
     );
