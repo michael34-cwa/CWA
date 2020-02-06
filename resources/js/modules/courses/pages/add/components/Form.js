@@ -17,7 +17,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
   const [personName, setPersonName] = React.useState([]);
 
   function handleChange(name, value) { 
-    if (name === 'course_category'){
+    if (name === 'catId'){
       setPersonName(value);
     }
    
@@ -36,8 +36,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
     }
   };
  
-  console.log(dataList);
-  return (
+   return (
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group row">
         <label htmlFor="title" className="col-sm-2 col-form-label">
@@ -111,12 +110,15 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
           Course Categorys
         </label>
         <div className="col-sm-10">
+          
           <Select
             labelId="demo-mutiple-name-label"
-            id="demo-mutiple-name"
+             className={`form-control ${errors.has("catId") &&
+               "is-invalid"}`}
+            id="catId"
             multiple
             value={personName}
-            name="course_category"
+             name="catId"
             onChange={e => handleChange(e.target.name, e.target.value)} 
             MenuProps={MenuProps}
           >
@@ -126,8 +128,8 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
               </MenuItem>
             ))}
           </Select>
-          {errors.has("is_active") && (
-            <div className="invalid-feedback">{errors.first("is_active")}</div>
+           {errors.has("catId") && (
+             <div className="invalid-feedback">{errors.first("catId")}</div>
           )}
         </div>
       </div>
