@@ -4,15 +4,11 @@ import Article from '../../Article'
 // import components
 import Page from './Page'
 
-const mapStateToProps = state => {
-  const { data, dataList, ...meta } = state.courses;
-
+const mapStateToProps = () => {
+  const article = new Article({})
   return {
-    articles: data.map(courses => new Article(courses)),
-    dataList: dataList,
-    meta: Object.assign({}, meta)
-  };
-};
-
+    article
+  }
+}
 
 export default connect(mapStateToProps)(Page)
