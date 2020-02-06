@@ -7,11 +7,11 @@ import Page from './Page'
   
 const mapStateToProps = state => { 
  
-   const { data,dataList, ...meta } = state.courses; 
+   const { data, ...meta } = state.courses; 
  
   return {
     articles: data.map(courses => new Article(courses)),
-    dataList: dataList,
+  
     meta: Object.assign({}, meta)
   };
 }
