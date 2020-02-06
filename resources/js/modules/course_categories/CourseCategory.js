@@ -2,15 +2,14 @@ import moment from 'moment'
 import Model from '../../utils/Model'
 import User from '../user/User'
 
-class Article extends Model {
+class CourseCategory extends Model {
   constructor(props) {
     super(props) 
     this.initialize(props)
   }
 
   initialize(props) {  
-    console.log(props);
-    super.initialize(props)  
+     super.initialize(props)  
     this.category_name = props.categoryName || "";
     this.created_at = props.created_at || "";
     this.updated_at = props.updated_at || ""; 
@@ -19,4 +18,4 @@ class Article extends Model {
   }
 }
 
-export default Article
+export default CourseCategory

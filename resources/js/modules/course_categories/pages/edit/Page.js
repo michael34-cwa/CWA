@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleEditRequest, articleUpdateRequest } from '../../service'
+import { categoryEditRequest, categoryUpdateRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 import { NavItem } from 'reactstrap'
 
@@ -11,10 +11,10 @@ import { NavItem } from 'reactstrap'
 import Form from './components/Form'
 
 class Page extends Component {
-  static displayName = 'EditArticle'
+  static displayName = 'EditCategory'
   static propTypes = {
     match: PropTypes.object.isRequired,
-    article: PropTypes.object,
+    categroy: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
   }
   
@@ -25,10 +25,10 @@ class Page extends Component {
       category_name: "required|min:2"
     });
     
-    const article = this.props.article.toJson()
+    const category = this.props.category.toJson()
  
     this.state = {
-      article,
+      category,
       errors: this.validator.errors
     }
     
@@ -39,29 +39,29 @@ class Page extends Component {
   }
 
   UNSAFE_componentWillMount() {
-    this.loadArticle();
+    this.loadCategory();
   }
   
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const article = nextProps.article.toJson() 
-    if (!_.isEqual(this.state.article, article)) {
-      this.setState({ article })
+    const category = nextProps.category.toJson() 
+    if (!_.isEqual(this.state.category, category)) {
+      this.setState({ category })
     }
     
   }
   
-  loadArticle() {
-    const { match, article, dispatch } = this.props 
+  loadCategory() {
+    const { match, category, dispatch } = this.props 
    
-    if (!article.id) {
-      dispatch(articleEditRequest(match.params.id))
+    if (!category.id) {
+      dispatch(categoryEditRequest(match.params.id))
     }
   }
   
   handleChange(name, value) {
     const { errors } = this.validator
     
-    this.setState({ article: { ...this.state.article, [name]: value} })
+    this.setState({ category: { ...this.state.category, [name]: value} })
     
     errors.remove(name)
     
@@ -73,21 +73,21 @@ class Page extends Component {
   
   handleSubmit(e) {
     e.preventDefault()
-    const article = this.state.article
+    const category = this.state.category
     const { errors } = this.validator
     
-    this.validator.validateAll(article)
+    this.validator.validateAll(category)
       .then((success) => {
         if (success) {
-          this.submit(article)
+          this.submit(category)
          } else {
           this.setState({ errors })
         }
       })
   }
   
-  submit(article) {
-    this.props.dispatch(articleUpdateRequest(article))
+  submit(category) {
+    this.props.dispatch(categoryUpdateRequest(category))
    .then(res => {  
      <Alert severity="error">This is an error alert — check it out!</Alert>;
       })
@@ -105,9 +105,9 @@ class Page extends Component {
   }
   
   renderForm() {
-    const { article } = this.props
+    const { category } = this.props
  
-    if (article.id) {
+    if (category.id) {
       return <Form {...this.state}
                    onChange={this.handleChange}
                    onSubmit={this.handleSubmit} />

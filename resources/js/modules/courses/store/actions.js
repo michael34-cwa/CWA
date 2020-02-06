@@ -11,7 +11,8 @@ import {
   ARTICLE_UPDATE,
   ARTICLE_REMOVE,
   ARTICLE_LIST,
-} from './action-types';
+  CATEGORY_LIST,
+} from "./action-types";
 
 export function add(payload) {
   return {
@@ -39,4 +40,11 @@ export function list(payload) {
     type: ARTICLE_LIST,
     payload
   }
+}
+export function catList(payload) {
+ 
+  return {
+    type: CATEGORY_LIST,
+    payload
+  };
 }

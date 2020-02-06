@@ -1,18 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
  
-const displayName = 'ArticleFrom'
+const displayName = 'CategoryFrom'
 const propTypes = {
-  article: PropTypes.object.isRequired,
+  category: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 }
 
-const Form = ({ article, errors, onChange, onSubmit }) => {
+const Form = ({ category, errors, onChange, onSubmit }) => {
   
   function handleChange(name, value) {
-    if (value !== article[name]) {
+    if (value !== category[name]) {
       onChange(name, value)
     }
   }
@@ -30,7 +30,7 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
             name="category_name"
             className={`form-control ${errors.has("category_name") && "is-invalid"}`}
             placeholder="Category Name"
-            value={article.category_name || ""}
+            value={category.category_name || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
           {errors.has("category_name") && (

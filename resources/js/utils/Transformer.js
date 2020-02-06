@@ -19,7 +19,7 @@ export default class Transformer {
    * @param param
    * @return {*}
    */
-  static fetch(param) {
+  static fetch(param) { 
     if (param && Array.isArray(param)) {
       return Transformer.fetchCollection(param);
     } else if (param && typeof param === 'object') {

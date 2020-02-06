@@ -1,43 +1,43 @@
 /* ============
- * Actions for the article module
+ * Actions for the CATEGORY module
  * ============
  *
  * The actions that are available on the
- * article module.
+ * CATEGORY module.
  */
 
 import {
-  ARTICLE_ADD,
-  ARTICLE_UPDATE,
-  ARTICLE_REMOVE,
-  ARTICLE_LIST,
+  CATEGORY_ADD,
+  CATEGORY_UPDATE,
+  CATEGORY_REMOVE,
+  CATEGORY_LIST,
 } from './action-types';
 import { toast } from "react-toastify";
 
 export function add(payload) {
   return {
-    type: ARTICLE_ADD,
+    type: CATEGORY_ADD,
     payload
   }
 }
 
 export function update(payload) {
   return {
-    type: ARTICLE_UPDATE,
+    type: CATEGORY_UPDATE,
     payload
   }
 }
 
 export function remove(payload) {
   return {
-    type: ARTICLE_REMOVE,
+    type: CATEGORY_REMOVE,
     payload
   }
 }
 
 export function list(payload) {
   return {
-    type: ARTICLE_LIST,
+    type: CATEGORY_LIST,
     payload
   }
 }

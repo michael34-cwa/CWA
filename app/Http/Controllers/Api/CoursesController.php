@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Model\Courses;
+use App\Model\CourseCategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\CoursesRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class CoursesController  extends Controller
@@ -32,6 +33,7 @@ class CoursesController  extends Controller
         return Courses::loadAllPublished();
     }
 
+
     /**
      * Get single published article
      *
@@ -53,22 +55,36 @@ class CoursesController  extends Controller
         //
     }
 
+        /**
+     * get all published articles
+     *
+     * @return mixed
+     */
+    public function coursesCategoryList()
+    {   
+        return CourseCategories::all();
+    }
+
+    
+    
     /**
      * Store a newly created resource in storage.
      *
-     * @param ArticleRequest $request
+     * @param CoursesRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticleRequest $request)
+    public function store(CoursesRequest $request)
     {
-        $user = $request->user();
-
-        $article = new Courses($request->validated());
-        $article->slug = Str::slug($request->get('title'));
-
-        $user->articles()->save($article);
-
-        return response()->json($article, 201);
+      
+        $course = new Courses($request->validated());
+        $course->course_name = $request->course_name;
+        $course->course_description = $request->course_description;
+        $course->is_active = $request->is_active;
+        $course->save();
+        if($course){
+        $course->getCategory()->attach($request->course_category);
+        } 
+        return response()->json($course, 201);
     }
 
     /**
@@ -80,9 +96,7 @@ class CoursesController  extends Controller
      */
     public function show(Request $request, $id)
     {
-        if (!$request->user()->is_admin) {
-            return Courses::mine($request->user()->id)->findOrFail($id);
-        }
+ 
 
         return Courses::findOrFail($id);
     }

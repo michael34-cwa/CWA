@@ -1,15 +1,15 @@
 // import libs
 import { connect } from 'react-redux'
-import Article from '../../Article'
+import CourseCategory from '../../CourseCategory'
 
 // import components
 import Page from './Page'
 
-const mapStateToProps = state => {
-  const {data, ...meta} = state.articles
-  
+const mapStateToProps = state => {   
+  const {data, ...meta} = state.course_categories
+
   return {
-    articles: data.map((article) => new Article(article)),
+    course_categories: data.map((category) => new CourseCategory(category)),
     meta: Object.assign({}, meta)
   }
 }

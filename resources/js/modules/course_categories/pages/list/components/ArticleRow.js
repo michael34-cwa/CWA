@@ -5,29 +5,29 @@ import { Link } from 'react-router-dom'
 const displayName = 'ArticleRow'
 const propTypes = {
   index: PropTypes.number.isRequired,
-  article: PropTypes.object.isRequired,
+  category: PropTypes.object.isRequired,
   togglePublish: PropTypes.func.isRequired,
   handleRemove: PropTypes.func.isRequired,
 }
 
-const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
+const ArticleRow = ({ index, category, togglePublish, handleRemove }) => {
    return (
      <tr key={index}>
        <th scope="row">{index + 1}</th>
-       <td>{article.category_name}</td>
-       <td>{article.createdAt && article.createdAt.format("MMMM, DD YYYY")}</td>
-       <td>{article.updatedAt && article.updatedAt.format("MMMM, DD YYYY")}</td>
+       <td>{category.category_name}</td>
+       <td>{category.createdAt && category.createdAt.format("MMMM, DD YYYY")}</td>
+       <td>{category.updatedAt && category.updatedAt.format("MMMM, DD YYYY")}</td>
        <td>
          <div className="btn-group" role="group" aria-label="Actions">
            <Link
              className="btn btn-primary"
-             to={`course_categories/${article.id}/edit`}
+             to={`course_categories/${category.id}/edit`}
            >
              Edit
            </Link>
            <button
              className="btn btn-danger"
-             onClick={() => handleRemove(article.id)}
+             onClick={() => handleRemove(category.id)}
            >
              Delete
            </button>
