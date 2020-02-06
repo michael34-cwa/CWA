@@ -17,10 +17,12 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
       <td>{article.courseName}</td>
       <td>{article.courseDescription}</td>
       <td>
-      
+        
+        {/* {article.catId ? article.catId.map(function(item, index) {
+          return <span> {item.categoryName} </span>;
+        }).reduce((prev, curr) => [prev, ' ', curr]) : "" } */}
       </td>
- 
-
+  
       <td>{article.createdAt && article.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{article.updatedAt && article.updatedAt.format("MMMM, DD YYYY")}</td>
       <td>

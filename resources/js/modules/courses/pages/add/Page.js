@@ -11,7 +11,6 @@ import Form from './components/Form'
 class Page extends Component {
   static displayName = "AddArticle";
   static propTypes = {
-    dataList: PropTypes.object.isRequired,
     article: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
   };
@@ -27,9 +26,8 @@ class Page extends Component {
     });
 
     const article = this.props.article.toJson();
-    const dataList = this.props.dataList;
-    this.state = {
-      dataList,
+     this.state = {
+     
       article,
       errors: this.validator.errors
     };
