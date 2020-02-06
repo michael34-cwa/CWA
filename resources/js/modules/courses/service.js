@@ -104,15 +104,12 @@ export function articleListRequest({ pageNumber = 1, url = "/courses" }) {
          };
        }
 
-       export function categoryListRequest({ url = "/courses_category_list" }) {
+       export function categoryListRequest({ url = "/courses/courses_category_list" }) {
          return dispatch => {
-           if (pageNumber > 1) {
-             url = url + `?page=${pageNumber}`;
-           }
-    
+         
            Http.get(url)
              .then(res => { 
-               dispatch(articleActions.list(transformResponse(res.data)));
+                dispatch(articleActions.catList(transformResponse(res)));
              })
              .catch(err => {
                // TODO: handle err

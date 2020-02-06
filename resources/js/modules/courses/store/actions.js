@@ -42,6 +42,7 @@ export function list(payload) {
   }
 }
 export function catList(payload) {
+ 
   return {
     type: CATEGORY_LIST,
     payload

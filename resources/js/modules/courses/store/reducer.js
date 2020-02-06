@@ -9,15 +9,16 @@ import {
 const initialState = {
   currentPage: 0,
   data: [],
+  dataList: [],
   from: 0,
   lastPage: 0,
-  nextPageUrl: '',
-  path: '',
+  nextPageUrl: "",
+  path: "",
   perPage: 0,
   prevPageUrl: null,
   to: 0,
-  total: 0,
-}
+  total: 0
+};
 
 const reducer = (state = initialState, { type, payload = null }) => {
   switch (type) {
@@ -72,7 +73,10 @@ function list(state, payload) {
 }
 
 function catList(state, payload) {
-  state = Object.assign({}, payload);
+  
+   const dataList = [...state.data, payload];
+
+  state = Object.assign({}, state, { dataList });
 
   return state;
 }

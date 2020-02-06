@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Model\Courses;
+use App\Model\CourseCategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -32,17 +33,7 @@ class CoursesController  extends Controller
         return Courses::loadAllPublished();
     }
 
-    /**
-     * get all published articles
-     *
-     * @return mixed
-     */
-    public function coursesCategoryList()
-    {
-        return Courses::all();
-    }
 
-    
     /**
      * Get single published article
      *
@@ -64,6 +55,18 @@ class CoursesController  extends Controller
         //
     }
 
+        /**
+     * get all published articles
+     *
+     * @return mixed
+     */
+    public function coursesCategoryList()
+    {   
+        return CourseCategories::all();
+    }
+
+    
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -91,9 +94,7 @@ class CoursesController  extends Controller
      */
     public function show(Request $request, $id)
     {
-        if (!$request->user()->is_admin) {
-            return Courses::mine($request->user()->id)->findOrFail($id);
-        }
+ 
 
         return Courses::findOrFail($id);
     }

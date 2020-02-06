@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { articleListRequest, articleUpdateRequest, articleRemoveRequest } from '../../service'
+import { articleListRequest, articleUpdateRequest, articleRemoveRequest,categoryListRequest } from '../../service'
 
 // import components
 import ArticleRow from './components/ArticleRow'
@@ -10,8 +10,10 @@ import Pagination from './components/Pagination'
 import { Link } from 'react-router-dom'
 
 class Page extends Component {
+
   static displayName = 'ArticlesPage'
   static propTypes = {
+ 
     meta: PropTypes.object.isRequired,
     articles: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -27,12 +29,14 @@ class Page extends Component {
   
   UNSAFE_componentWillMount() {
     const { dispatch } = this.props
-  
-    dispatch(articleListRequest({}))
+   dispatch(categoryListRequest({}));
+     dispatch(articleListRequest({}))
+        
   }
   
   pageChange(pageNumber) {
-    this.props.dispatch(articleListRequest({ pageNumber }))
+     this.props.dispatch(articleListRequest({ pageNumber }))
+   
   }
   
   togglePublish(id) {
@@ -53,7 +57,7 @@ class Page extends Component {
   }
   
   renderArticles() {
-    return this.props.articles.map((article, index) => {
+       return this.props.articles.map((article, index) => {
       return <ArticleRow key={index}
                          article={article}
                          index={index}
