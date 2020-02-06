@@ -42,9 +42,9 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
               Active
             </button>
           )}
-          {/* <Link className="btn btn-primary" to={`articles/${article.id}/edit`}>
+          <Link className="btn btn-primary" to={`courses/${article.id}/edit`}>
             Edit
-          </Link> */}
+          </Link>
           <button
             className="btn btn-danger"
             onClick={() => handleRemove(article.id)}

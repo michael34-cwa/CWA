@@ -82,7 +82,7 @@ class CoursesController  extends Controller
         $course->is_active = $request->is_active;
         $course->save();
         if($course){
-        $course->getCategory()->attach($request->catId);
+        $course->getCategory()->attach($request->cat_id);
         } 
         return response()->json($course, 201);
     }
