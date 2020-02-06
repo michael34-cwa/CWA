@@ -20,7 +20,7 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
   
   return <form onSubmit={e => onSubmit(e)}>
     <div className="form-group row">
-      <label htmlFor="title" className="col-sm-2 col-form-label">Title</label>
+      <label htmlFor="title" className="col-md-12 col-form-label">Title</label>
       <div className="col-sm-10">
         <input type="text"
                id="title"
