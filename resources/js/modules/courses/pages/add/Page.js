@@ -2,99 +2,107 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleAddRequest } from '../../service'
+import { articleAddRequest, categoryListRequest } from "../../service";
 import ReeValidate from 'ree-validate'
 
 // import components
 import Form from './components/Form'
 
 class Page extends Component {
-  static displayName = 'AddArticle'
+  static displayName = "AddArticle";
   static propTypes = {
+    dataList: PropTypes.object.isRequired,
     article: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired,
-  }
-  
+    dispatch: PropTypes.func.isRequired
+  };
+
   constructor(props) {
-    super(props)
-    
+    super(props);
+
     this.validator = new ReeValidate({
       course_name: "required|min:2",
       course_description: "required|min:2"
     });
-    
-    const article = this.props.article.toJson()
-    
+
+    const article = this.props.article.toJson();
+    const dataList = this.props.dataList;
     this.state = {
+      dataList,
       article,
       errors: this.validator.errors
-    }
-    
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-  
+
+  UNSAFE_componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch(categoryListRequest({}));
+  }
+
   componentWillReceiveProps(nextProps) {
-    const article = nextProps.article.toJson()
-    
+    const article = nextProps.article.toJson();
+
     if (!_.isEqual(this.state.article, article)) {
-      this.setState({ article })
+      this.setState({ article });
     }
-    
   }
-  
+
   handleChange(name, value) {
-    const { errors } = this.validator
-  
-    this.setState({ article: { ...this.state.article, [name]: value} })
-  
-    errors.remove(name)
-  
-    this.validator.validate(name, value)
-      .then(() => {
-        this.setState({ errors })
-      })
+    const { errors } = this.validator;
+
+    this.setState({ article: { ...this.state.article, [name]: value } });
+
+    errors.remove(name);
+
+    this.validator.validate(name, value).then(() => {
+      this.setState({ errors });
+    });
   }
-  
+
   handleSubmit(e) {
-    e.preventDefault()
-    const article = this.state.article
-    const { errors } = this.validator
-    
-    this.validator.validateAll(article)
-      .then((success) => {
-        if (success) {
-          this.submit(article)
-        } else {
-          this.setState({ errors })
-        }
-      })
+    e.preventDefault();
+    const article = this.state.article;
+    const { errors } = this.validator;
+
+    this.validator.validateAll(article).then(success => {
+      if (success) {
+        this.submit(article);
+      } else {
+        this.setState({ errors });
+      }
+    });
   }
-  
+
   submit(article) {
-    this.props.dispatch(articleAddRequest(article))
+     this.props
+      .dispatch(articleAddRequest(article))
       .catch(({ error, statusCode }) => {
-        const { errors } = this.validator
-  
+        const { errors } = this.validator;
+
         if (statusCode === 422) {
           _.forOwn(error, (message, field) => {
             errors.add(field, message);
           });
         }
-  
-        this.setState({ errors })
-      })
+
+        this.setState({ errors });
+      });
   }
-  
+
   render() {
-          console.log("this.props.dataList");
-          console.log(this.props);
-    return <div className="dashboard-right">
-      <h1>Edit</h1>
-      <Form {...this.state}
-            onChange={this.handleChange}
-            onSubmit={this.handleSubmit} />
-    </div>
+    return (
+      <div className="dashboard-right">
+        <h1>Edit</h1>
+        <Form
+          {...this.state}
+          dataList={this.props.dataList}
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+        />
+      </div>
+    );
   }
 }
 
