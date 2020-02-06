@@ -92,7 +92,7 @@ class Page extends Component {
   }
   
   render() {
-    return <div className="dashboard-right"><div class="card"><div class="card-body bg-white">
+    return <div className="dashboard-right"><div className="card"><div className="card-body bg-white">
  
       <h1>Add Course Category</h1>
        <Form {...this.state}

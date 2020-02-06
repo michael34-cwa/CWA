@@ -14,8 +14,8 @@ const propTypes = {
 
 function PublicLayout({ children }) {
   return (
-    <div class="mainwrapper">
-      <main class="mainheight">
+    <div className="mainwrapper">
+      <main className="mainheight">
         {children}
         <ScrollTop />
       </main>

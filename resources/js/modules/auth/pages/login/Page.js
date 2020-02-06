@@ -127,8 +127,8 @@ class Page extends Component {
               <span className="anchor"/>
               <div className="card has-shadow">
                 <div className="card-body">
-                   <div class="logo-area">CWA</div>
-                   <div class="login-wrapper">
+                   <div className="logo-area">CWA</div>
+                   <div className="login-wrapper">
                   <Form {...props} />
                 </div>
                 </div>

@@ -25,7 +25,7 @@ const Form = ({
     <div className="form-group">
 
       <label htmlFor="email" className="sr-only">Email</label>
-      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+      <i className="fa fa-envelope-o" aria-hidden="true"></i>
       <input type="text"
              className={`form-control form-control-lg rounded-0 ${errors.has('email') && 'is-invalid'}`}
              name="email"
@@ -39,7 +39,7 @@ const Form = ({
     </div>
     <div className="form-group">
       <label htmlFor="password" className="sr-only">Password</label>
-      <i class="fa fa-key" aria-hidden="true"></i>
+      <i className="fa fa-key" aria-hidden="true"></i>
       <input type="password"
              className={`form-control form-control-lg rounded-0 ${errors.has('password') && 'is-invalid'}`}
              id="password"
@@ -67,7 +67,7 @@ const Form = ({
     <button className="btn btn-lg btn-primary btn-block"
             type="submit"
             disabled={errors.any()}>Log In</button>
-    <p class="logintext"> <Link to='/reset'>Forgot Password ?</Link> </p>
+    <p className="logintext"> <Link to='/reset'>Forgot Password ?</Link> </p>
 
   </form>
 );

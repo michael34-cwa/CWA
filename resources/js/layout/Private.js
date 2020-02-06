@@ -21,8 +21,8 @@ function PrivateLayout({ children }) {
     <div style={containerStyle}>
       <Navigation />
 
-      <main class="dashbard-area">
-        <div class="dashbard-inner">
+      <main className="dashbard-area">
+        <div className="dashbard-inner">
           <SideMenu />
           {children}
           <ScrollTop />
