@@ -21,7 +21,9 @@ class Page extends Component {
 
     this.validator = new ReeValidate({
       course_name: "required|min:2",
-      course_description: "required|min:2"
+      course_description: "required|min:2",
+      is_active:"required",
+      catId: "required"
     });
 
     const article = this.props.article.toJson();
