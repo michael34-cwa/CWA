@@ -9,7 +9,7 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
         return (
           <Suspense
             fallback={
-              <div className="d-flex align-items-center justify-content-center w-100">
+              <div className="pageloader">
                 <CircularProgress />
               </div>
             }
