@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleAddRequest } from '../../service'
+import { categoryAddRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 
 // import components
@@ -11,9 +11,9 @@ import ReactDOM from "react-dom";
 import { Redirect } from "react-router-dom";
  
 class Page extends Component {
-  static displayName = 'AddArticle'
+  static displayName = 'AddCategory'
   static propTypes = {
-    article: PropTypes.object.isRequired,
+    category: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   }
   
@@ -24,10 +24,10 @@ class Page extends Component {
       category_name: "required|min:2"
     });
     
-    const article = this.props.article.toJson()
+    const category = this.props.category.toJson()
     
     this.state = {
-      article,
+      category,
       errors: this.validator.errors
     }
     
@@ -36,10 +36,10 @@ class Page extends Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    const article = nextProps.article.toJson()
+    const category = nextProps.category.toJson()
     
-    if (!_.isEqual(this.state.article, article)) {
-      this.setState({ article })
+    if (!_.isEqual(this.state.category, category)) {
+      this.setState({ category })
     }
     
   }
@@ -47,7 +47,7 @@ class Page extends Component {
   handleChange(name, value) {
     const { errors } = this.validator
   
-    this.setState({ article: { ...this.state.article, [name]: value} })
+    this.setState({ category: { ...this.state.category, [name]: value} })
   
     errors.remove(name)
   
@@ -59,22 +59,22 @@ class Page extends Component {
   
   handleSubmit(e) {
     e.preventDefault()
-    const article = this.state.article
+    const category = this.state.category
     const { errors } = this.validator
     
-    this.validator.validateAll(article)
+    this.validator.validateAll(category)
       .then((success) => {
         if (success) {
-          this.submit(article)
+          this.submit(category)
         } else {
           this.setState({ errors })
         }
       })
   }
   
-  submit(article) {
+  submit(category) {
     this.props
-      .dispatch(articleAddRequest(article))
+      .dispatch(categoryAddRequest(category))
       .then(res => {  
         
       })

@@ -1,6 +1,6 @@
 import Http from '../../utils/Http'
 import Transformer from '../../utils/Transformer'
-import * as articleActions from './store/actions'
+import * as categoryActions from './store/actions'
 
 function transformRequest(parms) {
   return Transformer.send(parms)
@@ -10,12 +10,12 @@ function transformResponse(params) {
   return Transformer.fetch(params)
 }
 
-export function articleAddRequest(params) {
+export function categoryAddRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
       Http.post("/course_categories", transformRequest(params))
         .then(res => {
-          dispatch(articleActions.add(transformResponse(res.data)));
+          dispatch(categoryActions.add(transformResponse(res.data)));
           return resolve(res);
         })
         .catch(err => {
@@ -42,12 +42,12 @@ export function articleAddRequest(params) {
   )
 }
 
-export function articleUpdateRequest(params) {
+export function  categoryUpdateRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
       Http.patch(`course_categories/${params.id}`, transformRequest(params))
         .then(res => {
-          dispatch(articleActions.add(transformResponse(res.data)));
+          dispatch(categoryActions.add(transformResponse(res.data)));
           return resolve();
         })
         .catch(err => {
@@ -74,11 +74,11 @@ export function articleUpdateRequest(params) {
   )
 }
 
-export function articleRemoveRequest(id) {
+export function  categoryRemoveRequest(id) {
   return dispatch => {
     Http.delete(`course_categories/${id}`)
       .then(() => {
-        dispatch(articleActions.remove(id));
+        dispatch(categoryActions.remove(id));
       })
       .catch(err => {
         // TODO: handle err
@@ -87,7 +87,7 @@ export function articleRemoveRequest(id) {
   }
 }
 
-export function articleListRequest({ pageNumber = 1, url = "/course_categories" }) {
+export function  categoryListRequest({ pageNumber = 1, url = "/course_categories" }) {
          return dispatch => {
            if (pageNumber > 1) {
              url = url + `?page=${pageNumber}`;
@@ -95,7 +95,8 @@ export function articleListRequest({ pageNumber = 1, url = "/course_categories" 
            console.log(url);
            Http.get(url)
              .then(res => {
-               dispatch(articleActions.list(transformResponse(res.data)));
+               dispatch(categoryActions.list(transformResponse(res.data)));
+              // console.log(res.data);
              })
              .catch(err => {
                // TODO: handle err
@@ -104,11 +105,11 @@ export function articleListRequest({ pageNumber = 1, url = "/course_categories" 
          };
        }
 
-export function articleEditRequest(id) { 
+export function  categoryEditRequest(id) { 
   return dispatch => {
     Http.get(`course_categories/${id}`)
       .then(res => {
-        dispatch(articleActions.add(transformResponse(res.data)));
+        dispatch(categoryActions.add(transformResponse(res.data)));
       })
       .catch(err => {
         // TODO: handle err
@@ -117,11 +118,11 @@ export function articleEditRequest(id) {
   }
 }
 
-export function articleFetchRequest(slug) {
+export function  categoryFetchRequest(slug) {
   return dispatch => {
     Http.get(`course_categories/published/${slug}`)
       .then(res => {
-        dispatch(articleActions.add(transformResponse(res.data)));
+        dispatch(categoryActions.add(transformResponse(res.data)));
       })
       .catch(err => {
         // TODO: handle err

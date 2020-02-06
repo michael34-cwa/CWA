@@ -2,7 +2,7 @@ import moment from 'moment'
 import Model from '../../utils/Model'
 import User from '../user/User'
 
-class Article extends Model {
+class CourseCategory extends Model {
   constructor(props) {
     super(props) 
     this.initialize(props)
@@ -18,4 +18,4 @@ class Article extends Model {
   }
 }
 
-export default Article
+export default CourseCategory

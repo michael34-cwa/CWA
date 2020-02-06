@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { articleListRequest, articleUpdateRequest, articleRemoveRequest } from '../../service'
+import { categoryListRequest, categoryUpdateRequest, categoryRemoveRequest } from '../../service'
 
 // import components
 import ArticleRow from './components/ArticleRow'
@@ -10,10 +10,10 @@ import Pagination from './components/Pagination'
 import { Link } from 'react-router-dom'
 
 class Page extends Component {
-  static displayName = 'ArticlesPage'
+  static displayName = 'CategoriesPage'
   static propTypes = {
     meta: PropTypes.object.isRequired,
-    articles: PropTypes.array.isRequired,
+    course_categories: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired,
   }
   
@@ -28,37 +28,37 @@ class Page extends Component {
   UNSAFE_componentWillMount() {
     const { dispatch } = this.props
   
-    dispatch(articleListRequest({}))
+    dispatch(categoryListRequest({}))
   }
   
   pageChange(pageNumber) {
-    this.props.dispatch(articleListRequest({ pageNumber }))
+    this.props.dispatch(categoryListRequest({ pageNumber }))
   }
   
   togglePublish(id) {
-    const article = this.props.articles.find(article => (article.id === id))
+    const category = this.props.course_categories.find(category => (category.id === id))
     
-    if (!article)
+    if (!category)
       return
   
-    article.published = !article.published
-    if (article.published) {
-      article.publishedAt = moment()
+      category.published = !category.published
+    if (category.published) {
+      category.publishedAt = moment()
     } else {
-      article.publishedAt = null
+      category.publishedAt = null
     }
     
-    this.props.dispatch(articleUpdateRequest(article.toJson()))
+    this.props.dispatch(categoryUpdateRequest(category.toJson()))
   }
   
   handleRemove(id) {
-    this.props.dispatch(articleRemoveRequest(id))
+    this.props.dispatch(categoryRemoveRequest(id))
   }
   
-  renderArticles() {
-     return this.props.articles.map((article, index) => {
+  renderCategories() {
+    return this.props.course_categories.map((category, index) => {
       return <ArticleRow key={index}
-                         article={article}
+      category={category}
                          index={index}
                          togglePublish={this.togglePublish}
                          handleRemove={this.handleRemove}/>
@@ -84,7 +84,7 @@ class Page extends Component {
               </th>
             </tr>
           </thead>
-          <tbody>{this.renderArticles()}</tbody>
+          <tbody>{this.renderCategories()}</tbody>
         </table>
         </div>
         <Pagination meta={this.props.meta} onChange={this.pageChange} />

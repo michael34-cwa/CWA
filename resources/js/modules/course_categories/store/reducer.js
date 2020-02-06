@@ -1,8 +1,8 @@
 import {
-  ARTICLE_ADD,
-  ARTICLE_UPDATE,
-  ARTICLE_REMOVE,
-  ARTICLE_LIST,
+  CATEGORY_ADD,
+  CATEGORY_UPDATE,
+  CATEGORY_REMOVE,
+  CATEGORY_LIST,
 } from './action-types'
 
 const initialState = {
@@ -20,13 +20,13 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload = null }) => {
   switch(type) {
-    case ARTICLE_ADD:
+    case CATEGORY_ADD:
       return add(state, payload)
-    case ARTICLE_UPDATE:
+    case CATEGORY_UPDATE:
       return update(state, payload)
-    case ARTICLE_REMOVE:
+    case CATEGORY_REMOVE:
       return remove(state, payload)
-    case ARTICLE_LIST:
+    case CATEGORY_LIST:
       return list(state, payload)
     default:
       return state
@@ -34,9 +34,9 @@ const reducer = (state = initialState, { type, payload = null }) => {
 }
 
 function add(state, payload) {
-  const article = state.data.find((article) => (article.id === payload.id))
+  const CATEGORY = state.data.find((CATEGORY) => (CATEGORY.id === payload.id))
 
-  if (!article) {
+  if (!CATEGORY) {
     const data = [...state.data, payload]
 
     return Object.assign({}, state, { data })

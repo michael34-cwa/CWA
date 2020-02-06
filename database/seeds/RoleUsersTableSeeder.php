@@ -12,7 +12,7 @@ class RoleUsersTableSeeder extends Seeder
     public function run()
     {
         $role_users = [
-            ['user_id' => '1', 'role_id' => '1'],
+            ['user_id' => '51', 'role_id' => '1'],
            
         ];
        
