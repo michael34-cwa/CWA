@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Model\Courses;
 use App\Model\CourseCategories;
-use Illuminate\Http\Request;
+use App\Model\CategoryCourses;
+ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CoursesRequest;
@@ -130,17 +131,18 @@ class CoursesController  extends Controller
     //     return response()->json($article, 200);
     // }
 
-      public function update(Request $request, $id)
-    {
-      
-         $data = $request->all();
-         $article = Courses::findOrFail($id); 
-         $article['course_name'] =  $data['course_name'];
-         $article['course_description'] =  $data['course_description'];
-         $article['is_active'] =  $data['is_active']; 
-         $article->save();
-
-        return response()->json($article, 200);
+      public function update(CoursesRequest $request, $id)
+    { 
+        $course = Courses::findOrFail($id); 
+        $course->course_name = $request->course_name;
+        $course->course_description = $request->course_description;
+        $course->is_active = $request->is_active;
+        $course->save();
+        if($course){
+         CategoryCourses::where('course_id',$course->id)->delete();
+        $course->getCategory()->attach($request->cat_id);
+        } 
+        return response()->json($course, 200); 
     }
 
     /**
