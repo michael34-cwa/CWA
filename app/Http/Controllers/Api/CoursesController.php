@@ -75,13 +75,15 @@ class CoursesController  extends Controller
      */
     public function store(CoursesRequest $request)
     {
-        
+      
         $course = new Courses($request->validated());
         $course->course_name = $request->course_name;
         $course->course_description = $request->course_description;
         $course->is_active = $request->is_active;
         $course->save();
-
+        if($course){
+        $course->getCategory()->attach($request->course_category);
+        } 
         return response()->json($course, 201);
     }
 

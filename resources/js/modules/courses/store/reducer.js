@@ -74,9 +74,9 @@ function list(state, payload) {
 
 function catList(state, payload) {
   
-   const dataList = [...state.data, payload];
+   const dataList = payload.data;
 
-  state = Object.assign({}, state, { dataList });
+  state = Object.assign(  { dataList });
 
   return state;
 }
