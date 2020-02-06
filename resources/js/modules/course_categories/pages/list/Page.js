@@ -5,7 +5,7 @@ import moment from 'moment'
 import { categoryListRequest, categoryUpdateRequest, categoryRemoveRequest } from '../../service'
 
 // import components
-import ArticleRow from './components/ArticleRow'
+import CategoryRow from './components/CategoryRow'
 import Pagination from './components/Pagination'
 import { Link } from 'react-router-dom'
 
@@ -57,7 +57,7 @@ class Page extends Component {
   
   renderCategories() {
     return this.props.course_categories.map((category, index) => {
-      return <ArticleRow key={index}
+      return <CategoryRow key={index}
       category={category}
                          index={index}
                          togglePublish={this.togglePublish}

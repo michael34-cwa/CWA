@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-const displayName = 'ArticleRow'
+const displayName = 'CategoryRow'
 const propTypes = {
   index: PropTypes.number.isRequired,
   category: PropTypes.object.isRequired,
@@ -10,7 +10,7 @@ const propTypes = {
   handleRemove: PropTypes.func.isRequired,
 }
 
-const ArticleRow = ({ index, category, togglePublish, handleRemove }) => {
+const CategoryRow = ({ index, category, togglePublish, handleRemove }) => {
    return (
      <tr key={index}>
        <th scope="row">{index + 1}</th>
@@ -37,7 +37,7 @@ const ArticleRow = ({ index, category, togglePublish, handleRemove }) => {
    );
 }
 
-ArticleRow.displayName = displayName
-ArticleRow.propTypes = propTypes
+CategoryRow.displayName = displayName
+CategoryRow.propTypes = propTypes
 
-export default ArticleRow
+export default CategoryRow
