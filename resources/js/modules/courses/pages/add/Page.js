@@ -96,6 +96,7 @@ class Page extends Component {
   render() {
     return (
       <div className="dashboard-right">
+      <div class="card"><div class="card-body bg-white">
         <h1>Edit</h1>
         <Form
           {...this.state}
@@ -103,6 +104,8 @@ class Page extends Component {
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
         />
+        </div>
+        </div>
       </div>
     );
   }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import MyEditor from '../../../../../common/wysiwyg-editor/index'
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem"; 
+
 const displayName = 'ArticleFrom'
 const propTypes = {
   dataList: PropTypes.object.isRequired,
@@ -39,10 +40,10 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
    return (
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group row">
-        <label htmlFor="title" className="col-sm-2 col-form-label">
+        <label htmlFor="title" className="col-md-12 col-form-label">
           Course Name
         </label>
-        <div className="col-sm-10">
+        <div className="col-md-12">
           <input
             type="text"
             id="course_name"
@@ -61,10 +62,10 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
         </div>
       </div>
       <div className="form-group row">
-        <label htmlFor="description" className="col-sm-2 col-form-label">
+        <label htmlFor="description" className="col-md-12 col-form-label">
           Course Description
         </label>
-        <div className="col-sm-10">
+        <div className="col-md-12">
           <textarea
             id="course_description"
             name="course_description"
@@ -84,10 +85,10 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
       </div>
 
       <div className="form-group row">
-        <label htmlFor="description" className="col-sm-2 col-form-label">
+        <label htmlFor="description" className="col-md-12 col-form-label">
           Course Status
         </label>
-        <div className="col-sm-10">
+        <div className="col-md-12">
           <select
             id="is_active"
             name="is_active"
@@ -106,10 +107,10 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
       </div>
 
       <div className="form-group row">
-        <label htmlFor="description" className="col-sm-2 col-form-label">
+        <label htmlFor="description" className="col-md-12 col-form-label">
           Course Categorys
         </label>
-        <div className="col-sm-10">
+        <div className="col-md-12">
           
           <Select
             labelId="demo-mutiple-name-label"
@@ -131,18 +132,20 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
            {errors.has("catId") && (
              <div className="invalid-feedback">{errors.first("catId")}</div>
           )}
+
+
         </div>
       </div>
 
       {/* <div className="form-group row">
-      <label htmlFor="content" className="col-sm-2 col-form-label">Content</label>
-      <div className="col-sm-10">
+      <label htmlFor="content" className="col-md-12 col-form-label">Content</label>
+      <div className="col-md-12">
         <MyEditor id="content" value={article.content} onChange={e => handleChange('content', e)} />
         {errors.has('content') && <div className="invalid-feedback">{errors.first('content')}</div>}
       </div>
     </div> */}
       <div className="form-group row">
-        <div className="col-sm-10 ml-auto">
+        <div className="col-md-12 ml-auto">
           <button
             disabled={errors.any()}
             type="submit"
