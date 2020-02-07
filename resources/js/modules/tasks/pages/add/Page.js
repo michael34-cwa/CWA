@@ -100,7 +100,7 @@ class Page extends Component {
     return ( 
       <div className="dashboard-right">
       <div class="card"><div class="card-body bg-white">
-        <h1>Add</h1>
+        <h1>Add a Task</h1>
         <Form
           {...this.state}
           dataList={this.props.dataList}

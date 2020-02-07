@@ -75,7 +75,7 @@ class Page extends Component {
           <table className="table  table-striped">
             <thead className="thead-inverse">
               <tr>
-                <th>#</th>
+                <th>Sr. No.</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Category</th>
@@ -83,7 +83,7 @@ class Page extends Component {
                 <th>Updated Date</th>
                 <th>
                   <Link to="/courses/create" className="btn btn-success">
-                    Add
+                    <i class="fa fa-plus" aria-hidden="true"></i>  Add
                   </Link>
                 </th>
               </tr>

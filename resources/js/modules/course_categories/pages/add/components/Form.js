@@ -45,7 +45,7 @@ const Form = ({ category, errors, onChange, onSubmit }) => {
             type="submit"
             className="btn btn-primary"
           >
-            Add Course Category
+            <i class="fa fa-plus" aria-hidden="true"></i> Add Course Category
           </button>
         </div>
       </div>

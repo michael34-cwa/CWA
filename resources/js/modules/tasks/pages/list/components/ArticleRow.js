@@ -26,24 +26,24 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
               className="btn btn-warning"
               onClick={() => togglePublish(article.id)}
             >
-              In Active
+             <i class="fa fa-eye-slash" aria-hidden="true"></i> In Active
             </button>
           ) : (
             <button
               className="btn btn-success"
               onClick={() => togglePublish(article.id)}
             >
-              Active
+              <i class="fa fa-eye" aria-hidden="true"></i> Active
             </button>
           )}
           <Link className="btn btn-primary" to={`courses/${article.id}/edit`}>
-            Edit
+           <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
           </Link>
           <button
             className="btn btn-danger"
             onClick={() => handleRemove(article.id)}
           >
-            Delete
+           <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
           </button>
         </div>
       </td>

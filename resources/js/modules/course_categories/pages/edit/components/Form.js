@@ -49,7 +49,7 @@ const Form = ({ category, errors, onChange, onSubmit }) => {
             type="submit"
             className="btn btn-primary"
           >
-            Update
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update
           </button>
         </div>
       </div>

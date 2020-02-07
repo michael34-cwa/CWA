@@ -138,7 +138,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
     </div>
     <div className="form-group row">
       <div className="col-md-12 ml-auto">
-        <button disabled={errors.any()} type="submit" className="btn btn-primary">Update</button>
+        <button disabled={errors.any()} type="submit" className="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update</button>
       </div>
     </div>
   </form>

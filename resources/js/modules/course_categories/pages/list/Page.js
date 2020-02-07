@@ -84,7 +84,7 @@ class Page extends Component {
               <th>Updated Date</th>
               <th>
                 <Link to="/course_categories/create" className="btn btn-success">
-                  Add
+                 <i class="fa fa-plus" aria-hidden="true"></i> Add
                 </Link>
               </th>
             </tr>

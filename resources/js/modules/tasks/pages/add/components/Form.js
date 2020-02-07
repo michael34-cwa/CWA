@@ -144,7 +144,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
             type="submit"
             className="btn btn-primary"
           >
-            Add
+           <i class="fa fa-plus" aria-hidden="true"></i>  Add a Task
           </button>
         </div>
       </div>

@@ -23,13 +23,13 @@ const CategoryRow = ({ index, category, togglePublish, handleRemove }) => {
              className="btn btn-primary"
              to={`course_categories/${category.id}/edit`}
            >
-             Edit
+             <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
            </Link>
            <button
              className="btn btn-danger"
              onClick={() => handleRemove(category.id)}
            >
-             Delete
+            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
            </button>
           
          </div>
