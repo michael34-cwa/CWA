@@ -92,6 +92,9 @@ class Page extends Component {
   
   submit(article) {
     this.props.dispatch(articleUpdateRequest(article))
+      .then(res => {
+        this.props.history.push('/courses');
+      })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator
         
