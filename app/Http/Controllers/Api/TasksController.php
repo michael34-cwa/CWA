@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Model\Tasks;
+use App\Model\Courses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -62,11 +63,14 @@ class TasksController  extends Controller
      */
     public function store(TasksRequest $request)
     { 
-
-       $technologies = new Tasks($request->validated());
-       $technologies->category_name = $request->category_name; 
-       $technologies->save(); 
-      return response()->json($technologies, 201);
+        
+        $task = new Tasks($request->validated());
+        $task->task_name = $request->task_name; 
+        $task->task_description = $request->task_description; 
+        $task->course_id = $request->course_id; 
+        $task->is_active = $request->is_active; 
+        $task->save(); 
+      return response()->json($task, 201);
     }
 
     /**
@@ -81,6 +85,12 @@ class TasksController  extends Controller
         return Tasks::findOrFail($id);
     }
 
+
+        public function taskList()
+    { 
+        return Courses::all();
+    }
+    
     /**
      * Show the form for editing the specified resource.
      *
