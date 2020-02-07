@@ -53,11 +53,11 @@ class Page extends Component {
     this.props.dispatch(categoryUpdateRequest(category.toJson()))
   }
   
-  handleRemove(id) {
+  handleRemove(id) { 
  
-   this.props.dispatch(categoryRemoveRequest(id)) 
- 
-  }
+   this.props.dispatch(categoryRemoveRequest(id))  
+
+   }
   
   renderCategories() {
     return this.props.course_categories.map((category, index) => {
