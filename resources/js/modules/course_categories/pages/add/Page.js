@@ -7,7 +7,11 @@ import ReeValidate from 'ree-validate'
 
 // import components
 import Form from './components/Form'
+<<<<<<< HEAD
 import { browserHistory } from 'react-router'
+=======
+ 
+>>>>>>> a56b3e96ea8aeda08ef33609d811f49b1fe3c9c4
 
 class Page extends Component {
   static displayName = 'AddCategory'
