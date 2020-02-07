@@ -54,13 +54,11 @@ class Page extends Component {
   }
   
   handleRemove(id) {
-<<<<<<< HEAD
+
   //  this.props.dispatch(categoryRemoveRequest(id))
-  
-   
-=======
+
    this.props.dispatch(categoryRemoveRequest(id)) 
->>>>>>> a56b3e96ea8aeda08ef33609d811f49b1fe3c9c4
+
   }
   
   renderCategories() {
