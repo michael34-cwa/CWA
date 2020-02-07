@@ -122,7 +122,7 @@ export function articleEditRequest(id) {
   }
 }
 
-export function categoryListRequest({ url = "/tasks/courses_category_list" }) {
+export function categoryListRequest({ url = "/tasks/task_list" }) {
   return dispatch => {
 
     Http.get(url)
