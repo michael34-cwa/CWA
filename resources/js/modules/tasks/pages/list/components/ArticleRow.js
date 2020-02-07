@@ -16,7 +16,7 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
       <th scope="row">{index + 1}</th>
       <td>{article.taskName}</td>
       <td>{article.taskDescription}</td>  
-      <td>{article.courseName}</td> 
+      <td>{article.courseId.courseName}</td> 
       <td>{article.createdAt && article.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{article.updatedAt && article.updatedAt.format("MMMM, DD YYYY")}</td>
       <td>
