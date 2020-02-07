@@ -8,8 +8,8 @@ import ReeValidate from 'ree-validate'
 // import components
 import Form from './components/Form'
 import ReactDOM from "react-dom";
-import { Redirect } from "react-router-dom";
- 
+ import { Route, Redirect } from 'react-router-dom'
+
 class Page extends Component {
   static displayName = 'AddCategory'
   static propTypes = {
@@ -77,6 +77,11 @@ class Page extends Component {
   submit(category) { 
     this.props
       .dispatch(categoryAddRequest(category)) 
+      .then(res => {
+        console.log('de');
+        <Redirect to="/" />
+  
+      })
       .catch(({ error, statusCode }) => { 
         const { errors } = this.validator;  
          if (statusCode === 422) { 
