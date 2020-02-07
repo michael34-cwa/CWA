@@ -12,8 +12,8 @@ class Article extends Model {
     super.initialize(props)    
     this.taskName = props.taskName || "";
     this.taskDescription = props.taskDescription || "";
-    this.catId = props.catId || "";
-    this.courseId = props.getCourse || "";
+    this.courseId = props.getCourse ? props.getCourse.id :[];
+    this.courseName = props.getCourse || "";
     this.isActive = props.isActive || "";
     // relate user model
     this.user = props.user ? new User(props.user) : null

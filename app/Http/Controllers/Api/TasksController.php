@@ -100,7 +100,7 @@ class TasksController  extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(TasksRequest $request, $id)
-    { 
+    {   
         $task = Tasks::findOrFail($id);
         $task->task_name = $request->task_name; 
         $task->task_description = $request->task_description; 
