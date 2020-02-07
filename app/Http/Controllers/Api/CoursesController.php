@@ -98,8 +98,8 @@ class CoursesController  extends Controller
     public function show(Request $request, $id)
     {
  
-
-        return Courses::findOrFail($id);
+    return Courses::where('id',$id)->with('getCategory')->first();  
+      //  return Courses::findOrFail($id);
     }
 
     /**
@@ -139,7 +139,8 @@ class CoursesController  extends Controller
         $course->is_active = $request->is_active;
         $course->save();
         if($course){
-         CategoryCourses::where('course_id',$course->id)->delete();
+        //$course->getCategory()->detach($course->id);
+        CategoryCourses::where('course_id',$course->id)->delete();
         $course->getCategory()->attach($request->cat_id);
         } 
         return response()->json($course, 200); 

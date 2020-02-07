@@ -35,7 +35,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
       }
     }
   };
- 
+
    return (
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group row">

@@ -104,19 +104,7 @@ export function articleListRequest({ pageNumber = 1, url = "/courses" }) {
          };
        }
 
-       export function categoryListRequest({ url = "/courses/courses_category_list" }) {
-         return dispatch => {
-         
-           Http.get(url)
-             .then(res => { 
-                dispatch(articleActions.catList(transformResponse(res)));
-             })
-             .catch(err => {
-               // TODO: handle err
-               console.error(err.response);
-             });
-         };
-       }
+
        
 export function articleEditRequest(id) {
   return dispatch => {
@@ -131,6 +119,20 @@ export function articleEditRequest(id) {
   }
 }
 
+export function categoryListRequest({ url = "/courses/courses_category_list" }) {
+  return dispatch => {
+
+    Http.get(url)
+      .then(res => {
+
+        dispatch(articleActions.catList(transformResponse(res)));
+      })
+      .catch(err => {
+        // TODO: handle err
+        console.error(err.response);
+      });
+  };
+}
 export function articleFetchRequest(slug) {
   return dispatch => {
     Http.get(`courses/published/${slug}`)

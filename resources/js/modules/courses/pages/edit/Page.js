@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleEditRequest, articleUpdateRequest } from '../../service'
+import { articleEditRequest, articleUpdateRequest, categoryListRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 
 // import components
@@ -20,9 +20,10 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
-      title: 'required|min:3',
-      content: 'required|min:10',
-      description: 'required|min:10',
+      courseName: "required|min:2",
+      courseDescription: "required|min:2",
+      is_active: "required",
+      catId: "required"
     })
     
     const article = this.props.article.toJson()
@@ -37,7 +38,9 @@ class Page extends Component {
   }
 
   UNSAFE_componentWillMount() {
+
     this.loadArticle()
+
   }
   
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -46,15 +49,17 @@ class Page extends Component {
     if (!_.isEqual(this.state.article, article)) {
       this.setState({ article })
     }
-    
+
   }
   
   loadArticle() {
     const { match, article, dispatch } = this.props
-    
+ 
     if (!article.id) {
       dispatch(articleEditRequest(match.params.id))
+       dispatch(categoryListRequest({}));
     }
+   
   }
   
   handleChange(name, value) {
@@ -101,10 +106,11 @@ class Page extends Component {
   }
   
   renderForm() {
-    const { article } = this.props
+    const { article, dataList } = this.props
     
     if (article.id) {
       return <Form {...this.state}
+        dataList={dataList}
                    onChange={this.handleChange}
                    onSubmit={this.handleSubmit} />
     }
