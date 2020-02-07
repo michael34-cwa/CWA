@@ -79,7 +79,8 @@ class Page extends Component {
   submit(article) {
      this.props
       .dispatch(articleAddRequest(article))
-       .then(res => {
+       .then(res => { 
+         console.log('ede');
          this.props.history.push('/courses');
        })
       .catch(({ error, statusCode }) => {
