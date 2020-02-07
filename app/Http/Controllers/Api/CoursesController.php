@@ -131,8 +131,9 @@ class CoursesController  extends Controller
     //     return response()->json($article, 200);
     // }
 
-      public function update(CoursesRequest $request, $id)
+      public function update(CoursesRequest $request, $id,$type=null)
     { 
+       
         $course = Courses::findOrFail($id); 
         $course->course_name = $request->course_name;
         $course->course_description = $request->course_description;

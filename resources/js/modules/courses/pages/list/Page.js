@@ -44,7 +44,8 @@ class Page extends Component {
     } else {
       article.isActive = 1;
     }
-    this.props.dispatch(articleUpdateRequest(article.toJson()));
+    console.log(article.toJson());
+    this.props.dispatch(articleUpdateRequest(article.toJson(),'active'));
   }
 
   handleRemove(id) {
