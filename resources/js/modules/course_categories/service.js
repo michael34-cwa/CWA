@@ -81,6 +81,7 @@ export function  categoryRemoveRequest(id) {
   return dispatch => {
     Http.delete(`course_categories/${id}`)
       .then(() => {
+        toast.success("Deleted Successfully");
         dispatch(categoryActions.remove(id));
       })
       .catch(err => {

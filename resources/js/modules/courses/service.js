@@ -1,7 +1,7 @@
 import Http from '../../utils/Http'
 import Transformer from '../../utils/Transformer'
 import * as articleActions from './store/actions'
-
+import { toast } from "react-toastify";
 function transformRequest(parms) {
   return Transformer.send(parms)
 }
@@ -15,6 +15,7 @@ export function articleAddRequest(params) {
     new Promise((resolve, reject) => {
       Http.post("/courses", transformRequest(params))
         .then(res => {
+          toast.success("Added Successfully");
           dispatch(articleActions.add(transformResponse(res.data)));
           return resolve();
         })
@@ -47,6 +48,7 @@ export function articleUpdateRequest(params) {
     new Promise((resolve, reject) => {
       Http.patch(`courses/${params.id}`, transformRequest(params))
         .then(res => {
+          toast.success("Updated Successfully");
           dispatch(articleActions.add(transformResponse(res.data)));
           return resolve();
         })
@@ -78,6 +80,7 @@ export function articleRemoveRequest(id) {
   return dispatch => {
     Http.delete(`courses/${id}`)
       .then(() => {
+        toast.success("Deteted Successfully");
         dispatch(articleActions.remove(id));
       })
       .catch(err => {

@@ -31,7 +31,7 @@ const Form = ({ category, errors, onChange, onSubmit }) => {
             className={`form-control ${errors.has("category_name") && "is-invalid"}`}
             placeholder="Category Name"
             value={category.category_name || ""}
-            onChange={e => handleChange(e.target.name, e.target.value)}
+            onChange={e => handleChange(e.target.name, e.target.value)} 
           />
           {errors.has("category_name") && (
             <div className="invalid-feedback">{ errors.first("category_name")}</div>
