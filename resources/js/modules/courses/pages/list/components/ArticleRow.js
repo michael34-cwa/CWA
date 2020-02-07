@@ -25,11 +25,11 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
 
       <td>{article.createdAt && article.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{article.updatedAt && article.updatedAt.format("MMMM, DD YYYY")}</td>
-      <td>
+      <td className="btn-right">
         <div className="btn-group" role="group" aria-label="Actions">
           {article.isActive ? (
             <button
-              className="btn btn-warning btn-right"
+              className="btn btn-warning "
               onClick={() => togglePublish(article.id)}
             >
              <i class="fa fa-eye-slash" aria-hidden="true"></i> In Active

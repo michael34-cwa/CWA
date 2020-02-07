@@ -19,7 +19,7 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
       <td>{article.courseName.courseName}</td> 
       <td>{article.createdAt && article.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{article.updatedAt && article.updatedAt.format("MMMM, DD YYYY")}</td>
-      <td>
+      <td className="btn-right">
         <div className="btn-group" role="group" aria-label="Actions">
           {article.isActive ? (
             <button
@@ -36,13 +36,9 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
               <i class="fa fa-eye" aria-hidden="true"></i> Active
             </button>
           )}
-<<<<<<< HEAD
+
           <Link className="btn btn-primary" to={`courses/${article.id}/edit`}>
            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-=======
-          <Link className="btn btn-primary" to={`tasks/${article.id}/edit`}>
-            Edit
->>>>>>> 1c49f9f49f99c87b16e1502939bf68d0662a7060
           </Link>
           <button
             className="btn btn-danger"
