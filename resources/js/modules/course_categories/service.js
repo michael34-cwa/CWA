@@ -1,6 +1,7 @@
 import Http from '../../utils/Http'
 import Transformer from '../../utils/Transformer'
 import * as categoryActions from './store/actions'
+import { toast } from "react-toastify";
 
 function transformRequest(parms) {
   return Transformer.send(parms)
@@ -15,6 +16,7 @@ export function categoryAddRequest(params) {
     new Promise((resolve, reject) => {
       Http.post("/course_categories", transformRequest(params))
         .then(res => {
+          toast.success("Added Successfully");
           dispatch(categoryActions.add(transformResponse(res.data)));
           return resolve(res);
         })
@@ -47,6 +49,7 @@ export function  categoryUpdateRequest(params) {
     new Promise((resolve, reject) => {
       Http.patch(`course_categories/${params.id}`, transformRequest(params))
         .then(res => {
+          toast.success("Updated Successfully");
           dispatch(categoryActions.add(transformResponse(res.data)));
           return resolve();
         })

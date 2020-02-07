@@ -31,6 +31,7 @@ const CategoryRow = ({ index, category, togglePublish, handleRemove }) => {
            >
              Delete
            </button>
+          
          </div>
        </td>
      </tr>

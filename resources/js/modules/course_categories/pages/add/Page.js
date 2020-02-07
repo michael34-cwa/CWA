@@ -7,9 +7,8 @@ import ReeValidate from 'ree-validate'
 
 // import components
 import Form from './components/Form'
-import ReactDOM from "react-dom";
-import { Redirect } from "react-router-dom";
- 
+import { browserHistory } from 'react-router'
+
 class Page extends Component {
   static displayName = 'AddCategory'
   static propTypes = {
@@ -45,6 +44,7 @@ class Page extends Component {
   }
   
   handleChange(name, value) {
+
     const { errors } = this.validator
   
     this.setState({ category: { ...this.state.category, [name]: value} })
@@ -58,6 +58,7 @@ class Page extends Component {
   }
   
   handleSubmit(e) {
+  
     e.preventDefault()
     const category = this.state.category
     const { errors } = this.validator
@@ -72,11 +73,11 @@ class Page extends Component {
       })
   }
   
-  submit(category) {
+  submit(category) { 
     this.props
-      .dispatch(categoryAddRequest(category))
-      .then(res => {  
-        
+      .dispatch(categoryAddRequest(category)) 
+      .then(res => { 
+        this.props.history.push('/course_categories');  
       })
       .catch(({ error, statusCode }) => { 
         const { errors } = this.validator;  
@@ -92,13 +93,15 @@ class Page extends Component {
   }
   
   render() {
+    
     return <div className="dashboard-right"><div className="card"><div className="card-body bg-white">
- 
+    
       <h1>Add Course Category</h1>
        <Form {...this.state}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit} />
     </div></div></div>
+
   }
 }
 

@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { categoryListRequest, categoryUpdateRequest, categoryRemoveRequest } from '../../service'
-
+ import ModalExamples from '../../../../common/model/index'
 // import components
 import CategoryRow from './components/CategoryRow'
 import Pagination from './components/Pagination'
 import { Link } from 'react-router-dom'
-
+ 
 class Page extends Component {
   static displayName = 'CategoriesPage'
   static propTypes = {
@@ -23,6 +23,8 @@ class Page extends Component {
     this.togglePublish = this.togglePublish.bind(this)
     this.handleRemove = this.handleRemove.bind(this)
     this.pageChange = this.pageChange.bind(this)
+
+    
   }
   
   UNSAFE_componentWillMount() {
@@ -52,7 +54,9 @@ class Page extends Component {
   }
   
   handleRemove(id) {
-    this.props.dispatch(categoryRemoveRequest(id))
+  //  this.props.dispatch(categoryRemoveRequest(id))
+  
+   
   }
   
   renderCategories() {
@@ -70,6 +74,7 @@ class Page extends Component {
       <main className="dashboard-right" role="main">
         <h1>Course Categories</h1>
         <div className="table-responsive">
+          
         <table className="table  table-striped">
           <thead className="thead-inverse">
             <tr>
@@ -88,6 +93,8 @@ class Page extends Component {
         </table>
         </div>
         <Pagination meta={this.props.meta} onChange={this.pageChange} />
+         
+         {/* <ModalExamples />   */}
       </main>
     );
   }

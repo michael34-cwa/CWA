@@ -12,10 +12,9 @@ const propTypes = {
 }
 
 const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
+ 
 
-  console.log(dataList);
-
-  const [personName, setPersonName] = React.useState([]);
+  const [personName, setPersonName] = React.useState(article.catId.map(catids => catids.id));
 
   function handleChange(name, value) {
     if (name === 'catId') {

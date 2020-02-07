@@ -34,7 +34,7 @@ const Form = ({ category, errors, onChange, onSubmit }) => {
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
           {errors.has("category_name") && (
-            <div className="invalid-feedback">{errors.first("category_name")}</div>
+            <div className="invalid-feedback">{ errors.first("category_name")}</div>
           )}
         </div>
       </div>

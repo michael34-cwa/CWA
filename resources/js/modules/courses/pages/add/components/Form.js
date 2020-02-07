@@ -136,13 +136,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
         </div>
       </div>
 
-      {/* <div className="form-group row">
-      <label htmlFor="content" className="col-md-12 col-form-label">Content</label>
-      <div className="col-md-12">
-        <MyEditor id="content" value={article.content} onChange={e => handleChange('content', e)} />
-        {errors.has('content') && <div className="invalid-feedback">{errors.first('content')}</div>}
-      </div>
-    </div> */}
+  
       <div className="form-group row">
         <div className="col-md-12 ml-auto">
           <button
