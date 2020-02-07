@@ -5,10 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Builder;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
- 
-
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo; 
  
 class Tasks extends Model
 {
