@@ -114,7 +114,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
           <Select
             labelId="demo-mutiple-name-label"
              className={`form-control ${errors.has("catId") &&
-               "is-invalid"}`}
+               "is-invalid"}`} 
             id="catId"
             multiple
             value={personName}
