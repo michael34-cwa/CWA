@@ -70,6 +70,7 @@ class Page extends Component {
       <main className="dashboard-right" role="main">
         <h1>Course Categories</h1>
         <div className="table-responsive">
+          
         <table className="table  table-striped">
           <thead className="thead-inverse">
             <tr>

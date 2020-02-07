@@ -88,8 +88,8 @@ class Page extends Component {
   
   submit(category) {
     this.props.dispatch(categoryUpdateRequest(category))
-   .then(res => {  
-     <Alert severity="error">This is an error alert — check it out!</Alert>;
+      .then(res => {
+        this.props.history.push('/course_categories');
       })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator

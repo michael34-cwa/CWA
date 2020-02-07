@@ -8,6 +8,7 @@ import ScrollTop from "../common/scroll-top/index";
 import Footer from "../common/footer/index";
 import SideMenu from "../common/sidebar";
 import { ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css";
 const containerStyle = {
   paddingTop: "3.5rem"
 };

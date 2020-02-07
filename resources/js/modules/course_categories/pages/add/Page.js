@@ -7,8 +7,7 @@ import ReeValidate from 'ree-validate'
 
 // import components
 import Form from './components/Form'
-import ReactDOM from "react-dom";
- import { Route, Redirect } from 'react-router-dom'
+import { browserHistory } from 'react-router'
 
 class Page extends Component {
   static displayName = 'AddCategory'
@@ -77,10 +76,8 @@ class Page extends Component {
   submit(category) { 
     this.props
       .dispatch(categoryAddRequest(category)) 
-      .then(res => {
-        console.log('de');
-        <Redirect to="/" />
-  
+      .then(res => { 
+        this.props.history.push('/course_categories');  
       })
       .catch(({ error, statusCode }) => { 
         const { errors } = this.validator;  
