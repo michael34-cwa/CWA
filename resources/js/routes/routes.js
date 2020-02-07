@@ -5,5 +5,6 @@ import userRoutes from "../modules/user/routes"
 import articleRoutes from "../modules/article/routes"
 import courseCtegoriesRoutes from "../modules/course_categories/routes";
 import coursesRoutes from "../modules/courses/routes"; 
-export default [...webRoutes, ...authRoutes, ...userRoutes, ...articleRoutes, ...courseCtegoriesRoutes, ...coursesRoutes]
- 
+import tasksRoutes from "../modules/tasks/routes";  
+export default [...webRoutes, ...authRoutes, ...userRoutes, ...articleRoutes, ...courseCtegoriesRoutes, ...coursesRoutes, ...tasksRoutes]
+  

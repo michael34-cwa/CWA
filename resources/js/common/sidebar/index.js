@@ -51,6 +51,11 @@ const sideMenu = props => {
           <Link to="/courses">
             <i className="fa fa-globe" aria-hidden="true"></i> Courses
           </Link>
+        </NavItem> 
+        <NavItem> 
+          <Link to="/tasks"> 
+            <i className="fa fa-globe" aria-hidden="true"></i> Tasks
+          </Link>
         </NavItem>
           {/* <NavItem>
           <NavLink href="#">

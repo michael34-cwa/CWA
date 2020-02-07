@@ -13,7 +13,7 @@ function transformResponse(params) {
 export function articleAddRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.post("/courses", transformRequest(params))
+      Http.post("/tasks", transformRequest(params))
         .then(res => {
           toast.success("Added Successfully");
           dispatch(articleActions.add(transformResponse(res.data)));
@@ -46,7 +46,7 @@ export function articleAddRequest(params) {
 export function articleUpdateRequest(params,status) {    
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.patch(`courses/${params.id}/${status}`, transformRequest(params))
+      Http.patch(`tasks/${params.id}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully");
           dispatch(articleActions.add(transformResponse(res.data)));
@@ -78,7 +78,7 @@ export function articleUpdateRequest(params,status) {
 
 export function articleRemoveRequest(id) {
   return dispatch => {
-    Http.delete(`courses/${id}`)
+    Http.delete(`tasks/${id}`)
       .then(() => {
         toast.success("Deteted Successfully");
         dispatch(articleActions.remove(id));
@@ -90,7 +90,7 @@ export function articleRemoveRequest(id) {
   }
 }
 
-export function articleListRequest({ pageNumber = 1, url = "/courses" }) {
+export function articleListRequest({ pageNumber = 1, url = "/tasks" }) {
          return dispatch => {
            if (pageNumber > 1) {
              url = url + `?page=${pageNumber}`;
@@ -111,7 +111,7 @@ export function articleListRequest({ pageNumber = 1, url = "/courses" }) {
        
 export function articleEditRequest(id) {
   return dispatch => {
-    Http.get(`courses/${id}`)
+    Http.get(`tasks/${id}`)
       .then(res => {
         dispatch(articleActions.add(transformResponse(res.data)));
       })
@@ -122,7 +122,7 @@ export function articleEditRequest(id) {
   }
 }
 
-export function categoryListRequest({ url = "/courses/courses_category_list" }) {
+export function categoryListRequest({ url = "/tasks/courses_category_list" }) {
   return dispatch => {
 
     Http.get(url)
@@ -136,15 +136,4 @@ export function categoryListRequest({ url = "/courses/courses_category_list" }) 
       });
   };
 }
-export function articleFetchRequest(slug) {
-  return dispatch => {
-    Http.get(`courses/published/${slug}`)
-      .then(res => {
-        dispatch(articleActions.add(transformResponse(res.data)));
-      })
-      .catch(err => {
-        // TODO: handle err
-        console.error(err.response);
-      });
-  }
-}
+ 

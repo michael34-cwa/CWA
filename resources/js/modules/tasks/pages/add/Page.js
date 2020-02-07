@@ -79,10 +79,10 @@ class Page extends Component {
   submit(article) {
      this.props
       .dispatch(articleAddRequest(article))
- 
        .then(res => { 
-          this.props.history.push('/courses');
-        })
+         console.log('ede');
+         this.props.history.push('/courses');
+       })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator;
 

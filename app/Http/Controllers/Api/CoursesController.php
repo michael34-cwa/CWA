@@ -131,18 +131,20 @@ class CoursesController  extends Controller
     //     return response()->json($article, 200);
     // }
 
-      public function update(CoursesRequest $request, $id,$type=null)
+      public function update(CoursesRequest $request, $id,$status=null)
     { 
-       
+    
         $course = Courses::findOrFail($id); 
         $course->course_name = $request->course_name;
         $course->course_description = $request->course_description;
         $course->is_active = $request->is_active;
         $course->save();
         if($course){
+       if($status == 'undefined'){
         //$course->getCategory()->detach($course->id);
         CategoryCourses::where('course_id',$course->id)->delete();
         $course->getCategory()->attach($request->cat_id);
+            }
         } 
         return response()->json($course, 200); 
     }

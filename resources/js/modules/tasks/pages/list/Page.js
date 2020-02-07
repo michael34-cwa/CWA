@@ -70,15 +70,15 @@ class Page extends Component {
   render() {
     return (
       <main className="dashboard-right" role="main">
-        <h1>Courses</h1>
+        <h1>Tasks</h1>
         <div className="table-responsive">
           <table className="table  table-striped">
             <thead className="thead-inverse">
               <tr>
                 <th>#</th>
+                <th>Task Name</th>
+                <th>Task Description</th>
                 <th>Course Name</th>
-                <th>Course Description</th>
-                <th>Category</th>
                 <th>Created Date</th>
                 <th>Updated Date</th>
                 <th>
