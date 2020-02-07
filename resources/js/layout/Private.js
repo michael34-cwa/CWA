@@ -7,6 +7,7 @@ import Navigation from "../common/navigation/index";
 import ScrollTop from "../common/scroll-top/index";
 import Footer from "../common/footer/index";
 import SideMenu from "../common/sidebar";
+import { ToastContainer } from "react-toastify"; 
 const containerStyle = {
   paddingTop: "3.5rem"
 };
@@ -19,8 +20,8 @@ const propTypes = {
 function PrivateLayout({ children }) {
   return (
     <div style={containerStyle}>
-      <Navigation />
-
+      <ToastContainer autoClose={3000} />
+      <Navigation /> 
       <main className="dashbard-area">
         <div className="dashbard-inner">
           <SideMenu />
@@ -29,6 +30,7 @@ function PrivateLayout({ children }) {
         </div>
       </main>
       <Footer />
+
     </div>
   );
 }

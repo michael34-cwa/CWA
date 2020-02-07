@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
- 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const displayName = 'CategoryFrom'
 const propTypes = {
   category: PropTypes.object.isRequired,
@@ -16,7 +17,7 @@ const Form = ({ category, errors, onChange, onSubmit }) => {
       onChange(name, value)
     }
   }
-  
+  <ToastContainer autoClose={2000} />
   return (
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group row">
@@ -51,6 +52,7 @@ const Form = ({ category, errors, onChange, onSubmit }) => {
         </div>
       </div>
     </form>
+
   );
 }
 

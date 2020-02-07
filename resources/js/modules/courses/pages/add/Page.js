@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { articleAddRequest, categoryListRequest } from "../../service";
 import ReeValidate from 'ree-validate'
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 // import components
 import Form from './components/Form'
 
@@ -26,8 +28,7 @@ class Page extends Component {
     });
 
     const article = this.props.article.toJson();
-     this.state = {
-     
+     this.state = { 
       article,
       errors: this.validator.errors
     };
@@ -78,6 +79,9 @@ class Page extends Component {
   submit(article) {
      this.props
       .dispatch(articleAddRequest(article))
+       .then(res => {
+
+       })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator;
 
@@ -92,7 +96,7 @@ class Page extends Component {
   }
 
   render() {
-    return (
+    return ( 
       <div className="dashboard-right">
       <div class="card"><div class="card-body bg-white">
         <h1>Add</h1>

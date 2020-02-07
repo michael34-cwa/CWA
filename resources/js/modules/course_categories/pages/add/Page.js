@@ -45,6 +45,7 @@ class Page extends Component {
   }
   
   handleChange(name, value) {
+
     const { errors } = this.validator
   
     this.setState({ category: { ...this.state.category, [name]: value} })
@@ -58,6 +59,7 @@ class Page extends Component {
   }
   
   handleSubmit(e) {
+  
     e.preventDefault()
     const category = this.state.category
     const { errors } = this.validator
@@ -72,12 +74,9 @@ class Page extends Component {
       })
   }
   
-  submit(category) {
+  submit(category) { 
     this.props
-      .dispatch(categoryAddRequest(category))
-      .then(res => {  
-        
-      })
+      .dispatch(categoryAddRequest(category)) 
       .catch(({ error, statusCode }) => { 
         const { errors } = this.validator;  
          if (statusCode === 422) { 
@@ -92,13 +91,15 @@ class Page extends Component {
   }
   
   render() {
+    
     return <div className="dashboard-right"><div className="card"><div className="card-body bg-white">
- 
+    
       <h1>Add Course Category</h1>
        <Form {...this.state}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit} />
     </div></div></div>
+
   }
 }
 
