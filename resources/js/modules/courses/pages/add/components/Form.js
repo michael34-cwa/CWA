@@ -144,7 +144,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
             type="submit"
             className="btn btn-primary"
           >
-            Add
+            Add Courses
           </button>
         </div>
       </div>

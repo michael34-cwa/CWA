@@ -122,7 +122,7 @@ class Page extends Component {
   render() {
     return <main className="dashboard-right" role="main">
     <div class="card"><div class="card-body bg-white">
-      <h1>Edit</h1>
+      <h1>Edit Courses</h1>
       { this.renderForm() }
       </div>
       </div>

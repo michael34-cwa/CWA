@@ -76,8 +76,8 @@ class Page extends Component {
             <thead className="thead-inverse">
               <tr>
                 <th>#</th>
-                <th>Course Name</th>
-                <th>Course Description</th>
+                <th>Name</th>
+                <th>Description</th>
                 <th>Category</th>
                 <th>Created Date</th>
                 <th>Updated Date</th>

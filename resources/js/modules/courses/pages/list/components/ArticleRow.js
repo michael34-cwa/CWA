@@ -18,7 +18,7 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
       <td>{article.courseDescription}</td>
       <td>
         {article.catId.map(function(item, index) {
-          return <span>{item.categoryName}</span>;
+          return <span className="chip-course">{item.categoryName}</span>;
         }).reduce((prev, curr) => [prev, ' ', curr])}
       </td>
  
@@ -29,7 +29,7 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
         <div className="btn-group" role="group" aria-label="Actions">
           {article.isActive ? (
             <button
-              className="btn btn-warning"
+              className="btn btn-warning btn-right"
               onClick={() => togglePublish(article.id)}
             >
               In Active

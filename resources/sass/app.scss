@@ -242,6 +242,19 @@ background-color: #ededff;
     font-size: 22px;
     color: #017bff;
 }
+.chip-course {
+    background-color: #017bff;
+    padding: 4px 15px;
+    color: #fff;
+    border-radius: 55px;
+    font-size: 12px;
+    text-transform: capitalize;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+.btn-right {
+    min-width: 90px;
+}
 
 @media(min-height:0px) and (max-height:450px) {
   .container.login-page {
