@@ -4,37 +4,24 @@ import MyEditor from '../../../../../common/wysiwyg-editor/index'
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
-const displayName = 'ArticleFrom'
+const displayName = 'TaskFrom'
 const propTypes = {
-  article: PropTypes.object.isRequired,
+  task: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired
 };
 
-const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
+const Form = ({ dataList, task, errors, onChange, onSubmit }) => {
 
-  const [personName, setPersonName] = React.useState([]);
-
+ 
   function handleChange(name, value) {
-    if (name === 'catId') {
-      setPersonName(value);
-    }
-
-    if (value !== article[name]) {
+ 
+    if (value !== task[name]) {
       onChange(name, value);
     }
   }
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    PaperProps: {
-      style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250
-      }
-    }
-  };
+ 
 
   return (
     <form onSubmit={e => onSubmit(e)}>
@@ -50,7 +37,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
             className={`form-control ${errors.has("task_name") &&
               "is-invalid"}`}
             placeholder="Course Name"
-            value={article.task_name || ""}
+            value={task.task_name || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
           {errors.has("task_name") && (
@@ -72,7 +59,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
               "is-invalid"}`}
             rows="3"
             placeholder="Description"
-            value={article.task_description || ""}
+            value={task.task_description || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
           {errors.has("task_description") && (
@@ -87,8 +74,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
         <label htmlFor="description" className="col-md-12 col-form-label">
           Task Status
         </label>
-        <div className="col-md-12">
-          <option value="">Select Task Status </option>
+        <div className="col-md-12"> 
           <select
             id="is_active"
             name="is_active"

@@ -1,50 +1,50 @@
 /* ============
- * Actions for the article module
+ * Actions for the task module
  * ============
  *
  * The actions that are available on the
- * article module.
+ * task module.
  */
 
 import {
-  ARTICLE_ADD,
-  ARTICLE_UPDATE,
-  ARTICLE_REMOVE,
-  ARTICLE_LIST,
-  CATEGORY_LIST,
+  TASK_ADD,
+  TASK_UPDATE,
+  TASK_REMOVE,
+  TASK_LIST,
+  COURSE_LIST,
 } from "./action-types";
 
 export function add(payload) {
   return {
-    type: ARTICLE_ADD,
+    type: TASK_ADD,
     payload
   }
 }
 
 export function update(payload) {
   return {
-    type: ARTICLE_UPDATE,
+    type: TASK_UPDATE,
     payload
   }
 }
 
 export function remove(payload) {
   return {
-    type: ARTICLE_REMOVE,
+    type: TASK_REMOVE,
     payload
   }
 }
 
 export function list(payload) {
   return {
-    type: ARTICLE_LIST,
+    type: TASK_LIST,
     payload
   }
 }
-export function catList(payload) {
+export function courseList(payload) {
  
   return {
-    type: CATEGORY_LIST,
+    type: COURSE_LIST,
     payload
   };
 }

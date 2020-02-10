@@ -1,9 +1,9 @@
 import {
-  ARTICLE_ADD,
-  ARTICLE_UPDATE,
-  ARTICLE_REMOVE,
-  ARTICLE_LIST,
-  CATEGORY_LIST
+  TASK_ADD,
+  TASK_UPDATE,
+  TASK_REMOVE,
+  TASK_LIST,
+  COURSE_LIST
 } from "./action-types";
 
 const initialState = {
@@ -22,25 +22,25 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload = null }) => {
   switch (type) {
-    case ARTICLE_ADD:
+    case TASK_ADD:
       return add(state, payload);
-    case ARTICLE_UPDATE:
+    case TASK_UPDATE:
       return update(state, payload);
-    case ARTICLE_REMOVE:
+    case TASK_REMOVE:
       return remove(state, payload);
-    case ARTICLE_LIST:
+    case TASK_LIST:
       return list(state, payload);
-    case CATEGORY_LIST:
-      return catList(state, payload);
+    case COURSE_LIST:
+      return courseList(state, payload);
     default:
       return state;
   }
 }
 
 function add(state, payload) {
-  const article = state.data.find((article) => (article.id === payload.id))
+  const task = state.data.find((task) => (task.id === payload.id))
 
-  if (!article) {
+  if (!task) {
     const data = [...state.data, payload]
 
     return Object.assign({}, state, { data })
@@ -72,12 +72,11 @@ function list(state, payload) {
   return state
 }
 
-function catList(state, payload) {
-  
-   const dataList = payload.data;
+function courseList(state, payload) {
 
-  state = Object.assign(  { dataList });
-
+  const dataList = payload.data;
+  const data = [...state.data, payload]
+  state = Object.assign({ data, dataList });
   return state;
 }
 

@@ -2,17 +2,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleEditRequest, articleUpdateRequest, categoryListRequest } from '../../service'
+import { taskEditRequest, taskUpdateRequest, courseListRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 
 // import components
 import Form from './components/Form'
 
 class Page extends Component {
-  static displayName = 'EditArticle'
+  static displayName = 'EditTask'
   static propTypes = {
     match: PropTypes.object.isRequired,
-    article: PropTypes.object,
+    task: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
   }
   
@@ -26,10 +26,10 @@ class Page extends Component {
       catId: "required"
     })
     
-    const article = this.props.article.toJson()
+    const task = this.props.task.toJson()
     
     this.state = {
-      article,
+      task,
       errors: this.validator.errors
     }
     
@@ -39,33 +39,33 @@ class Page extends Component {
 
   UNSAFE_componentWillMount() {
 
-    this.loadArticle()
+    this.loadTask()
 
   }
   
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const article = nextProps.article.toJson()
+    const task = nextProps.task.toJson()
     
-    if (!_.isEqual(this.state.article, article)) {
-      this.setState({ article })
+    if (!_.isEqual(this.state.task, task)) {
+      this.setState({ task })
     }
 
   }
   
-  loadArticle() {
-    const { match, article, dispatch } = this.props
- 
-    if (!article.id) {
-      dispatch(articleEditRequest(match.params.id))
-       ///dispatch(categoryListRequest({}));
+  loadTask() {
+    const { match, task, dispatch } = this.props
+    dispatch(courseListRequest({}));
+    if (!task.id) {
+      dispatch(taskEditRequest(match.params.id)) 
+    
     }
-   
+  
   }
   
   handleChange(name, value) {
     const { errors } = this.validator
     
-    this.setState({ article: { ...this.state.article, [name]: value} })
+    this.setState({ task: { ...this.state.task, [name]: value} })
     
     errors.remove(name)
     
@@ -77,21 +77,21 @@ class Page extends Component {
   
   handleSubmit(e) {
     e.preventDefault()
-    const article = this.state.article
+    const task = this.state.task
     const { errors } = this.validator
     
-    this.validator.validateAll(article)
+    this.validator.validateAll(task)
       .then((success) => {
         if (success) {
-          this.submit(article)
+          this.submit(task)
         } else {
           this.setState({ errors })
         }
       })
   }
   
-  submit(article) {
-    this.props.dispatch(articleUpdateRequest(article),0)
+  submit(task) {
+    this.props.dispatch(taskUpdateRequest(task),0)
       .then(res => {
         this.props.history.push('/courses');
       })
@@ -109,9 +109,9 @@ class Page extends Component {
   }
   
   renderForm() {
-    const { article, dataList } = this.props
+    const { task, dataList } = this.props
     
-    if (article.id) {
+    if (task.id) {
       return <Form {...this.state}
         dataList={dataList}
                    onChange={this.handleChange}

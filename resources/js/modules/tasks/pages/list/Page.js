@@ -2,19 +2,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { articleListRequest, articleUpdateRequest, articleRemoveRequest } from '../../service'
+import { taskListRequest, taskUpdateRequest, taskRemoveRequest } from '../../service'
 
 // import components
-import ArticleRow from './components/ArticleRow'
+import TaskRow from './components/TaskRow'
 import Pagination from './components/Pagination'
 import { Link } from 'react-router-dom'
 
 class Page extends Component {
-  static displayName = "ArticlesPage";
+  static displayName = "TasksPage";
   static propTypes = {
     dataList: PropTypes.array.isRequired,
     meta: PropTypes.object.isRequired,
-    articles: PropTypes.array.isRequired,
+    tasks: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired
   };
 
@@ -28,37 +28,37 @@ class Page extends Component {
 
   UNSAFE_componentWillMount() {
     const { dispatch } = this.props;
-     dispatch(articleListRequest({}));
+     dispatch(taskListRequest({}));
   }
 
   pageChange(pageNumber) {
-    this.props.dispatch(articleListRequest({ pageNumber }));
+    this.props.dispatch(taskListRequest({ pageNumber }));
   }
 
   togglePublish(id) {
-    const article = this.props.articles.find(article => article.id === id);
+    const task = this.props.tasks.find(task => task.id === id);
 
-    if (!article) return;
-    if (article.isActive) {
-      article.isActive = 0;
+    if (!task) return;
+    if (task.isActive) {
+      task.isActive = 0;
     } else {
-      article.isActive = 1;
+      task.isActive = 1;
     }
-    console.log(article.toJson());
-    this.props.dispatch(articleUpdateRequest(article.toJson(),'1'));
+    console.log(task.toJson());
+    this.props.dispatch(taskUpdateRequest(task.toJson(),'1'));
   }
 
   handleRemove(id) {
-    this.props.dispatch(articleRemoveRequest(id));
+    this.props.dispatch(taskRemoveRequest(id));
   }
 
-  renderArticles() {
+  renderTasks() {
  
-    return this.props.articles.map((article, index) => {
+    return this.props.tasks.map((task, index) => {
       return (
-        <ArticleRow
+        <TaskRow
           key={index}
-          article={article}
+          task={task}
           index={index}
           togglePublish={this.togglePublish}
           handleRemove={this.handleRemove}
@@ -88,7 +88,7 @@ class Page extends Component {
                 </th>
               </tr>
             </thead>
-            <tbody>{this.renderArticles()}</tbody>
+            <tbody>{this.renderTasks()}</tbody>
           </table>
         </div>
         <Pagination meta={this.props.meta} onChange={this.pageChange} />

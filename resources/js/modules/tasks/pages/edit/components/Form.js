@@ -3,39 +3,24 @@ import PropTypes from 'prop-types'
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem"; 
 
-const displayName = 'ArticleFrom'
+const displayName = 'TaskFrom'
 const propTypes = {
-  article: PropTypes.object.isRequired,
+  task: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 }
 
-const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
+const Form = ({ dataList, task, errors, onChange, onSubmit }) => {
+ 
+ 
+  function handleChange(name, value) {
  
 
-  const [personName, setPersonName] = React.useState(article.catId.map(catids => catids.id));
-
-  function handleChange(name, value) {
-    if (name === 'catId') {
-      setPersonName(value);
-    }
-
-    if (value !== article[name]) {
+    if (value !== task[name]) {
       onChange(name, value);
     }
   }
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    PaperProps: {
-      style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250
-      }
-    }
-  };
- 
  
   return <form onSubmit={e => onSubmit(e)}>
     <div className="form-group row">
@@ -50,7 +35,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
           className={`form-control ${errors.has("task_name") &&
             "is-invalid"}`}
           placeholder="Course Name"
-          value={article.task_name || ""}
+          value={task.taskName || ""}
           onChange={e => handleChange(e.target.name, e.target.value)}
         />
         {errors.has("task_name") && (
@@ -72,7 +57,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
             "is-invalid"}`}
           rows="3"
           placeholder="Description"
-          value={article.task_description || ""}
+          value={task.taskDescription || ""}
           onChange={e => handleChange(e.target.name, e.target.value)}
         />
         {errors.has("task_description") && (
@@ -88,7 +73,6 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
         Task Status
         </label>
       <div className="col-md-12">
-        <option value="">Select Task Status </option>
         <select
           id="is_active"
           name="is_active"
@@ -97,8 +81,9 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
           placeholder="Task Status"
           onChange={e => handleChange(e.target.name, e.target.value)}
         >
-          <option value="0">In Active</option>
-          <option value="1">Active</option>
+          <option selected={task.isActive == 0 ? "selected" : ""} value="0">In Active</option>
+          <option selected={task.isActive == 1 ? "selected" : ""} value="1">Active</option>
+     
         </select>
         {errors.has("is_active") && (
           <div className="invalid-feedback">{errors.first("is_active")}</div>
@@ -120,18 +105,20 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
           onChange={e => handleChange(e.target.name, e.target.value)}
         >
           <option value="">Select Course Name</option>
-   
+          {dataList.map(name => (
+            <option selected={task.courseName.id == name.id ? "selected" : ""} key={name.id} value={name.id}>
+              {name.courseName}
+            </option>
+          ))}
         </select>
         {errors.has("course_id") && (
           <div className="invalid-feedback">{errors.first("course_id")}</div>
         )}
       </div>
     </div>
-
-
     <div className="form-group row">
       <div className="col-md-12 ml-auto">
-        <button disabled={errors.any()} type="submit" className="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update</button>
+        <button disabled={errors.any()} type="submit" className="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update Courses</button>
       </div>
     </div>
   </form>

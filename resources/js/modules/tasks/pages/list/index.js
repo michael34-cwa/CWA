@@ -1,17 +1,16 @@
 // import libs
 import { connect, useSelector } from 'react-redux'
-import Article from '../../Article'
+import Task from '../../Task'
 
 // import components
 import Page from './Page'
   
 const mapStateToProps = state => { 
-  console.log(state)
-   const { data, ...meta } = state.courses;  
-   let dataLists = data ? data : [];
  
+  const { data, ...meta } = state.tasks;  
+   let dataLists = data ? data : [];
   return {
-     articles: dataLists.map(courses => new Article(courses)), 
+    tasks: dataLists.map(tasks => new Task(tasks)), 
     meta: Object.assign({}, meta)
   };
 }

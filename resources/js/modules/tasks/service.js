@@ -1,6 +1,6 @@
 import Http from '../../utils/Http'
 import Transformer from '../../utils/Transformer'
-import * as articleActions from './store/actions'
+import * as taskActions from './store/actions'
 import { toast } from "react-toastify";
 function transformRequest(parms) {
   return Transformer.send(parms)
@@ -10,13 +10,13 @@ function transformResponse(params) {
   return Transformer.fetch(params)
 }
 
-export function articleAddRequest(params) {
+export function taskAddRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
       Http.post("/tasks", transformRequest(params))
         .then(res => {
           toast.success("Added Successfully");
-          dispatch(articleActions.add(transformResponse(res.data)));
+        //  dispatch(taskActions.add(transformResponse(res.data)));
           return resolve();
         })
         .catch(err => {
@@ -43,13 +43,13 @@ export function articleAddRequest(params) {
   )
 }
 
-export function articleUpdateRequest(params,status) {    
+export function taskUpdateRequest(params,status) {    
   return dispatch => (
     new Promise((resolve, reject) => {
       Http.patch(`tasks/${params.id}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully");
-          dispatch(articleActions.add(transformResponse(res.data)));
+          dispatch(taskActions.add(transformResponse(res.data)));
           return resolve();
         })
         .catch(err => {
@@ -76,12 +76,12 @@ export function articleUpdateRequest(params,status) {
   )
 }
 
-export function articleRemoveRequest(id) {
+export function taskRemoveRequest(id) {
   return dispatch => {
     Http.delete(`tasks/${id}`)
       .then(() => {
         toast.success("Deteted Successfully");
-        dispatch(articleActions.remove(id));
+        dispatch(taskActions.remove(id));
       })
       .catch(err => {
         // TODO: handle err
@@ -90,7 +90,7 @@ export function articleRemoveRequest(id) {
   }
 }
 
-export function articleListRequest({ pageNumber = 1, url = "/tasks" }) {
+export function taskListRequest({ pageNumber = 1, url = "/tasks" }) {
          return dispatch => {
            if (pageNumber > 1) {
              url = url + `?page=${pageNumber}`;
@@ -98,7 +98,7 @@ export function articleListRequest({ pageNumber = 1, url = "/tasks" }) {
     
            Http.get(url)
              .then(res => { 
-               dispatch(articleActions.list(transformResponse(res.data)));
+               dispatch(taskActions.list(transformResponse(res.data)));
              })
              .catch(err => {
                // TODO: handle err
@@ -109,11 +109,11 @@ export function articleListRequest({ pageNumber = 1, url = "/tasks" }) {
 
 
        
-export function articleEditRequest(id) {
+export function taskEditRequest(id) {
   return dispatch => {
     Http.get(`tasks/${id}`)
       .then(res => {
-        dispatch(articleActions.add(transformResponse(res.data)));
+        dispatch(taskActions.add(transformResponse(res.data)));
       })
       .catch(err => {
         // TODO: handle err
@@ -122,13 +122,13 @@ export function articleEditRequest(id) {
   }
 }
 
-export function categoryListRequest({ url = "/tasks/task_list" }) {
+export function courseListRequest({ url = "/tasks/task_list" }) {
   return dispatch => {
 
     Http.get(url)
       .then(res => {
 
-        dispatch(articleActions.catList(transformResponse(res)));
+        dispatch(taskActions.courseList(transformResponse(res)));
       })
       .catch(err => {
         // TODO: handle err

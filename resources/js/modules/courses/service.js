@@ -66,7 +66,7 @@ export function courseUpdateRequest(params,status) {
 
           if (statusCode === 422) {
             const resetErrors = {
-              errors: err.response.data,
+              errors: err.response.data, 
               replace: false,
               searchStr: "",
               replaceStr: ""

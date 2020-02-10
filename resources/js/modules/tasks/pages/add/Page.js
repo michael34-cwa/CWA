@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleAddRequest, categoryListRequest } from "../../service";
+import { taskAddRequest, courseListRequest } from "../../service";
 import ReeValidate from 'ree-validate'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,9 +11,9 @@ import { toast } from "react-toastify";
 import Form from './components/Form'
 
 class Page extends Component {
-  static displayName = "AddArticle";
+  static displayName = "AddTask";
   static propTypes = {
-    article: PropTypes.object.isRequired,
+    task: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
   };
 
@@ -27,9 +27,9 @@ class Page extends Component {
       course_id: "required"
     });
 
-    const article = this.props.article.toJson();
+    const task = this.props.task.toJson();
      this.state = { 
-      article,
+      task,
       errors: this.validator.errors
     };
 
@@ -39,21 +39,21 @@ class Page extends Component {
 
   UNSAFE_componentWillMount() {
     const { dispatch } = this.props;
-    dispatch(categoryListRequest({}));
+    dispatch(courseListRequest({}));
   }
 
   componentWillReceiveProps(nextProps) {
-    const article = nextProps.article.toJson();
+    const task = nextProps.task.toJson();
 
-    if (!_.isEqual(this.state.article, article)) {
-      this.setState({ article });
+    if (!_.isEqual(this.state.task, task)) {
+      this.setState({ task });
     }
   }
 
   handleChange(name, value) {
     const { errors } = this.validator;
 
-    this.setState({ article: { ...this.state.article, [name]: value } });
+    this.setState({ task: { ...this.state.task, [name]: value } });
 
     errors.remove(name);
 
@@ -64,24 +64,24 @@ class Page extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const article = this.state.article;
+    const task = this.state.task;
     const { errors } = this.validator;
 
-    this.validator.validateAll(article).then(success => {
+    this.validator.validateAll(task).then(success => {
       if (success) {
-        this.submit(article);
+        this.submit(task);
       } else {
         this.setState({ errors });
       }
     });
   }
 
-  submit(article) {
+  submit(task) {
      this.props
-      .dispatch(articleAddRequest(article))
+       .dispatch(taskAddRequest(task))
        .then(res => { 
          console.log('ede');
-         this.props.history.push('/courses');
+         this.props.history.push('/tasks');
        })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator;

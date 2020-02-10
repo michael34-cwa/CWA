@@ -1,17 +1,17 @@
 import { connect } from 'react-redux'
-import Article from '../../Article'
+import Task from '../../Task'
 
 // import components
 import Page from './Page'
 
 const mapStateToProps = (state, router) => {
   const { params } = router.match
-  const { dataList } = state.courses;
- // let dataLists = dataList ? dataList : [];
-  const article = state.articles.data.find(article => article.id === Number(params.id))
+  const { dataList } = state.tasks;
+   let dataLists = dataList ? dataList : []; 
+  const task = state.tasks.data.find(task => task.id === Number(params.id))
   return {
-    article: article ? new Article(article) : new Article({}),
-   // dataList: dataLists
+    task: task ? new Task(task) : new Task({}),
+    dataList: dataLists
   }
 }
 
