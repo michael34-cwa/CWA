@@ -15,7 +15,8 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
  
 
   const [personName, setPersonName] = React.useState(course.catId.map(catids => catids.id));
-
+  
+ 
   function handleChange(name, value) {
     if (name === 'catId') {
       setPersonName(value);

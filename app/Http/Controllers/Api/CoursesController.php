@@ -140,11 +140,12 @@ class CoursesController  extends Controller
         $course->is_active = $request->is_active;
         $course->save();
         if($course){
-       if($status == 'undefined'){
-        //$course->getCategory()->detach($course->id);
+       if($status == 'undefined'){ 
+       if(!isset($request->cat_id[0]['id'])){
         CategoryCourses::where('course_id',$course->id)->delete();
         $course->getCategory()->attach($request->cat_id);
-            }
+       }        
+    }
         } 
         return response()->json($course, 200); 
     }
