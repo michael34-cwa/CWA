@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleAddRequest, categoryListRequest } from "../../service";
+import { courseAddRequest, categoryListRequest } from "../../service";
 import ReeValidate from 'ree-validate'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,9 +11,9 @@ import { toast } from "react-toastify";
 import Form from './components/Form'
 
 class Page extends Component {
-  static displayName = "AddArticle";
+  static displayName = "AddCourse";
   static propTypes = {
-    article: PropTypes.object.isRequired,
+    course: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
   };
 
@@ -27,9 +27,9 @@ class Page extends Component {
       catId: "required"
     });
 
-    const article = this.props.article.toJson();
+    const course = this.props.course.toJson();
      this.state = { 
-      article,
+       course,
       errors: this.validator.errors
     };
 
@@ -43,17 +43,17 @@ class Page extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const article = nextProps.article.toJson();
+    const course = nextProps.course.toJson();
 
-    if (!_.isEqual(this.state.article, article)) {
-      this.setState({ article });
+    if (!_.isEqual(this.state.course, course)) {
+      this.setState({ course });
     }
   }
 
   handleChange(name, value) {
     const { errors } = this.validator;
 
-    this.setState({ article: { ...this.state.article, [name]: value } });
+    this.setState({ course: { ...this.state.course, [name]: value } });
 
     errors.remove(name);
 
@@ -64,25 +64,24 @@ class Page extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const article = this.state.article;
+    const course = this.state.course;
     const { errors } = this.validator;
 
-    this.validator.validateAll(article).then(success => {
+    this.validator.validateAll(course).then(success => {
       if (success) {
-        this.submit(article);
+        this.submit(course);
       } else {
         this.setState({ errors });
       }
     });
   }
 
-  submit(article) {
+  submit(course) {
      this.props
-      .dispatch(articleAddRequest(article))
- 
-       .then(res => { 
-          this.props.history.push('/courses');
-        })
+       .dispatch(courseAddRequest(course)) 
+       .then(res => {  
+         this.props.history.push('/courses');
+       })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator;
 

@@ -1,8 +1,8 @@
 import {
-  ARTICLE_ADD,
-  ARTICLE_UPDATE,
-  ARTICLE_REMOVE,
-  ARTICLE_LIST,
+  COURSE_ADD,
+  COURSE_UPDATE,
+  COURSE_REMOVE,
+  COURSE_LIST,
   CATEGORY_LIST
 } from "./action-types";
 
@@ -22,13 +22,13 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload = null }) => {
   switch (type) {
-    case ARTICLE_ADD:
+    case COURSE_ADD:
       return add(state, payload);
-    case ARTICLE_UPDATE:
+    case COURSE_UPDATE:
       return update(state, payload);
-    case ARTICLE_REMOVE:
+    case COURSE_REMOVE:
       return remove(state, payload);
-    case ARTICLE_LIST:
+    case COURSE_LIST:
       return list(state, payload);
     case CATEGORY_LIST:
       return catList(state, payload);
@@ -38,9 +38,9 @@ const reducer = (state = initialState, { type, payload = null }) => {
 }
 
 function add(state, payload) {
-  const article = state.data.find((article) => (article.id === payload.id))
+  const course = state.data.find((course) => (course.id === payload.id))
 
-  if (!article) {
+  if (!course) {
     const data = [...state.data, payload]
 
     return Object.assign({}, state, { data })
@@ -72,12 +72,10 @@ function list(state, payload) {
   return state
 }
 
-function catList(state, payload) {
-  
-   const dataList = payload.data;
-
-  state = Object.assign(  { dataList });
-
+function catList(state, payload) { 
+   const dataList = payload.data;  
+  const data = [...state.data, payload]
+  state = Object.assign({ data,dataList }); 
   return state;
 }
 

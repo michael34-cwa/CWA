@@ -1,7 +1,7 @@
 import moment from 'moment'
 import Model from '../../utils/Model'
 import User from '../user/User'
-class Article extends Model {
+class Course extends Model {
   constructor(props) {
     super(props)
 
@@ -21,4 +21,4 @@ class Article extends Model {
   }
 }
 
-export default Article
+export default Course

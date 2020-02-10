@@ -3,25 +3,25 @@ import PropTypes from 'prop-types'
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem"; 
 
-const displayName = 'ArticleFrom'
+const displayName = 'CourseFrom'
 const propTypes = {
-  article: PropTypes.object.isRequired,
+  course: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 }
 
-const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
+const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
  
 
-  const [personName, setPersonName] = React.useState(article.catId.map(catids => catids.id));
+  const [personName, setPersonName] = React.useState(course.catId.map(catids => catids.id));
 
   function handleChange(name, value) {
     if (name === 'catId') {
       setPersonName(value);
     }
 
-    if (value !== article[name]) {
+    if (value !== course[name]) {
       onChange(name, value);
     }
   }
@@ -35,8 +35,8 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
       }
     }
   };
-
- 
+  // console.log(dataList);
+  // console.log(course);
  
   return <form onSubmit={e => onSubmit(e)}>
     <div className="form-group row">
@@ -51,7 +51,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
           className={`form-control ${errors.has("courseName") &&
             "is-invalid"}`}
           placeholder="Course Name"
-          value={article.courseName || ""}
+          value={course.courseName || ""}
           onChange={e => handleChange(e.target.name, e.target.value)}
         />
         {errors.has("courseName") && (
@@ -73,7 +73,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
             "is-invalid"}`}
           rows="3"
           placeholder="Description"
-          value={article.courseDescription || ""}
+          value={course.courseDescription || ""}
           onChange={e => handleChange(e.target.name, e.target.value)}
         />
         {errors.has("courseDescription") && (
@@ -97,8 +97,8 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
           placeholder="Course Status"
           onChange={e => handleChange(e.target.name, e.target.value)}
         >
-          <option selected={article.isActive == 0 ? "selected": ""} value="0">In Active</option>
-          <option selected={article.isActive == 1 ? "selected" : ""} value="1">Active</option>
+          <option selected={course.isActive == 0 ? "selected": ""} value="0">In Active</option>
+          <option selected={course.isActive == 1 ? "selected" : ""} value="1">Active</option>
         </select>
         {errors.has("isActive") && (
           <div className="invalid-feedback">{errors.first("isActive")}</div>

@@ -6,9 +6,10 @@ import Article from '../../Article'
 import Page from './Page'
   
 const mapStateToProps = state => { 
- 
+  console.log(state)
    const { data, ...meta } = state.courses;  
    let dataLists = data ? data : [];
+ 
   return {
      articles: dataLists.map(courses => new Article(courses)), 
     meta: Object.assign({}, meta)

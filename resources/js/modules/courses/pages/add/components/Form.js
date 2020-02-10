@@ -4,15 +4,15 @@ import MyEditor from '../../../../../common/wysiwyg-editor/index'
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem"; 
 
-const displayName = 'ArticleFrom'
+const displayName = 'CourseFrom'
 const propTypes = { 
-  article: PropTypes.object.isRequired,
+  course: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired
 };
 
-const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
+const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
 
   const [personName, setPersonName] = React.useState([]);
 
@@ -21,7 +21,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
       setPersonName(value);
     }
    
-    if (value !== article[name]) {
+    if (value !== course[name]) {
       onChange(name, value);  
     }
   }
@@ -50,7 +50,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
             className={`form-control ${errors.has("course_name") &&
               "is-invalid"}`}
             placeholder="Course Name"
-            value={article.course_name || ""}
+             value={course.course_name || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
           {errors.has("course_name") && (
@@ -72,7 +72,7 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
               "is-invalid"}`}
             rows="3"
             placeholder="Description"
-            value={article.course_description || ""}
+             value={course.course_description || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
           {errors.has("course_description") && (

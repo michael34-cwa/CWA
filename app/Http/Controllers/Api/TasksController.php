@@ -82,7 +82,8 @@ class TasksController  extends Controller
      */
     public function show(Request $request, $id)
     { 
-        return Tasks::findOrFail($id);
+ 
+           return Tasks::where('id',$id)->with('getCourse')->first();  
     }
 
 

@@ -2,17 +2,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleEditRequest, articleUpdateRequest, categoryListRequest } from '../../service'
+import { courseEditRequest, courseUpdateRequest, categoryListRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 
 // import components
 import Form from './components/Form'
 
 class Page extends Component {
-  static displayName = 'EditArticle'
+  static displayName = 'EditCourse'
   static propTypes = {
     match: PropTypes.object.isRequired,
-    article: PropTypes.object,
+    course: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
   }
   
@@ -26,10 +26,10 @@ class Page extends Component {
       catId: "required"
     })
     
-    const article = this.props.article.toJson()
+    const course = this.props.course.toJson()
     
     this.state = {
-      article,
+      course,
       errors: this.validator.errors
     }
     
@@ -39,25 +39,24 @@ class Page extends Component {
 
   UNSAFE_componentWillMount() {
 
-    this.loadArticle()
+    this.loadCourse()
 
   }
   
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const article = nextProps.article.toJson()
+    const course = nextProps.course.toJson()
     
-    if (!_.isEqual(this.state.article, article)) {
-      this.setState({ article })
+    if (!_.isEqual(this.state.course, course)) {
+      this.setState({ course })
     }
 
   }
   
-  loadArticle() {
-    const { match, article, dispatch } = this.props
- 
-    if (!article.id) {
-      dispatch(articleEditRequest(match.params.id))
-       dispatch(categoryListRequest({}));
+  loadCourse() {
+    const { match, course, dispatch } = this.props
+    dispatch(categoryListRequest({}));
+    if (!course.id) { 
+      dispatch(courseEditRequest(match.params.id))  
     }
    
   }
@@ -65,7 +64,7 @@ class Page extends Component {
   handleChange(name, value) {
     const { errors } = this.validator
     
-    this.setState({ article: { ...this.state.article, [name]: value} })
+    this.setState({ course: { ...this.state.course, [name]: value} })
     
     errors.remove(name)
     
@@ -77,21 +76,21 @@ class Page extends Component {
   
   handleSubmit(e) {
     e.preventDefault()
-    const article = this.state.article
+    const course = this.state.course
     const { errors } = this.validator
     
-    this.validator.validateAll(article)
+    this.validator.validateAll(course)
       .then((success) => {
         if (success) {
-          this.submit(article)
+          this.submit(course)
         } else {
           this.setState({ errors })
         }
       })
   }
   
-  submit(article) {
-    this.props.dispatch(articleUpdateRequest(article),0)
+  submit(course) {
+    this.props.dispatch(courseUpdateRequest(course),0)
       .then(res => {
         this.props.history.push('/courses');
       })
@@ -109,9 +108,9 @@ class Page extends Component {
   }
   
   renderForm() {
-    const { article, dataList } = this.props
+    const { course, dataList } = this.props
     
-    if (article.id) {
+    if (course.id) {
       return <Form {...this.state}
         dataList={dataList}
                    onChange={this.handleChange}

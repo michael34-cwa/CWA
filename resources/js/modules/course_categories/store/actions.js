@@ -12,8 +12,7 @@ import {
   CATEGORY_REMOVE,
   CATEGORY_LIST,
 } from './action-types';
-import { toast } from "react-toastify";
-
+ 
 export function add(payload) {
   return {
     type: CATEGORY_ADD,
@@ -42,11 +41,4 @@ export function list(payload) {
   }
 }
 
-export function incrementAction() {
-  return function(dispatch) {
-    dispatch({
-      type: INCREMENT
-    });
-    toast.success("MY SUCCESS");
-  };
-}
+ 

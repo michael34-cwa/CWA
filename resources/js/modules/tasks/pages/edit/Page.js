@@ -57,7 +57,7 @@ class Page extends Component {
  
     if (!article.id) {
       dispatch(articleEditRequest(match.params.id))
-       dispatch(categoryListRequest({}));
+       ///dispatch(categoryListRequest({}));
     }
    
   }

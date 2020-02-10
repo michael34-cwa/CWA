@@ -1,6 +1,6 @@
 import Http from '../../utils/Http'
 import Transformer from '../../utils/Transformer'
-import * as articleActions from './store/actions'
+import * as courseActions from './store/actions'
 import { toast } from "react-toastify";
 function transformRequest(parms) {
   return Transformer.send(parms)
@@ -10,14 +10,15 @@ function transformResponse(params) {
   return Transformer.fetch(params)
 }
 
-export function articleAddRequest(params) {
+
+export function courseAddRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
       Http.post("/courses", transformRequest(params))
         .then(res => {
-          toast.success("Added Successfully");
-          dispatch(articleActions.add(transformResponse(res.data)));
-          return resolve();
+          toast.success("Added Successfully"); 
+        //  dispatch(courseActions.add(transformResponse(res.data)));
+          return resolve(res);
         })
         .catch(err => {
           const statusCode = err.response.status;
@@ -42,15 +43,19 @@ export function articleAddRequest(params) {
     })
   )
 }
+ 
 
-export function articleUpdateRequest(params,status) {    
+export function courseUpdateRequest(params,status) {    
   return dispatch => (
     new Promise((resolve, reject) => {
       Http.patch(`courses/${params.id}/${status}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully");
-          dispatch(articleActions.add(transformResponse(res.data)));
-          return resolve();
+          if (status == 1){
+           dispatch(courseActions.add(transformResponse(res.data)));
+          }
+           return resolve();
+
         })
         .catch(err => {
           const statusCode = err.response.status;
@@ -76,12 +81,12 @@ export function articleUpdateRequest(params,status) {
   )
 }
 
-export function articleRemoveRequest(id) {
+export function courseRemoveRequest(id) {
   return dispatch => {
     Http.delete(`courses/${id}`)
       .then(() => {
         toast.success("Deteted Successfully");
-        dispatch(articleActions.remove(id));
+        dispatch(courseActions.remove(id));
       })
       .catch(err => {
         // TODO: handle err
@@ -90,7 +95,7 @@ export function articleRemoveRequest(id) {
   }
 }
 
-export function articleListRequest({ pageNumber = 1, url = "/courses" }) {
+export function courseListRequest({ pageNumber = 1, url = "/courses" }) {
          return dispatch => {
            if (pageNumber > 1) {
              url = url + `?page=${pageNumber}`;
@@ -98,7 +103,7 @@ export function articleListRequest({ pageNumber = 1, url = "/courses" }) {
     
            Http.get(url)
              .then(res => { 
-               dispatch(articleActions.list(transformResponse(res.data)));
+               dispatch(courseActions.list(transformResponse(res.data)));
              })
              .catch(err => {
                // TODO: handle err
@@ -109,11 +114,11 @@ export function articleListRequest({ pageNumber = 1, url = "/courses" }) {
 
 
        
-export function articleEditRequest(id) {
+export function courseEditRequest(id) {
   return dispatch => {
     Http.get(`courses/${id}`)
       .then(res => {
-        dispatch(articleActions.add(transformResponse(res.data)));
+        dispatch(courseActions.add(transformResponse(res.data)));
       })
       .catch(err => {
         // TODO: handle err
@@ -126,9 +131,8 @@ export function categoryListRequest({ url = "/courses/courses_category_list" }) 
   return dispatch => {
 
     Http.get(url)
-      .then(res => {
-
-        dispatch(articleActions.catList(transformResponse(res)));
+      .then(res => { 
+        dispatch(courseActions.catList(transformResponse(res)));
       })
       .catch(err => {
         // TODO: handle err
@@ -136,15 +140,4 @@ export function categoryListRequest({ url = "/courses/courses_category_list" }) 
       });
   };
 }
-export function articleFetchRequest(slug) {
-  return dispatch => {
-    Http.get(`courses/published/${slug}`)
-      .then(res => {
-        dispatch(articleActions.add(transformResponse(res.data)));
-      })
-      .catch(err => {
-        // TODO: handle err
-        console.error(err.response);
-      });
-  }
-}
+ 

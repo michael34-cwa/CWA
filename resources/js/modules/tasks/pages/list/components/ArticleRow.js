@@ -37,7 +37,7 @@ const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
             </button>
           )}
 
-          <Link className="btn btn-primary" to={`courses/${article.id}/edit`}>
+          <Link className="btn btn-primary" to={`tasks/${article.id}/edit`}>
            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
           </Link>
           <button

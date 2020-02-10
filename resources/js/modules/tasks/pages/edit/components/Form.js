@@ -35,50 +35,49 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
       }
     }
   };
-
  
  
   return <form onSubmit={e => onSubmit(e)}>
     <div className="form-group row">
       <label htmlFor="title" className="col-md-12 col-form-label">
-        Course Name
+        Task Name
         </label>
       <div className="col-md-12">
         <input
           type="text"
-          id="courseName"
-          name="courseName"
-          className={`form-control ${errors.has("courseName") &&
+          id="task_name"
+          name="task_name"
+          className={`form-control ${errors.has("task_name") &&
             "is-invalid"}`}
           placeholder="Course Name"
-          value={article.courseName || ""}
+          value={article.task_name || ""}
           onChange={e => handleChange(e.target.name, e.target.value)}
         />
-        {errors.has("courseName") && (
+        {errors.has("task_name") && (
           <div className="invalid-feedback">
-            {errors.first("courseName")}
+            {errors.first("task_name")}
           </div>
         )}
       </div>
     </div>
     <div className="form-group row">
       <label htmlFor="description" className="col-md-12 col-form-label">
-        Course Description
+        Task Description
         </label>
       <div className="col-md-12">
         <textarea
-          id="courseDescription"
-          name="courseDescription"
-          className={`form-control ${errors.has("courseDescription") &&
+          id="task_description"
+          name="task_description"
+          className={`form-control ${errors.has("task_description") &&
             "is-invalid"}`}
           rows="3"
           placeholder="Description"
-          value={article.courseDescription || ""}
+          value={article.task_description || ""}
           onChange={e => handleChange(e.target.name, e.target.value)}
         />
-        {errors.has("courseDescription") && (
+        {errors.has("task_description") && (
           <div className="invalid-feedback">
-            {errors.first("courseDescription")}
+            {errors.first("task_description")}
           </div>
         )}
       </div>
@@ -86,56 +85,50 @@ const Form = ({ dataList, article, errors, onChange, onSubmit }) => {
 
     <div className="form-group row">
       <label htmlFor="description" className="col-md-12 col-form-label">
-        Course Status
+        Task Status
+        </label>
+      <div className="col-md-12">
+        <option value="">Select Task Status </option>
+        <select
+          id="is_active"
+          name="is_active"
+          className={`form-control ${errors.has("is_active") &&
+            "is-invalid"}`}
+          placeholder="Task Status"
+          onChange={e => handleChange(e.target.name, e.target.value)}
+        >
+          <option value="0">In Active</option>
+          <option value="1">Active</option>
+        </select>
+        {errors.has("is_active") && (
+          <div className="invalid-feedback">{errors.first("is_active")}</div>
+        )}
+      </div>
+    </div>
+
+    <div className="form-group row">
+      <label htmlFor="description" className="col-md-12 col-form-label">
+        Course Name
         </label>
       <div className="col-md-12">
         <select
-          id="isActive"
-          name="isActive"
-          className={`form-control ${errors.has("isActive") &&
+          id="course_id"
+          name="course_id"
+          className={`form-control ${errors.has("course_id") &&
             "is-invalid"}`}
           placeholder="Course Status"
           onChange={e => handleChange(e.target.name, e.target.value)}
         >
-          <option selected={article.isActive == 0 ? "selected": ""} value="0">In Active</option>
-          <option selected={article.isActive == 1 ? "selected" : ""} value="1">Active</option>
+          <option value="">Select Course Name</option>
+   
         </select>
-        {errors.has("isActive") && (
-          <div className="invalid-feedback">{errors.first("isActive")}</div>
+        {errors.has("course_id") && (
+          <div className="invalid-feedback">{errors.first("course_id")}</div>
         )}
       </div>
     </div>
 
-    <div className="form-group row">
-      <label htmlFor="description" className="col-md-12 col-form-label">
-        Course Categorys
-        </label>
-      <div className="col-md-12">
 
-        <Select
-          labelId="demo-mutiple-name-label"
-          className={`form-control ${errors.has("catId") &&
-            "is-invalid"}`}
-          id="catId"
-          multiple
-          value={personName}
-          name="catId"
-          onChange={e => handleChange(e.target.name, e.target.value)}
-          MenuProps={MenuProps}
-        >
-          {dataList.map(name => (
-            <MenuItem key={name.id} value={name.id}>
-              {name.categoryName}
-            </MenuItem>
-          ))}
-        </Select>
-        {errors.has("catId") && (
-          <div className="invalid-feedback">{errors.first("catId")}</div>
-        )}
-
-
-      </div>
-    </div>
     <div className="form-group row">
       <div className="col-md-12 ml-auto">
         <button disabled={errors.any()} type="submit" className="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update</button>

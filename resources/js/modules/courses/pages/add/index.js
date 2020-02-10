@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Article from '../../Article'
+import Course from '../../Course'
 
 // import components
 import Page from './Page'
@@ -7,9 +7,9 @@ import Page from './Page'
 const mapStateToProps = state => {
   const { dataList} = state.courses; 
   let dataLists = dataList ? dataList : [];
-  const article = new Article({});
+  const course = new Course({});
   return {
-    article,
+    course,
     dataList: dataLists
   };
 };

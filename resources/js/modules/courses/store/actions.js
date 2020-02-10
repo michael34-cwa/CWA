@@ -1,43 +1,43 @@
 /* ============
- * Actions for the article module
+ * Actions for the COURSE module
  * ============
  *
  * The actions that are available on the
- * article module.
+ * COURSE module.
  */
 
 import {
-  ARTICLE_ADD,
-  ARTICLE_UPDATE,
-  ARTICLE_REMOVE,
-  ARTICLE_LIST,
+  COURSE_ADD,
+  COURSE_UPDATE,
+  COURSE_REMOVE,
+  COURSE_LIST,
   CATEGORY_LIST,
 } from "./action-types";
 
 export function add(payload) {
   return {
-    type: ARTICLE_ADD,
+    type: COURSE_ADD,
     payload
   }
 }
 
 export function update(payload) {
   return {
-    type: ARTICLE_UPDATE,
+    type: COURSE_UPDATE,
     payload
   }
 }
 
 export function remove(payload) {
   return {
-    type: ARTICLE_REMOVE,
+    type: COURSE_REMOVE,
     payload
   }
 }
 
 export function list(payload) {
   return {
-    type: ARTICLE_LIST,
+    type: COURSE_LIST,
     payload
   }
 }
