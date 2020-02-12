@@ -106,7 +106,7 @@ class Page extends Component {
 
     // check if user is authenticated then redirect him to home page
     if (this.props.isAuthenticated) {
-      return <Redirect to="/" />
+      return <Redirect to="/admin" />
     }
     const props = {
       email: this.state.credentials.email,

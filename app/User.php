@@ -19,8 +19,6 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'phone',
-        'about',
         'password',
     ];
 
@@ -30,13 +28,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password', 
     ];
 
-    protected $casts = [
-        'is_admin' => 'boolean',
-    ];
+ 
 
        static function GetUserByMail($email)
     { 

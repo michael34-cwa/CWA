@@ -70,4 +70,13 @@ class LoginController extends Controller
 
         return response()->json([], 201);
     }
+
+         public function getUser(Request $request)
+    {
+
+      return  $user = \Auth::guard('api')->user();
+        $role = \Sentinel::findRoleById($user->id);
+
+     return response()->json(['user'=>$user,'roles'=> $role]);
+    }
 }
