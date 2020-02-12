@@ -48,7 +48,7 @@ import { browserHistory } from 'react-router'
     const { errors } = this.validator
   
     this.setState({ category: { ...this.state.category, [name]: value} })
-  
+
     errors.remove(name)
   
     this.validator.validate(name, value)
@@ -74,10 +74,13 @@ import { browserHistory } from 'react-router'
   }
   
   submit(category) { 
+     
+    this.setState({ errors:'yes' });
     this.props
       .dispatch(categoryAddRequest(category)) 
       .then(res => { 
-        this.props.history.push('/course_categories');  
+      
+       // this.props.history.push('/course_categories');  
       })
       .catch(({ error, statusCode }) => { 
         const { errors } = this.validator;  
@@ -90,6 +93,7 @@ import { browserHistory } from 'react-router'
 
         this.setState({ errors });
       });
+
   }
   
   render() {
