@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import {
-  Nav,
-  NavItem,
-  Dropdown,
-  DropdownItem,
-  DropdownToggle,
-  DropdownMenu,
-  NavLink
+  NavbarToggler, Container, Collapse, Navbar, NavbarBrand, Nav, NavItem, NavLink 
 } from "reactstrap";
-import { BrowserRouter, Link, Router, Route } from "react-router-dom";
+import { NavLink as RRNavLink  } from "react-router-dom";
 const sideMenu = props => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -16,7 +10,9 @@ const sideMenu = props => {
 
   return (
     <div className="side-menu">
-      <Nav vertical>
+         <Nav vertical  >
+    
+  
         {/*<Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle nav caret>
             <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
@@ -38,24 +34,17 @@ const sideMenu = props => {
           </DropdownMenu> 
         </Dropdown>*/}
         <NavItem>
-          <Link to="/">
-            <i className="fa fa-tachometer" aria-hidden="true"></i> Dashboard
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link to="/course_categories">
-            <i className="fa fa-cog" aria-hidden="true"></i> Course Categories
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link to="/courses">
-            <i className="fa fa-globe" aria-hidden="true"></i> Courses
-          </Link>
+          <NavLink tag={RRNavLink} to="dashboard" activeClassName="active">Dashboard</NavLink>
         </NavItem> 
-        <NavItem> 
-          <Link to="/tasks"> 
-            <i className="fa fa-globe" aria-hidden="true"></i> Tasks
-          </Link>
+
+        <NavItem>
+            <NavLink tag={RRNavLink} to="course_categories" activeClassName="active">Course Categories</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={RRNavLink} to="courses" activeClassName="active">Courses</NavLink> 
+        </NavItem>
+        <NavItem>
+          <NavLink tag={RRNavLink} to="tasks" activeClassName="active">Tasks</NavLink>
         </NavItem>
           {/* <NavItem>
           <NavLink href="#">
@@ -88,6 +77,7 @@ const sideMenu = props => {
           </NavLink>
         </NavItem> */}
       </Nav>
+ 
     </div>
   );
 };

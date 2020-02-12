@@ -77,7 +77,7 @@ class Page extends Component {
               <tr>
                 <th>Sr. No.</th>
                 <th>Task Name</th>
-                <th>Task Description</th>
+                {/* <th>Task Description</th> */}
                 <th>Course Name</th>
                 <th>Created Date</th>
                 <th>Updated Date</th>

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem"; 
+import MyEditor from '../../../../../common/wysiwyg-editor/index'
 
 const displayName = 'CourseFrom'
 const propTypes = {
@@ -66,17 +67,8 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
       <label htmlFor="description" className="col-md-12 col-form-label">
         Course Description
         </label>
-      <div className="col-md-12">
-        <textarea
-          id="courseDescription"
-          name="courseDescription"
-          className={`form-control ${errors.has("courseDescription") &&
-            "is-invalid"}`}
-          rows="3"
-          placeholder="Description"
-          value={course.courseDescription || ""}
-          onChange={e => handleChange(e.target.name, e.target.value)}
-        />
+      <div className="col-md-12"> 
+        <MyEditor id="courseDescription" value={course.courseDescription} onChange={e => handleChange('courseDescription', e)} /> 
         {errors.has("courseDescription") && (
           <div className="invalid-feedback">
             {errors.first("courseDescription")}
