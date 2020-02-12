@@ -3,6 +3,7 @@ import {
   CATEGORY_UPDATE,
   CATEGORY_REMOVE,
   CATEGORY_LIST,
+  SPINNER_ADD,
 } from './action-types'
 
 const initialState = {
@@ -28,6 +29,8 @@ const reducer = (state = initialState, { type, payload = null }) => {
       return remove(state, payload)
     case CATEGORY_LIST:
       return list(state, payload)
+    case SPINNER_ADD:
+      return spinerAdd(state, payload)
     default:
       return state
   }
@@ -63,6 +66,12 @@ function remove(state, id) {
 }
 
 function list(state, payload) { 
+  state = Object.assign({}, payload)
+
+  return state
+}
+
+function spinerAdd(state, payload) {
   state = Object.assign({}, payload)
 
   return state

@@ -82,8 +82,7 @@ import { browserHistory } from 'react-router'
       .catch(({ error, statusCode }) => { 
         const { errors } = this.validator;  
          if (statusCode === 422) { 
-          _.forOwn(error, (message, field) => {
-            console.log(message);
+          _.forOwn(error, (message, field) => { 
             errors.add(field, message);
           });
         }

@@ -11,7 +11,8 @@ function transformResponse(params) {
   return Transformer.fetch(params)
 }
 
-export function categoryAddRequest(params) {
+export function categoryAddRequest(params) { 
+  
   return dispatch => (
     new Promise((resolve, reject) => {
       Http.post("/course_categories", transformRequest(params))

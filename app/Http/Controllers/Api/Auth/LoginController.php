@@ -44,9 +44,11 @@ class LoginController extends Controller
             'username' => $input['email'],
             'password' => $input['password'],
         ]);
-
+   
         $response = Route::dispatch(Request::create('/oauth/token', 'POST')); 
+
         $data = json_decode($response->getContent(), true);  
+         
         if (!$response->isOk()) {
             return response()->json($data, 401);
         }

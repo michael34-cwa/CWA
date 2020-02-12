@@ -34,17 +34,17 @@ const sideMenu = props => {
           </DropdownMenu> 
         </Dropdown>*/}
         <NavItem>
-          <NavLink tag={RRNavLink} to="dashboard" activeClassName="active">Dashboard</NavLink>
+          <NavLink tag={RRNavLink} to="/dashboard" activeClassName="active">Dashboard</NavLink>
         </NavItem> 
 
         <NavItem>
-            <NavLink tag={RRNavLink} to="course_categories" activeClassName="active">Course Categories</NavLink>
+            <NavLink tag={RRNavLink} to="/course_categories" activeClassName="active">Course Categories</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink tag={RRNavLink} to="courses" activeClassName="active">Courses</NavLink> 
+          <NavLink tag={RRNavLink} to="/courses" activeClassName="active">Courses</NavLink> 
         </NavItem>
         <NavItem>
-          <NavLink tag={RRNavLink} to="tasks" activeClassName="active">Tasks</NavLink>
+          <NavLink tag={RRNavLink} to="/tasks" activeClassName="active">Tasks</NavLink>
         </NavItem>
           {/* <NavItem>
           <NavLink href="#">
