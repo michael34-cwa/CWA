@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem"; 
+import MyEditor from '../../../../../common/wysiwyg-editor/index'
 
 const displayName = 'TaskFrom'
 const propTypes = {
@@ -30,17 +31,17 @@ const Form = ({ dataList, task, errors, onChange, onSubmit }) => {
       <div className="col-md-12">
         <input
           type="text"
-          id="task_name"
-          name="task_name"
-          className={`form-control ${errors.has("task_name") &&
+          id="taskName"
+          name="taskName"
+          className={`form-control ${errors.has("taskName") &&
             "is-invalid"}`}
-          placeholder="Course Name"
+          placeholder="Task Name"
           value={task.taskName || ""}
           onChange={e => handleChange(e.target.name, e.target.value)}
         />
-        {errors.has("task_name") && (
+        {errors.has("taskName") && (
           <div className="invalid-feedback">
-            {errors.first("task_name")}
+            {errors.first("taskName")}
           </div>
         )}
       </div>
@@ -49,20 +50,11 @@ const Form = ({ dataList, task, errors, onChange, onSubmit }) => {
       <label htmlFor="description" className="col-md-12 col-form-label">
         Task Description
         </label>
-      <div className="col-md-12">
-        <textarea
-          id="task_description"
-          name="task_description"
-          className={`form-control ${errors.has("task_description") &&
-            "is-invalid"}`}
-          rows="3"
-          placeholder="Description"
-          value={task.taskDescription || ""}
-          onChange={e => handleChange(e.target.name, e.target.value)}
-        />
-        {errors.has("task_description") && (
+      <div className="col-md-12"> 
+        <MyEditor id="taskDescription" value={task.taskDescription} onChange={e => handleChange('taskDescription', e)} />  
+        {errors.has("taskDescription") && (
           <div className="invalid-feedback">
-            {errors.first("task_description")}
+            {errors.first("taskDescription")}
           </div>
         )}
       </div>
@@ -74,9 +66,9 @@ const Form = ({ dataList, task, errors, onChange, onSubmit }) => {
         </label>
       <div className="col-md-12">
         <select
-          id="is_active"
-          name="is_active"
-          className={`form-control ${errors.has("is_active") &&
+          id="isActive"
+          name="isActive"
+          className={`form-control ${errors.has("isActive") &&
             "is-invalid"}`}
           placeholder="Task Status"
           onChange={e => handleChange(e.target.name, e.target.value)}
@@ -85,8 +77,8 @@ const Form = ({ dataList, task, errors, onChange, onSubmit }) => {
           <option selected={task.isActive == 1 ? "selected" : ""} value="1">Active</option>
      
         </select>
-        {errors.has("is_active") && (
-          <div className="invalid-feedback">{errors.first("is_active")}</div>
+        {errors.has("isActive") && (
+          <div className="invalid-feedback">{errors.first("isActive")}</div>
         )}
       </div>
     </div>

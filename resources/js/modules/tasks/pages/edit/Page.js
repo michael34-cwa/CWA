@@ -20,9 +20,9 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
-      courseName: "required|min:2",
-      courseDescription: "required|min:2",
-      is_active: "required",
+      taskName: "required|min:2",
+      taskDescription: "required|min:2",
+      isActive: "required",
       catId: "required"
     })
     
@@ -93,7 +93,7 @@ class Page extends Component {
   submit(task) {
     this.props.dispatch(taskUpdateRequest(task),0)
       .then(res => {
-        this.props.history.push('/courses');
+        this.props.history.push('/tasks');
       })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator

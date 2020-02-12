@@ -9,6 +9,12 @@ const routes = [
     component: lazy(() => import("./pages/dashbord/index"))
   },
   {
+    path: "/dashboard",
+    exact: true,
+    auth: true,
+    component: lazy(() => import("./pages/dashbord/index"))
+  },
+  {
     path: "/hone",
     exact: true,
     auth: true,

@@ -15,7 +15,7 @@ const CourseRow = ({ index, course, togglePublish, handleRemove }) => {
     <tr key={index}>
       <th scope="row">{index + 1}</th>
       <td>{course.courseName}</td>
-      <td>{course.courseDescription}</td>
+      {/* <td>{course.courseDescription}</td> */}
       <td>
         {course.catId ? course.catId.map(function(item, index) {
           return <span className="chip-course">{item.categoryName}</span>;

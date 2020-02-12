@@ -15,7 +15,7 @@ const TaskRow = ({ index, task, togglePublish, handleRemove }) => {
     <tr key={index}>
       <th scope="row">{index + 1}</th>
       <td>{task.taskName}</td>
-      <td>{task.taskDescription}</td>  
+      {/* <td>{task.taskDescription}</td>   */}
       <td>{task.courseName.courseName}</td> 
       <td>{task.createdAt && task.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{task.updatedAt && task.updatedAt.format("MMMM, DD YYYY")}</td>

@@ -52,16 +52,8 @@ const Form = ({ dataList, task, errors, onChange, onSubmit }) => {
           Task Description
         </label>
         <div className="col-md-12">
-          <textarea
-            id="task_description"
-            name="task_description"
-            className={`form-control ${errors.has("task_description") &&
-              "is-invalid"}`}
-            rows="3"
-            placeholder="Description"
-            value={task.task_description || ""}
-            onChange={e => handleChange(e.target.name, e.target.value)}
-          />
+          <MyEditor id="task_description" value={task.task_description} onChange={e => handleChange('task_description', e)} /> 
+
           {errors.has("task_description") && (
             <div className="invalid-feedback">
               {errors.first("task_description")}

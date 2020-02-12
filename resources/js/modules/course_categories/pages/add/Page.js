@@ -48,7 +48,7 @@ import { browserHistory } from 'react-router'
     const { errors } = this.validator
   
     this.setState({ category: { ...this.state.category, [name]: value} })
-  
+
     errors.remove(name)
   
     this.validator.validate(name, value)

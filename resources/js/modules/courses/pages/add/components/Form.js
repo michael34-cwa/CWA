@@ -65,6 +65,8 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
           Course Description
         </label>
         <div className="col-md-12">
+           <MyEditor id="course_description" value={course.course_description} onChange={e => handleChange('course_description', e)} />
+{/*       
           <textarea
             id="course_description"
             name="course_description"
@@ -74,7 +76,8 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
             placeholder="Description"
              value={course.course_description || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
-          />
+          /> */}
+
           {errors.has("course_description") && (
             <div className="invalid-feedback">
               {errors.first("course_description")}
