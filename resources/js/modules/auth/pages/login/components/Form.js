@@ -10,6 +10,7 @@ const propTypes = {
   errors: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
+  routeNameType: PropTypes.string,
 }
 
 const Form = ({
@@ -18,10 +19,11 @@ const Form = ({
   remember,
   errors,
   handleChange,
-  handleSubmit
-}) => (
-  <form className="form" role="form" onSubmit={handleSubmit} noValidate>
-    <h2 className="card-title">Administrator Login</h2>
+  handleSubmit,
+  routeNameType
+}) => ( 
+    <form className="form" role="form" onSubmit={handleSubmit} noValidate> 
+      <h2 className="card-title">{routeNameType == '/admin/login' ? "Administrator Login" :"Login"}</h2>
     <div className="form-group">
 
       <label htmlFor="email" className="sr-only">Email</label>

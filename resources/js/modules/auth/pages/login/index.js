@@ -2,13 +2,13 @@
 import { connect } from 'react-redux'
 
 // import components
-import Page from './Page'
+import Page from './Page' 
 
-const mapStateToProps = state => { 
-  console.log('this.props');
-  
+const mapStateToProps = (state, router) => {
+ 
   return {
     isAuthenticated: state.auth.isAuthenticated, 
+    routeNameType: router.location.pathname
   }
 }
 

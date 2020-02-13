@@ -17,7 +17,8 @@ class Page extends Component {
 
   // validate props
   static propTypes = { 
-     isAuthenticated: PropTypes.bool.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    routeNameType: PropTypes.string,
     dispatch: PropTypes.func.isRequired
   }
 
@@ -35,7 +36,8 @@ class Page extends Component {
         email: '',
         password: '',
         remember: false,
-      },
+      }, 
+      routeNameType: '',
       errors: this.validator.errors
     }
 
@@ -102,11 +104,12 @@ class Page extends Component {
   }
 
   // render component
-  render() { 
+  render() {
+ 
     // check if user is authenticated then redirect him to home page
     if (this.props.isAuthenticated) {
-      this.props.dispatch(fetchUser()); 
-      return <Redirect to="/admin" />
+      this.props.dispatch(fetchUser());  
+      return <Redirect to="/" />
     }
     const props = {
       email: this.state.credentials.email,
@@ -115,10 +118,12 @@ class Page extends Component {
       errors: this.state.errors,
       handleChange: this.handleChange,
       handleSubmit: this.handleSubmit,
+      routeNameType: this.state.routeNameType,
     }
 
+    
     return (<div className="container login-page">
- 
+      
       <div className="row">
         <div className="col-md-12">
           <div className="row">
@@ -129,7 +134,9 @@ class Page extends Component {
                 <div className="card-body">
                    <div className="logo-area">CWA</div>
                    <div className="login-wrapper">
-                  <Form {...props} />
+                  <Form {...props}
+                      routeNameType={this.props.routeNameType}
+                  />
                 </div>
                 </div>
               </div>
