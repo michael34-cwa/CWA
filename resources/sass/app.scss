@@ -130,7 +130,8 @@ background-color: #fff;
 span.toggleicon {
          position: absolute;
     right: 20px;
-    background-color: #007aff;
+
+    background-color: #545454;
     width: 18px;
     height: 18px;
     color: #fff;
@@ -284,6 +285,7 @@ background-color: #ededff;
     line-height: 1.5;
     border-bottom: 1px dashed #9fcdff;
         position: relative;
+            color: #000;
 }
 .side-menu .panel-heading a:hover {
   text-decoration: none;
