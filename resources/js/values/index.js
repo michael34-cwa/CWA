@@ -1,4 +1,4 @@
-const APP_TITLE = 'Your Blog Name'
+const APP_TITLE = 'CWA'
 
 export {
     APP_TITLE,

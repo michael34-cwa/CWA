@@ -4,8 +4,9 @@ import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
  import CircularProgress from "@material-ui/core/CircularProgress";
 
-const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
-    return <Route {...rest} render={props => {
+const PrivateRoute = ({ component: Component, isAuthenticated, roleId,...rest }) => {
+  return <Route {...rest} render={props => {
+  
         return (
           <Suspense
             fallback={
@@ -19,7 +20,7 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
             ) : (
               <Redirect
                 to={{
-                  pathname: "/admin",
+                    pathname: roleId,
                   state: { from: props.location }
                 }}
               />
@@ -33,13 +34,15 @@ PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
   location: PropTypes.object,
   isAuthenticated: PropTypes.bool.isRequired,
+  roleId: PropTypes.string,
 }
 
 // Retrieve data from store as props
-function mapStateToProps(store) {
-  return {
+function mapStateToProps(store) { 
+  return { 
     isAuthenticated: store.auth.isAuthenticated,
-  }
+    roleId: store.user.rolename,
+   }
 }
 
 export default connect(mapStateToProps)(PrivateRoute)

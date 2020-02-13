@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Route } from 'react-router-dom'
  import CircularProgress from "@material-ui/core/CircularProgress";
 const PublicRoutes = ({ component: Component, ...rest }) => {
-  return <Route {...rest} render={props => {
+  return <Route {...rest} render={props => {   
     return (
       <Suspense
         fallback={

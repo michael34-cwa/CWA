@@ -75,10 +75,11 @@ class LoginController extends Controller
     {
 
         $user = \Auth::guard('api')->user();
-        $role = \Sentinel::findRoleById($user->id);
-       
+        
     
-            $user['rolename'] = $role->id;
+         $role =  \Sentinel::findById($user->id)->roles[0];
+         
+        $user['rolename'] = $role->slug;
 
      return response()->json($user);
     }
