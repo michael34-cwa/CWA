@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 
 const displayName = 'LoginForm'
 const propTypes = {
-  email: PropTypes.string,
-  loginType: PropTypes.string,
+  email: PropTypes.string, 
   password: PropTypes.string,
   remember: PropTypes.bool,
   errors: PropTypes.object.isRequired,
@@ -13,17 +12,16 @@ const propTypes = {
   handleChange: PropTypes.func.isRequired,
   routeNameType: PropTypes.string,
 }
-
+ 
 const Form = ({
   email,
-  password,
+  password, 
   remember,
-  errors, 
-  loginType,
+  errors,  
   handleChange,
   handleSubmit,
   routeNameType
-}) => ( 
+}) => (  
     <form className="form" role="form" onSubmit={handleSubmit} noValidate> 
       <h2 className="card-title">{routeNameType == '/admin/login' ? "Administrator Login" :"Login"}</h2>
     <div className="form-group">
@@ -67,12 +65,7 @@ const Form = ({
         <span className="custom-control-description small"></span>
       </label>
     </div>
-      <input type="text" 
-        id="loginType"
-        name="loginType" 
-        value={ routeNameType == '/admin/login' ? "admin" : "" || ''}
-        onChange={e => handleChange(e.target.name, e.target.value)}
-        required />
+  
     <button className="btn btn-lg btn-primary btn-block"
             type="submit"
             disabled={errors.any()}>Log In</button>
