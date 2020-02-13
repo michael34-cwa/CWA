@@ -4,9 +4,11 @@ import { connect } from 'react-redux'
 // import components
 import Page from './Page'
 
-const mapStateToProps = state => {
+const mapStateToProps = state => { 
+  console.log('this.props');
+  
   return {
-    isAuthenticated: state.auth.isAuthenticated,
+    isAuthenticated: state.auth.isAuthenticated, 
   }
 }
 

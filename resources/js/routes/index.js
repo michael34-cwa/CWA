@@ -14,7 +14,8 @@ const Routes = () => (
     <Layout>
       <Switch>
         {routes.map((route, i) => { 
-          if (route.auth) {
+          if (route.auth) {    
+     
             return <PrivateRoute key={i} {...route} />
           }
           return <PublicRoute key={i} {...route} />

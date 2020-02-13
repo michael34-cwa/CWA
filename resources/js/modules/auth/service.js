@@ -33,6 +33,7 @@ export function login(credentials) {
         .then(res => {
           const data = Transformer.fetch(res.data);
           dispatch(authActions.authLogin(data.accessToken));
+        
           return resolve();
         })
         .catch(err => {
@@ -66,6 +67,7 @@ export function register(credentials) {
         .then(res => {
           const data = Transformer.fetch(res.data)
           dispatch(authActions.authLogin(data.accessToken))
+
           return resolve()
         })
         .catch((err) => {

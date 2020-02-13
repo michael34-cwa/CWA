@@ -5,9 +5,7 @@ import Course from '../../Course'
 // import components
 import Page from './Page'
   
-const mapStateToProps = state => { 
-  console.log('statelist')
-  console.log(state)
+const mapStateToProps = state => {  
    const { data, ...meta } = state.courses;  
    let dataLists = data ? data : [];
   return {
