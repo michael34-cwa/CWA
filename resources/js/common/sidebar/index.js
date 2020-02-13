@@ -52,11 +52,11 @@ const sideMenu = props => {
       <div class="panel-body">
            <Nav vertical>
             <NavItem>
-     <NavLink tag={RRNavLink} to="/course_categories" activeClassName="active">Course List</NavLink>
+     <NavLink tag={RRNavLink} to="/courses" activeClassName="active">Course List</NavLink>
         </NavItem>
 
         <NavItem>
-          <NavLink tag={RRNavLink} to="/courses/create" activeClassName="active">Add New Courses</NavLink> 
+          <NavLink tag={RRNavLink} to="./create" activeClassName="active">Add New Courses</NavLink> 
         </NavItem>
              
       </Nav>
