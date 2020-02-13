@@ -92,7 +92,7 @@ class Page extends Component {
   submit(course) {
     this.props.dispatch(courseUpdateRequest(course),0)
       .then(res => {
-        this.props.history.push('/courses');
+        this.props.history.push('/admin/courses');
       })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator

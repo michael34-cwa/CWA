@@ -77,7 +77,7 @@ import { browserHistory } from 'react-router'
     this.props
       .dispatch(categoryAddRequest(category)) 
       .then(res => { 
-        this.props.history.push('/course_categories');  
+        this.props.history.push('/admin/course_categories');  
       })
       .catch(({ error, statusCode }) => { 
         const { errors } = this.validator;  
