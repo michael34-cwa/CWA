@@ -102,11 +102,12 @@ class Page extends Component {
       return <Redirect to="/" />
     }
     
-    const { name, email, password, passwordConfirmation } = this.state.credentials
+    const { name, email, password,first_name, passwordConfirmation } = this.state.credentials
     const props = {
       name,
       email,
       password,
+      first_name,
       passwordConfirmation,
       errors: this.state.errors,
       handleChange: this.handleChange,
