@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import $ from 'jquery'
 import _ from 'lodash'
 import { Redirect } from 'react-router-dom'
-import { login } from '../../service'
+import { login, fetchUser} from '../../service'
 import ReeValidate from 'ree-validate'
 
 // import components
@@ -16,8 +16,8 @@ class Page extends Component {
   static displayName = 'LoginPage'
 
   // validate props
-  static propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
+  static propTypes = { 
+     isAuthenticated: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired
   }
 
@@ -102,10 +102,10 @@ class Page extends Component {
   }
 
   // render component
-  render() {
-
+  render() { 
     // check if user is authenticated then redirect him to home page
     if (this.props.isAuthenticated) {
+      this.props.dispatch(fetchUser()); 
       return <Redirect to="/" />
     }
     const props = {

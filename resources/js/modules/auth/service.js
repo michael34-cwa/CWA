@@ -10,8 +10,8 @@ import Transformer from '../../utils/Transformer'
 export function fetchUser() {
   return dispatch => {
     return Http.get('auth/user')
-      .then(res => {
-        const data = Transformer.fetch(res.data)
+      .then(res => { 
+        const data = Transformer.fetch(res.data) 
         dispatch(authActions.authUser(data))
       })
       .catch(err => {
@@ -33,6 +33,7 @@ export function login(credentials) {
         .then(res => {
           const data = Transformer.fetch(res.data);
           dispatch(authActions.authLogin(data.accessToken));
+        
           return resolve();
         })
         .catch(err => {
@@ -66,6 +67,7 @@ export function register(credentials) {
         .then(res => {
           const data = Transformer.fetch(res.data)
           dispatch(authActions.authLogin(data.accessToken))
+
           return resolve()
         })
         .catch((err) => {
