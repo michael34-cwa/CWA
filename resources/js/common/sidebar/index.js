@@ -29,10 +29,10 @@ const sideMenu = props => {
       <div class="panel-body">
         <Nav vertical  >
         <NavItem>
-     <NavLink tag={RRNavLink} to="admin/course_categories" activeClassName="active">Course Categories List</NavLink>
+     <NavLink tag={RRNavLink} to="/admin/course_categories" activeClassName="active">Course Categories List</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink tag={RRNavLink} to="admin/course_categories/create" activeClassName="active">Add Course Category</NavLink> 
+          <NavLink tag={RRNavLink} to="/admin/course_categories/create" activeClassName="active">Add Course Category</NavLink> 
         </NavItem>
 
       </Nav>
@@ -52,11 +52,11 @@ const sideMenu = props => {
       <div class="panel-body">
            <Nav vertical>
             <NavItem>
-     <NavLink tag={RRNavLink} to="admin/courses" activeClassName="active">Course List</NavLink>
+     <NavLink tag={RRNavLink} to="/admin/courses" activeClassName="active">Course List</NavLink>
         </NavItem>
 
         <NavItem>
-          <NavLink tag={RRNavLink} to="admin/courses/create" activeClassName="active">Add New Courses</NavLink> 
+          <NavLink tag={RRNavLink} to="/admin/courses/create" activeClassName="active">Add New Courses</NavLink> 
         </NavItem>
              
       </Nav>
@@ -79,11 +79,11 @@ const sideMenu = props => {
            <Nav vertical>
     
         <NavItem>
-          <NavLink tag={RRNavLink} to="admin/tasks" activeClassName="active">Tasks List</NavLink>
+          <NavLink tag={RRNavLink} to="/admin/tasks" activeClassName="active">Tasks List</NavLink>
         </NavItem>
 
         <NavItem>
-          <NavLink tag={RRNavLink} to="admin/tasks/create" activeClassName="active">Add New Task</NavLink> 
+          <NavLink tag={RRNavLink} to="/admin/tasks/create" activeClassName="active">Add New Task</NavLink> 
         </NavItem>
         
       
