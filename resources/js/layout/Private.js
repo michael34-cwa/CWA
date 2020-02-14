@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import Navigation from "../common/navigation/index";
 import ScrollTop from "../common/scroll-top/index";
 import Footer from "../common/footer/index";
-import SideMenu from "../common/sidebar";
+import AdminSideMenu from "../common/sidebar/adminMenu";
 import { ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css";
 const containerStyle = {
@@ -15,17 +15,27 @@ const containerStyle = {
 
 const displayName = "Private Layout";
 const propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  user: PropTypes.array
 };
 
-function PrivateLayout({ children }) {
+function PrivateLayout({ children, rolenane}) {
+ 
+  function Greeting() { 
+    if (rolenane == 'admin') {
+      return <AdminSideMenu />;
+    } 
+  }
+ 
+  
   return (
     <div style={containerStyle}>
       <ToastContainer autoClose={3000} />
       <Navigation /> 
       <main className="dashbard-area">
         <div className="dashbard-inner">
-          <SideMenu />
+         
+          <Greeting />
           {children}
           <ScrollTop />
         </div>

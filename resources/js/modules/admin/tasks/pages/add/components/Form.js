@@ -36,7 +36,7 @@ const Form = ({ dataList, task, errors, onChange, onSubmit }) => {
             name="task_name"
             className={`form-control ${errors.has("task_name") &&
               "is-invalid"}`}
-            placeholder="Course Name"
+            placeholder="Task Name"
             value={task.task_name || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
