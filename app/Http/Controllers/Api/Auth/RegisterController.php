@@ -14,15 +14,15 @@ class RegisterController extends Controller
 {
     public function register(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => 'required|min:3',
-        //     'email' => 'required|email|unique:users,email',
-        //     'password' => 'required|min:6|confirmed',
-        //     'password_confirmation' => 'required|min:6'
-        // ], [
-        //     'password.confirmed' => 'The password does not match.'
-        // ]);
-        $register = new Register($request->validated());
+        $this->validate($request, [
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6'
+        ], [
+            'password.confirmed' => 'The password does not match.'
+        ]);
+       // $register = new Register($request->validated());
         try {
 
            
@@ -61,17 +61,26 @@ class RegisterController extends Controller
                     return Redirect::back();
                 }
             }
-
-
+          //  print_r( $userData);die;
+           // $user_exist = Sentinel::findById($userData->id);
+           
+         //   if ( !$user_exist){
             $credential = [
+                'name' => $data['name'],
                 'email' => $data['email'],
                 'password' =>$data['password'],
                 'first_name' =>$data['first_name'],
                 'last_name' => $data['last_name'],
             ];
             //Vendor register
-
+            
             $user = \Sentinel::registerAndActivate($credential);
+            // }else{
+            //     $users = User::findOrFail($userData->id); 
+            //     $users->email = $request->email;
+            //     $users->password = $request->password;
+            //     $users->save();
+            // }
 
             if (!empty($user)) {
                 $role = \Sentinel::findRoleByName('school');

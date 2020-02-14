@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Model\Courses;
+use App\Model\Schools;
 use App\Model\CourseCategories;
 use App\Model\CategoryCourses;
  use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class SchoolsController  extends Controller
      */
     public function index(Request $request)
     {   
-         return Courses::with('getCategory')->latest()->paginate();  
+         return Schools::with('getCategory')->latest()->paginate();  
     }
 
     /**
@@ -63,7 +63,7 @@ class SchoolsController  extends Controller
      */
     public function coursesCategoryList()
     {   
-        return CourseCategories::all();
+        return Schools::all();
     }
 
     
@@ -77,7 +77,7 @@ class SchoolsController  extends Controller
     public function store(CoursesRequest $request)
     {
       
-        $course = new Courses($request->validated());
+        $course = new Schools($request->validated());
         $course->course_name = $request->course_name;
         $course->course_description = $request->course_description;
         $course->is_active = $request->is_active;
@@ -98,7 +98,7 @@ class SchoolsController  extends Controller
     public function show(Request $request, $id)
     {
  
-    return Courses::where('id',$id)->with('getCategory')->first();  
+    return Schools::where('id',$id)->with('getCategory')->first();  
       //  return Courses::findOrFail($id);
     }
 
@@ -134,7 +134,7 @@ class SchoolsController  extends Controller
       public function update(CoursesRequest $request, $id,$status=null)
     { 
     
-        $course = Courses::findOrFail($id); 
+        $course = Schools::findOrFail($id); 
         $course->course_name = $request->course_name;
         $course->course_description = $request->course_description;
         $course->is_active = $request->is_active;
@@ -158,7 +158,7 @@ class SchoolsController  extends Controller
      */
     public function delete($id)
     {
-        $article = Courses::findOrFail($id);
+        $article = Schools::findOrFail($id);
 
         $article->delete();
 
