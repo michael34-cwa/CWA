@@ -29,10 +29,10 @@ const AdminSideMenu = props => {
             <div class="panel-body">
               <Nav vertical  >
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/admin/course_categories" activeClassName="active">Course Categories List</NavLink>
+                  <NavLink tag={RRNavLink} to="/admin/course_categories" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Course Categories List</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/admin/course_categories/create" activeClassName="active">Add Course Category</NavLink>
+                  <NavLink tag={RRNavLink} to="/admin/course_categories/create" activeClassName="active"><i class="fa fa-plus" aria-hidden="true"></i> Add Course Category</NavLink>
                 </NavItem>
 
               </Nav>
@@ -52,17 +52,20 @@ const AdminSideMenu = props => {
             <div class="panel-body">
               <Nav vertical>
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/admin/courses" activeClassName="active">Course List</NavLink>
+                  <NavLink tag={RRNavLink} to="/admin/courses" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Course List</NavLink>
                 </NavItem>
 
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/admin/courses/create" activeClassName="active">Add New Courses</NavLink>
+                  <NavLink tag={RRNavLink} to="/admin/courses/create" activeClassName="active"><i class="fa fa-plus" aria-hidden="true"></i> Add New Courses</NavLink>
                 </NavItem>
 
               </Nav>
             </div>
           </div>
         </div>
+
+
+
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
@@ -76,18 +79,85 @@ const AdminSideMenu = props => {
               <Nav vertical>
 
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/admin/tasks" activeClassName="active">Tasks List</NavLink>
+                  <NavLink tag={RRNavLink} to="/admin/tasks" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Tasks List</NavLink>
                 </NavItem>
 
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/admin/tasks/create" activeClassName="active">Add New Task</NavLink>
+                  <NavLink tag={RRNavLink} to="/admin/tasks/create" activeClassName="active"><i class="fa fa-plus" aria-hidden="true"></i> Add New Task</NavLink>
                 </NavItem>
+
 
               </Nav>
             </div>
           </div>
         </div>
+
+
+
       </div>
+
+
+      {/*
+         <Nav vertical  >
+    
+  
+      
+        <NavItem>
+
+          <NavLink tag={RRNavLink} to="/dashboard" activeClassName="active">  <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</NavLink>
+        </NavItem> 
+<Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
+          <DropdownToggle nav caret>
+           Course Categories
+          </DropdownToggle>
+           <DropdownMenu>
+            <DropdownItem>
+            <NavLink tag={RRNavLink} to="/course_categories" activeClassName="active">Course Categories List</NavLink>
+                  </DropdownItem>
+            <DropdownItem>
+              <NavLink tag={RRNavLink} to="/course_categories/create" activeClassName="active">Add Categories</NavLink> 
+            </DropdownItem>
+          </DropdownMenu> 
+        </Dropdown>
+        
+        <NavItem>
+          <NavLink tag={RRNavLink} to="/courses" activeClassName="active">Courses</NavLink> 
+        </NavItem>
+        <NavItem>
+          <NavLink tag={RRNavLink} to="/tasks" activeClassName="active">Tasks</NavLink>
+        </NavItem>
+          <NavItem>
+          <NavLink href="#">
+            <i class="fa fa-adjust" aria-hidden="true"></i> Another Link
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="#">
+            <i class="fa fa-adjust" aria-hidden="true"></i> Another Link
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="#">
+            <i class="fa fa-adjust" aria-hidden="true"></i> Another Link
+          </NavLink>
+        </NavItem>
+        <NavItem className="active">
+          <NavLink href="#">
+            <i class="fa fa-adjust" aria-hidden="true"></i> Another Link
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="#">
+            <i class="fa fa-adjust" aria-hidden="true"></i> Another Link
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="#">
+            <i class="fa fa-adjust" aria-hidden="true"></i> Another Link
+          </NavLink>
+        </NavItem> 
+      </Nav>*/}
+
     </div>
   );
 };
