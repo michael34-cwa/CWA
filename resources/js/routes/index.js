@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types'
 // import components
 import adminRoutes from './adminRoutes'
+import schoolRoutes from './schoolRoutes'
 import PrivateRoute from './Private'
 import PublicRoute from './Public'
 import { connect } from 'react-redux'
@@ -18,24 +19,27 @@ const propTypes = {
 }
 
 
-const Routes = ({ roleId, dispatch}) => { 
+const Routes = ({ roleId, dispatch }) => {
+  
   return  <Router>
     <Layout>
       <Switch> 
-        {roleId == 'admin' ? 
-        adminRoutes.map((route, i) => { 
-          if (route.auth) {     
-            return <PrivateRoute key={i} {...route} /> 
-         //   dispatch(logout()); 
-         //    return <Redirect to="/admin" /> 
+        {adminRoutes.map((route, i) => { 
+          if (roleId == 'admin') {   
+            return <PrivateRoute key={i} {...route} />  
           }
-          return <PublicRoute key={i} {...route} />
-        })
-          : adminRoutes.map((route, i) => {  
-            return <PublicRoute key={i} {...route} />
-          })
-          }
-            
+         // return <PublicRoute key={i} {...route} />
+        })}
+
+        {schoolRoutes.map((route, i) => {
+          if (roleId == 'school') {
+            return <PrivateRoute key={i} {...route} />
+          } 
+        })}   
+        {schoolRoutes.map((route, i) => { 
+            return <PublicRoute key={i} {...route} />  
+        })}  
+    
       </Switch>
     </Layout>
   </Router>

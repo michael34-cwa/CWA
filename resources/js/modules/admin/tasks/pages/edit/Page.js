@@ -93,7 +93,7 @@ class Page extends Component {
   submit(task) {
     this.props.dispatch(taskUpdateRequest(task),0)
       .then(res => {
-        this.props.history.push('/tasks');
+        this.props.history.push('/admin/tasks');
       })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator
