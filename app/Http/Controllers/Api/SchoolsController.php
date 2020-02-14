@@ -7,6 +7,7 @@ use App\Model\Schools;
 
  use App\User;
 
+
 use App\Model\CourseCategories;
 use App\Model\CategoryCourses;
  use Illuminate\Http\Request; 
@@ -22,10 +23,8 @@ class SchoolsController  extends Controller
      * @param Request $request
      * @return LengthAwarePaginator|mixed
      */
-    public function index(Request $request)
+    public function index(Request $request){
 
-    {   
-      
        return User::whereHas('roles', function ($q) {
             $q->whereIn('slug', ['school']);
         })->paginate(); 
