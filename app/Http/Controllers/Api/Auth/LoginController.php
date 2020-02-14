@@ -24,6 +24,13 @@ class LoginController extends Controller
                       
         //Check user activation 
           $userData =  \App\User::GetUserByMail($input['email']);   
+
+       $role =  \Sentinel::findById($userData->id)->roles[0];
+
+        if($role->slug == 'admin' && $request->loginType !== '/admin/login'){ 
+         return response()->json(['message'=>'Please enter a valid email address.'],401);
+        }
+  
            $user = \Sentinel::findById($userData->id);   
            $activation =   Activation::completed($user); 
          
@@ -48,7 +55,9 @@ class LoginController extends Controller
         $response = Route::dispatch(Request::create('/oauth/token', 'POST')); 
 
         $data = json_decode($response->getContent(), true);  
-         
+          
+ 
+     
         if (!$response->isOk()) {
             return response()->json($data, 401);
         }

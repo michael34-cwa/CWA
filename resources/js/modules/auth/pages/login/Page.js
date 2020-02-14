@@ -27,7 +27,7 @@ class Page extends Component {
 
     this.validator = new ReeValidate({
       email: 'required|email',
-      password: 'required|min:6'
+      password: 'required|min:6', 
     })
 
     // set the state of the app
@@ -35,7 +35,7 @@ class Page extends Component {
       credentials: {
         email: '',
         password: '',
-        loginType: '',
+        loginType: this.props.location.pathname,
         remember: false,
       }, 
       routeNameType: '',
@@ -119,6 +119,7 @@ class Page extends Component {
     const props = {
       email: this.state.credentials.email,
       password: this.state.credentials.password,
+      loginType: this.state.credentials.loginType,
       remember: this.state.credentials.remember,
       errors: this.state.errors,
       handleChange: this.handleChange,
