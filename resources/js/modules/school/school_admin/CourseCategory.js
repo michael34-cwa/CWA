@@ -7,9 +7,11 @@ class CourseCategory extends Model {
     this.initialize(props)
   }
 
-  initialize(props) {  
+  initialize(props) { 
      super.initialize(props)  
-    this.category_name = props.categoryName || "";
+    this.first_name = props.firstName || "";
+    this.last_name = props.lastName || "";
+    this.phone = props.phone || "";
     this.created_at = props.created_at || "";
     this.updated_at = props.updated_at || ""; 
     // relate user model

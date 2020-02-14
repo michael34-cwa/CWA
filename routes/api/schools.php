@@ -1,7 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
- 
+use Illuminate\Support\Facades\Route; 
  //   Route::get('/task_list', 'TasksController@taskList')->name('tasks.taskList');
     Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/', 'SchoolsController@store')->name('tasks.store');
