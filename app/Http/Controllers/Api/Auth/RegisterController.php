@@ -61,32 +61,34 @@ class RegisterController extends Controller
                     return Redirect::back();
                 }
             }
-          //  print_r( $userData);die;
-           // $user_exist = Sentinel::findById($userData->id);
+           // print_r( $userData);die;
+         //   $user_exist =\Sentinel::findById($userData->id);
            
-         //   if ( !$user_exist){
+        //   if ( !$user_exist){
             $credential = [
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' =>$data['password'],
-                'first_name' =>$data['first_name'],
-                'last_name' => $data['last_name'],
+               // 'first_name' =>$data['first_name'],
+               // 'last_name' => $data['last_name'],
             ];
             //Vendor register
             
             $user = \Sentinel::registerAndActivate($credential);
+            //return response()->json(['message'=>'Created Success fully'],401);
             // }else{
             //     $users = User::findOrFail($userData->id); 
             //     $users->email = $request->email;
             //     $users->password = $request->password;
             //     $users->save();
+            //     return response()->json(['message'=>'Updated Success fully'],401);
             // }
 
             if (!empty($user)) {
                 $role = \Sentinel::findRoleByName('school');
                 $role->users()->attach($user); 
             }
-            return json_decode((string)$response->getBody(), true);
+            //return json_decode((string)$response->getBody(), true);
         } catch (\Exception $e) {
            
             dd($e->getMessage(), $e->getCode(), $e->getTrace());
