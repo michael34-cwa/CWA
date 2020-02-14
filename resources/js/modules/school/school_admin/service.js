@@ -15,7 +15,7 @@ export function categoryAddRequest(params) {
   
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.post("/course_categories", transformRequest(params))
+      Http.post("/schools", transformRequest(params))
         .then(res => {
           toast.success("Added Successfully");
           dispatch(categoryActions.add(transformResponse(res.data)));
@@ -48,7 +48,7 @@ export function categoryAddRequest(params) {
 export function  categoryUpdateRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.patch(`course_categories/${params.id}`, transformRequest(params))
+      Http.patch(`schools/${params.id}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully");
           dispatch(categoryActions.add(transformResponse(res.data)));
@@ -80,7 +80,7 @@ export function  categoryUpdateRequest(params) {
 
 export function  categoryRemoveRequest(id) {
   return dispatch => {
-    Http.delete(`course_categories/${id}`)
+    Http.delete(`schools/${id}`)
       .then(() => {
         toast.success("Deleted Successfully");
         dispatch(categoryActions.remove(id));
@@ -92,7 +92,7 @@ export function  categoryRemoveRequest(id) {
   }
 }
 
-export function  categoryListRequest({ pageNumber = 1, url = "/course_categories" }) {
+export function categoryListRequest({ pageNumber = 1, url = "/schools" }) {
          return dispatch => {
            if (pageNumber > 1) {
              url = url + `?page=${pageNumber}`;
@@ -112,7 +112,7 @@ export function  categoryListRequest({ pageNumber = 1, url = "/course_categories
 
 export function  categoryEditRequest(id) { 
   return dispatch => {
-    Http.get(`course_categories/${id}`)
+    Http.get(`schools/${id}`)
       .then(res => {
         dispatch(categoryActions.add(transformResponse(res.data)));
       })
@@ -125,7 +125,7 @@ export function  categoryEditRequest(id) {
 
 export function  categoryFetchRequest(slug) {
   return dispatch => {
-    Http.get(`course_categories/published/${slug}`)
+    Http.get(`schools/published/${slug}`)
       .then(res => {
         dispatch(categoryActions.add(transformResponse(res.data)));
       })

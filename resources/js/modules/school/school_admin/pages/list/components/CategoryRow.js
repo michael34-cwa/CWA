@@ -14,7 +14,9 @@ const CategoryRow = ({ index, category, togglePublish, handleRemove }) => {
    return (
      <tr key={index}>
        <th scope="row">{index + 1}</th>
-       <td>{category.category_name}</td>
+       <td>{category.first_name}</td>
+       <td>{category.last_name}</td>
+       <td>{category.phone}</td>
        <td>{category.createdAt && category.createdAt.format("MMMM, DD YYYY")}</td>
        <td>{category.updatedAt && category.updatedAt.format("MMMM, DD YYYY")}</td>
        <td>

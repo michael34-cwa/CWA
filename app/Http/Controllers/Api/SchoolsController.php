@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
-use App\Model\Courses;
+ use App\User;
 use App\Model\CourseCategories;
 use App\Model\CategoryCourses;
- use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+ use Illuminate\Http\Request; 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CoursesRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -20,8 +18,10 @@ class SchoolsController  extends Controller
      * @return LengthAwarePaginator|mixed
      */
     public function index(Request $request)
-    {   
-         return Courses::with('getCategory')->latest()->paginate();  
+    {      
+       return User::whereHas('roles', function ($q) {
+            $q->whereIn('slug', ['school']);
+        })->paginate(); 
     }
 
     /**
