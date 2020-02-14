@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 const displayName = 'LoginForm'
 const propTypes = {
   email: PropTypes.string,
+  loginType: PropTypes.string,
   password: PropTypes.string,
   remember: PropTypes.bool,
   errors: PropTypes.object.isRequired,
@@ -17,7 +18,8 @@ const Form = ({
   email,
   password,
   remember,
-  errors,
+  errors, 
+  loginType,
   handleChange,
   handleSubmit,
   routeNameType
@@ -65,7 +67,12 @@ const Form = ({
         <span className="custom-control-description small"></span>
       </label>
     </div>
-
+      <input type="text" 
+        id="loginType"
+        name="loginType" 
+        value={ routeNameType == '/admin/login' ? "admin" : "" || ''}
+        onChange={e => handleChange(e.target.name, e.target.value)}
+        required />
     <button className="btn btn-lg btn-primary btn-block"
             type="submit"
             disabled={errors.any()}>Log In</button>

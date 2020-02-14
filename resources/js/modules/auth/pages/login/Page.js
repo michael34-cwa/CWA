@@ -35,6 +35,7 @@ class Page extends Component {
       credentials: {
         email: '',
         password: '',
+        loginType: '',
         remember: false,
       }, 
       routeNameType: '',

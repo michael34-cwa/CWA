@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import PropTypes from 'prop-types'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Redirect, Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -21,19 +21,23 @@ const PrivateRoute = ({ component: Component, isAuthenticated, roleId, ...rest }
           </div>
         }
       >
-        {isAuthenticated ? (
+        {isAuthenticated ? ( 
           <Component {...props} />
         ) : (
-            <Redirect
-              to={{
-                pathname: '/admin/login',
-                state: { from: props.location }
-              }}
-            />
-          )}
+            window.location = logoutUrl
+    
+             /* // <Redirect
+            //   to={{
+            //     pathname: roleId,
+            //     state: { from: props.location }
+            //   }}
+            // />    */ 
+     )}
       </Suspense>
     );
+     
   }} />
+  
 }
 
 PrivateRoute.propTypes = {

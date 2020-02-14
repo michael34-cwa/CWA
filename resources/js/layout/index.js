@@ -29,10 +29,10 @@ class Layout extends Component {
 
   }
 
-  render() {   
+  render() {  
     const { children, ...props} = this.props
     if (this.props.isAuthenticated) {
- 
+     
       return <PrivateLayout {...props} rolenane={this.props.user.rolename}>{children}</PrivateLayout>
     }
     return <PublicLayout {...props}>{children}</PublicLayout>
