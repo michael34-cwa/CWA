@@ -7,7 +7,7 @@ use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use Cartalyst\Sentinel\Users\UserInterface;
+use Cartalyst\Sentinel\Users\UserInterface; 
 
 
 class RegisterController extends Controller
