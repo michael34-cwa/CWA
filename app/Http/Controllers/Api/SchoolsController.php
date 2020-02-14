@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 
-use App\Model\Schools;
-=======
- use App\User;
-
+use App\Model\Schools; 
+ use App\User; 
 use App\Model\CourseCategories;
 use App\Model\CategoryCourses;
  use Illuminate\Http\Request; 
@@ -24,10 +22,7 @@ class SchoolsController  extends Controller
      */
     public function index(Request $request)
 
-    {   
-         return Schools::with('getCategory')->latest()->paginate();  
-
-    {      
+    {    
        return User::whereHas('roles', function ($q) {
             $q->whereIn('slug', ['school']);
         })->paginate(); 
