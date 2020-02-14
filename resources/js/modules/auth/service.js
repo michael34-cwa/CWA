@@ -135,7 +135,7 @@ export function forgot(credentials) {
  *
  * @returns {function(*)}
  */
-export function logout() {
+export function logout() {  
   return dispatch => {
     return Http.delete('auth/logout')
       .then(() => {

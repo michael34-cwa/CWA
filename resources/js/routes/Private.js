@@ -7,9 +7,9 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 const PrivateRoute = ({ component: Component, isAuthenticated, roleId, ...rest }) => {
   let logoutUrl = '';
   if (roleId == 'admin') {
-    logoutUrl = 'admin/login'
+    logoutUrl = '/admin/login'
   } else {
-    logoutUrl = 'login'
+    logoutUrl = '/login'
   }
   return <Route {...rest} render={props => {
 
@@ -26,7 +26,7 @@ const PrivateRoute = ({ component: Component, isAuthenticated, roleId, ...rest }
         ) : (
             <Redirect
               to={{
-                pathname: logoutUrl,
+                pathname: '/admin/login',
                 state: { from: props.location }
               }}
             />

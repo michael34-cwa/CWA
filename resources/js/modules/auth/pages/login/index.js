@@ -4,8 +4,7 @@ import { connect } from 'react-redux'
 // import components
 import Page from './Page' 
 
-const mapStateToProps = (state, router) => {
- 
+const mapStateToProps = (state, router) => { 
   return {
     isAuthenticated: state.auth.isAuthenticated, 
     routeNameType: router.location.pathname

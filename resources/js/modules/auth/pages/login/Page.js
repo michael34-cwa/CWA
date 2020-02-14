@@ -107,7 +107,7 @@ class Page extends Component {
   render() {
  
     // check if user is authenticated then redirect him to home page
-    if (this.props.isAuthenticated) {
+    if (this.props.isAuthenticated) {    
       this.props.dispatch(fetchUser());  
       if (this.props.location.pathname === '/admin/login'){
         return <Redirect to="/admin" />

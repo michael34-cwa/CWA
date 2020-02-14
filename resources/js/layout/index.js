@@ -29,7 +29,7 @@ class Layout extends Component {
 
   }
 
-  render() {
+  render() {   
     const { children, ...props} = this.props
     if (this.props.isAuthenticated) {
  

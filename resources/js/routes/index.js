@@ -8,42 +8,37 @@ import schoolRoutes from './schoolRoutes'
 import PrivateRoute from './Private'
 import PublicRoute from './Public'
 import { connect } from 'react-redux'
-import Layout from '../layout'
-import { logout } from "../modules/auth/service";
+import Layout from '../layout' 
 
  
 
 const propTypes = {
-  roleId: PropTypes.string,
-  dispatch: PropTypes.func
+  roleId: PropTypes.string 
 }
 
+function roleaname(PropTypes){
+  console.log(PropTypes);
+ 
+}
 
-const Routes = ({ roleId, dispatch }) => {
-  
-  return  <Router>
+const Routes = () => (
+ 
+     <Router>
     <Layout>
       <Switch> 
-        {adminRoutes.map((route, i) => { 
-          if (roleId == 'admin') {   
-            return <PrivateRoute key={i} {...route} />  
-          }
-         // return <PublicRoute key={i} {...route} />
-        })}
-
-        {schoolRoutes.map((route, i) => {
-          if (roleId == 'school') {
+        {roleaname()}
+        {adminRoutes.map((route, i) => {
+     
+          if (route.auth) {
             return <PrivateRoute key={i} {...route} />
-          } 
-        })}   
-        {schoolRoutes.map((route, i) => { 
-            return <PublicRoute key={i} {...route} />  
-        })}  
+          }
+          return <PublicRoute key={i} {...route} />
+        })}
     
       </Switch>
     </Layout>
   </Router>
-}
+)
 
 Routes.propTypes = propTypes
  
