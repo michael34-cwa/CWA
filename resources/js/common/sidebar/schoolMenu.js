@@ -4,7 +4,7 @@ import {
 } from "reactstrap";
 
 import { NavLink as RRNavLink } from "react-router-dom";
-const AdminSideMenu = props => {
+const SchoolSideMenu = props => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(!dropdownOpen);
@@ -14,7 +14,7 @@ const AdminSideMenu = props => {
       <div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <NavLink tag={RRNavLink} to="/admin" activeClassName="active">  <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</NavLink>
+            <NavLink tag={RRNavLink} to="/" activeClassName="active">  <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</NavLink>
           </div>
         </div>
         
@@ -23,4 +23,4 @@ const AdminSideMenu = props => {
   );
 };
 
-export default AdminSideMenu;
+export default SchoolSideMenu;

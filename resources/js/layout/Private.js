@@ -7,6 +7,7 @@ import Navigation from "../common/navigation/index";
 import ScrollTop from "../common/scroll-top/index";
 import Footer from "../common/footer/index";
 import AdminSideMenu from "../common/sidebar/adminMenu";
+import SchoolSideMenu from "../common/sidebar/schoolMenu";
 import { ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css";
 const containerStyle = {
@@ -21,11 +22,14 @@ const propTypes = {
 
 function PrivateLayout({ children, rolenane}) {
  
-  function Greeting() { 
-    if (rolenane == 'admin') {
-      return <AdminSideMenu />;
-    } 
+  let sideBars = '';
+
+  if (rolenane == 'admin') {
+    sideBars = <AdminSideMenu />;
+  } else {
+    sideBars = <SchoolSideMenu />;
   }
+    
  
   
   return (
@@ -33,9 +37,8 @@ function PrivateLayout({ children, rolenane}) {
       <ToastContainer autoClose={3000} />
       <Navigation /> 
       <main className="dashbard-area">
-        <div className="dashbard-inner">
-         
-          <Greeting />
+        <div className="dashbard-inner"> 
+           {sideBars}
           {children}
           <ScrollTop />
         </div>
