@@ -22,7 +22,12 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
-      category_name: "required|min:2"
+      first_name: 'required|min:2',
+      last_name: 'required|min:2',
+      email: 'required|email',
+      phone: 'required|min:10',
+      // password: 'required|min:6',
+      // passwordConfirmation: 'required|min:6'
     });
     
     const category = this.props.category.toJson()
@@ -87,9 +92,9 @@ class Page extends Component {
   }
   
   submit(category) {
-    this.props.dispatch(categoryUpdateRequest(category))
+    this.props.dispatch(categoryUpdateRequest(category),'0')
       .then(res => {
-        this.props.history.push('/admin/course_categories');
+        this.props.history.push('/school_administrator');
       })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator
@@ -119,7 +124,7 @@ class Page extends Component {
     return <main className="dashboard-right" role="main">  
     <div className="card">
       <div className="card-body bg-white"> 
-      <h1>Update Category Name</h1>
+          <h1>Update School Administrator </h1>
        { this.renderForm() }    
          </div>
       </div>

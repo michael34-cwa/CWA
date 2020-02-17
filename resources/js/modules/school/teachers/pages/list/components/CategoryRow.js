@@ -11,26 +11,41 @@ const propTypes = {
 }
 
 const CategoryRow = ({ index, category, togglePublish, handleRemove }) => {
+
+  console.log(category);
    return (
      <tr key={index}>
        <th scope="row">{index + 1}</th>
-       <td>{category.category_name}</td>
+       <td>{category.first_name}</td>
+       <td>{category.last_name}</td>
+       <td>{category.email}</td>
+       <td>{category.phone}</td>
        <td>{category.createdAt && category.createdAt.format("MMMM, DD YYYY")}</td>
        <td>{category.updatedAt && category.updatedAt.format("MMMM, DD YYYY")}</td>
        <td>
          <div className="btn-group" role="group" aria-label="Actions">
            <Link
              className="btn btn-primary"
-             to={`course_categories/${category.id}/edit`}
+             to={`teachers/${category.id}/edit`}
            >
              <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
            </Link>
-           <button
-             className="btn btn-danger"
-             onClick={() => handleRemove(category.id)}
-           >
-            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
-           </button>
+        
+           {category.activation ? (
+             <button
+               className="btn btn-warning "
+               onClick={() => togglePublish(category.id)}
+             >
+               <i class="fa fa-eye-slash" aria-hidden="true"></i>In Active
+            </button>
+           ) : (
+               <button
+                 className="btn btn-success"
+                 onClick={() => togglePublish(category.id)}
+               >
+                 <i class="fa fa-eye" aria-hidden="true"></i> Active
+            </button>
+             )}
           
          </div>
        </td>

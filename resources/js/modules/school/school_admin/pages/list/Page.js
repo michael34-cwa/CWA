@@ -37,20 +37,11 @@ class Page extends Component {
   }
   
   togglePublish(id) {
-    const category = this.props.course_categories.find(category => (category.id === id))
-    
-    if (!category)
-      return
-  
-      category.published = !category.published
-    if (category.published) {
-      category.publishedAt = moment()
-    } else {
-      category.publishedAt = null
-    }
-    
-    this.props.dispatch(categoryUpdateRequest(category.toJson()))
+    const course_categories = this.props.course_categories.find(course_categories => course_categories.id === id); 
+    this.props.dispatch(categoryUpdateRequest(course_categories.toJson(), 1));
+    this.props.dispatch(categoryListRequest({}))
   }
+
   
   handleRemove(id) { 
  
@@ -80,6 +71,7 @@ class Page extends Component {
               <th>Sr. No.</th>
               <th>First Name</th>
               <th>Last Name</th>
+                <th>Email</th>
               <th>Phone</th>
               <th>Created Date</th>
               <th>Updated Date</th>

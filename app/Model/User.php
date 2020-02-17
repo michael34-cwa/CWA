@@ -18,6 +18,7 @@ class User extends CartalystUser {
         'password',
         'last_name', 
         'first_name',
+        'phone',
         'permissions' 
     ];
 

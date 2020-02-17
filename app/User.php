@@ -17,10 +17,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+      
         'email',
         'password',
         'first_name',
+        'last_name',
+        'phone',
     ];
 
     /**
@@ -54,4 +56,8 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Model\Roles', 'role_users', 'user_id', 'role_id');
     }
 
+        public function ActivationsUser()
+    {
+        return $this->hasOne('App\Model\Activations');
+    }
 }

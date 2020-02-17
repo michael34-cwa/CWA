@@ -43,8 +43,7 @@ class Page extends Component {
       course.isActive = 0;
     } else {
       course.isActive = 1;
-    }
-    console.log(course.toJson());
+    } 
     this.props.dispatch(courseUpdateRequest(course.toJson(),'1'));
   }
 

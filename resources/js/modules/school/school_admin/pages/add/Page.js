@@ -20,7 +20,12 @@ import { browserHistory } from 'react-router'
     super(props)
     
     this.validator = new ReeValidate({
-      category_name: "required|min:2"
+      firstName: 'required|min:2',
+      lastName: 'required|min:2',
+      email: 'required|email',
+      phone: 'required|min:10',
+      password: 'required|min:6',
+      passwordConfirmation: 'required|min:6'
     });
     
     const category = this.props.category.toJson()
@@ -77,7 +82,7 @@ import { browserHistory } from 'react-router'
     this.props
       .dispatch(categoryAddRequest(category)) 
       .then(res => { 
-        this.props.history.push('/admin/course_categories');  
+        this.props.history.push('/school_administrator');  
       })
       .catch(({ error, statusCode }) => { 
         const { errors } = this.validator;  
@@ -95,7 +100,7 @@ import { browserHistory } from 'react-router'
     
     return <div className="dashboard-right"><div className="card"><div className="card-body bg-white">
     
-      <h1>Add Course Category</h1>
+      <h1>Add School Administrator</h1>
        <Form {...this.state}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit} />

@@ -12,12 +12,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SchoolRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Cartalyst\Sentinel\Users\UserInterface;
-use App\Model\Activations;
+ use App\Model\Activations;
 use Activation;
 use App\Model\School;
 
-class SchoolsController  extends Controller
+class TeachersController  extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,24 +25,13 @@ class SchoolsController  extends Controller
      * @return LengthAwarePaginator|mixed
      */
     public function index(Request $request)
-    {
-        $user = \Auth::guard('api')->user();
+    { 
         return User::whereHas('roles', function ($q) {
-            $q->whereIn('slug', ['school']);
-        })->with('ActivationsUser')->where('id', "!=", $user->id)->paginate();
+            $q->whereIn('slug', ['teacher']);
+        })->with('ActivationsUser')->paginate();
     }
 
-    /**
-     * get all published articles
-     *
-     * @return mixed
-     */
-    public function publishedArticles()
-    {
-        return Courses::loadAllPublished();
-    }
-
-
+   
     /**
      * Get single published article
      *
@@ -107,7 +95,7 @@ class SchoolsController  extends Controller
             if (!empty($user)) {
                 $userUpdate = User::findOrFail($user->id); 
                 $userUpdate->update($request->all());
-                $role = \Sentinel::findRoleByName('school');
+                $role = \Sentinel::findRoleByName('teacher');
                 $role->users()->attach($user);
 
             }

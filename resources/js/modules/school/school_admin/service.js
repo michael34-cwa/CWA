@@ -17,11 +17,13 @@ export function categoryAddRequest(params) {
     new Promise((resolve, reject) => {
       Http.post("/schools", transformRequest(params))
         .then(res => {
+           
           toast.success("Added Successfully");
           dispatch(categoryActions.add(transformResponse(res.data)));
           return resolve(res);
         })
         .catch(err => {
+     
           const statusCode = err.response.status;
           const data = {
             error: null,
@@ -29,6 +31,9 @@ export function categoryAddRequest(params) {
           };
 
           if (statusCode === 422) {
+         if(err.response.data.status == 0){
+           toast.warn(err.response.data.message);
+            }else{
             const resetErrors = {
               errors: err.response.data,
               replace: false,
@@ -36,6 +41,7 @@ export function categoryAddRequest(params) {
               replaceStr: ""
             };
             data.error = Transformer.resetValidationFields(resetErrors);
+          }
           } else if (statusCode === 401) {
             data.error = err.response.data.message;
           }
@@ -45,12 +51,13 @@ export function categoryAddRequest(params) {
   )
 }
 
-export function  categoryUpdateRequest(params) {
+export function categoryUpdateRequest(params, status) {
+ 
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.patch(`schools/${params.id}`, transformRequest(params))
+      Http.patch(`schools/${params.id}/${status}`, transformRequest(params))
         .then(res => {
-          toast.success("Updated Successfully");
+          toast.success("Updated Successfully"); 
           dispatch(categoryActions.add(transformResponse(res.data)));
           return resolve();
         })
@@ -101,7 +108,7 @@ export function categoryListRequest({ pageNumber = 1, url = "/schools" }) {
            Http.get(url)
              .then(res => {
                dispatch(categoryActions.list(transformResponse(res.data)));
-              // console.log(res.data);
+             
              })
              .catch(err => {
                // TODO: handle err
