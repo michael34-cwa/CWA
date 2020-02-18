@@ -7,10 +7,10 @@ const propTypes = {
   index: PropTypes.number.isRequired,
   category: PropTypes.object.isRequired,
   togglePublish: PropTypes.func.isRequired,
-  handleRemove: PropTypes.func.isRequired,
+  openModel: PropTypes.func.isRequired,
 }
 
-const CategoryRow = ({ index, category, togglePublish, handleRemove }) => {
+const CategoryRow = ({ index, category, openModel }) => {
    return (
      <tr key={index}>
        <th scope="row">{index + 1}</th>
@@ -27,7 +27,7 @@ const CategoryRow = ({ index, category, togglePublish, handleRemove }) => {
            </Link>
            <button
              className="btn btn-danger"
-             onClick={() => handleRemove(category.id)}
+             onClick={() => openModel(category.id)}
            >
             <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
            </button>

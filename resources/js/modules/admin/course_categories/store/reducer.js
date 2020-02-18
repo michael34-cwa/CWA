@@ -46,7 +46,7 @@ function add(state, payload) {
 
   if (!CATEGORY) {
     const data = [...state.data, payload]
-
+ 
     return Object.assign({}, state, { data })
   }
 
@@ -54,13 +54,14 @@ function add(state, payload) {
 }
 
 function update(state, payload) {
+ 
   const data = state.data.map(obj => {
-    if (obj.id === payload.id) {
-      return { ...obj, ...payload }
-    }
+    if (obj.id === payload.id) { 
+      return { ...obj, ...payload}
+    } 
     return obj
   })
-
+ // state.loading = false 
   return Object.assign({}, state, { data })
 }
 
@@ -76,19 +77,17 @@ function list(state, payload) {
   return state
 }
 
-function spinerAdd(state, payload) {  
- 
-  const loading = state.loading = true
-
-  return Object.assign({}, state, { loading })
+function spinerAdd(state, payload) {   
+    state.loading = true 
+  return Object.assign({}, state)
  
 }
 
-function spinerRemove(state, payload) {
+function spinerRemove(state, payload) { 
+  state.loading = false 
+  const data = [...state.data, payload]
 
-  const loading = false
-
-  return Object.assign({}, state, { loading })
+  return Object.assign({}, state, { data })
 
 }
 

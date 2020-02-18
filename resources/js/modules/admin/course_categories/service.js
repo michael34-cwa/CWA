@@ -52,12 +52,11 @@ export function  categoryUpdateRequest(params) {
 
   return dispatch => ( 
     new Promise((resolve, reject) => {
-      dispatch(categoryActions.spinerAdd())
+     // dispatch(categoryActions.spinerAdd(transformRequest(params))) 
       Http.patch(`course_categories/${params.id}`, transformRequest(params))
         .then(res => {
-          toast.success("Updated Successfully");
-          dispatch(categoryActions.spinerRemove())
-          //dispatch(categoryActions.add(transformResponse(res.data)));
+          toast.success("Updated Successfully"); 
+      dispatch(categoryActions.add(transformResponse(res.data)));
           return resolve();
         })
         .catch(err => {
@@ -129,15 +128,4 @@ export function  categoryEditRequest(id) {
   }
 }
 
-export function  categoryFetchRequest(slug) {
-  return dispatch => {
-    Http.get(`course_categories/published/${slug}`)
-      .then(res => {
-        dispatch(categoryActions.add(transformResponse(res.data)));
-      })
-      .catch(err => {
-        // TODO: handle err
-        console.error(err.response);
-      });
-  }
-}
+ 

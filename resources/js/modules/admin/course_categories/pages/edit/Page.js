@@ -30,9 +30,10 @@ class Page extends Component {
  
     this.state = {
       category,
-      errors: this.validator.errors
+      errors: this.validator.errors,
+      loading: false
     }
-    
+ 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
 
@@ -88,11 +89,14 @@ class Page extends Component {
   }
  
   submit(category) {  
+    this.setState({ loading:true })
     this.props.dispatch(categoryUpdateRequest(category))
       .then(res => { 
-     // this.props.history.push('/admin/course_categories');
+        this.setState({ loading: false })
+       this.props.history.push('/admin/course_categories');
       })
       .catch(({ error, statusCode }) => {
+        this.setState({ loading: false })
         const { errors } = this.validator
         
         if (statusCode === 422) {
@@ -107,9 +111,9 @@ class Page extends Component {
   
   renderForm() { 
     const { category,loading } = this.props 
-    if (category.id) {
+    if (category.id) { 
       return <Form {...this.state}
-                  loading={loading}
+        loading={this.state.loading}
                    onChange={this.handleChange}
                    onSubmit={this.handleSubmit} />
     }
