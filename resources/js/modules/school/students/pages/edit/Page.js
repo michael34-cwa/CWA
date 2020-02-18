@@ -1,11 +1,11 @@
 // import libs
-import React, { Component, Suspense} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { categoryEditRequest, categoryUpdateRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 import { NavItem } from 'reactstrap'
-import CircularProgress from "@material-ui/core/CircularProgress";
+
 // import components
 
 import Form from './components/Form'
@@ -16,14 +16,18 @@ class Page extends Component {
     match: PropTypes.object.isRequired,
     categroy: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
-    
   }
   
   constructor(props) {
     super(props)
     
     this.validator = new ReeValidate({
-      category_name: "required|min:2"
+      first_name: 'required|min:2',
+      last_name: 'required|min:2',
+      email: 'required|email',
+      phone: 'required|min:10',
+      // password: 'required|min:6',
+      // passwordConfirmation: 'required|min:6'
     });
     
     const category = this.props.category.toJson()
@@ -86,11 +90,11 @@ class Page extends Component {
         }
       })
   }
- 
-  submit(category) {  
-    this.props.dispatch(categoryUpdateRequest(category))
-      .then(res => { 
-     // this.props.history.push('/admin/course_categories');
+  
+  submit(category) {
+    this.props.dispatch(categoryUpdateRequest(category),'0')
+      .then(res => {
+        this.props.history.push('/students');
       })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator
@@ -105,26 +109,26 @@ class Page extends Component {
       })
   }
   
-  renderForm() { 
-    const { category,loading } = this.props 
+  renderForm() {
+    const { category } = this.props
+ 
     if (category.id) {
       return <Form {...this.state}
-                  loading={loading}
                    onChange={this.handleChange}
                    onSubmit={this.handleSubmit} />
     }
-    }
+  }
   
-  
-  render() {  
-    return <main className="dashboard-right" role="main">   
+  render() {
+ 
+    return <main className="dashboard-right" role="main">  
     <div className="card">
       <div className="card-body bg-white"> 
-      <h1>Update Category Name</h1> 
+          <h1>Update Student  </h1>
        { this.renderForm() }    
          </div>
       </div>
-    </main>  
+    </main>
   }
 }
 

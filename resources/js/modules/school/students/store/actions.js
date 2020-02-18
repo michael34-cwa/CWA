@@ -11,8 +11,7 @@ import {
   CATEGORY_UPDATE,
   CATEGORY_REMOVE,
   CATEGORY_LIST,
-  SPINNER_ADD,
-  SPINNER_REMOVE
+  SPINNER_ADD
 } from './action-types';
  
 export function add(payload) {
@@ -46,13 +45,6 @@ export function list(payload) {
 export function spinerAdd(payload) {
   return {
     type: SPINNER_ADD,
-    payload
-  }
-}
-
-export function spinerRemove(payload) {
-  return {
-    type: SPINNER_REMOVE,
     payload
   }
 }

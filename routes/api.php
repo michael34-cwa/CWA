@@ -26,7 +26,7 @@ Route::group(["prefix" => "{$api_version}"], function() {
     // register articles routes
     Route::prefix('articles')
         ->group(base_path('routes/api/articles.php'));
-            // register courses routes
+        // register courses routes
     Route::prefix('courses')
         ->group(base_path('routes/api/courses.php'));
     Route::prefix('course_categories')
@@ -37,5 +37,6 @@ Route::group(["prefix" => "{$api_version}"], function() {
         ->group(base_path('routes/api/schools.php'));
      Route::prefix('teachers')
         ->group(base_path('routes/api/teachers.php'));       
+     Route::prefix('students')
+        ->group(base_path('routes/api/students.php'));       
 });
-

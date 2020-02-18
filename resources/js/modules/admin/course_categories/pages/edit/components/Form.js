@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types' 
- 
+import LoadingComponent from '../../../../../../common/loader'
+
 const displayName = 'CategoryFrom'
 const propTypes = {
   category: PropTypes.object.isRequired,
@@ -9,7 +10,7 @@ const propTypes = {
   onSubmit: PropTypes.func.isRequired,
 }
 
-const Form = ({ category, errors, onChange, onSubmit }) => {
+const Form = ({ loading,category, errors, onChange, onSubmit }) => {
    
   function handleChange(name, value) { 
     if (value !== category[name]) {
@@ -18,6 +19,7 @@ const Form = ({ category, errors, onChange, onSubmit }) => {
   }
   
   return (
+    
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group row">
         <label htmlFor="title" className="col-md-12 col-form-label">
@@ -39,6 +41,7 @@ const Form = ({ category, errors, onChange, onSubmit }) => {
               {errors.first("category_name")}
             </div>
           )}
+          {<LoadingComponent isLoading={loading} error={''} />}
         </div>
       </div>
 

@@ -4,9 +4,7 @@ import {
   CATEGORY_REMOVE,
   CATEGORY_LIST,
   SPINNER_ADD,
-  SPINNER_REMOVE
 } from './action-types'
-
 
 const initialState = {
   currentPage: 0,
@@ -19,13 +17,10 @@ const initialState = {
   prevPageUrl: null,
   to: 0,
   total: 0,
-  loading:false
 }
 
 const reducer = (state = initialState, { type, payload = null }) => {
   switch(type) {
-    case SPINNER_ADD:
-      return spinerAdd(state, payload)
     case CATEGORY_ADD:
       return add(state, payload)
     case CATEGORY_UPDATE:
@@ -34,8 +29,8 @@ const reducer = (state = initialState, { type, payload = null }) => {
       return remove(state, payload)
     case CATEGORY_LIST:
       return list(state, payload)
-    case SPINNER_REMOVE:
-      return spinerRemove(state, payload)
+    case SPINNER_ADD:
+      return spinerAdd(state, payload)
     default:
       return state
   }
@@ -76,20 +71,10 @@ function list(state, payload) {
   return state
 }
 
-function spinerAdd(state, payload) {  
- 
-  const loading = state.loading = true
+function spinerAdd(state, payload) {
+  state = Object.assign({}, payload)
 
-  return Object.assign({}, state, { loading })
- 
-}
-
-function spinerRemove(state, payload) {
-
-  const loading = false
-
-  return Object.assign({}, state, { loading })
-
+  return state
 }
 
 export default reducer

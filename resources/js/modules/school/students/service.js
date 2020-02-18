@@ -13,18 +13,17 @@ function transformResponse(params) {
 
 export function categoryAddRequest(params) { 
   
-
-  return dispatch => (  
+  return dispatch => (
     new Promise((resolve, reject) => {
-      
-      Http.post("/course_categories", transformRequest(params))
+      Http.post("/students", transformRequest(params))
         .then(res => {
+           
           toast.success("Added Successfully");
-         
           dispatch(categoryActions.add(transformResponse(res.data)));
           return resolve(res);
         })
         .catch(err => {
+     
           const statusCode = err.response.status;
           const data = {
             error: null,
@@ -32,6 +31,9 @@ export function categoryAddRequest(params) {
           };
 
           if (statusCode === 422) {
+         if(err.response.data.status == 0){
+           toast.warn(err.response.data.message);
+            }else{
             const resetErrors = {
               errors: err.response.data,
               replace: false,
@@ -39,6 +41,7 @@ export function categoryAddRequest(params) {
               replaceStr: ""
             };
             data.error = Transformer.resetValidationFields(resetErrors);
+          }
           } else if (statusCode === 401) {
             data.error = err.response.data.message;
           }
@@ -48,16 +51,14 @@ export function categoryAddRequest(params) {
   )
 }
 
-export function  categoryUpdateRequest(params) { 
-
-  return dispatch => ( 
+export function categoryUpdateRequest(params, status) {
+ 
+  return dispatch => (
     new Promise((resolve, reject) => {
-      dispatch(categoryActions.spinerAdd())
-      Http.patch(`course_categories/${params.id}`, transformRequest(params))
+      Http.patch(`students/${params.id}/${status}`, transformRequest(params))
         .then(res => {
-          toast.success("Updated Successfully");
-          dispatch(categoryActions.spinerRemove())
-          //dispatch(categoryActions.add(transformResponse(res.data)));
+          toast.success("Updated Successfully"); 
+          dispatch(categoryActions.add(transformResponse(res.data)));
           return resolve();
         })
         .catch(err => {
@@ -86,7 +87,7 @@ export function  categoryUpdateRequest(params) {
 
 export function  categoryRemoveRequest(id) {
   return dispatch => {
-    Http.delete(`course_categories/${id}`)
+    Http.delete(`students/${id}`)
       .then(() => {
         toast.success("Deleted Successfully");
         dispatch(categoryActions.remove(id));
@@ -98,7 +99,7 @@ export function  categoryRemoveRequest(id) {
   }
 }
 
-export function  categoryListRequest({ pageNumber = 1, url = "/course_categories" }) {
+export function categoryListRequest({ pageNumber = 1, url = "/students" }) {
          return dispatch => {
            if (pageNumber > 1) {
              url = url + `?page=${pageNumber}`;
@@ -107,7 +108,7 @@ export function  categoryListRequest({ pageNumber = 1, url = "/course_categories
            Http.get(url)
              .then(res => {
                dispatch(categoryActions.list(transformResponse(res.data)));
-              // console.log(res.data);
+             
              })
              .catch(err => {
                // TODO: handle err
@@ -118,7 +119,7 @@ export function  categoryListRequest({ pageNumber = 1, url = "/course_categories
 
 export function  categoryEditRequest(id) { 
   return dispatch => {
-    Http.get(`course_categories/${id}`)
+    Http.get(`students/${id}`)
       .then(res => {
         dispatch(categoryActions.add(transformResponse(res.data)));
       })
@@ -129,15 +130,4 @@ export function  categoryEditRequest(id) {
   }
 }
 
-export function  categoryFetchRequest(slug) {
-  return dispatch => {
-    Http.get(`course_categories/published/${slug}`)
-      .then(res => {
-        dispatch(categoryActions.add(transformResponse(res.data)));
-      })
-      .catch(err => {
-        // TODO: handle err
-        console.error(err.response);
-      });
-  }
-}
+ 

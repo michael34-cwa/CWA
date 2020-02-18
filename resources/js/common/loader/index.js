@@ -12,6 +12,7 @@ const propTypes = {
 
 const LoadingComponent = ({isLoading, error}) => {
   // Handle the loading state
+ 
   if (isLoading) { 
     return (
       <div className="pageloader">

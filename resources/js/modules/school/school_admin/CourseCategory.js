@@ -1,7 +1,7 @@
 import Model from '../../../utils/Model'
 import User from '../../user/User'
 
-class CourseCategory extends Model {
+class School extends Model {
   constructor(props) {
     super(props) 
     this.initialize(props)
@@ -21,4 +21,4 @@ class CourseCategory extends Model {
   }
 }
 
-export default CourseCategory
+export default School
