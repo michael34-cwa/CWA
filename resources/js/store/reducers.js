@@ -8,4 +8,5 @@ import tasks from "../modules/admin/tasks/store/reducer";
 import school_admin from "../modules/school/school_admin/store/reducer";
 import teachers from "../modules/school/teachers/store/reducer";
 import students from "../modules/school/students/store/reducer";
-export default combineReducers({ auth, user, course_categories, courses, tasks, school_admin, teachers, students });
+import students_course from "../modules/student/courses/store/reducer";
+export default combineReducers({ auth, user, course_categories, courses, tasks, school_admin, teachers, students, students_course });

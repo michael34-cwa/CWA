@@ -8,7 +8,7 @@ import CategoryRow from './components/CategoryRow'
 import Pagination from './components/Pagination'
 import { Link } from 'react-router-dom'
 import LoadingComponent from '../../../../../common/loader'
-import ModalExample from '../../../../../common/model'
+import DeleteModel from '../../../../../common/model/deleteModel'
 class Page extends Component {
   static displayName = 'CategoriesPage'
   static propTypes = {
@@ -39,8 +39,8 @@ class Page extends Component {
 
 
 
-  openModel(id) {
-    this.setState({ open: true, id: id })
+  openModel(id) { 
+    this.setState({ open: !this.state.open, id: id })
   }
 
   handleRemove(id) {
@@ -89,9 +89,11 @@ class Page extends Component {
           </table>
         </div>
         <Pagination meta={this.props.meta} onChange={this.pageChange} />
-        {this.state.open ?
-          <ModalExample open={this.state.open} id={this.state.id} handleRemove={this.handleRemove} />
-          : ''}
+        {/* {this.state.open ?
+          <DeleteModel open={false} id={this.state.id} handleRemove={this.handleRemove} />
+          : ''} */}
+ 
+        {this.state.open && <DeleteModel openModel={this.openModel}  opens={this.state.open}  id={this.state.id} handleRemove={this.handleRemove}  />}
       </main>
     );
   }

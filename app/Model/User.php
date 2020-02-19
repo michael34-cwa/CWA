@@ -1,5 +1,6 @@
 <?php 
 namespace App\Model;
+
 use Cartalyst\Sentinel\Users\EloquentUser as CartalystUser;
 use Cartalyst\Sentinel\Users\UserInterface;
 
@@ -18,8 +19,8 @@ class User extends CartalystUser {
         'password',
         'last_name', 
         'first_name',
-        'phone',
-        'permissions' 
+        'permissions',
+        'phone', 
     ];
 
     /**
@@ -81,7 +82,12 @@ class User extends CartalystUser {
      */
     protected static $throttlingModel = 'Cartalyst\Sentinel\Throttling\EloquentThrottle';
 
-  
+    /**
+     * Returns an array of login column names.
+     *
+     * @return array
+     */
+ 
+    
 
 }
- 

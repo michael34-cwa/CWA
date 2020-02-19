@@ -87,13 +87,13 @@ class StudentsController  extends Controller
                 'last_name' => $data['last_name'],
                 'email' => $data['email'], 
                 'password' => $data['password'],
-
+                'phone' => $data['phone'],
             ];
 
             $user = \Sentinel::registerAndActivate($credential);
             if (!empty($user)) {
                 $userUpdate = User::findOrFail($user->id); 
-                $userUpdate->update($request->all());
+           // $userUpdate->update($request->all());
                 $role = \Sentinel::findRoleByName('student');
                 $role->users()->attach($user);
 

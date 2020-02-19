@@ -40,11 +40,11 @@ class ArticleTest extends TestCase
 
         $articles = Article::loadAllMine($this->user->id);
 
-        $this->assertCount(15, $articles);
+        $this->assertCount(8, $articles);
 
     }
 
-    private function seedUnpublishedArticles($num = 15)
+    private function seedUnpublishedArticles($num = 8)
     {
         factory(Article::class, $num)->create([
             'user_id' => $this->user->id,
@@ -59,7 +59,7 @@ class ArticleTest extends TestCase
 
         $articles = Article::loadAll();
 
-        $this->assertCount(15, $articles);
+        $this->assertCount(8, $articles);
     }
 
     /** @test */

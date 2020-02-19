@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 // import components
 import adminRoutes from './adminRoutes'
 import schoolRoutes from './schoolRoutes'
+import studentRoutes from './studentRoutes'
 import PrivateRoute from './Private'
 import PublicRoute from './Public'
 import { connect } from 'react-redux'
@@ -31,6 +32,12 @@ const Routes = ({ roleId, dispatch }) => {
 
         {schoolRoutes.map((route, i) => {
           if (roleId == 'school') {
+            return <PrivateRoute key={i} {...route} />
+          }
+        })}
+
+        {studentRoutes.map((route, i) => {
+          if (roleId == 'student') {
             return <PrivateRoute key={i} {...route} />
           }
         })}

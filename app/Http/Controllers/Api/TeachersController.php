@@ -88,13 +88,13 @@ class TeachersController  extends Controller
                 'last_name' => $data['last_name'],
                 'email' => $data['email'], 
                 'password' => $data['password'],
+                  'phone' => $data['phone'],
 
             ];
 
             $user = \Sentinel::registerAndActivate($credential);
             if (!empty($user)) {
-                $userUpdate = User::findOrFail($user->id); 
-                $userUpdate->update($request->all());
+                $userUpdate = User::findOrFail($user->id);  
                 $role = \Sentinel::findRoleByName('teacher');
                 $role->users()->attach($user);
 
