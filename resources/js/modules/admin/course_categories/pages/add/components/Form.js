@@ -14,8 +14,8 @@ const Form = ({ category, errors, onChange, onSubmit }) => {
     if (value !== category[name]) {
       onChange(name, value)
     }
-  }
- 
+  } 
+  
   return (
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group row">
@@ -32,8 +32,9 @@ const Form = ({ category, errors, onChange, onSubmit }) => {
             value={category.category_name || ""}
             onChange={e => handleChange(e.target.name, e.target.value)} 
           />
+        
           {errors.has("category_name") && (
-            <div className="invalid-feedback">{ errors.first("category_name")}</div>
+            <div className="invalid-feedback">{errors.first("category_name").replace("_", " ")}</div>
           )}
         </div>
       </div>

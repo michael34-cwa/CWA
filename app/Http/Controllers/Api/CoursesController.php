@@ -32,6 +32,14 @@ class CoursesController  extends Controller
         })->with(['getTasks','getCategory'])->paginate();
  
     }
+         
+    public function getStudentCourses()
+    {
+   
+         return Courses::whereHas('getStudentCourse', function ($q) {
+            $q->whereIn('student_id', [ \Auth::guard('api')->user()->id]);
+        })->with(['getTasks','getCategory'])->paginate(); 
+    }
 
 
     /**

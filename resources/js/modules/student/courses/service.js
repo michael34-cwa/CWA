@@ -95,7 +95,7 @@ export function courseRemoveRequest(id) {
   }
 }
 
-export function courseListRequest({ pageNumber = 1, url = "/courses" }) {   
+export function courseListRequest({ pageNumber = 1, url = "/courses/get_student_courses" }) {   
          return dispatch => {
            if (pageNumber > 1) {
              url = url + `?page=${pageNumber}`;

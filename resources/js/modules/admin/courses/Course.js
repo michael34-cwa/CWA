@@ -13,6 +13,7 @@ class Course extends Model {
      this.courseName = props.courseName || "";
     this.courseDescription = props.courseDescription || "";
     this.catId = props.getCategory|| "";
+    this.getTasks = props.getTasks || "";
     this.isActive = props.isActive || false; 
     this.createdAt = props.createdAt ? moment(props.createdAt) : null;
     this.updatedAt = props.updatedAt ? moment(props.updatedAt) : null; 

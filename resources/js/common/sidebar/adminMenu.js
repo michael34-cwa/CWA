@@ -8,7 +8,7 @@ const AdminSideMenu = props => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(!dropdownOpen);
-
+  console.log(RRNavLink);
   return (
     <div className="side-menu">
       <div class="panel-group" id="accordion">
@@ -29,7 +29,7 @@ const AdminSideMenu = props => {
             <div class="panel-body">
               <Nav vertical  >
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/admin/course_categories" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Course Categories List</NavLink>
+                  <NavLink exact={true}  tag={RRNavLink} to="/admin/course_categories" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Course Categories List</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={RRNavLink} to="/admin/course_categories/create" activeClassName="active"><i class="fa fa-plus" aria-hidden="true"></i> Add Course Category</NavLink>
@@ -52,7 +52,7 @@ const AdminSideMenu = props => {
             <div class="panel-body">
               <Nav vertical>
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/admin/courses" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Course List</NavLink>
+                  <NavLink exact={true}  tag={RRNavLink} to="/admin/courses" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Course List</NavLink>
                 </NavItem>
 
                 <NavItem>
@@ -79,7 +79,7 @@ const AdminSideMenu = props => {
               <Nav vertical>
 
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/admin/tasks" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Tasks List</NavLink>
+                  <NavLink exact={true}  tag={RRNavLink} to="/admin/tasks" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Tasks List</NavLink>
                 </NavItem>
 
                 <NavItem>

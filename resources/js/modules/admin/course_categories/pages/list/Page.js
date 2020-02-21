@@ -5,7 +5,7 @@ import moment from 'moment'
 import { categoryListRequest, categoryUpdateRequest, categoryRemoveRequest } from '../../service'
 // import components
 import CategoryRow from './components/CategoryRow'
-import Pagination from './components/Pagination'
+import Pagination from '../../../../../common/Pagination'
 import { Link } from 'react-router-dom'
 import LoadingComponent from '../../../../../common/loader'
 import DeleteModel from '../../../../../common/model/deleteModel'
@@ -45,6 +45,7 @@ class Page extends Component {
 
   handleRemove(id) {
     this.props.dispatch(categoryRemoveRequest(id))
+    this.props.dispatch(categoryListRequest({}))
     this.setState({ open: false, id: '' })
   }
 
@@ -88,11 +89,9 @@ class Page extends Component {
               {this.props.course_categories.length >= 1 ? this.renderCategories() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>
           </table>
         </div>
-        <Pagination meta={this.props.meta} onChange={this.pageChange} />
-        {/* {this.state.open ?
-          <DeleteModel open={false} id={this.state.id} handleRemove={this.handleRemove} />
-          : ''} */}
- 
+   
+        <Pagination meta={this.props.meta} onChange={this.pageChange} /> 
+      
         {this.state.open && <DeleteModel openModel={this.openModel}  opens={this.state.open}  id={this.state.id} handleRemove={this.handleRemove}  />}
       </main>
     );

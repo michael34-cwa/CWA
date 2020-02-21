@@ -45,14 +45,15 @@ import { browserHistory } from 'react-router'
   
   handleChange(name, value) {
 
-    const { errors } = this.validator
-  
+    const { errors} = this.validator
+
     this.setState({ category: { ...this.state.category, [name]: value} })
 
     errors.remove(name)
-  
+    
     this.validator.validate(name, value)
       .then(() => {
+       
         this.setState({ errors })
       })
   }
