@@ -81,10 +81,10 @@ class Page extends Component {
   render() {
     return (
       <main className="dashboard-right" role="main">
-        <h1>Courses</h1>
+        <h1 className="pl-2">Courses</h1>
         <div  >
-        <Grid container spacing={1}>
-          <Grid container item xs={12} spacing={3}>
+        <Grid container spacing={1} justify="center">
+          <Grid container item xs={12} spacing={2} justify="center" >
           {this.renderCourses()}
           </Grid>  
           </Grid>  

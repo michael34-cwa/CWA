@@ -355,10 +355,7 @@ a.accordion-toggle.collapsed .toggleicon i.fa.fa-minus {
     bottom: 15px;
     background: transparent;
 }
-.course-technology .chip-course {
-    background-color: #ddd;
-    color: #333;
-}
+
 /* 21 Feb css ends */
 @media(min-height:0px) and (max-height:450px) {
   .container.login-page {
@@ -385,5 +382,8 @@ a.accordion-toggle.collapsed .toggleicon i.fa.fa-minus {
 }
 .mb-20 {
     margin-bottom: 0px;
+}
+.course-technology {
+    min-height: auto;
 }
 }

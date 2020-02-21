@@ -16,7 +16,7 @@ const CourseRow = ({ course }) => {
   return (
  
     <React.Fragment>
-      <Grid item xs={4} className="course-grid">
+      <Grid item sm={6} xs={12} md={4} className="course-grid" >
       <div className="course-boxes">
         <Paper> {'Course Name: ' + course.courseName}</Paper>
          <div className="course-technology">

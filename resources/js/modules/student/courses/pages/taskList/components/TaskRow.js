@@ -30,18 +30,28 @@ const TaskRow = ({ dataList, course, errors, onChange, onSubmit }) => {
   return <div className="container">
 
     <div className="row">
-      <h1 className="my-3">Course Details</h1>
-              <h3 className="my-3">Course Name</h3> <h3 className="my-3">Course Name</h3>
-        <p>{course.courseName}</p>
-        <h3 className="my-3">Course Details</h3>
-  
-        <div dangerouslySetInnerHTML={{ __html:  course.courseDescription  }} />
-        <h3 className="my-3">Technology</h3>
-        <ul>
+      <Grid container spacing={1}>
+        <Grid container item xs={12} spacing={15}>
+      <div className="course-details w-100">
+      <div className="course_name">
+      <h3 className="my-3">Course Name</h3>
+      <p>{course.courseName}</p>
+      </div>
+      <div className="description-div">
+      <h3 className="my-3">Course Description</h3>
+       <div dangerouslySetInnerHTML={{ __html:  course.courseDescription  }} />
+       </div>
+       <div className="course_categories">
+       <h3 className="my-3">Course Categories</h3>
+          <ul>
           {course.catId ? course.catId.map(function (item, index) {
             return <li>{item.categoryName}</li>;
           }).reduce((prev, curr) => [prev, ' ', curr]) : ''}
         </ul>
+        </div>
+      </div> 
+       </Grid>
+      </Grid>        
       <Grid container spacing={1}>
         <Grid container item xs={12} spacing={3}>
      
