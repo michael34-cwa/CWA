@@ -93,6 +93,16 @@ const SchoolSideMenu = props => {
         </div>
       </div>
 
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <NavItem>
+            <NavLink tag={RRNavLink} to="/courses" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i>Course List</NavLink>
+          </NavItem>
+        </div>
+     
+      </div>
+
       </div> 
   );
 };

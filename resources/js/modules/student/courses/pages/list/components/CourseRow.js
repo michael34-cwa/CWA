@@ -25,7 +25,7 @@ const CourseRow = ({ course }) => {
           }).reduce((prev, curr) => [prev, ' ', curr]):''}  
         </Paper>
         <Paper >
-          <Link className="btn btn-primary" to={`tasks/${course.id}/view`}>  View All Tasks </Link>
+          <Link className="btn btn-primary" to={`course_tasks/${course.id}`}>  View All Tasks </Link>
         </Paper>
       </Grid> 
     </React.Fragment>

@@ -44,8 +44,7 @@ class Page extends Component {
     } else {
       task.isActive = 1;
     }
-    console.log(task.toJson());
-    this.props.dispatch(taskUpdateRequest(task.toJson(),'1'));
+     this.props.dispatch(taskUpdateRequest(task.toJson(),'1'));
   }
 
   handleRemove(id) {

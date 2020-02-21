@@ -80,8 +80,7 @@ class Page extends Component {
      this.props
        .dispatch(taskAddRequest(task))
        .then(res => { 
-         console.log('ede');
-         this.props.history.push('/admin/tasks');
+          this.props.history.push('/admin/tasks');
        })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator;

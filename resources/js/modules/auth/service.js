@@ -15,8 +15,7 @@ export function fetchUser() {
         dispatch(authActions.authUser(data))
       })
       .catch(err => {
-        console.log(err)
-      })
+       })
   }
 }
 
@@ -88,8 +87,7 @@ export function register(credentials) {
           } else if (statusCode === 401) {
             data.error = err.response.data.message;
           }
-          console.log(data)
-          return reject(data);
+           return reject(data);
         })
     })
   )
@@ -124,8 +122,7 @@ export function forgot(credentials) {
           } else if (statusCode === 401) {
             data.error = err.response.data.message;
           }
-          console.log(data);
-          return reject(data);
+           return reject(data);
         });
     });
 }
@@ -142,7 +139,6 @@ export function logout() {
         dispatch(authActions.authLogout())
       })
       .catch(err => {
-        console.log(err)
-      })
+       })
   }
 }

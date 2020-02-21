@@ -102,12 +102,10 @@ export function  categoryListRequest({ pageNumber = 1, url = "/course_categories
            if (pageNumber > 1) {
              url = url + `?page=${pageNumber}`;
            }
-           console.log(url);
            Http.get(url)
-             .then(res => {
+              .then(res => {
                dispatch(categoryActions.list(transformResponse(res.data)));
-              // console.log(res.data);
-             })
+              })
              .catch(err => {
                // TODO: handle err
                console.error(err.response);

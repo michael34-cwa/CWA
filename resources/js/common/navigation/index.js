@@ -9,7 +9,7 @@ import { BrowserRouter, Link, Router, Route } from "react-router-dom";
 import { Navbar, NavbarToggler } from "reactstrap";
 import PrivateHeader from "./PrivateHeader";
 import PublicHeader from "./PublicHeader";
-
+import logo from  "../../../images/logo.png"
 class Navigation extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
@@ -52,7 +52,7 @@ class Navigation extends Component {
     return (
       <Navbar className="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
         <Link to="/" className="navbar-brand">
-          CWA
+          <img src={logo} alt={"logo"} /> 
         </Link>
         <NavbarToggler
           className="navbar-toggler d-lg-none"

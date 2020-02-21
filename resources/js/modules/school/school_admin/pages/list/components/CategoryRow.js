@@ -12,8 +12,7 @@ const propTypes = {
 
 const CategoryRow = ({ index, category, togglePublish, handleRemove }) => {
 
-  console.log(category);
-   return (
+    return (
      <tr key={index}>
        <th scope="row">{index + 1}</th>
        <td>{category.first_name}</td>

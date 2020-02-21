@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { courseEditRequest, courseUpdateRequest, categoryListRequest } from '../../service'
+import { courseEditRequest, courseUpdateRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 
 // import components
@@ -52,10 +52,9 @@ class Page extends Component {
 
   }
   
-  loadCourse() {
+  loadCourse() {  
     const { match, course, dispatch } = this.props
-    dispatch(categoryListRequest({}));
-    if (!course.id) { 
+     if (!course.id) {  
       dispatch(courseEditRequest(match.params.id))  
     }
    

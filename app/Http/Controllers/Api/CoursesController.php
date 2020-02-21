@@ -21,8 +21,18 @@ class CoursesController  extends Controller
      */
     public function index(Request $request)
     {   
-         return Courses::with('getCategory')->latest()->paginate();  
+         return Courses::with(['getTasks','getCategory'])->latest()->paginate();  
     }
+
+       public function getCourses()
+    {
+   
+         return Courses::whereHas('getSchoolCourse', function ($q) {
+            $q->whereIn('school_id', [ \Auth::guard('api')->user()->id]);
+        })->with(['getTasks','getCategory'])->paginate();
+ 
+    }
+
 
     /**
      * get all published articles
@@ -102,7 +112,20 @@ class CoursesController  extends Controller
       //  return Courses::findOrFail($id);
     }
 
+
+
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function courseTasks($id)
+    {
+         return Courses::with(['getTasks','getCategory'])->find($id);  
+    }
+
+        /**
      * Show the form for editing the specified resource.
      *
      * @param int $id

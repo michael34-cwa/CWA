@@ -9,9 +9,15 @@ export default [
     component: lazy(() => import("./pages/list/index"))
   }, 
   {
-    path: "/tasks/:id/view",
+    path: "/course_tasks/:id",
     exact: true,
     auth: true,
     component: lazy(() => import("./pages/taskList/index"))
+  },
+  {
+  path: "/task_details/:id",
+  exact: true,
+  auth: true,
+  component: lazy(() => import("./pages/taskDetails/index"))
   }
 ];

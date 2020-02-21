@@ -56,6 +56,8 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Model\Roles', 'role_users', 'user_id', 'role_id');
     }
 
+
+
         public function ActivationsUser()
     {
         return $this->hasOne('App\Model\Activations');

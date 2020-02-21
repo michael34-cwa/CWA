@@ -7,8 +7,7 @@ import Page from './Page'
 const mapStateToProps = (state, router) => {
 
   const { params } = router.match
-  console.log(state);
-   const { dataList } = state.courses;
+    const { dataList } = state.courses;
    let dataLists = dataList ? dataList : [];
   const course = state.courses.data.find(course => course.id === Number(params.id))
  

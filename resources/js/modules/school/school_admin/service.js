@@ -104,8 +104,7 @@ export function categoryListRequest({ pageNumber = 1, url = "/schools" }) {
            if (pageNumber > 1) {
              url = url + `?page=${pageNumber}`;
            }
-           console.log(url);
-           Http.get(url)
+            Http.get(url)
              .then(res => {
                dispatch(categoryActions.list(transformResponse(res.data)));
              

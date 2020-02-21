@@ -114,9 +114,9 @@ export function courseListRequest({ pageNumber = 1, url = "/courses" }) {
 
 
        
-export function courseEditRequest(id) {
+export function courseEditRequest(id) { 
   return dispatch => {
-    Http.get(`courses/${id}`)
+    Http.get(`courses/course_tasks/${id}`)
       .then(res => {
         dispatch(courseActions.add(transformResponse(res.data)));
       })
@@ -126,6 +126,21 @@ export function courseEditRequest(id) {
       });
   }
 }
+
+export function taskDetailsRequest(id) {
+  return dispatch => {
+    Http.get(`tasks/${id}`)
+      .then(res => {
+        dispatch(courseActions.add(transformResponse(res.data)));
+      })
+      .catch(err => {
+        // TODO: handle err
+        console.error(err.response);
+      });
+  }
+}
+
+
 
 export function categoryListRequest({ url = "/courses/courses_category_list" }) {
   return dispatch => {

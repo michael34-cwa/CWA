@@ -8,10 +8,11 @@ class Course extends Model {
     this.initialize(props)
   }
 
-  initialize(props) {
-    super.initialize(props)   
+  initialize(props) { 
+    super.initialize(props)     
     this.courseName = props.courseName || "";
     this.courseDescription = props.courseDescription || "";
+    this.getTasks = props.getTasks || "";
     this.catId = props.getCategory|| "";
     this.isActive = props.isActive || false; 
     this.createdAt = props.createdAt ? moment(props.createdAt) : null;

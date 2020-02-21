@@ -7,15 +7,14 @@ use App\Model\Schools;
 
 use App\User;
 
-use App\Model\CategoryCourses;
+use App\Model\Courses;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SchoolRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Cartalyst\Sentinel\Users\UserInterface;
 use App\Model\Activations;
-use Activation;
-use App\Model\School;
+ use App\Model\School;
 
 class SchoolsController  extends Controller
 {
@@ -74,7 +73,6 @@ class SchoolsController  extends Controller
     {
         return Schools::all();
     }
-
 
 
     /**
