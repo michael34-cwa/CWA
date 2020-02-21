@@ -355,7 +355,44 @@ a.accordion-toggle.collapsed .toggleicon i.fa.fa-minus {
     bottom: 15px;
     background: transparent;
 }
-
+.course_categories ul {
+    padding-left: 0px;
+}
+.description-div {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+.task-description-div {
+  padding: 10px 0;
+   border-top: 1px solid #ddd;
+}
+.course_name strong {
+    color: #017bff;
+}
+.course-details h5 {
+    font-size: 19px;
+}
+.course_name h5 {
+    font-size: 30px;
+    margin-bottom: 8px !important;
+}
+.task-list h2 {
+    font-size: 24px;
+    color: #017bff;
+}
+.task-list {
+    padding-top: 25px;
+}
+.task_name {
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+.task-list .course-boxes {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
 /* 21 Feb css ends */
 @media(min-height:0px) and (max-height:450px) {
   .container.login-page {

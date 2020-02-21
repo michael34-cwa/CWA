@@ -81,13 +81,11 @@ class Page extends Component {
   render() {
     return (
       <main className="dashboard-right" role="main">
-        <h1 className="pl-2">Courses</h1>
-        <div  >
-        <Grid container spacing={1} justify="center">
-          <Grid container item xs={12} spacing={2} justify="center" >
+        <h1>Courses</h1>
+        <div>
+        
           {this.renderCourses()}
-          </Grid>  
-          </Grid>  
+          
         </div>
         <Pagination meta={this.props.meta} onChange={this.pageChange} />  
         {/* {this.state.visible < this.props.courses.length &&

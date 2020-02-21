@@ -28,44 +28,45 @@ const TaskRow = ({ dataList, course, errors, onChange, onSubmit }) => {
   console.log(course);
  
   return <div className="container">
-
     <div className="row">
       <Grid container spacing={1}>
         <Grid container item xs={12} spacing={15}>
       <div className="course-details w-100">
       <div className="course_name">
-      <h3 className="my-3">Course Name</h3>
-      <p>{course.courseName}</p>
+      <h5 className="my-3 text-center">{course.courseName}</h5>
       </div>
       <div className="description-div">
-      <h3 className="my-3">Course Description</h3>
        <div dangerouslySetInnerHTML={{ __html:  course.courseDescription  }} />
        </div>
        <div className="course_categories">
-       <h3 className="my-3">Course Categories</h3>
+      <h5 className="my-3">Course Categories:</h5>
           <ul>
           {course.catId ? course.catId.map(function (item, index) {
-            return <li>{item.categoryName}</li>;
+            return <li className="chip-course">{item.categoryName}</li>;
           }).reduce((prev, curr) => [prev, ' ', curr]) : ''}
         </ul>
         </div>
       </div> 
        </Grid>
-      </Grid>        
+      </Grid>  
+      <div className="task-list">  
+      <h2>Tasks</h2>    
       <Grid container spacing={1}>
         <Grid container item xs={12} spacing={3}>
-     
           {course.getTasks ? course.getTasks.map((itemTask, index) => {
                 return <React.Fragment>
                   <Grid item xs={4}>
-                    <Paper>Task Name: {itemTask.taskName}</Paper>
-                    <Paper>  <Link className="btn btn-primary" to={`/task_details/${itemTask.id}`}>  View Tasks Details</Link></Paper>
+                  <div className="course-boxes">
+                    <Paper className="task_name"> {itemTask.taskName}</Paper>
+     <Paper> {'The infections found in the two jails, in the northern'}</Paper>
+                     <Paper className="text-center">  <Link className="btn btn-primary mt-3" to={`/task_details/${itemTask.id}`}>  View Task</Link></Paper>
+                     </div>
                      </Grid>
                    </React.Fragment>
           }) : ''} 
-        
         </Grid>
       </Grid>  
+      </div>
     </div>
   </div>
 }
