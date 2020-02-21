@@ -16,17 +16,20 @@ const CourseRow = ({ course }) => {
   return (
  
     <React.Fragment>
-      <Grid item xs={4}>
+      <Grid item xs={4} className="course-grid">
+      <div className="course-boxes">
         <Paper> {'Course Name: ' + course.courseName}</Paper>
-
-        <Paper>Technology 
+         <div className="course-technology">
+        <Paper>Technology: &nbsp; 
         {course.catId ? course.catId.map(function(item, index) {
         return <span className="chip-course">{item.categoryName}</span>;
           }).reduce((prev, curr) => [prev, ' ', curr]):''}  
         </Paper>
-        <Paper >
+        </div>
+        <Paper className="text-center button_bottom">
           <Link className="btn btn-primary" to={`course_tasks/${course.id}`}>  View All Tasks </Link>
         </Paper>
+        </div>
       </Grid> 
     </React.Fragment>
   

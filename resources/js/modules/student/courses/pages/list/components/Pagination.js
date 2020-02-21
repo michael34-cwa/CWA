@@ -31,7 +31,7 @@ class Pagination extends Component {
   }
   
   render() {
-    return <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    return <div className="btn-toolbar mt-4" role="toolbar" aria-label="Toolbar with button groups">
       <div className="btn-group mr-2" role="group" aria-label="First group">
         {this.renderLinks()}
       </div>

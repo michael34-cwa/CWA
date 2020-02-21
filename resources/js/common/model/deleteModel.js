@@ -19,9 +19,11 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    // border: '2px solid #000',
     boxShadow: theme.shadows[5],
+    width: '500px',
     padding: theme.spacing(2, 4, 3),
+
   },
 }));
 
@@ -52,15 +54,22 @@ const DeleteModel = ({ openModel,opens,handleRemove, id }) => {
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p> 
-            <button color="primary"
-              onClick={() => handleRemove(id)}
-            >Delete</button>
-              <button type="button" onClick={handleClose}>
-                Close
+          <div className={classes.paper }>
+          <div className= "modal-inner-div" >
+           <a className="modalclose" onClick={handleClose}>
+               X
+               </a>
+            <h2 id="transition-modal-title" className="text-center mb-0">Delete Confirmation</h2>
+            <p id="transition-modal-description" className="text-center mt-3 mb-4">{'Are you sure want to delete?'}</p> 
+            <div className="text-center">
+              <button type="button" className="btn btn-primary mr-2" onClick={handleClose}>
+               Cancel
                </button>
+                <button color="primary" className="btn btn-danger"
+              onClick={() => handleRemove(id)}
+            >Yes, Delete</button>
+               </div>
+               </div>
           </div>
           
         </Fade>
