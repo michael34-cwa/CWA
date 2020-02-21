@@ -25,7 +25,7 @@ const TaskRow = ({ dataList, course, errors, onChange, onSubmit }) => {
     }
   }
 
-   
+  console.log(course);
  
   return <div className="container">
 

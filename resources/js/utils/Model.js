@@ -18,6 +18,7 @@ class Model {
   constructor(props) {
     this.initialize(props);
   }
+  
    initialize(props) {
     this.id = (props.id && Number(props.id)) || null;
    //   this.technologyName = props.technologyName || null;
