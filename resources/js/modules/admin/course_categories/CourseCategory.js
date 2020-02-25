@@ -7,7 +7,7 @@ class CourseCategory extends Model {
     this.initialize(props)
   }
 
-  initialize(props) { 
+  initialize(props) {
      super.initialize(props)  
     this.category_name = props.categoryName || "";
     this.created_at = props.created_at || "";

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import MyEditor from '../../../../../../common/wysiwyg-editor/index'
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem"; 
-
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 const displayName = 'CourseFrom'
 const propTypes = { 
   course: PropTypes.object.isRequired,
@@ -35,7 +36,7 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
       }
     }
   };
-
+  console.log(errors.items);
    return (
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group row">
@@ -54,56 +55,49 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
           {errors.has("course_name") && (
-            <div className="invalid-feedback">
-              {errors.first("course_name")}
-            </div>
-          )}
-        </div>
-      </div>
-      <div className="form-group row">
-        <label htmlFor="description" className="col-md-12 col-form-label">
-          Course Description
-        </label>
-        <div className="col-md-12">
-           <MyEditor id="course_description" value={course.course_description} onChange={e => handleChange('course_description', e)} />
-{/*       
-          <textarea
-            id="course_description"
-            name="course_description"
-            className={`form-control ${errors.has("course_description") &&
-              "is-invalid"}`}
-            rows="3"
-            placeholder="Description"
-             value={course.course_description || ""}
-            onChange={e => handleChange(e.target.name, e.target.value)}
-          /> */}
-
-          {errors.has("course_description") && (
-            <div className="invalid-feedback">
-              {errors.first("course_description")}
-            </div>
+             <div className="invalid-feedback"> {errors.first("course_name").replace("_", " ")} </div>
           )}
         </div>
       </div>
 
-      <div className="form-group row">
-        <label htmlFor="description" className="col-md-12 col-form-label">
-          Course Status
+ 
+    
+       <div className="form-group row">
+         <label htmlFor="title" className="col-md-12 col-form-label">
+           Course Description
         </label>
+         <div className="col-md-12"> 
+           <MyEditor className={`form-control ${errors.has("course_name") &&
+             "is-invalid"}`}  id="course_description" name="course_description" value={course.course_description || ""} onChange={e => handleChange('course_description', e)} />
+       {errors.has("course_description") && (
+             <div className="invalid-feedback"> {errors.first("course_description").replace("_", " ")} </div>
+           )}
+         </div>
+       </div>
+
+
+      <div className="form-group row">
+         <label htmlFor="description" className="col-md-12 col-form-label">
+           Course Status
+        </label> 
         <div className="col-md-12">
-          <select
-            id="is_active"
-            name="is_active"
-            className={`form-control ${errors.has("is_active") &&
-              "is-invalid"}`}
-            placeholder="Course Status"
-            onChange={e => handleChange(e.target.name, e.target.value)}
-          >
-            <option value="0">In Active</option>
-            <option value="1">Active</option>
-          </select>
+           <FormControl>
+             <InputLabel id="is_active"> Course Status</InputLabel>
+           <Select
+               labelId="is_active"
+             id="is_active"
+             name="is_active"
+             className={`form-control ${errors.has("is_active") &&
+               "is-invalid"}`}
+             placeholder="Course Status"
+              onChange={e => handleChange(e.target.name, e.target.value)}
+           >
+             <MenuItem value={0}>In Active</MenuItem>
+             <MenuItem value={1}>Active</MenuItem> 
+           </Select>
+           </FormControl>
           {errors.has("is_active") && (
-            <div className="invalid-feedback">{errors.first("is_active")}</div>
+             <div className="invalid-feedback">{errors.first("is_active").replace("is_active", "course status")}</div>
           )}
         </div>
       </div>
@@ -131,8 +125,8 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
               </MenuItem>
             ))}
           </Select>
-           {errors.has("catId") && (
-             <div className="invalid-feedback">{errors.first("catId")}</div>
+           {errors.has("catId") && (  
+             <div className="invalid-feedback">{errors.first("catId").replace("catId", "course category")}</div>
           )}
 
 

@@ -28,19 +28,29 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const DeleteModel = ({ openModel,opens,handleRemove, id }) => {
+const DeleteModel = ({ meaid, handleRemove}) => {
  
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(opens); 
+  const classes = useStyles();  
+  const [open, setOpen] = React.useState(false); 
 
   
   const handleClose = () => {  
-    setOpen(false);
-    openModel(); 
+    setOpen(false); 
   };
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  
   return (
     <div>
+    
+      <button
+        className="btn btn-danger"
+        onClick={handleOpen}
+      >
+        <i class="fa fa-trash-o" aria-hidden="true"></i>   Delete
+                </button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -52,7 +62,7 @@ const DeleteModel = ({ openModel,opens,handleRemove, id }) => {
         BackdropProps={{
           timeout: 500,
         }}
-      >
+      > 
         <Fade in={open}>
           <div className={classes.paper }>
           <div className= "modal-inner-div" >
@@ -65,15 +75,21 @@ const DeleteModel = ({ openModel,opens,handleRemove, id }) => {
               <button type="button" className="btn btn-primary mr-2" onClick={handleClose}>
                Cancel
                </button>
-                <button color="primary" className="btn btn-danger"
+                {/* <button color="primary" className="btn btn-danger"
               onClick={() => handleRemove(id)}
-            >Yes, Delete</button>
+            >Yes, Delete</button> */}
+
+                <button color="primary" className="btn btn-danger"
+                  onClick={() => handleRemove(meaid)}
+                  >Yes, Delete</button>
+                  
                </div>
                </div>
           </div>
           
         </Fade>
       </Modal>
+     
     </div>
   );
 }

@@ -11,7 +11,7 @@ class Course extends Model {
   initialize(props) {
     super.initialize(props)   
      this.courseName = props.courseName || "";
-    this.courseDescription = props.courseDescription || "";
+    this.course = props.course || "";
     this.catId = props.getCategory|| "";
     this.getTasks = props.getTasks || "";
     this.isActive = props.isActive || false; 

@@ -23,7 +23,8 @@ class WYSIWYG extends Component {
   }
 
   convertHtmlToEditorState(value) {
-    if (value){
+    if (value) {
+      
       const blocksFromHTML = convertFromHTML(value)
       const state = ContentState.createFromBlockArray(
         blocksFromHTML.contentBlocks,

@@ -8,7 +8,7 @@ import CategoryRow from './components/CategoryRow'
 import Pagination from '../../../../../common/Pagination'
 import { Link } from 'react-router-dom'
 import LoadingComponent from '../../../../../common/loader'
-import DeleteModel from '../../../../../common/model/deleteModel'
+import DeleteModel from '../../../../../common/model/DeleteModel'
 class Page extends Component {
   static displayName = 'CategoriesPage'
   static propTypes = {
@@ -21,8 +21,7 @@ class Page extends Component {
     super(props)
 
     this.handleRemove = this.handleRemove.bind(this)
-    this.openModel = this.openModel.bind(this)
-    this.pageChange = this.pageChange.bind(this)
+     this.pageChange = this.pageChange.bind(this)
 
     this.state = { open: false };
   }
@@ -39,24 +38,20 @@ class Page extends Component {
 
 
 
-  openModel(id) { 
-    this.setState({ open: !this.state.open, id: id })
-  }
+ 
 
-  handleRemove(id) {
-    this.props.dispatch(categoryRemoveRequest(id))
-    this.props.dispatch(categoryListRequest({}))
-    this.setState({ open: false, id: '' })
+  handleRemove(id) {  
+     this.props.dispatch(categoryRemoveRequest(id))  
   }
 
   renderCategories() {
     return this.props.course_categories.map((category, index) => {
-      if (category) {
+      if (category) { 
         return <CategoryRow key={index}
           category={category}
+          pageNo={this.props.meta.from++}
           index={index}
-          togglePublish={this.togglePublish}
-          openModel={this.openModel}
+          togglePublish={this.togglePublish} 
           handleRemove={this.handleRemove} />
       } else {
         return <LoadingComponent isLoading={true} error={''} />
@@ -91,8 +86,8 @@ class Page extends Component {
         </div>
    
         <Pagination meta={this.props.meta} onChange={this.pageChange} /> 
-      
-        {this.state.open && <DeleteModel openModel={this.openModel}  opens={this.state.open}  id={this.state.id} handleRemove={this.handleRemove}  />}
+        {/* <DeleteModel openModel={this.openModel} opens={this.state.open} id={this.state.id} handleRemove={this.handleRemove} /> */}
+        {/* {this.state.open && <DeleteModel openModel={this.openModel}  opens={this.state.open}  id={this.state.id} handleRemove={this.handleRemove}  />} */}
       </main>
     );
   }

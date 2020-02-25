@@ -3,10 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { courseAddRequest, categoryListRequest } from "../../service";
-import ReeValidate from 'ree-validate'
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+import ReeValidate from 'ree-validate' 
 // import components
 import Form from './components/Form'
 
@@ -39,7 +36,7 @@ class Page extends Component {
 
   UNSAFE_componentWillMount() {
     const { dispatch } = this.props;
-    dispatch(categoryListRequest({}));
+    dispatch(categoryListRequest({})); 
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,36 +48,39 @@ class Page extends Component {
   }
 
   handleChange(name, value) {
+ 
     const { errors } = this.validator;
 
-    this.setState({ course: { ...this.state.course, [name]: value } });
-
     errors.remove(name);
-
-    this.validator.validate(name, value).then(() => {
+    this.setState({ course: { ...this.state.course, [name]: value } });
+ 
+    this.validator.validate(name, value).then(() => { 
       this.setState({ errors });
     });
   }
 
-  handleSubmit(e) {
+    handleSubmit(e) {
     e.preventDefault();
-    const course = this.state.course;
-    const { errors } = this.validator;
-
+      const course = this.state.course; 
+    const { errors } = this.validator; 
+      this.validator.validateAll() 
+ 
     this.validator.validateAll(course).then(success => {
       if (success) {
         this.submit(course);
       } else {
+        console.log(errors);
         this.setState({ errors });
       }
-    });
+    }); 
   }
 
   submit(course) {
+
      this.props
        .dispatch(courseAddRequest(course)) 
        .then(res => {  
-         this.props.history.push('/admin/courses');
+      //   this.props.history.push('/admin/courses');
        })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator;
