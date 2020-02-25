@@ -28,7 +28,7 @@ const CategoryRow = ({ index, category, openModel, pageNo, handleRemove }) => {
               variant="contained"
               color = "secondary"
               className="text-capitalize mx-1"
-              onClick={() => handleRemove(category.id)}
+              onClick={() => handleRemove(category.id )}
             >
             <i class="fa fa-trash-o mr-1" aria-hidden="true"></i> Delete
             </Button>
