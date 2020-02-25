@@ -5,6 +5,8 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem"; 
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 const displayName = 'CourseFrom'
 const propTypes = { 
   course: PropTypes.object.isRequired,
@@ -36,15 +38,29 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
       }
     }
   };
-  console.log(errors.items);
+  
    return (
     <form onSubmit={e => onSubmit(e)}>
       <div className="form-group row">
-        <label htmlFor="title" className="col-md-12 col-form-label">
-          Course Name
-        </label>
+  
         <div className="col-md-12">
-          <input
+ 
+           <TextField
+             error={errors.has("course_name")}
+              
+             className={` ${errors.has("course_name") &&
+               "is-invalid"}`}
+             id="standard-error-helper-text"
+             label="Course Name"
+             defaultValue="Course Name"
+             helperText={`${errors.has("course_name") ? errors.first("course_name").replace("_", " ") : ''}`}
+             value={course.course_name || ""}
+             id="course_name"
+             name="course_name"
+             onChange={e => handleChange(e.target.name, e.target.value)}
+           />
+
+          {/* <input
             type="text"
             id="course_name"
             name="course_name"
@@ -53,10 +69,8 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
             placeholder="Course Name"
              value={course.course_name || ""}
             onChange={e => handleChange(e.target.name, e.target.value)}
-          />
-          {errors.has("course_name") && (
-             <div className="invalid-feedback"> {errors.first("course_name").replace("_", " ")} </div>
-          )}
+          /> */}
+      
         </div>
       </div>
 
@@ -81,13 +95,13 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
            Course Status
         </label> 
         <div className="col-md-12">
-           <FormControl>
+           <FormControl className="w-100">
              <InputLabel id="is_active"> Course Status</InputLabel>
            <Select
                labelId="is_active"
              id="is_active"
              name="is_active"
-             className={`form-control ${errors.has("is_active") &&
+             className={`${errors.has("is_active") &&
                "is-invalid"}`}
              placeholder="Course Status"
               onChange={e => handleChange(e.target.name, e.target.value)}
@@ -97,7 +111,7 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
            </Select>
            </FormControl>
           {errors.has("is_active") && (
-             <div className="invalid-feedback">{errors.first("is_active").replace("is_active", "course status")}</div>
+             <div className="invalid-feedbackd">{errors.first("is_active").replace("is_active", "course status")}</div>
           )}
         </div>
       </div>

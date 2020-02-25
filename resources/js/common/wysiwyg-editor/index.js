@@ -50,7 +50,7 @@ class WYSIWYG extends Component {
         <Editor
           editorState={editorState}
           wrapperClassName="demo-wrapper"
-          editorClassName="form-control"
+          editorClassName="rich-editor"
           onEditorStateChange={this.onEditorStateChange}
         />
       </div>
