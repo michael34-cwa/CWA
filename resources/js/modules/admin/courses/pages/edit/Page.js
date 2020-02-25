@@ -6,8 +6,8 @@ import { courseEditRequest, courseUpdateRequest, categoryListRequest } from '../
 import ReeValidate from 'ree-validate'
 
 // import components
+//import Form from './components/Form'
 import Form from './components/Form'
-
 class Page extends Component {
   static displayName = 'EditCourse'
   static propTypes = {
@@ -120,8 +120,9 @@ class Page extends Component {
   
   render() {
     return <main className="dashboard-right" role="main">
-    <div class="card"><div class="card-body bg-white">
-      <h1>Edit Courses</h1>
+    <div class="card">
+      <div class="card-body bg-white">
+      <h1 class="page-heading text-center">Edit Courses</h1>
       { this.renderForm() }
       </div>
       </div>

@@ -124,9 +124,9 @@ class Page extends Component {
     return <main className="dashboard-right" role="main">   
     <div className="card">
       <div className="card-body bg-white"> 
-      <h1>Update Category Name</h1> 
+      <h1 class="text-center">Update Category Name</h1> 
        { this.renderForm() }    
-         </div>
+      </div>
       </div>
     </main>  
   }

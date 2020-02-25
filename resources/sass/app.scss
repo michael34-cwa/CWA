@@ -258,11 +258,7 @@ main.dashbard-area {
 	margin-top: 10px;
 	color: #00dc00;
 }
-.table-responsive {
-	background-color: #fff;
-	box-shadow: 6px 11px 41px -28px #a99de7;
-	margin-bottom: 20px;
-}
+
 .boxessection {
 	i {
 		font-size: 62px;
@@ -414,6 +410,23 @@ nav.navbar {
 			}
 		}
 	}
+}
+.editor-wrap {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.19);
+}
+button, .MuiButton-root {
+	outline: none !important;
+	font-weight: 400 !important;
+}
+button.colorPrimary, a.colorPrimary {
+    background: #1e8ece;
+    color: #fff;
+}
+button.colorPrimary:hover, a.colorPrimary:hover {
+    background: #0080ca;
+}
+.table {
+    font-size: 14px;
 }
 @media (min-height:0px) and (max-height:450px) {
 	.container.login-page {

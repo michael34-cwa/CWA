@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { categoryListRequest, categoryUpdateRequest, categoryRemoveRequest } from '../../service'
+import { Button } from '@material-ui/core';
 // import components
 import CategoryRow from './components/CategoryRow'
 import Pagination from '../../../../../common/Pagination'
@@ -21,7 +22,7 @@ class Page extends Component {
     super(props)
 
     this.handleRemove = this.handleRemove.bind(this)
-     this.pageChange = this.pageChange.bind(this)
+    this.pageChange = this.pageChange.bind(this)
 
     this.state = { open: false };
   }
@@ -38,20 +39,20 @@ class Page extends Component {
 
 
 
- 
 
-  handleRemove(id) {  
-     this.props.dispatch(categoryRemoveRequest(id))  
+
+  handleRemove(id) {
+    this.props.dispatch(categoryRemoveRequest(id))
   }
 
   renderCategories() {
     return this.props.course_categories.map((category, index) => {
-      if (category) { 
+      if (category) {
         return <CategoryRow key={index}
           category={category}
           pageNo={this.props.meta.from++}
           index={index}
-          togglePublish={this.togglePublish} 
+          togglePublish={this.togglePublish}
           handleRemove={this.handleRemove} />
       } else {
         return <LoadingComponent isLoading={true} error={''} />
@@ -63,29 +64,40 @@ class Page extends Component {
 
     return (
       <main className="dashboard-right" role="main">
-        <h1>Course Categories</h1>
-        <div className="table-responsive">
-
-          <table className="table  table-striped">
-            <thead className="thead-inverse">
-              <tr>
-                <th>Sr. No.</th>
-                <th>Category Name</th>
-                <th>Created Date</th>
-                <th>Updated Date</th>
-                <th>
-                  <Link to="/admin/course_categories/create" className="btn btn-success">
-                    <i class="fa fa-plus" aria-hidden="true"></i> Add
-                </Link>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.props.course_categories.length >= 1 ? this.renderCategories() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>
-          </table>
+        <div className="card">
+          <div className="card-body bg-white">
+            <h1 class="text-center">Course Categories</h1>
+            <div className="table-responsive">
+              <table className="table  table-striped">
+                <thead className="thead-inverse">
+                  <tr>
+                    <th>Sr. No.</th>
+                    <th>Category Name</th>
+                    <th>Created Date</th>
+                    <th>Updated Date</th>
+                    <th>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        className="text-capitalize colorPrimary mx-1"
+                        href="/admin/course_categories/create"
+                      >
+                        <i class="fa fa-plus mr-1" aria-hidden="true"></i> Add
+                      </Button >
+                      {/* <Link to="/admin/course_categories/create" className="btn btn-success">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Add
+                      </Link> */}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.props.course_categories.length >= 1 ? this.renderCategories() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>
+              </table>
+            </div>
+            <Pagination meta={this.props.meta} onChange={this.pageChange} />
+          </div>
         </div>
-   
-        <Pagination meta={this.props.meta} onChange={this.pageChange} /> 
+
         {/* <DeleteModel openModel={this.openModel} opens={this.state.open} id={this.state.id} handleRemove={this.handleRemove} /> */}
         {/* {this.state.open && <DeleteModel openModel={this.openModel}  opens={this.state.open}  id={this.state.id} handleRemove={this.handleRemove}  />} */}
       </main>

@@ -94,9 +94,10 @@ import { browserHistory } from 'react-router'
   
   render() {
     
-    return <div className="dashboard-right"><div className="card"><div className="card-body bg-white">
+    return <div className="dashboard-right">
+      <div className="card"><div className="card-body bg-white">
     
-      <h1>Add Course Category</h1>
+      <h1 className="text-center">Add Course Category</h1>
        <Form {...this.state}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit} />

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { Button } from '@material-ui/core';
 
 const displayName = 'CourseRow'
 const propTypes = {
@@ -28,29 +29,37 @@ const CourseRow = ({ index, course, togglePublish, handleRemove }) => {
       <td className="btn-right">
         <div className="btn-group" role="group" aria-label="Actions">
           {course.isActive ? (
-            <button
-              className="btn btn-warning "
+            <Button 
+              size="small"
+              variant="contained"
+              color="secondary"
+              className="text-capitalize mx-1"
               onClick={() => togglePublish(course.id)}
             >
-             <i class="fa fa-eye-slash" aria-hidden="true"></i> In Active
-            </button>
+             <i class="fa fa-eye-slash mr-1" aria-hidden="true"></i> Inactive
+            </Button >
           ) : (
-            <button
-              className="btn btn-success"
+            <Button
+              size="small"
+              variant="contained"
+              className="colorPrimary text-capitalize mx-1"
                 onClick={() => togglePublish(course.id)}
             >
-             <i class="fa fa-eye" aria-hidden="true"></i> Active
-            </button>
+             <i class="fa fa-eye mr-1" aria-hidden="true"></i> Active
+            </Button>
           )}
-          <Link className="btn btn-primary" to={`courses/${course.id}/edit`}>
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-          </Link>
-          <button
-            className="btn btn-danger"
+          <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1" href={`courses/${course.id}/edit`}>
+            <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Edit
+          </Button >
+          <Button
+            size="small"
+            variant="contained"
+            color = "secondary"
+            className="text-capitalize mx-1"
             onClick={() => handleRemove(course.id)}
           >
-           <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
-          </button>
+           <i class="fa fa-trash-o mr-1" aria-hidden="true"></i> Delete
+          </Button>
         </div>
       </td>
     </tr>

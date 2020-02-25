@@ -98,8 +98,9 @@ class Page extends Component {
   render() {
     return ( 
       <div className="dashboard-right">
-      <div class="card"><div class="card-body bg-white">
-        <h1>Add a Courses</h1>
+      <div class="card">
+        <div class="card-body bg-white">
+        <h1 class="page-heading text-center">Add a Courses</h1>
         <Form
           {...this.state}
           dataList={this.props.dataList}

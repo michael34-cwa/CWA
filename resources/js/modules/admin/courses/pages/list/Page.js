@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { courseListRequest, courseUpdateRequest, courseRemoveRequest } from '../../service'
-
+import { Button } from '@material-ui/core';
 // import components
 import CourseRow from './components/CourseRow'
 import Pagination from './components/Pagination'
@@ -28,7 +28,7 @@ class Page extends Component {
 
   UNSAFE_componentWillMount() {
     const { dispatch } = this.props;
-     dispatch(courseListRequest({}));
+    dispatch(courseListRequest({}));
   }
 
   pageChange(pageNumber) {
@@ -43,8 +43,8 @@ class Page extends Component {
       course.isActive = 0;
     } else {
       course.isActive = 1;
-    } 
-    this.props.dispatch(courseUpdateRequest(course.toJson(),'1'));
+    }
+    this.props.dispatch(courseUpdateRequest(course.toJson(), '1'));
   }
 
   handleRemove(id) {
@@ -52,7 +52,7 @@ class Page extends Component {
   }
 
   renderCourses() {
- 
+
     return this.props.courses.map((course, index) => {
       return (
         <CourseRow
@@ -69,28 +69,39 @@ class Page extends Component {
   render() {
     return (
       <main className="dashboard-right" role="main">
-        <h1>Courses</h1>
-        <div className="table-responsive">
-          <table className="table  table-striped">
-            <thead className="thead-inverse">
-              <tr>
-                <th>Sr. No.</th>
-                <th>Name</th>
-                {/* <th>Description</th> */}
-                <th>Category</th>
-                <th>Created Date</th>
-                <th>Updated Date</th>
-                <th>
-                  <Link to="/admin/courses/create" className="btn btn-success">
-                    <i class="fa fa-plus" aria-hidden="true"></i>  Add
-                  </Link>
-                </th>
-              </tr>
-            </thead>
-            <tbody>{this.renderCourses()}</tbody>
-          </table>
+        <div className="card">
+          <div className="card-body bg-white">
+            <h1 class="text-center">Courses</h1>
+            <div className="table-responsive">
+              <table className="table  table-striped">
+                <thead className="thead-inverse">
+                  <tr>
+                    <th width="70px">Sr. No.</th>
+                    <th width="150px">Name</th>
+                    {/* <th>Description</th> */}
+                    <th>Category</th>
+                    <th width="140px">Created Date</th>
+                    <th width="140px">Updated Date</th>
+                    <th>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        className="text-capitalize colorPrimary mx-1"
+                        href="/admin/courses/create"
+                      >
+                        <i class="fa fa-plus mr-1" aria-hidden="true"></i> Add
+                      </Button >
+
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>{this.renderCourses()}</tbody>
+              </table>
+            </div>
+            <Pagination meta={this.props.meta} onChange={this.pageChange} />
+          </div>
         </div>
-        <Pagination meta={this.props.meta} onChange={this.pageChange} />
+
       </main>
     );
   }
