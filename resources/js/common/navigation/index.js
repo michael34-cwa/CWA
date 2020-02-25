@@ -50,7 +50,7 @@ class Navigation extends Component {
 
   render() {
     return (
-      <Navbar className="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+      <Navbar className="navbar navbar-expand-md bg-white fixed-top">
         <Link to="/" className="navbar-brand">
           <img src={logo} alt={"logo"} /> 
         </Link>
