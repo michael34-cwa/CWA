@@ -12,7 +12,7 @@ class ActivationsTableSeeder extends Seeder
     public function run()
     {
         $active = [
-            ['user_id' => '51', 'code' => 'fGRNEkoUmGT5D1kufvnAKcUBduS1Ua2c','completed'=>'1','completed_at'=>'2019-07-15 12:26:46'],
+            ['user_id' => '1', 'code' => 'fGRNEkoUmGT5D1kufvnAKcUBduS1Ua2c','completed'=>'1','completed_at'=>'2019-07-15 12:26:46'],
            
         ];
        

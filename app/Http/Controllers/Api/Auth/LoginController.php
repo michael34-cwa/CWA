@@ -46,8 +46,8 @@ class LoginController extends Controller
 
         request()->request->add([
             'grant_type' => 'password',
-            'client_id' => '3',
-            'client_secret' => 'ijVun1X9AnPIBPCcIZFDwXfYrtyYZiCDamDwL3p0',
+            'client_id' => env("PERSONAL_CLIENT_ID", "1"),  
+            'client_secret' => env("PERSONAL_CLIENT_SECRET", "YAc88b27FFz4M2PAyyadT6wKtuNLdPZ4brhjfM16"),
             'username' => $input['email'],
             'password' => $input['password'],
         ]);
