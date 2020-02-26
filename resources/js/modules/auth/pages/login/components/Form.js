@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-
+import LoadingComponent from '../../../../../common/loader'
 const displayName = 'LoginForm'
 const propTypes = {
   email: PropTypes.string, 
@@ -20,7 +20,8 @@ const Form = ({
   errors,  
   handleChange,
   handleSubmit,
-  routeNameType
+  routeNameType,
+  loading
 }) => (  
     <form className="form" role="form" onSubmit={handleSubmit} noValidate> 
       <h2 className="card-title">{routeNameType == '/admin/login' ? "Administrator Login" :"Login"}</h2>
@@ -65,7 +66,7 @@ const Form = ({
         <span className="custom-control-description small"></span>
       </label>
     </div>
-  
+      {<LoadingComponent isLoading={loading} error={''} />}
     <button className="btn btn-lg btn-primary btn-block"
             type="submit"
             disabled={errors.any()}>Log In</button>

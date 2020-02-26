@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types' 
 import { TextField , Button  , FormControl  } from '@material-ui/core';
+import LoadingComponent from '../../../../../../common/loader'
 const displayName = 'CategoryFrom'
 const propTypes = {
   category: PropTypes.object.isRequired,
@@ -9,7 +10,7 @@ const propTypes = {
   onSubmit: PropTypes.func.isRequired,
 }
 
-const Form = ({ category, errors, onChange, onSubmit }) => {
+const Form = ({ loading,category, errors, onChange, onSubmit }) => {
   
   function handleChange(name, value) {
     if (value !== category[name]) {
@@ -35,21 +36,7 @@ const Form = ({ category, errors, onChange, onSubmit }) => {
           </FormControl>
         </div>
         
-        {/* <div className="col-md-12">
-          <input
-            type="text"
-            id="category_name"
-            name="category_name"
-            className={`form-control ${errors.has("category_name") && "is-invalid"}`}
-            placeholder="Category Name"
-            value={category.category_name || ""}
-            onChange={e => handleChange(e.target.name, e.target.value)} 
-          />
-        
-          {errors.has("category_name") && (
-            <div className="invalid-feedback">{errors.first("category_name").replace("_", " ")}</div>
-          )}
-        </div> */}
+        {<LoadingComponent isLoading={loading} error={''} />}
       </div>
 
       <div className="form-group row">

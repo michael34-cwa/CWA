@@ -27,7 +27,8 @@ import { browserHistory } from 'react-router'
     
     this.state = {
       category,
-      errors: this.validator.errors
+      errors: this.validator.errors,
+      loading: false
     }
     
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -75,12 +76,15 @@ import { browserHistory } from 'react-router'
   }
   
   submit(category) { 
+    this.setState({ loading: true })
     this.props
       .dispatch(categoryAddRequest(category)) 
       .then(res => { 
+        this.setState({ loading: true })
         this.props.history.push('/admin/course_categories');  
       })
       .catch(({ error, statusCode }) => { 
+        this.setState({ loading: true })
         const { errors } = this.validator;  
          if (statusCode === 422) { 
           _.forOwn(error, (message, field) => { 

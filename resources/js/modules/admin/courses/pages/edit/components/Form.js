@@ -37,8 +37,7 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
       }
     }
   };
-
-
+ 
   return <form onSubmit={e => onSubmit(e)}>
     <div className="row">
       <div className="col-md-12">
@@ -126,7 +125,7 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
           className="text-capitalize colorPrimary"
           disableElevation
         >
-          <i className="fa fa-plus mr-2" aria-hidden="true"></i>  Add Course
+          <i className="fa fa-plus mr-2" aria-hidden="true"></i>  Update Course
         </Button>
         {/* <button disabled={errors.any()} type="submit" className="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update Courses</button> */}
       </div>

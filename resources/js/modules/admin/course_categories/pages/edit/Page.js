@@ -110,7 +110,7 @@ class Page extends Component {
   }
   
   renderForm() { 
-    const { category,loading } = this.props 
+    const { category } = this.props 
     if (category.id) { 
       return <Form {...this.state}
         loading={this.state.loading}

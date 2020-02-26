@@ -37,27 +37,7 @@ const Form = ({ loading, category, errors, onChange, onSubmit }) => {
             />
           </FormControl>
         </div>
-
-        {/* <label htmlFor="title" className="col-md-12 col-form-label">
-          Title
-        </label>
-        <div className="col-md-12">
-          <input
-            type="text"
-            id="category_name"
-            name="category_name"
-            className={`form-control ${errors.has("category_name") &&
-              "is-invalid"}`}
-            placeholder="Title"
-            value={category.category_name || ""}
-            onChange={e => handleChange(e.target.name, e.target.value)}
-          />
-          {errors.has("category_name") && (
-            <div className="invalid-feedback">{errors.first("category_name").replace("_", " ")}</div>
-          )}
-          {<LoadingComponent isLoading={loading} error={''} />}
-        </div>
-       */}
+        {<LoadingComponent isLoading={loading} error={''} />}
       </div>
 
       <div className="row">

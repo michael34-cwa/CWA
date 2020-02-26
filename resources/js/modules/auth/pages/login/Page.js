@@ -39,7 +39,8 @@ class Page extends Component {
         remember: false,
       }, 
       routeNameType: '',
-      errors: this.validator.errors
+      errors: this.validator.errors,
+      loading: false
     }
 
     // bind component with event handlers
@@ -88,11 +89,12 @@ class Page extends Component {
   }
 
   submit(credentials) {
+    this.setState({ loading: true })
     this.props.dispatch(login(credentials))
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator
-
-        if (statusCode === 422) {
+        this.setState({ loading: false })
+        if (statusCode === 422) { 
           _.forOwn(error, (message, field) => {
             errors.add(field, message);
           });
@@ -141,6 +143,7 @@ class Page extends Component {
                    <div className="logo-area">CWA</div>
                    <div className="login-wrapper">
                   <Form {...props}
+                      loading={this.state.loading}
                       routeNameType={this.props.routeNameType}
                   />
                 </div>
