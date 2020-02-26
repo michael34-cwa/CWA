@@ -49,7 +49,10 @@ const CourseRow = ({ index, course, togglePublish, handleRemove }) => {
             </Button>
           )}
           <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1" href={`courses/${course.id}/edit`}>
-            <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Edit
+      
+            <Link to={`courses/${course.id}/edit`}>
+              <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Edit
+                  </Link>
           </Button >
           <Button
             size="small"

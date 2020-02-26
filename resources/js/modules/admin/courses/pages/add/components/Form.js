@@ -52,17 +52,7 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
             onChange={e => handleChange(e.target.name, e.target.value)}
           />
         </FormControl>
-
-          {/* <input
-            type="text"
-            id="course_name"
-            name="course_name"
-            className={`form-control ${errors.has("course_name") &&
-              "is-invalid"}`}
-            placeholder="Course Name"
-             value={course.course_name || ""}
-            onChange={e => handleChange(e.target.name, e.target.value)}
-          /> */}
+ 
 
         </div>
       </div>
@@ -70,12 +60,12 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
       <div className="mb-3">
         <label htmlFor="title">Course Description</label>
         <div className="editor-wrap p-2">
-          <MyEditor className={`${errors.has("course_description") &&
-              "is-invalid"}`} id="course_description" name="course_description" value={course.course_description || ""} onChange={e => handleChange('course_description', e)} />
-            {errors.has("course_description") && (
-              <div className="invalid-feedback"> {errors.first("course_description").replace("_", " ")} </div>
-            )}
+          <MyEditor id="course_description" name="course_description" value={course.course_description || ""} onChange={e => handleChange('course_description', e)} />
+       
         </div>
+        {errors.has("course_description") && (
+          <div className="MuiFormHelperText-root Mui-error"> {errors.first("course_description").replace("_", " ")} </div>
+        )}
       </div>
 
       <div className="row">

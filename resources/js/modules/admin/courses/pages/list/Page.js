@@ -89,7 +89,10 @@ class Page extends Component {
                         className="text-capitalize colorPrimary mx-1"
                         href="/admin/courses/create"
                       >
-                        <i class="fa fa-plus mr-1" aria-hidden="true"></i> Add
+                        <Link to="/admin/courses/create">
+                          <i class="fa fa-plus" aria-hidden="true"></i>  Add
+                  </Link>
+               
                       </Button >
 
                     </th>
