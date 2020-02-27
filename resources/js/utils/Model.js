@@ -19,8 +19,7 @@ class Model {
     this.initialize(props);
   }
   
-  initialize(props) {
-    console.log(props);
+  initialize(props) { 
     this.id = (props.id && Number(props.id)) || null; 
     this.createdAt = (props.createdAt && moment(props.createdAt)) || null;
     this.updatedAt = (props.updatedAt && moment(props.updatedAt)) || null; 
