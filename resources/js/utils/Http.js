@@ -4,8 +4,9 @@ import store from '../store/index'
 import { authLogout } from '../modules/auth/store/actions'
 
 const version = 'v1'
+ 
 const API_URL = (process.env.NODE_ENV === 'test') ? process.env.BASE_URL || (`http://localhost:${process.env.PORT}/api/${version}/`) : `/api/${version}`;
-
+ 
 axios.defaults.baseURL = API_URL;
 axios.defaults.headers.common.Accept = 'application/json';
 axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
