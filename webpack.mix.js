@@ -18,6 +18,6 @@ if (mix.inProduction()) {
 } else {
   mix.sourceMaps()
   mix.browserSync({
-    proxy: 'http://localhost:8100',
+    proxy: 'http://127.0.0.1:8000',
   })
 }
