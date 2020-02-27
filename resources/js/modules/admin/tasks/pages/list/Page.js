@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { taskListRequest, taskUpdateRequest, taskRemoveRequest } from '../../service'
-
+import { Button } from '@material-ui/core';
 // import components
 import TaskRow from './components/TaskRow'
-import Pagination from './components/Pagination'
+import Pagination from '../../../../../common/Pagination'
 import { Link } from 'react-router-dom'
 
 class Page extends Component {
@@ -68,30 +68,45 @@ class Page extends Component {
 
   render() {
     return (
+
       <main className="dashboard-right" role="main">
-        <h1>Tasks</h1>
-        <div className="table-responsive">
-          <table className="table  table-striped">
-            <thead className="thead-inverse">
-              <tr>
-                <th>Sr. No.</th>
-                <th>Task Name</th>
-                {/* <th>Task Description</th> */}
-                <th>Course Name</th>
-                <th>Created Date</th>
-                <th>Updated Date</th>
-                <th>
-                  <Link to="/tasks/create" className="btn btn-success">
-                   <i class="fa fa-plus" aria-hidden="true"></i>  Add
+        <div className="card">
+          <div className="card-body bg-white">
+            <h1 class="text-center">Tasks</h1>
+            <div className="table-responsive">
+              <table className="table  table-striped">
+                <thead className="thead-inverse">
+                  <tr>
+                    <th>Sr. No.</th>
+                    <th>Task Name</th>
+                    <th>Course Name</th>
+                    <th>Created Date</th>
+                    <th>Updated Date</th>
+                    <th>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        className="text-capitalize colorPrimary mx-1" 
+                      >
+                        <Link to="/admin/tasks/create">
+                          <i class="fa fa-plus" aria-hidden="true"></i>  Add
                   </Link>
-                </th>
-              </tr>
-            </thead>
-            <tbody>{this.renderTasks()}</tbody>
-          </table>
+
+                      </Button >
+
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>{this.renderTasks()}</tbody>
+              </table>
+            </div>
+            <Pagination meta={this.props.meta} onChange={this.pageChange} />
+          </div>
         </div>
-        <Pagination meta={this.props.meta} onChange={this.pageChange} />
+
       </main>
+
+      
     );
   }
 }

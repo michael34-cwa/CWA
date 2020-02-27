@@ -6,7 +6,7 @@ import { courseListRequest, courseUpdateRequest, courseRemoveRequest } from '../
 import { Button } from '@material-ui/core';
 // import components
 import CourseRow from './components/CourseRow'
-import Pagination from './components/Pagination'
+import Pagination from '../../../../../common/Pagination'
 import { Link } from 'react-router-dom'
 
 class Page extends Component {
@@ -86,8 +86,7 @@ class Page extends Component {
                       <Button
                         size="small"
                         variant="contained"
-                        className="text-capitalize colorPrimary mx-1"
-                        href="/admin/courses/create"
+                        className="text-capitalize colorPrimary mx-1" 
                       >
                         <Link to="/admin/courses/create">
                           <i class="fa fa-plus" aria-hidden="true"></i>  Add

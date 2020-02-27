@@ -21,8 +21,8 @@ class Page extends Component {
     super(props);
 
     this.validator = new ReeValidate({
-      course_name: "required|min:2",
-      course_description: "required|min:2",
+      task_name: "required|min:2",
+      task_description: "required|min:2",
       is_active:"required",
       course_id: "required"
     });
@@ -65,6 +65,7 @@ class Page extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const task = this.state.task;
+    this.validator.validateAll() 
     const { errors } = this.validator;
 
     this.validator.validateAll(task).then(success => {
@@ -98,8 +99,10 @@ class Page extends Component {
   render() {
     return ( 
       <div className="dashboard-right">
-      <div class="card"><div class="card-body bg-white">
-        <h1>Add a Task</h1>
+        <div class="card">
+          <div class="card-body bg-white">
+            <h1 class="page-heading text-center">Add a Task</h1>
+      
         <Form
           {...this.state}
           dataList={this.props.dataList}
