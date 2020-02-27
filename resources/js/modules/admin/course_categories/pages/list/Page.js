@@ -9,7 +9,7 @@ import CategoryRow from './components/CategoryRow'
 import Pagination from '../../../../../common/Pagination'
 import { Link } from 'react-router-dom'
 import LoadingComponent from '../../../../../common/loader'
-import DeleteModel from '../../../../../common/model/DeleteModel'
+//import DeleteModel from '../../../../../common/model/DeleteModel'
 class Page extends Component {
   static displayName = 'CategoriesPage'
   static propTypes = {

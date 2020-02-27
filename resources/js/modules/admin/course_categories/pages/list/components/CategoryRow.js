@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import DeleteModel from '../../../../../../common/model/DeleteModel'
+//import DeleteModel from '../../../../../../common/model/DeleteModel'
 import { Button } from '@material-ui/core';
 
 const displayName = 'CategoryRow'
