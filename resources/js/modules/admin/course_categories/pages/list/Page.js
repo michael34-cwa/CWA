@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import { categoryListRequest, categoryUpdateRequest, categoryRemoveRequest } from '../../service'
 import { Button } from '@material-ui/core';
+import LoadingComponent from '../../../../../common/loader'
 // import components
 import CategoryRow from './components/CategoryRow'
 import Pagination from '../../../../../common/Pagination'
@@ -36,8 +37,7 @@ class Page extends Component {
   pageChange = (event, pageNumber) => { 
  this.props.dispatch(categoryListRequest({ pageNumber })) 
   };
-
-  
+ 
 
   handleRemove(id) {
     this.props.dispatch(categoryRemoveRequest(id))
@@ -45,14 +45,14 @@ class Page extends Component {
 
   renderCategories() {
     return this.props.course_categories.map((category, index) => {
- 
+     
         return <CategoryRow key={index}
           category={category}
           pageNo={this.props.meta.from++}
           index={index}
           togglePublish={this.togglePublish}
           handleRemove={this.handleRemove} />
-      
+    
     })
 
   }
@@ -79,10 +79,7 @@ class Page extends Component {
                           <i class="fa fa-plus" aria-hidden="true"></i>  Add
                         </Button >
                       </Link>
-
-                      {/* <Link to="/admin/course_categories/create" className="btn btn-success">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Add
-                      </Link> */}
+ 
                     </th>
                   </tr>
                 </thead>
@@ -90,6 +87,7 @@ class Page extends Component {
                   {this.props.course_categories.length >= 1 ? this.renderCategories() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>
               </table>
             </div>
+            
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
            </div>
         </div>

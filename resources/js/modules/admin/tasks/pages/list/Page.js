@@ -31,7 +31,7 @@ class Page extends Component {
     dispatch(taskListRequest({}));
   }
 
-  pageChange(pageNumber) {
+  pageChange = (event, pageNumber) => {
     this.props.dispatch(taskListRequest({ pageNumber }));
   }
 

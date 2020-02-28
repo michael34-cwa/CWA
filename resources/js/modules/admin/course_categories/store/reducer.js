@@ -19,7 +19,7 @@ const initialState = {
   prevPageUrl: null,
   to: 0,
   total: 0,
-  loading:false
+  loading:true
 }
 
 const reducer = (state = initialState, { type, payload = null }) => {

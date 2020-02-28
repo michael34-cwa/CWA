@@ -31,9 +31,11 @@ class Page extends Component {
     dispatch(courseListRequest({}));
   }
 
-  pageChange(pageNumber) {
-    this.props.dispatch(courseListRequest({ pageNumber }));
-  }
+ 
+  pageChange = (event, pageNumber) => {
+    this.props.dispatch(courseListRequest({ pageNumber }))
+  };
+
 
   togglePublish(id) {
     const course = this.props.courses.find(course => course.id === id);

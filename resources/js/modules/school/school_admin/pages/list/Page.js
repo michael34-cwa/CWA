@@ -32,7 +32,7 @@ class Page extends Component {
     dispatch(categoryListRequest({}))
   }
   
-  pageChange(pageNumber) {
+  pageChange = (event, pageNumber) => { 
     this.props.dispatch(categoryListRequest({ pageNumber }))
   }
   
