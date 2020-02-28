@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { Button } from '@material-ui/core';
 
 const displayName = 'CategoryRow'
 const propTypes = {
@@ -23,27 +24,38 @@ const CategoryRow = ({ index, category, togglePublish, handleRemove }) => {
        <td>{category.updatedAt && category.updatedAt.format("MMMM, DD YYYY")}</td>
        <td>
          <div className="btn-group" role="group" aria-label="Actions">
-           <Link
-             className="btn btn-primary"
-             to={`school_administrator/${category.id}/edit`}
-           >
-             <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-           </Link>
+           
+            <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1">
+              <Link to={`school_administrator/${category.id}/edit`}>
+                <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Edit
+                  </Link>
+            </Button >
+
+
+  
         
            {category.activation ? (
-             <button
-               className="btn btn-warning "
-               onClick={() => togglePublish(category.id)}
-             >
-               <i class="fa fa-eye-slash" aria-hidden="true"></i>In Active
-            </button>
-           ) : (
-               <button
-                 className="btn btn-success"
-                 onClick={() => togglePublish(category.id)}
-               >
-                 <i class="fa fa-eye" aria-hidden="true"></i> Active
-            </button>
+
+              <Button
+                size="small"
+                variant="contained"
+                color="secondary"
+                className="text-capitalize mx-1"
+                onClick={() => togglePublish(category.id)}
+              >
+                <i class="fa fa-eye-slash mr-1" aria-hidden="true"></i> Inactive
+            </Button >
+         
+           ) : ( 
+            
+                <Button
+                  size="small"
+                  variant="contained"
+                  className="colorPrimary text-capitalize mx-1"
+                  onClick={() => togglePublish(category.id)}
+                >
+                  <i class="fa fa-eye mr-1" aria-hidden="true"></i> Active
+            </Button>
              )}
           
          </div>
