@@ -12,13 +12,13 @@ const propTypes = {
   handleRemove: PropTypes.func.isRequired,
 }
 
-const TaskRow = ({ index, task, togglePublish, handleRemove }) => { 
+const TaskRow = ({ index, task, togglePublish, handleRemove }) => {
   return (
     <tr key={index}>
       <th scope="row">{index + 1}</th>
       <td>{task.taskName}</td>
       {/* <td>{task.taskDescription}</td>   */}
-      <td>{task.courseName.courseName}</td> 
+      <td>{task.courseName.courseName}</td>
       <td>{task.createdAt && task.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{task.updatedAt && task.updatedAt.format("MMMM, DD YYYY")}</td>
       <td className="btn-right">
@@ -43,17 +43,14 @@ const TaskRow = ({ index, task, togglePublish, handleRemove }) => {
                 <i class="fa fa-eye mr-1" aria-hidden="true"></i> Active
             </Button>
 
-           
-          )}
 
+            )}
 
-          <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1" >
-
-            <Link to={`tasks/${task.id}/edit`}>
+          <Link to={`tasks/${task.id}/edit`}>
+            <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1" >
               <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Edit
-                  </Link>
           </Button >
-
+          </Link>
           <Button
             size="small"
             variant="contained"

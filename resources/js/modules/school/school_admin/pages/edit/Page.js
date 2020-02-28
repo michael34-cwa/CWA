@@ -34,7 +34,8 @@ class Page extends Component {
  
     this.state = {
       category,
-      errors: this.validator.errors
+      errors: this.validator.errors,
+      loading: false 
     }
     
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -92,12 +93,16 @@ class Page extends Component {
   }
   
   submit(category) {
+    this.setState({ loading: true })
     this.props.dispatch(categoryUpdateRequest(category),'0')
       .then(res => {
       //  this.props.history.push('/school_administrator');
+        this.setState({ loading: false })
         this.props.history.goBack();
       })
       .catch(({ error, statusCode }) => {
+        this.setState({ loading: false })
+
         const { errors } = this.validator
         
         if (statusCode === 422) {

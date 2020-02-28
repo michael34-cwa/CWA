@@ -20,7 +20,9 @@ a {
   text-decoration: none;
   background-color: transparent;
 }
-
+a:hover {
+	text-decoration: none;
+}
 .has-shadow {
 	border-radius: 0.625rem;
 	box-shadow: 6px 11px 41px -28px #a99de7;
@@ -90,6 +92,10 @@ footer.sticky-bottom.py-2.bg-black {
 p.logintext {
 	margin: 10px 0 0 0;
 	text-align: center;
+
+	a {
+		color: #007bff;
+	}
 }
 .MuiCircularProgress-colorPrimary {
 	color: #1e8ece !important;

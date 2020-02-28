@@ -28,7 +28,7 @@ class Page extends Component {
 
   UNSAFE_componentWillMount() {
     const { dispatch } = this.props;
-     dispatch(taskListRequest({}));
+    dispatch(taskListRequest({}));
   }
 
   pageChange(pageNumber) {
@@ -44,7 +44,7 @@ class Page extends Component {
     } else {
       task.isActive = 1;
     }
-     this.props.dispatch(taskUpdateRequest(task.toJson(),'1'));
+    this.props.dispatch(taskUpdateRequest(task.toJson(), '1'));
   }
 
   handleRemove(id) {
@@ -52,7 +52,7 @@ class Page extends Component {
   }
 
   renderTasks() {
- 
+
     return this.props.tasks.map((task, index) => {
       return (
         <TaskRow
@@ -83,21 +83,22 @@ class Page extends Component {
                     <th>Created Date</th>
                     <th>Updated Date</th>
                     <th>
-                      <Button
-                        size="small"
-                        variant="contained"
-                        className="text-capitalize colorPrimary mx-1" 
-                      >
-                        <Link to="/admin/tasks/create">
+                      <Link to="/admin/tasks/create">
+                        <Button
+                          size="small"
+                          variant="contained"
+                          className="text-capitalize colorPrimary mx-1"
+                        >
                           <i class="fa fa-plus" aria-hidden="true"></i>  Add
-                  </Link>
-
                       </Button >
+                      </Link>
+
 
                     </th>
                   </tr>
                 </thead>
-                <tbody>{this.renderTasks()}</tbody>
+                {this.props.tasks.length >= 1 ? this.renderTasks() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}
+
               </table>
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
@@ -106,7 +107,7 @@ class Page extends Component {
 
       </main>
 
-      
+
     );
   }
 }

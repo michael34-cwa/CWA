@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types' 
 import { TextField, Button, FormHelperText, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
-
+import LoadingComponent from '../../../../../../common/loader'
 const displayName = 'CategoryFrom'
 const propTypes = {
   category: PropTypes.object.isRequired,
@@ -10,7 +10,7 @@ const propTypes = {
   onSubmit: PropTypes.func.isRequired,
 }
 
-const Form = ({ category, errors, onChange, onSubmit }) => {
+const Form = ({ loading,category, errors, onChange, onSubmit }) => {
    
   function handleChange(name, value) { 
     if (value !== category[name]) {
@@ -90,6 +90,7 @@ const Form = ({ category, errors, onChange, onSubmit }) => {
             />
           </FormControl>
         </div>
+        {<LoadingComponent isLoading={loading} error={''} />}
       </div>
 
 

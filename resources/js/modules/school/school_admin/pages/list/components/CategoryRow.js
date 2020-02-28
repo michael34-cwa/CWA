@@ -24,13 +24,11 @@ const CategoryRow = ({ index, category, togglePublish, handleRemove }) => {
        <td>{category.updatedAt && category.updatedAt.format("MMMM, DD YYYY")}</td>
        <td>
          <div className="btn-group" role="group" aria-label="Actions">
-           
-            <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1">
-              <Link to={`school_administrator/${category.id}/edit`}>
-                <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Edit
-                  </Link>
+            <Link to={`school_administrator/${category.id}/edit`}>
+            <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"> 
+                <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Edit 
             </Button >
-
+            </Link>
 
   
         

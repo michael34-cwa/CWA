@@ -27,7 +27,8 @@ class Page extends Component {
     const course = this.props.course.toJson();
      this.state = { 
        course,
-      errors: this.validator.errors
+      errors: this.validator.errors,
+      loading: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -75,13 +76,15 @@ class Page extends Component {
   }
 
   submit(course) {
-
+    this.setState({ loading: true })
      this.props
        .dispatch(courseAddRequest(course)) 
        .then(res => {  
+         this.setState({ loading: false })
         this.props.history.push('/admin/courses');
        })
       .catch(({ error, statusCode }) => {
+        this.setState({ loading: false })
         const { errors } = this.validator;
 
         if (statusCode === 422) {

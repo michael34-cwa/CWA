@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { TextField, Button, FormHelperText, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'; 
 import MyEditor from '../../../../../../common/wysiwyg-editor/index'
-
+import LoadingComponent from '../../../../../../common/loader'
 const displayName = 'TaskFrom'
 const propTypes = {
   task: PropTypes.object.isRequired,
@@ -11,7 +11,7 @@ const propTypes = {
   onSubmit: PropTypes.func.isRequired,
 }
 
-const Form = ({ dataList, task, errors, onChange, onSubmit }) => {
+const Form = ({ loading,dataList, task, errors, onChange, onSubmit }) => {
  
   console.log(task);
   function handleChange(name, value) {
@@ -101,6 +101,7 @@ const Form = ({ dataList, task, errors, onChange, onSubmit }) => {
           )}
         </FormControl>
       </div>
+      {<LoadingComponent isLoading={loading} error={''} />}
     </div>
  
  

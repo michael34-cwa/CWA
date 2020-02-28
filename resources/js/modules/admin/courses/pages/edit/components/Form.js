@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MyEditor from '../../../../../../common/wysiwyg-editor/index'
-
+import LoadingComponent from '../../../../../../common/loader'
 import { TextField, Button, FormHelperText, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 const displayName = 'CourseFrom'
@@ -12,7 +12,7 @@ const propTypes = {
   onSubmit: PropTypes.func.isRequired,
 }
 
-const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
+const Form = ({ loading,dataList, course, errors, onChange, onSubmit }) => {
 
 
   const [personName, setPersonName] = React.useState(course.catId.map(catids => catids.id));
@@ -115,6 +115,7 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
           )}
         </FormControl>
       </div>
+      {<LoadingComponent isLoading={loading} error={''} />}
     </div>
     <div className="row">
       <div className="col-md-12 ml-auto">

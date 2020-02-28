@@ -20,12 +20,14 @@ const CategoryRow = ({ index, category, openModel, pageNo, handleRemove }) => {
        <td>{category.updatedAt && category.updatedAt.format("MMMM, DD YYYY")}</td>
        <td>
          <div className="btn-group" role="group" aria-label="Actions">
-            <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
+            
              
-             <Link to={`course_categories/${category.id}/edit`}>
+             <Link to={`course_categories/${category.id}/edit`} >
+              <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
                <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Edit
-                  </Link>
-            </Button >
+               </Button >
+            </Link>
+            
             
             <Button
               size="small"

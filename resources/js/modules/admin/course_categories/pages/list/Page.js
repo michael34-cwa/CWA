@@ -73,15 +73,13 @@ class Page extends Component {
                     <th>Updated Date</th>
                     <th>
 
-                      <Button
-                        size="small"
-                        variant="contained"
-                        className="text-capitalize colorPrimary mx-1" 
-                      >
-                        <Link to="/admin/course_categories/create">
+            
+                      <Link to="/admin/course_categories/create">
+                        <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
                           <i class="fa fa-plus" aria-hidden="true"></i>  Add
-                  </Link>
-                      </Button >
+                        </Button >
+                      </Link>
+
                       {/* <Link to="/admin/course_categories/create" className="btn btn-success">
                         <i class="fa fa-plus" aria-hidden="true"></i> Add
                       </Link> */}

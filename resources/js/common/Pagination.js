@@ -21,7 +21,7 @@ class Pagination extends Component {
   renderLinks() {
     const { meta } = this.props
     if (this.props.meta.total > this.props.meta.perPage) {
-      return <Paginations color="primary" count={meta.lastPage} page={meta.currentPage} onChange={this.props.onChange} />
+      return <Paginations variant="outlined" color="primary" count={meta.lastPage} page={meta.currentPage} onChange={this.props.onChange} />
     }
   }
 

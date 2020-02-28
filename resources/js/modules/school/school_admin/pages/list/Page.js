@@ -78,20 +78,20 @@ class Page extends Component {
                     <th>Created Date</th>
                     <th>Updated Date</th>
                     <th>
+                      <Link to="school_administrator/create">
                       <Button
                         size="small"
                         variant="contained"
                         className="text-capitalize colorPrimary mx-1"
-                      >
-                        <Link to="school_administrator/create">
-                          <i class="fa fa-plus" aria-hidden="true"></i>  Add
-                        </Link> 
+                      > 
+                          <i class="fa fa-plus" aria-hidden="true"></i>  Add 
                       </Button >
-
+                      </Link> 
                     </th>
                   </tr>
                 </thead>
-                <tbody>{this.renderCategories()}</tbody>
+                {this.props.course_categories.length >= 1 ? this.renderCategories() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>} 
+ 
               </table>
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />

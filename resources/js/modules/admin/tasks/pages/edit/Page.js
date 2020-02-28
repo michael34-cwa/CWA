@@ -30,7 +30,8 @@ class Page extends Component {
     
     this.state = {
       task,
-      errors: this.validator.errors
+      errors: this.validator.errors,
+      loading: false
     }
     
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -91,11 +92,14 @@ class Page extends Component {
   }
   
   submit(task) {
+    this.setState({ loading: true })
     this.props.dispatch(taskUpdateRequest(task),0)
       .then(res => {
+        this.setState({ loading: false })
         this.props.history.push('/admin/tasks');
       })
       .catch(({ error, statusCode }) => {
+        this.setState({ loading: false })
         const { errors } = this.validator
         
         if (statusCode === 422) {

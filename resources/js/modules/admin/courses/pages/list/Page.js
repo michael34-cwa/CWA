@@ -77,31 +77,31 @@ class Page extends Component {
                 <thead className="thead-inverse">
                   <tr>
                     <th width="70px">Sr. No.</th>
-                    <th width="150px">Name</th> 
+                    <th width="150px">Name</th>
                     <th>Category</th>
                     <th width="140px">Created Date</th>
                     <th width="140px">Updated Date</th>
                     <th>
-                      <Button
-                        size="small"
-                        variant="contained"
-                        className="text-capitalize colorPrimary mx-1" 
-                      >
-                        <Link to="/admin/courses/create">
-                          <i class="fa fa-plus" aria-hidden="true"></i>  Add
-                  </Link>
-               
+                      <Link to="/admin/courses/create">
+                        <Button
+                          size="small"
+                          variant="contained"
+                          className="text-capitalize colorPrimary mx-1"
+                        >    <i class="fa fa-plus" aria-hidden="true"></i>  Add
                       </Button >
+                      </Link>
+
 
                     </th>
                   </tr>
                 </thead>
-                <tbody>{this.renderCourses()}</tbody>
+                {this.props.courses.length >= 1 ? this.renderCourses() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}
+
               </table>
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
           </div>
-        </div> 
+        </div>
       </main>
     );
   }

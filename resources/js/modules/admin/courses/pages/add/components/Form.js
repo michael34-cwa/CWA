@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MyEditor from '../../../../../../common/wysiwyg-editor/index'
 import {TextField , Button , FormHelperText , FormControl , InputLabel , MenuItem , Select} from '@material-ui/core';
-
+import LoadingComponent from '../../../../../../common/loader'
 const displayName = 'CourseFrom'
 const propTypes = {
   course: PropTypes.object.isRequired,
@@ -11,7 +11,7 @@ const propTypes = {
   onSubmit: PropTypes.func.isRequired
 };
 
-const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
+const Form = ({ loading,dataList, course, errors, onChange, onSubmit }) => {
 
   const [personName, setPersonName] = React.useState([]);
 
@@ -113,6 +113,7 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
               )}
           </FormControl>
         </div>
+        {<LoadingComponent isLoading={loading} error={''} />}
       </div>
 
 
