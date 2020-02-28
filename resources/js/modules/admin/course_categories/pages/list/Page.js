@@ -8,7 +8,7 @@ import { Button } from '@material-ui/core';
 import CategoryRow from './components/CategoryRow'
 import Pagination from '../../../../../common/Pagination'
 import { Link } from 'react-router-dom'
-import LoadingComponent from '../../../../../common/loader'
+ 
 //import DeleteModel from '../../../../../common/model/DeleteModel'
 class Page extends Component {
   static displayName = 'CategoriesPage'
@@ -33,13 +33,11 @@ class Page extends Component {
     dispatch(categoryListRequest({}))
   }
 
-  pageChange(pageNumber) {
-    this.props.dispatch(categoryListRequest({ pageNumber }))
-  }
+  pageChange = (event, pageNumber) => { 
+ this.props.dispatch(categoryListRequest({ pageNumber })) 
+  };
 
-
-
-
+  
 
   handleRemove(id) {
     this.props.dispatch(categoryRemoveRequest(id))
@@ -47,16 +45,14 @@ class Page extends Component {
 
   renderCategories() {
     return this.props.course_categories.map((category, index) => {
-      if (category) {
+ 
         return <CategoryRow key={index}
           category={category}
           pageNo={this.props.meta.from++}
           index={index}
           togglePublish={this.togglePublish}
           handleRemove={this.handleRemove} />
-      } else {
-        return <LoadingComponent isLoading={true} error={''} />
-      }
+      
     })
 
   }
@@ -97,7 +93,7 @@ class Page extends Component {
               </table>
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
-          </div>
+           </div>
         </div>
 
         {/* <DeleteModel openModel={this.openModel} opens={this.state.open} id={this.state.id} handleRemove={this.handleRemove} /> */}

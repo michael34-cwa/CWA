@@ -80,11 +80,11 @@ import { browserHistory } from 'react-router'
     this.props
       .dispatch(categoryAddRequest(category)) 
       .then(res => { 
-        this.setState({ loading: true })
-        this.props.history.push('/admin/course_categories');  
+        this.setState({ loading: false })
+    //    this.props.history.push('/admin/course_categories');  
       })
       .catch(({ error, statusCode }) => { 
-        this.setState({ loading: true })
+        this.setState({ loading: false })
         const { errors } = this.validator;  
          if (statusCode === 422) { 
           _.forOwn(error, (message, field) => { 

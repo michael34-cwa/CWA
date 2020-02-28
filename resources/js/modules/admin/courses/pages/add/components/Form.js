@@ -127,13 +127,7 @@ const Form = ({ dataList, course, errors, onChange, onSubmit }) => {
         >
           <i className="fa fa-plus mr-2" aria-hidden="true"></i>  Add Course
         </Button>
-          {/* <button
-            disabled={errors.any()}
-            type="submit"
-            className="btn btn-primary"
-          >
-            <i class="fa fa-plus" aria-hidden="true"></i>  Add Course
-          </button> */}
+       
         </div>
       </div>
     </form>
