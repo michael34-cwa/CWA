@@ -63,13 +63,12 @@ class Page extends Component {
     e.preventDefault();
       const course = this.state.course; 
     const { errors } = this.validator; 
-      this.validator.validateAll() 
+    this.validator.validateAll() 
  
     this.validator.validateAll(course).then(success => {
       if (success) {
         this.submit(course);
-      } else {
-        console.log(errors);
+      } else { 
         this.setState({ errors });
       }
     }); 

@@ -18,7 +18,8 @@ import { browserHistory } from 'react-router'
   
   constructor(props) {  
     super(props)
-    
+    console.log(this.props);
+    console.log('this.props');
     this.validator = new ReeValidate({
       firstName: 'required|min:2',
       lastName: 'required|min:2',
@@ -27,7 +28,7 @@ import { browserHistory } from 'react-router'
       password: 'required|min:6',
       passwordConfirmation: 'required|min:6'
     });
-    
+
     const category = this.props.category.toJson()
     
     this.state = {
@@ -67,7 +68,7 @@ import { browserHistory } from 'react-router'
     e.preventDefault()
     const category = this.state.category
     const { errors } = this.validator
-    
+    this.validator.validateAll() 
     this.validator.validateAll(category)
       .then((success) => {
         if (success) {
@@ -82,7 +83,8 @@ import { browserHistory } from 'react-router'
     this.props
       .dispatch(categoryAddRequest(category)) 
       .then(res => { 
-        this.props.history.push('/school_administrator');  
+     //   this.props.history.push('/school_administrator');  
+        this.props.history.goBack();
       })
       .catch(({ error, statusCode }) => { 
         const { errors } = this.validator;  
@@ -99,8 +101,7 @@ import { browserHistory } from 'react-router'
   render() {
     
     return <div className="dashboard-right"><div className="card"><div className="card-body bg-white">
-    
-      <h1>Add School Administrator</h1>
+      <h1 class="page-heading text-center">Add School Administrator</h1> 
        <Form {...this.state}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit} />

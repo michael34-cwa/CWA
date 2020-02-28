@@ -77,8 +77,7 @@ class Page extends Component {
                 <thead className="thead-inverse">
                   <tr>
                     <th width="70px">Sr. No.</th>
-                    <th width="150px">Name</th>
-                    {/* <th>Description</th> */}
+                    <th width="150px">Name</th> 
                     <th>Category</th>
                     <th width="140px">Created Date</th>
                     <th width="140px">Updated Date</th>
@@ -102,8 +101,7 @@ class Page extends Component {
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
           </div>
-        </div>
-
+        </div> 
       </main>
     );
   }

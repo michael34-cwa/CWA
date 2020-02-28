@@ -1,11 +1,11 @@
 // import libs
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import moment from 'moment'
+import PropTypes from 'prop-types' 
 import { categoryListRequest, categoryUpdateRequest, categoryRemoveRequest } from '../../service'
 // import components
+import { Button } from '@material-ui/core';
 import CategoryRow from './components/CategoryRow'
-import Pagination from './components/Pagination'
+import Pagination from '../../../../../common/Pagination'
 import { Link } from 'react-router-dom'
  
 class Page extends Component {
@@ -61,34 +61,45 @@ class Page extends Component {
   
   render() {
     return (
+
       <main className="dashboard-right" role="main">
-        <h1>School Administrator</h1>
-        <div className="table-responsive">
-          
-        <table className="table  table-striped">
-          <thead className="thead-inverse">
-            <tr>
-              <th>Sr. No.</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-                <th>Email</th>
-              <th>Phone</th>
-              <th>Created Date</th>
-              <th>Updated Date</th>
-              <th>
-                  <Link to="/school_administrator/create" className="btn btn-success">
-                 <i class="fa fa-plus" aria-hidden="true"></i> Add
-                </Link>
-              </th>
-            </tr>
-          </thead>
-          <tbody>{this.renderCategories()}</tbody>
-        </table>
+        <div className="card">
+          <div className="card-body bg-white">
+            <h1 class="text-center">School Administrator</h1>
+            <div className="table-responsive">
+              <table className="table  table-striped">
+                <thead className="thead-inverse">
+                  <tr>
+                    <th>Sr. No.</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Created Date</th>
+                    <th>Updated Date</th>
+                    <th>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        className="text-capitalize colorPrimary mx-1"
+                      >
+                        <Link to="school_administrator/create">
+                          <i class="fa fa-plus" aria-hidden="true"></i>  Add
+                        </Link> 
+                      </Button >
+
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>{this.renderCategories()}</tbody>
+              </table>
+            </div>
+            <Pagination meta={this.props.meta} onChange={this.pageChange} />
+          </div>
         </div>
-        <Pagination meta={this.props.meta} onChange={this.pageChange} />
-         
-         {/* <ModalExamples />   */}
       </main>
+      
+ 
     );
   }
 }

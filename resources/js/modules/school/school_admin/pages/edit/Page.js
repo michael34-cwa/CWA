@@ -94,7 +94,8 @@ class Page extends Component {
   submit(category) {
     this.props.dispatch(categoryUpdateRequest(category),'0')
       .then(res => {
-        this.props.history.push('/school_administrator');
+      //  this.props.history.push('/school_administrator');
+        this.props.history.goBack();
       })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator
@@ -124,7 +125,7 @@ class Page extends Component {
     return <main className="dashboard-right" role="main">  
     <div className="card">
       <div className="card-body bg-white"> 
-          <h1>Update School Administrator </h1>
+          <h1 class="page-heading text-center">Update School Administrator</h1>  
        { this.renderForm() }    
          </div>
       </div>
