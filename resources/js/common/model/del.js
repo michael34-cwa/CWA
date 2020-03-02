@@ -28,29 +28,29 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const DeleteModel = ({ openModel,opens, id, handleRemove }) => {
-   const classes = useStyles();
-  const [open, setOpen] = React.useState(opens);
+const DeleteModel = ({ meaid, handleRemove}) => {
+ 
+  const classes = useStyles();  
+  const [open, setOpen] = React.useState(false); 
 
-
-  const handleClose = () => {
-    openModel() 
-    setOpen(false);
+  
+  const handleClose = () => {  
+    setOpen(false); 
   };
 
   const handleOpen = () => {
-    setOpen(true); 
+    setOpen(true);
   };
-
+  
   return (
     <div>
-
-      {/* <button
+    
+      <button
         className="btn btn-danger"
         onClick={handleOpen}
       >
         <i class="fa fa-trash-o" aria-hidden="true"></i>   Delete
-                </button> */}
+                </button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -62,30 +62,34 @@ const DeleteModel = ({ openModel,opens, id, handleRemove }) => {
         BackdropProps={{
           timeout: 500,
         }}
-      >
+      > 
         <Fade in={open}>
-          <div className={classes.paper}>
-            <div className="modal-inner-div" >
-              <a className="modalclose" onClick={handleClose}>
-                X
+          <div className={classes.paper }>
+          <div className= "modal-inner-div" >
+           <a className="modalclose" onClick={handleClose}>
+               X
                </a>
-              <h2 id="transition-modal-title" className="text-center mb-0">Delete Confirmation</h2>
-              <p id="transition-modal-description" className="text-center mt-3 mb-4">{'Are you sure want to delete?'}</p>
-              <div className="text-center">
-                <button type="button" className="btn btn-primary mr-2" onClick={handleClose}>
-                  Cancel
+            <h2 id="transition-modal-title" className="text-center mb-0">Delete Confirmation</h2>
+            <p id="transition-modal-description" className="text-center mt-3 mb-4">{'Are you sure want to delete?'}</p> 
+            <div className="text-center">
+              <button type="button" className="btn btn-primary mr-2" onClick={handleClose}>
+               Cancel
                </button>
-                <button color="primary" className="btn btn-danger"
+                {/* <button color="primary" className="btn btn-danger"
               onClick={() => handleRemove(id)}
-            >Yes, Delete</button>
- 
-              </div>
-            </div>
-          </div>
+            >Yes, Delete</button> */}
 
+                {/* <button color="primary" className="btn btn-danger"
+                  onClick={() => handleRemove(meaid)}
+                  >Yes, Delete</button> */}
+                  
+               </div>
+               </div>
+          </div>
+          
         </Fade>
       </Modal>
-
+     
     </div>
   );
 }

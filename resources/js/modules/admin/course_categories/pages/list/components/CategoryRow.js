@@ -14,7 +14,8 @@ const propTypes = {
 const CategoryRow = ({ index, category, openModel, pageNo, handleRemove }) => {
    return (
      <tr key={index}>
-       <th scope="row">{pageNo}</th>
+       <th scope="row">{pageNo}</th>  
+       {/* <th scope="row">{index + 1}</th> */}
        <td>{category.category_name}</td>
        <td>{category.createdAt && category.createdAt.format("MMMM, DD YYYY")}</td>
        <td>{category.updatedAt && category.updatedAt.format("MMMM, DD YYYY")}</td>
@@ -34,7 +35,7 @@ const CategoryRow = ({ index, category, openModel, pageNo, handleRemove }) => {
               variant="contained"
               color = "secondary"
               className="text-capitalize mx-1"
-              onClick={() => handleRemove(category.id )}
+             onClick={() => openModel(category.id )}
             >
             <i class="fa fa-trash-o mr-1" aria-hidden="true"></i> Delete
             </Button>

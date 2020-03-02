@@ -4,11 +4,8 @@ import Paginations from '@material-ui/lab/Pagination';
 import { makeStyles } from '@material-ui/core/styles';
  class Pagination extends Component {
   static displayName = 'Pagination'
-  static propTypes = {
-    meta: PropTypes.object.isRequired,
-    onChange: PropTypes.func.isRequired,
-  }
 
+  
   constructor(props) {
     super(props)
 

@@ -10,7 +10,7 @@ import CategoryRow from './components/CategoryRow'
 import Pagination from '../../../../../common/Pagination'
 import { Link } from 'react-router-dom'
  
-//import DeleteModel from '../../../../../common/model/DeleteModel'
+ import DeleteModel from '../../../../../common/model/DeleteModel'
 class Page extends Component {
   static displayName = 'CategoriesPage'
   static propTypes = {
@@ -24,8 +24,9 @@ class Page extends Component {
 
     this.handleRemove = this.handleRemove.bind(this)
     this.pageChange = this.pageChange.bind(this)
-
-    this.state = { open: false };
+    this.openModel = this.openModel.bind(this)
+    this.state = { open: false,id:'' };
+    const pageNo= '';
   }
 
   UNSAFE_componentWillMount() {
@@ -39,25 +40,34 @@ class Page extends Component {
   };
  
 
+  
+  openModel(id) { 
+    this.setState({ open: !this.state.open, id: id }) 
+  }
+
+
   handleRemove(id) {
+    this.setState({ open: !this.state.open, id: ''  }) 
     this.props.dispatch(categoryRemoveRequest(id))
   }
 
-  renderCategories() {
+  renderCategories(pageNo) {
+   
     return this.props.course_categories.map((category, index) => {
-     
+      console.log(pageNo);
         return <CategoryRow key={index}
           category={category}
-          pageNo={this.props.meta.from++}
+          pageNo={pageNo++}
           index={index}
           togglePublish={this.togglePublish}
+          openModel={this.openModel}
           handleRemove={this.handleRemove} />
     
     })
 
   }
   render() {
-
+ 
     return (
       <main className="dashboard-right" role="main">
         <div className="card">
@@ -84,17 +94,15 @@ class Page extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.props.course_categories.length >= 1 ? this.renderCategories() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>
+                  {this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>
               </table>
             </div>
-            
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
-           </div>
-        </div>
+            {this.state.open && <DeleteModel openModel={this.openModel} opens={this.state.open} id={this.state.id} handleRemove={this.handleRemove} />}
 
-        {/* <DeleteModel openModel={this.openModel} opens={this.state.open} id={this.state.id} handleRemove={this.handleRemove} /> */}
-        {/* {this.state.open && <DeleteModel openModel={this.openModel}  opens={this.state.open}  id={this.state.id} handleRemove={this.handleRemove}  />} */}
-      </main>
+           </div>
+        </div> 
+          </main>
     );
   }
 }
