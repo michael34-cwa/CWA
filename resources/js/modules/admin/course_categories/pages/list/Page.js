@@ -8,6 +8,7 @@ import LoadingComponent from '../../../../../common/loader'
 // import components
 import CategoryRow from './components/CategoryRow'
 import Pagination from '../../../../../common/Pagination'
+import Search from '../../../../../common/Search'
 import { Link } from 'react-router-dom'
  
  import DeleteModel from '../../../../../common/model/DeleteModel'
@@ -24,9 +25,10 @@ class Page extends Component {
 
     this.handleRemove = this.handleRemove.bind(this)
     this.pageChange = this.pageChange.bind(this)
-    this.openModel = this.openModel.bind(this)
-    this.state = { open: false,id:'' };
-    const pageNo= '';
+    this.searchChange = this.searchChange.bind(this)
+    this.openModel = this.openModel.bind(this) 
+    this.state = { open: false, id: '', searchData: ''  };
+
   }
 
   UNSAFE_componentWillMount() {
@@ -36,10 +38,24 @@ class Page extends Component {
   }
 
   pageChange = (event, pageNumber) => { 
- this.props.dispatch(categoryListRequest({ pageNumber })) 
+    const value = this.state.searchData;
+    console.log(this.state.searchData);
+    this.props.dispatch(categoryListRequest({ pageNumber, value })) 
   };
  
-
+ 
+  
+  searchChange(name, value) {
+    if (value.length >= 2) { 
+      this.setState({ searchData: value }) 
+  
+    this.props.dispatch(categoryListRequest({   value })) 
+    }else{
+      this.setState({ searchData: '' }) 
+    this.props.dispatch(categoryListRequest({}))
+    }
+   
+  }
   
   openModel(id) { 
     this.setState({ open: !this.state.open, id: id }) 
@@ -74,6 +90,7 @@ class Page extends Component {
           <div className="card-body bg-white">
             <h1 class="text-center">Course Categories</h1>
             <div className="table-responsive">
+              <Search onChange={this.searchChange} /> 
               <table className="table  table-striped">
                 <thead className="thead-inverse">
                   <tr>
@@ -81,17 +98,16 @@ class Page extends Component {
                     <th>Category Name</th>
                     <th>Created Date</th>
                     <th>Updated Date</th>
-                    <th>
-
-            
+                    <th> 
                       <Link to="/admin/course_categories/create">
                         <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
                           <i class="fa fa-plus" aria-hidden="true"></i>  Add
                         </Button >
-                      </Link>
- 
+                      </Link> 
                     </th>
+                  
                   </tr>
+
                 </thead>
                 <tbody>
                   {this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Model\CourseCategories;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TechnologiesRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+ use Illuminate\Support\Facades\Request;
+
 
 class CourseCategoriesController  extends Controller
 {
@@ -18,8 +20,10 @@ class CourseCategoriesController  extends Controller
      * @return LengthAwarePaginator|mixed
      */
     public function index(Request $request)
-    {  
-        return CourseCategories::loadAll();
+    { ;
+       $dataSearch   =   Request::get('search');
+        return CourseCategories::latest()
+             ->where('category_name', 'LIKE', "%{$dataSearch}%")->paginate();
     }
 
     /**

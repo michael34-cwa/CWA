@@ -16,8 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
   renderLinks() {
     const { meta } = this.props
-    console.log(this.props);
- 
+  
     if ( meta.total >  meta.perPage) {
       return <Paginations variant="outlined" color="primary" count={meta.lastPage} page={meta.currentPage} onChange={this.props.onChange} />
       
