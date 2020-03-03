@@ -34,7 +34,7 @@ const DeleteModel = ({ openModel,opens, id, handleRemove }) => {
 
 
   const handleClose = () => {
-    openModel() 
+    openModel()  
     setOpen(false);
   };
 
