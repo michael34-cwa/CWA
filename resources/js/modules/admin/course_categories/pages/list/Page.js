@@ -12,7 +12,7 @@ import Search from '../../../../../common/Search'
 import { Link } from 'react-router-dom'
  
  import DeleteModel from '../../../../../common/model/DeleteModel'
-class Page extends Component {
+class Page extends Component { 
   static displayName = 'CategoriesPage'
   static propTypes = {
     meta: PropTypes.object.isRequired,
