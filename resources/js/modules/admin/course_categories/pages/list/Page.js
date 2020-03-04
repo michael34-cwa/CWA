@@ -11,7 +11,7 @@ import Pagination from '../../../../../common/Pagination'
 import Search from '../../../../../common/Search'
 import { Link } from 'react-router-dom'
  
- import DeleteModel from '../../../../../common/model/DeleteModel'
+//  import DeleteModel from '../../../../../common/model/DeleteModel'
 class Page extends Component { 
   static displayName = 'CategoriesPage'
   static propTypes = {
@@ -114,7 +114,7 @@ class Page extends Component {
               </table>
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
-            {this.state.open && <DeleteModel openModel={this.openModel} opens={this.state.open} id={this.state.id} handleRemove={this.handleRemove} />}
+            {/* {this.state.open && <DeleteModel openModel={this.openModel} opens={this.state.open} id={this.state.id} handleRemove={this.handleRemove} />} */}
 
            </div>
         </div> 
