@@ -70,7 +70,7 @@ class Page extends Component {
   renderCategories(pageNo) {
    
     return this.props.course_categories.map((category, index) => {
-   
+      
         return <CategoryRow key={index}
           category={category}
           pageNo={pageNo++}
@@ -83,7 +83,7 @@ class Page extends Component {
 
   }
   render() {
-
+ 
     return (
       <main className="dashboard-right" role="main">
         <div className="card">
