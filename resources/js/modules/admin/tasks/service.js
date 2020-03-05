@@ -90,10 +90,10 @@ export function taskRemoveRequest(id) {
   }
 }
 
-export function taskListRequest({ pageNumber = 1, url = "/tasks" }) {
+export function taskListRequest({ pageNumber = 1, value = '', url = "/tasks" }) {
          return dispatch => {
-           if (pageNumber > 1) {
-             url = url + `?page=${pageNumber}`;
+           if (pageNumber > 1 || value.length >= 2) {
+             url = url + `?page=${pageNumber}&search=${value}`;
            }
     
            Http.get(url)

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Model\Tasks;
 use App\Model\Courses;
-use Illuminate\Http\Request;
+ use Illuminate\Support\Facades\Request; 
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TasksRequest;
@@ -20,7 +20,16 @@ class TasksController  extends Controller
      */
     public function index(Request $request)
     {  
-     return Tasks::with('getCourse')->latest()->paginate();  
+       $dataSearch   =   Request::get('search');
+         return Tasks::with(['getCourse'])->whereHas('getCourse', function($q) use ($dataSearch) {
+        if($dataSearch){
+         $q->where('course_name', 'LIKE', "%{$dataSearch}%");
+        }
+        }) ->latest()
+         ->orWhere('task_name', 'LIKE', "%{$dataSearch}%")
+         ->paginate();  
+
+   
          
     }
 

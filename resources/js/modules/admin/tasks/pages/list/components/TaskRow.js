@@ -9,15 +9,14 @@ const propTypes = {
   index: PropTypes.number.isRequired,
   task: PropTypes.object.isRequired,
   togglePublish: PropTypes.func.isRequired,
-  handleRemove: PropTypes.func.isRequired,
+  openModel: PropTypes.func.isRequired,
 }
 
-const TaskRow = ({ index, task, togglePublish, handleRemove }) => {
+const TaskRow = ({ index, task, togglePublish,   openModel, pageNo }) => {
   return (
     <tr key={index}>
-      <th scope="row">{index + 1}</th>
-      <td>{task.taskName}</td>
-      {/* <td>{task.taskDescription}</td>   */}
+      <th scope="row">{pageNo}</th>  
+      <td>{task.taskName}</td> 
       <td>{task.courseName.courseName}</td>
       <td>{task.createdAt && task.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{task.updatedAt && task.updatedAt.format("MMMM, DD YYYY")}</td>
@@ -56,7 +55,7 @@ const TaskRow = ({ index, task, togglePublish, handleRemove }) => {
             variant="contained"
             color="secondary"
             className="text-capitalize mx-1"
-            onClick={() => handleRemove(task.id)}
+            onClick={() => openModel(task.id)}
           >
             <i class="fa fa-trash-o mr-1" aria-hidden="true"></i> Delete
           </Button>

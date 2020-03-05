@@ -102,7 +102,7 @@ const Form = ({ loading,category, errors, onChange, onSubmit }) => {
           <FormControl className="w-100 mb-3" >
             <TextField
               error={errors.has("password")}
-
+              type="password"
               label="Password"
               defaultValue="Password"
               helperText={`${errors.has("password") ? errors.first("password") : ''}`}
@@ -118,7 +118,7 @@ const Form = ({ loading,category, errors, onChange, onSubmit }) => {
           <FormControl className="w-100 mb-3" >
             <TextField
               error={errors.has("passwordConfirmation")}
-
+              type="password"
               label="Password Confirmation"
               defaultValue="Password Confirmation"
               helperText={`${errors.has("passwordConfirmation") ? errors.first("passwordConfirmation").replace("passwordConfirmation", "password confirmation") : ''}`}
