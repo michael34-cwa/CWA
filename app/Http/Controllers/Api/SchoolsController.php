@@ -8,7 +8,7 @@ use App\Model\Schools;
 use App\User;
 
 use App\Model\Courses;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SchoolRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -26,10 +26,18 @@ class SchoolsController  extends Controller
      */
     public function index(Request $request)
     {
+      $dataSearch   =   Request::get('search');
         $user = \Auth::guard('api')->user();
-        return User::whereHas('roles', function ($q) {
+        $userData =  User::whereHas('roles', function ($q) {
             $q->whereIn('slug', ['school']);
-        })->with('ActivationsUser')->where('id', "!=", $user->id)->paginate();
+        })->with('ActivationsUser')->where('id', "!=", $user->id); 
+          if($dataSearch){
+          $userData->where('email', 'LIKE', "%{$dataSearch}%");
+          $userData->orWhere('first_name', 'LIKE', "%{$dataSearch}%");
+          $userData->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
+          $userData->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+          }
+       return  $userData->paginate();
     }
 
     /**

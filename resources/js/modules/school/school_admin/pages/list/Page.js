@@ -7,7 +7,8 @@ import { Button } from '@material-ui/core';
 import CategoryRow from './components/CategoryRow'
 import Pagination from '../../../../../common/Pagination'
 import { Link } from 'react-router-dom'
- 
+import Search from '../../../../../common/Search'
+
 class Page extends Component {
   static displayName = 'CategoriesPage'
   static propTypes = {
@@ -22,7 +23,8 @@ class Page extends Component {
     this.togglePublish = this.togglePublish.bind(this)
     this.handleRemove = this.handleRemove.bind(this)
     this.pageChange = this.pageChange.bind(this)
-
+    this.searchChange = this.searchChange.bind(this) 
+    this.state = {  searchData: '' };
     
   }
   
@@ -33,9 +35,22 @@ class Page extends Component {
   }
   
   pageChange = (event, pageNumber) => { 
-    this.props.dispatch(categoryListRequest({ pageNumber }))
+    const value = this.state.searchData;
+    this.props.dispatch(categoryListRequest({ pageNumber, value }))
   }
   
+  searchChange(name, value) {
+    if (value.length >= 2) {
+      this.setState({ searchData: value })
+      this.props.dispatch(categoryListRequest({ value }))
+    } else {
+      this.setState({ searchData: '' })
+      this.props.dispatch(categoryListRequest({}))
+    }
+
+  }
+
+
   togglePublish(id) {
     const course_categories = this.props.course_categories.find(course_categories => course_categories.id === id); 
     this.props.dispatch(categoryUpdateRequest(course_categories.toJson(), 1));
@@ -49,12 +64,13 @@ class Page extends Component {
 
    }
   
-  renderCategories() {
+  renderCategories(pageNo) {
     return this.props.course_categories.map((category, index) => {
       return <CategoryRow key={index}
       category={category}
                          index={index}
                          togglePublish={this.togglePublish}
+                          pageNo={pageNo++}
                          handleRemove={this.handleRemove}/>
     })
   }
@@ -67,6 +83,7 @@ class Page extends Component {
           <div className="card-body bg-white">
             <h1 class="text-center">School Administrator</h1>
             <div className="table-responsive">
+              <Search onChange={this.searchChange} /> 
               <table className="table  table-striped">
                 <thead className="thead-inverse">
                   <tr>
@@ -90,7 +107,7 @@ class Page extends Component {
                     </th>
                   </tr>
                 </thead>
-                {this.props.course_categories.length >= 1 ? this.renderCategories() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>} 
+                {this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>} 
  
               </table>
             </div>

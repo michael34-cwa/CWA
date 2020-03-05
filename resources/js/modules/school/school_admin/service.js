@@ -99,11 +99,11 @@ export function  categoryRemoveRequest(id) {
   }
 }
 
-export function categoryListRequest({ pageNumber = 1, url = "/schools" }) {
-         return dispatch => {
-           if (pageNumber > 1) {
-             url = url + `?page=${pageNumber}`;
-           }
+export function categoryListRequest({ pageNumber = 1, value = '', url = "/schools" }) {
+  return dispatch => {
+    if (pageNumber > 1 || value.length >= 2) {
+      url = url + `?page=${pageNumber}&search=${value}`;
+    }
             Http.get(url)
              .then(res => {
                dispatch(categoryActions.list(transformResponse(res.data)));

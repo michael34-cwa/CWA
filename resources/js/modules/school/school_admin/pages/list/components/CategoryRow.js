@@ -11,11 +11,11 @@ const propTypes = {
   handleRemove: PropTypes.func.isRequired,
 }
 
-const CategoryRow = ({ index, category, togglePublish, handleRemove }) => {
+const CategoryRow = ({ index, category, togglePublish,  pageNo }) => {
 
     return (
      <tr key={index}>
-       <th scope="row">{index + 1}</th>
+        <th scope="row">{pageNo}</th>  
        <td>{category.first_name}</td>
        <td>{category.last_name}</td>
        <td>{category.email}</td>
