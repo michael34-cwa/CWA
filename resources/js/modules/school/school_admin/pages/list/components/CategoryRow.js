@@ -8,7 +8,7 @@ const propTypes = {
   index: PropTypes.number.isRequired,
   category: PropTypes.object.isRequired,
   togglePublish: PropTypes.func.isRequired,
-  handleRemove: PropTypes.func.isRequired,
+  pageNo: PropTypes.func.isRequired,
 }
 
 const CategoryRow = ({ index, category, togglePublish,  pageNo }) => {

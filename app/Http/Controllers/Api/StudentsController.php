@@ -8,7 +8,7 @@ use App\Model\Students;
 use App\User;
 
 use App\Model\CategoryCourses;
-use Illuminate\Http\Request;
+ use Illuminate\Support\Facades\Request; 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SchoolRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -25,9 +25,20 @@ class StudentsController  extends Controller
      */
     public function index(Request $request)
     { 
-        return User::whereHas('roles', function ($q) {
+               $dataSearch = Request::get('search');
+        $user = \Auth::guard('api')->user();
+        $userData =  User::whereHas('roles', function ($q) {
             $q->whereIn('slug', ['student']);
-        })->with('ActivationsUser')->paginate();
+        })->with('ActivationsUser'); 
+          if($dataSearch){
+          $userData->where('email', 'LIKE', "%{$dataSearch}%");
+          $userData->orWhere('first_name', 'LIKE', "%{$dataSearch}%");
+          $userData->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
+          $userData->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+          }
+       return  $userData->paginate();
+
+        
     }
 
    

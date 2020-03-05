@@ -20,19 +20,20 @@ import { browserHistory } from 'react-router'
     super(props)
     
     this.validator = new ReeValidate({
-      firstName: 'required|min:2',
-      lastName: 'required|min:2',
-      email: 'required|email',
-      phone: 'required|min:10',
-      password: 'required|min:6',
-      passwordConfirmation: 'required|min:6'
+      firstName: 'required|min:2|max:32',
+      lastName: 'required|min:2|max:32',
+      email: 'required|email|max:32',
+      phone: 'required|min:10|max:32',
+      password: 'required|min:6|max:32',
+      passwordConfirmation: 'required|min:6|max:32'
     });
     
     const category = this.props.category.toJson()
     
     this.state = {
       category,
-      errors: this.validator.errors
+      errors: this.validator.errors,
+      loading: false
     }
     
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -79,12 +80,15 @@ import { browserHistory } from 'react-router'
   }
   
   submit(category) { 
+    this.setState({ loading: true })
     this.props
       .dispatch(categoryAddRequest(category)) 
-      .then(res => { 
+      .then(res => {
+        this.setState({ loading: false })
         this.props.history.push('/teachers');  
       })
       .catch(({ error, statusCode }) => { 
+        this.setState({ loading: false })
         const { errors } = this.validator;  
          if (statusCode === 422) { 
           _.forOwn(error, (message, field) => { 
@@ -99,8 +103,7 @@ import { browserHistory } from 'react-router'
   render() {
     
     return <div className="dashboard-right"><div className="card"><div className="card-body bg-white">
-    
-      <h1>Add Teacher </h1>
+      <h1 class="page-heading text-center">Add Teacher</h1>  
        <Form {...this.state}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit} />

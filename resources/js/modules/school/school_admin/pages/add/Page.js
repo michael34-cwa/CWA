@@ -17,16 +17,14 @@ import { browserHistory } from 'react-router'
   }
   
   constructor(props) {  
-    super(props)
-    console.log(this.props);
-    console.log('this.props');
+    super(props) 
     this.validator = new ReeValidate({
-      firstName: 'required|min:2',
-      lastName: 'required|min:2',
-      email: 'required|email',
-      phone: 'required|min:10',
-      password: 'required|min:6',
-      passwordConfirmation: 'required|min:6'
+      firstName: 'required|min:2|max:32',
+      lastName: 'required|min:2|max:32',
+      email: 'required|email|max:32',
+      phone: 'required|min:10|max:32',
+      password: 'required|min:6|max:32',
+      passwordConfirmation: 'required|min:6|max:32'
     });
 
     const category = this.props.category.toJson()

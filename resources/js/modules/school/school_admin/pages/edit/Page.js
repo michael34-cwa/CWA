@@ -22,10 +22,10 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
-      first_name: 'required|min:2',
-      last_name: 'required|min:2',
-      email: 'required|email',
-      phone: 'required|min:10',
+      first_name: 'required|min:2|max:32',
+      last_name: 'required|min:2|max:32',
+      email: 'required|email|max:32',
+      phone: 'required|min:10|max:32',
       // password: 'required|min:6',
       // passwordConfirmation: 'required|min:6'
     });

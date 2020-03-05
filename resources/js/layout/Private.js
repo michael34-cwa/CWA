@@ -9,6 +9,7 @@ import Footer from "../common/footer/index";
 import AdminSideMenu from "../common/sidebar/adminMenu";
 import SchoolSideMenu from "../common/sidebar/schoolMenu";
 import StudentMenu from "../common/sidebar/studentMenu";
+import TeacherMenu from "../common/sidebar/teacherMenu";
 import { ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css";
 const containerStyle = {
@@ -31,6 +32,8 @@ function PrivateLayout({ children, rolenane}) {
     sideBars = <SchoolSideMenu />; 
   } else if (rolenane == 'student') {
     sideBars = <StudentMenu />;
+  } else if (rolenane == 'teacher') {
+    sideBars = <TeacherMenu />;
   }
     
  
