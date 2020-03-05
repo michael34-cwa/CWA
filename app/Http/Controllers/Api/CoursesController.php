@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Model\Courses;
 use App\Model\CourseCategories;
 use App\Model\CategoryCourses;
- use Illuminate\Http\Request;
+ use Illuminate\Support\Facades\Request;
+
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CoursesRequest;
@@ -19,10 +20,19 @@ class CoursesController  extends Controller
      * @param Request $request
      * @return LengthAwarePaginator|mixed
      */
-    public function index(Request $request)
+     public function index(Request $request)
     {   
-         return Courses::with(['getTasks','getCategory'])->latest()->paginate();  
+       $dataSearch   =   Request::get('search');
+         return Courses::with(['getTasks','getCategory'])->whereHas('getCategory', function($q) use ($dataSearch) {
+        if($dataSearch){
+         $q->where('category_name', 'LIKE', "%{$dataSearch}%");
+        }
+        }) ->latest()
+         ->orWhere('course_name', 'LIKE', "%{$dataSearch}%")
+         ->paginate();  
     }
+
+
 
        public function getCourses()
     {

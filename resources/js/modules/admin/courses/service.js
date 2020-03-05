@@ -96,10 +96,10 @@ export function courseRemoveRequest(id) {
   }
 }
 
-export function courseListRequest({ pageNumber = 1, url = "/courses" }) {
+export function courseListRequest({ pageNumber = 1, value = '', url = "/courses" }) {
          return dispatch => {
-           if (pageNumber > 1) {
-             url = url + `?page=${pageNumber}`;
+           if (pageNumber > 1 || value.length >= 2) {
+             url = url + `?page=${pageNumber}&search=${value}`;
            }
     
            Http.get(url)

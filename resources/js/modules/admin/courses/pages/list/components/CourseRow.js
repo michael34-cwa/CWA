@@ -8,13 +8,13 @@ const propTypes = {
   index: PropTypes.number.isRequired,
   course: PropTypes.object.isRequired,
   togglePublish: PropTypes.func.isRequired,
-  handleRemove: PropTypes.func.isRequired,
+  openModel: PropTypes.func.isRequired,
 }
 
-const CourseRow = ({ index, course, togglePublish, handleRemove }) => {
+const CourseRow = ({ index, course, togglePublish, openModel, pageNo }) => {
   return (
     <tr key={index}>
-      <th scope="row">{index + 1}</th>
+      <th scope="row">{pageNo}</th>  
       <td>{course.courseName}</td>
       {/* <td>{course.courseDescription}</td> */}
       <td>
@@ -59,7 +59,7 @@ const CourseRow = ({ index, course, togglePublish, handleRemove }) => {
             variant="contained"
             color="secondary"
             className="text-capitalize mx-1"
-            onClick={() => handleRemove(course.id)}
+            onClick={() => openModel(course.id)}
           >
             <i class="fa fa-trash-o mr-1" aria-hidden="true"></i> Delete
           </Button>
