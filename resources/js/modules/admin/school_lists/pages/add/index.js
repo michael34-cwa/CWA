@@ -1,13 +1,13 @@
 import { connect } from 'react-redux'
-import CourseCategory from '../../CourseCategory'
+import SchoolList from '../../SchoolList'
 
 // import components test
 import Page from './Page'
 
 const mapStateToProps = () => {
-  const category = new CourseCategory({})
+  const school_list = new SchoolList({})
   return {
-    category
+    school_list
   }
 }
 export default connect(mapStateToProps)(Page)

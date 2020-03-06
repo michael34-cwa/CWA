@@ -2,21 +2,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { categoryListRequest, categoryUpdateRequest, categoryRemoveRequest } from '../../service'
+import { SchoolListListRequest, SchoolListUpdateRequest, SchoolListRemoveRequest } from '../../service'
 import { Button } from '@material-ui/core';
 import LoadingComponent from '../../../../../common/loader'
 // import components
-import CategoryRow from './components/CategoryRow'
+import SchoolListRow from './components/SchoolListRow'
 import Pagination from '../../../../../common/Pagination'
 import Search from '../../../../../common/Search'
 import { Link } from 'react-router-dom'
  
  import DeleteModel from '../../../../../common/model/DeleteModel'
 class Page extends Component { 
-  static displayName = 'CategoriesPage'
+  static displayName = 'SchoolListPage'
   static propTypes = {
     meta: PropTypes.object.isRequired,
-    course_categories: PropTypes.array.isRequired,
+    school_list: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired,
   }
 
@@ -35,28 +35,27 @@ class Page extends Component {
   UNSAFE_componentWillMount() {
     const { dispatch } = this.props
 
-    dispatch(categoryListRequest({}))
+    dispatch(SchoolListListRequest({}))
   }
 
   pageChange = (event, pageNumber) => { 
-    const value = this.state.searchData;
-    console.log(this.state.searchData);
-    this.props.dispatch(categoryListRequest({ pageNumber, value })) 
+    const value = this.state.searchData; 
+    this.props.dispatch(SchoolListListRequest({ pageNumber, value })) 
   };
  
  
  
 
   togglePublish(id) {
-    const course_categories = this.props.course_categories.find(course_categories => course_categories.id === id);
+    const school_list = this.props.school_list.find(school_list => school_list.id === id);
 
-    if (!course_categories) return;
-    if (course_categories.isActive) {
-      course_categories.isActive = 0;
+    if (!school_list) return;
+    if (school_list.isActive) {
+      school_list.isActive = 0;
     } else {
-      course_categories.isActive = 1;
+      school_list.isActive = 1;
     }
-    this.props.dispatch(categoryUpdateRequest(course_categories.toJson(), '1'));
+    this.props.dispatch(SchoolListUpdateRequest(school_list.toJson(), '1'));
   }
 
 
@@ -64,10 +63,10 @@ class Page extends Component {
     if (value.length >= 2) { 
       this.setState({ searchData: value }) 
   
-    this.props.dispatch(categoryListRequest({   value })) 
+      this.props.dispatch(SchoolListListRequest({   value })) 
     }else{
       this.setState({ searchData: '' }) 
-    this.props.dispatch(categoryListRequest({}))
+      this.props.dispatch(SchoolListListRequest({}))
     }
    
   }
@@ -79,15 +78,15 @@ class Page extends Component {
 
   handleRemove(id) {
     this.setState({ open: !this.state.open, id: ''  }) 
-    this.props.dispatch(categoryRemoveRequest(id))
+    this.props.dispatch(schoolListRemoveRequest(id))
   }
 
-  renderCategories(pageNo) {
+  renderSchoolList(pageNo) {
    
-    return this.props.course_categories.map((category, index) => {
+    return this.props.school_list.map((schoolList, index) => {
       
-        return <CategoryRow key={index}
-          category={category}
+      return <SchoolListRow key={index}
+        schoolList={schoolList}
           pageNo={pageNo++}
           index={index}
           togglePublish={this.togglePublish}
@@ -127,11 +126,11 @@ class Page extends Component {
 
                 </thead>
                 <tbody>
-                  {this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="10" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>
+                  {this.props.school_list.length >= 1 ? this.renderSchoolList(this.props.meta.from) : <tr> <td colspan="10" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>
               </table>
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
-            {this.state.open && <DeleteModel openModel={this.openModel} opens={this.state.open} id={this.state.id} handleRemove={this.handleRemove} />}
+            {/* {this.state.open && <DeleteModel openModel={this.openModel} opens={this.state.open} id={this.state.id} handleRemove={this.handleRemove} />} */}
 
            </div>
         </div> 

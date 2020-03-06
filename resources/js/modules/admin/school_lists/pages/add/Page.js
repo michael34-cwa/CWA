@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { categoryAddRequest } from '../../service'
+import { SchoolListAddRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 
 // import components
@@ -10,9 +10,9 @@ import Form from './components/Form'
  
 import { browserHistory } from 'react-router'
  class Page extends Component {
-  static displayName = 'AddCategory'
+   static displayName = 'AddSchoolList'
   static propTypes = {
-    category: PropTypes.object.isRequired,
+    school_list: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   }
   
@@ -27,10 +27,10 @@ import { browserHistory } from 'react-router'
       schoolDescription: 'required|min:2|max:200',
     });
     
-    const category = this.props.category.toJson()
+    const school_list = this.props.school_list.toJson()
     
     this.state = {
-      category,
+      school_list,
       errors: this.validator.errors,
       loading: false
     }
@@ -40,10 +40,10 @@ import { browserHistory } from 'react-router'
   }
   
   componentWillReceiveProps(nextProps) {
-    const category = nextProps.category.toJson()
+    const school_list = nextProps.school_list.toJson()
     
-    if (!_.isEqual(this.state.category, category)) {
-      this.setState({ category })
+    if (!_.isEqual(this.state.school_list, school_list)) {
+      this.setState({ school_list })
     }
     
   }
@@ -52,7 +52,7 @@ import { browserHistory } from 'react-router'
 
     const { errors} = this.validator
 
-    this.setState({ category: { ...this.state.category, [name]: value} })
+    this.setState({ school_list: { ...this.state.school_list, [name]: value} })
 
     errors.remove(name)
     
@@ -66,22 +66,22 @@ import { browserHistory } from 'react-router'
   handleSubmit(e) {
   
     e.preventDefault()
-    const category = this.state.category
+    const school_list = this.state.school_list
     const { errors } = this.validator 
-    this.validator.validateAll(category)
+    this.validator.validateAll(school_list)
       .then((success) => {
         if (success) {
-          this.submit(category)
+          this.submit(school_list)
         } else {
           this.setState({ errors })
         }
       })
   }
   
-  submit(category) { 
+   submit(school_list) { 
     this.setState({ loading: true })
     this.props
-      .dispatch(categoryAddRequest(category)) 
+      .dispatch(SchoolListAddRequest(school_list)) 
       .then(res => { 
         this.setState({ loading: false })
       this.props.history.push('/admin/school_lists');  

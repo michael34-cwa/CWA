@@ -4,40 +4,40 @@ import { Link } from 'react-router-dom'
 //import DeleteModel from '../../../../../../common/model/DeleteModel'
 import { Button } from '@material-ui/core';
 
-const displayName = 'CategoryRow'
+const displayName = 'SchoolListRow'
 const propTypes = {
   index: PropTypes.number.isRequired,
-  category: PropTypes.object.isRequired,
+  schoolList: PropTypes.object.isRequired,
   openModel: PropTypes.func.isRequired,
 }
 
-const CategoryRow = ({ index, category, openModel, pageNo, togglePublish}) => {
+const SchoolListRow = ({ index, schoolList, pageNo, togglePublish}) => {
    return (
      <tr key={index}>
        <th scope="row">{pageNo}</th>   
-       <td>{category.schoolName}</td>
-       <td>{category.phone}</td>
-       <td>{category.schoolAddress}</td> 
-       <td>{category.createdAt && category.createdAt.format("MMMM, DD YYYY")}</td>
-       <td>{category.updatedAt && category.updatedAt.format("MMMM, DD YYYY")}</td>
+       <td>{schoolList.schoolName}</td>
+       <td>{schoolList.phone}</td>
+       <td>{schoolList.schoolAddress}</td> 
+       <td>{schoolList.createdAt && schoolList.createdAt.format("MMMM, DD YYYY")}</td>
+       <td>{schoolList.updatedAt && schoolList.updatedAt.format("MMMM, DD YYYY")}</td>
        <td>
          <div className="btn-group" role="group" aria-label="Actions">
             
              
-           <Link to={`school_lists/${category.id}/edit`} >
+           <Link to={`school_lists/${schoolList.id}/edit`} >
               <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
                <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Edit
                </Button >
             </Link>
             
             
-           {category.isActive ? (
+           {schoolList.isActive ? (
              <Button
                size="small"
                variant="contained"
                color="secondary"
                className="text-capitalize mx-1"
-               onClick={() => togglePublish(category.id)}
+               onClick={() => togglePublish(schoolList.id)}
              >
                <i class="fa fa-eye-slash mr-1" aria-hidden="true"></i> Inactive
             </Button >
@@ -46,7 +46,7 @@ const CategoryRow = ({ index, category, openModel, pageNo, togglePublish}) => {
                  size="small"
                  variant="contained"
                  className="colorPrimary text-capitalize mx-1"
-                 onClick={() => togglePublish(category.id)}
+                 onClick={() => togglePublish(schoolList.id)}
                >
                  <i class="fa fa-eye mr-1" aria-hidden="true"></i> Active
             </Button>
@@ -60,7 +60,7 @@ const CategoryRow = ({ index, category, openModel, pageNo, togglePublish}) => {
    );
 }
 
-CategoryRow.displayName = displayName
-CategoryRow.propTypes = propTypes
+SchoolListRow.displayName = displayName
+SchoolListRow.propTypes = propTypes
 
-export default CategoryRow
+export default SchoolListRow

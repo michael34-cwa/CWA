@@ -1,6 +1,6 @@
 import Http from '../../../utils/Http'
 import Transformer from '../../../utils/Transformer'
-import * as categoryActions from './store/actions'
+import * as SchoolListActions from './store/actions'
 import { toast } from "react-toastify";
 
 function transformRequest(parms) {
@@ -11,7 +11,7 @@ function transformResponse(params) {
   return Transformer.fetch(params)
 }
 
-export function categoryAddRequest(params) { 
+export function SchoolListAddRequest(params) { 
   
 
   return dispatch => (  
@@ -21,7 +21,7 @@ export function categoryAddRequest(params) {
         .then(res => {
           toast.success("Added Successfully");
          
-          dispatch(categoryActions.add(transformResponse(res.data)));
+          dispatch(SchoolListActions.add(transformResponse(res.data)));
           return resolve(res);
         })
         .catch(err => {
@@ -48,15 +48,14 @@ export function categoryAddRequest(params) {
   )
 }
 
-export function  categoryUpdateRequest(params) { 
+export function  SchoolListUpdateRequest(params) { 
 
   return dispatch => ( 
     new Promise((resolve, reject) => {
-     // dispatch(categoryActions.spinerAdd(transformRequest(params))) 
-      Http.patch(`school_lists/${params.id}`, transformRequest(params))
+       Http.patch(`school_lists/${params.id}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully"); 
-      dispatch(categoryActions.add(transformResponse(res.data)));
+          dispatch(SchoolListActions.add(transformResponse(res.data)));
           return resolve();
         })
         .catch(err => {
@@ -83,12 +82,12 @@ export function  categoryUpdateRequest(params) {
   )
 }
 
-export function  categoryRemoveRequest(id) {
+export function  SchoolListRemoveRequest(id) {
   return dispatch => {
     Http.delete(`school_lists/${id}`)
       .then(() => {
         toast.success("Deleted Successfully"); 
-        dispatch(categoryActions.remove(id)); 
+        dispatch(SchoolListActions.remove(id)); 
       })
       .catch(err => {
         // TODO: handle err
@@ -97,15 +96,15 @@ export function  categoryRemoveRequest(id) {
   }
 }
 
-export function categoryListRequest({ pageNumber = 1, value = '', url = "/school_lists" }) {
+export function SchoolListListRequest({ pageNumber = 1, value = '', url = "/school_lists" }) {  
          return dispatch => {
            if (pageNumber > 1 || value.length >= 2) {
              url = url + `?page=${pageNumber}&search=${value}`;
            }
-          
+       
            Http.get(url)
-              .then(res => {
-               dispatch(categoryActions.list(transformResponse(res.data)));
+             .then(res => { 
+                dispatch(SchoolListActions.list(transformResponse(res.data)));
               })
              .catch(err => {
                // TODO: handle err
@@ -114,11 +113,11 @@ export function categoryListRequest({ pageNumber = 1, value = '', url = "/school
          };
        }
 
-export function  categoryEditRequest(id) { 
+export function  SchoolListEditRequest(id) { 
   return dispatch => {
     Http.get(`school_lists/${id}`)
       .then(res => {
-        dispatch(categoryActions.add(transformResponse(res.data)));
+        dispatch(SchoolListActions.add(transformResponse(res.data)));
       })
       .catch(err => {
         // TODO: handle err

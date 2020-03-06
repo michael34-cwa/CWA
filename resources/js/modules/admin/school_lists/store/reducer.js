@@ -1,8 +1,8 @@
 import {
-  CATEGORY_ADD,
-  CATEGORY_UPDATE,
-  CATEGORY_REMOVE,
-  CATEGORY_LIST,
+  SCHOOL_LIST_ADD,
+  SCHOOL_LIST_UPDATE,
+  SCHOOL_LIST_REMOVE,
+  SCHOOL_LIST_LIST,
   SPINNER_ADD,
   SPINNER_REMOVE
 } from './action-types'
@@ -26,13 +26,13 @@ const reducer = (state = initialState, { type, payload = null }) => {
   switch(type) {
     case SPINNER_ADD:
       return spinerAdd(state, payload)
-    case CATEGORY_ADD:
+    case SCHOOL_LIST_ADD:
       return add(state, payload)
-    case CATEGORY_UPDATE:
+    case SCHOOL_LIST_UPDATE:
       return update(state, payload)
-    case CATEGORY_REMOVE:
+    case SCHOOL_LIST_REMOVE:
       return remove(state, payload)
-    case CATEGORY_LIST:
+    case SCHOOL_LIST_LIST:
       return list(state, payload)
     case SPINNER_REMOVE:
       return spinerRemove(state, payload)
@@ -42,9 +42,10 @@ const reducer = (state = initialState, { type, payload = null }) => {
 }
 
 function add(state, payload) {
-  const CATEGORY = state.data.find((CATEGORY) => (CATEGORY.id === payload.id))
 
-  if (!CATEGORY) {
+  const SCHOOL_LIST = state.data.find((SCHOOL_LIST) => (SCHOOL_LIST.id === payload.id))
+
+  if (!SCHOOL_LIST) {
     const data = [...state.data, payload]
  
     return Object.assign({}, state, { data })
@@ -71,7 +72,7 @@ function remove(state, id) {
   return Object.assign({}, state, { data })
 }
 
-function list(state, payload) { 
+function list(state, payload) {  
   state = Object.assign({}, payload)
 
   return state

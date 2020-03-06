@@ -2,7 +2,7 @@
 import React, { Component, Suspense} from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { categoryEditRequest, categoryUpdateRequest } from '../../service'
+import { SchoolListEditRequest, SchoolListUpdateRequest } from '../../service'
 import ReeValidate from 'ree-validate'
 import { NavItem } from 'reactstrap'
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -11,10 +11,10 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Form from './components/Form'
 
 class Page extends Component {
-  static displayName = 'EditCategory'
+  static displayName = 'SchoolListCategory'
   static propTypes = {
     match: PropTypes.object.isRequired,
-    categroy: PropTypes.object,
+    school_list: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
     
   }
@@ -30,10 +30,10 @@ class Page extends Component {
       schoolDescription: 'required|min:2|max:200',
     });
     
-    const category = this.props.category.toJson()
+    const school_list = this.props.school_list.toJson()
  
     this.state = {
-      category,
+      school_list,
       errors: this.validator.errors,
       loading: false
     }
@@ -49,25 +49,25 @@ class Page extends Component {
   }
   
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const category = nextProps.category.toJson() 
-    if (!_.isEqual(this.state.category, category)) {
-      this.setState({ category })
+    const school_list = nextProps.school_list.toJson() 
+    if (!_.isEqual(this.state.school_list, school_list)) {
+      this.setState({ school_list })
     }
     
   }
   
   loadCategory() {
-    const { match, category, dispatch } = this.props 
+    const { match, school_list, dispatch } = this.props 
    
-    if (!category.id) {
-      dispatch(categoryEditRequest(match.params.id))
+    if (!school_list.id) {
+      dispatch(SchoolListEditRequest(match.params.id))
     }
   }
   
   handleChange(name, value) {
     const { errors } = this.validator
     
-    this.setState({ category: { ...this.state.category, [name]: value} })
+    this.setState({ school_list: { ...this.state.school_list, [name]: value} })
     
     errors.remove(name)
     
@@ -79,25 +79,25 @@ class Page extends Component {
   
   handleSubmit(e) {
     e.preventDefault()
-    const category = this.state.category
+    const school_list = this.state.school_list
     const { errors } = this.validator
     
-    this.validator.validateAll(category)
+    this.validator.validateAll(school_list)
       .then((success) => {
         if (success) {
-          this.submit(category)
+          this.submit(school_list)
          } else {
           this.setState({ errors })
         }
       })
   }
  
-  submit(category) {  
+  submit(school_list) {  
     this.setState({ loading:true })
-    this.props.dispatch(categoryUpdateRequest(category))
+    this.props.dispatch(SchoolListUpdateRequest(school_list))
       .then(res => { 
         this.setState({ loading: false })
-       this.props.history.push('/admin/course_categories');
+        this.props.history.push('/admin/school_lists');
       })
       .catch(({ error, statusCode }) => {
         this.setState({ loading: false })
@@ -114,8 +114,8 @@ class Page extends Component {
   }
   
   renderForm() { 
-    const { category } = this.props 
-    if (category.id) { 
+    const { school_list } = this.props 
+    if (school_list.id) { 
       return <Form {...this.state}
         loading={this.state.loading}
                    onChange={this.handleChange}
@@ -128,7 +128,7 @@ class Page extends Component {
     return <main className="dashboard-right" role="main">   
     <div className="card">
       <div className="card-body bg-white"> 
-      <h1 class="text-center">Update Category Name</h1> 
+          <h1 class="text-center">Update School List</h1> 
        { this.renderForm() }    
       </div>
       </div>

@@ -7,38 +7,38 @@
  */
 
 import {
-  CATEGORY_ADD,
-  CATEGORY_UPDATE,
-  CATEGORY_REMOVE,
-  CATEGORY_LIST,
+  SCHOOL_LIST_ADD,
+  SCHOOL_LIST_UPDATE,
+  SCHOOL_LIST_REMOVE,
+  SCHOOL_LIST_LIST,
   SPINNER_ADD,
   SPINNER_REMOVE
 } from './action-types';
  
 export function add(payload) {
   return {
-    type: CATEGORY_ADD,
+    type: SCHOOL_LIST_ADD,
     payload
   }
 }
 
 export function update(payload) {
   return {
-    type: CATEGORY_UPDATE,
+    type: SCHOOL_LIST_UPDATE,
     payload
   }
 }
 
 export function remove(payload) {
   return {
-    type: CATEGORY_REMOVE,
+    type: SCHOOL_LIST_REMOVE,
     payload
   }
 }
 
 export function list(payload) {
   return {
-    type: CATEGORY_LIST,
+    type: SCHOOL_LIST_LIST,
     payload
   }
 }

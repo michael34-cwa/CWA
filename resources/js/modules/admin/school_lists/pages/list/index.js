@@ -1,15 +1,16 @@
 // import libs
 import { connect } from 'react-redux'
-import CourseCategory from '../../CourseCategory'
+import SchoolList from '../../SchoolList'
 
 // import components
 import Page from './Page'
 
-const mapStateToProps = state => {   
-  const {data, ...meta} = state.course_categories
+const mapStateToProps = state => {
+
+  const { data, ...meta } = state.school_lists
 
   return {
-    course_categories: data.map((category) => new CourseCategory(category)),
+    school_list: data.map((schoolList) => new SchoolList(schoolList)),
     meta: Object.assign({}, meta)
   }
 }

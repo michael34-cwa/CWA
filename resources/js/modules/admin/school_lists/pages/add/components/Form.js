@@ -2,18 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types' 
 import { TextField, Button, FormHelperText, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import LoadingComponent from '../../../../../../common/loader'
-const displayName = 'CategoryFrom'
+const displayName = 'SchoolListFrom'
 const propTypes = {
-  category: PropTypes.object.isRequired,
+  school_list: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 }
 
-const Form = ({ loading,category, errors, onChange, onSubmit }) => {
+const Form = ({ loading, school_list, errors, onChange, onSubmit }) => {
   
   function handleChange(name, value) {
-    if (value !== category[name]) {
+    if (value !== school_list[name]) {
       onChange(name, value)
     }
   } 
@@ -29,7 +29,7 @@ const Form = ({ loading,category, errors, onChange, onSubmit }) => {
               label="School Name"
               defaultValue="School Name"
               helperText={`${errors.has("schoolName") ? errors.first("schoolName").replace("schoolName", "school name") : ''}`}
-              value={category.schoolName || ""}
+              value={school_list.schoolName || ""}
               id="schoolName"
               name="schoolName"
               onChange={e => handleChange(e.target.name, e.target.value)}
@@ -46,7 +46,7 @@ const Form = ({ loading,category, errors, onChange, onSubmit }) => {
               label="Phone"
               defaultValue="School Name"
               helperText={`${errors.has("phone") ? errors.first("phone") : ''}`} 
-              value={category.phone || ""}
+              value={school_list.phone || ""}
               id="phone"
               name="phone"
               onChange={e => handleChange(e.target.name, e.target.value)}
@@ -65,7 +65,7 @@ const Form = ({ loading,category, errors, onChange, onSubmit }) => {
               labelId="isActive"
               id="isActive"
               name="isActive"
-              value={category.isActive || ""}
+              value={school_list.isActive || ""}
               placeholder="School Status"
               onChange={e => handleChange(e.target.name, e.target.value)}
             >
@@ -86,7 +86,7 @@ const Form = ({ loading,category, errors, onChange, onSubmit }) => {
                 label="School Address"
                 defaultValue="School Address"
               helperText={`${errors.has("schoolAddress") ? errors.first("schoolAddress").replace("schoolAddress", "school address") : ''}`}
-              value={category.schoolAddress || ""}
+              value={school_list.schoolAddress || ""}
               id="schoolAddress"
               name="schoolAddress"
                 onChange={e => handleChange(e.target.name, e.target.value)}
@@ -109,7 +109,7 @@ const Form = ({ loading,category, errors, onChange, onSubmit }) => {
               label="School Description"
               defaultValue="School Address"
               helperText={`${errors.has("schoolDescription") ? errors.first("schoolDescription").replace("schoolDescription", "school description") : ''}`}
-              value={category.schoolDescription || ""}
+              value={school_list.schoolDescription || ""}
               id="schoolDescription"
               name="schoolDescription"
               onChange={e => handleChange(e.target.name, e.target.value)}

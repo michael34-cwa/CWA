@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import CourseCategory from '../../CourseCategory'
+import SchoolList from '../../SchoolList'
 
 // import components
 import Page from './Page'
@@ -8,10 +8,10 @@ const mapStateToProps = (state, router) => {
  
   
   const { params} = router.match
-  const category = state.course_categories.data.find(category => category.id === Number(params.id))
+  const school_list = state.school_lists.data.find(school_list => school_list.id === Number(params.id))
   return {
-    category: category ? new CourseCategory(category) : new CourseCategory({}),
-    loading: state.course_categories.loading
+    school_list: school_list ? new SchoolList(school_list) : new SchoolList({}),
+    //loading: state.school_list.loading
   }
 }
 
