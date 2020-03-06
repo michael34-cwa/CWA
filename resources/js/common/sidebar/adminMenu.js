@@ -92,6 +92,30 @@ const AdminSideMenu = props => {
           </div>
         </div>
 
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                <i class="fa fa-bar-chart" aria-hidden="true"></i>School Lists<span className="toggleicon"><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus" aria-hidden="true"></i></span>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseFive" class="panel-collapse collapse">
+            <div class="panel-body">
+              <Nav vertical>
+                <NavItem>
+                  <NavLink exact={true} tag={RRNavLink} to="/admin/school_lists" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i>School List</NavLink>
+                </NavItem>
+
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/admin/school_lists/create" activeClassName="active"><i class="fa fa-plus" aria-hidden="true"></i> Add New School List</NavLink>
+                </NavItem>
+
+              </Nav>
+            </div>
+          </div>
+        </div>
+
 
         <div class="panel panel-default">
           <div class="panel-heading">
