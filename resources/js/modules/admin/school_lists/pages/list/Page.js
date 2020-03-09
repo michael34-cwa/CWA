@@ -47,7 +47,7 @@ class Page extends Component {
  
 
   togglePublish(id) {
-    const school_list = this.props.school_list.find(school_list => school_list.id === id);
+    const school_list = this.props.school_list.find(school_list => school_list.user_id === id);
 
     if (!school_list) return;
     if (school_list.isActive) {
@@ -109,6 +109,7 @@ class Page extends Component {
                 <thead className="thead-inverse">
                   <tr>
                     <th>Sr. No.</th>
+                    <th>Email</th>
                     <th>School Name</th>
                     <th>Phone</th>
                     <th>School Address</th> 

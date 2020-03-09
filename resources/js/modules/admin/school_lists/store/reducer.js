@@ -41,8 +41,7 @@ const reducer = (state = initialState, { type, payload = null }) => {
   }
 }
 
-function add(state, payload) {
-
+function add(state, payload) { 
   const SCHOOL_LIST = state.data.find((SCHOOL_LIST) => (SCHOOL_LIST.id === payload.id))
 
   if (!SCHOOL_LIST) {

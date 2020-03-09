@@ -23,6 +23,7 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
+      email: "required|min:2|max:32", 
       schoolName: "required|min:2|max:32",
       phone: 'required|min:2|max:20',
       isActive: 'required',

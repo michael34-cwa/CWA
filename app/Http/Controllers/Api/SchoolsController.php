@@ -27,16 +27,20 @@ class SchoolsController  extends Controller
     public function index(Request $request)
     {
       $dataSearch   =   Request::get('search');
-        $user = \Auth::guard('api')->user();
-        $userData =  User::whereHas('roles', function ($q) {
-            $q->whereIn('slug', ['school']);
-        })->with('ActivationsUser')->where('id', "!=", $user->id); 
-          if($dataSearch){
+        $user = \Auth::guard('api')->user(); 
+         $userData=  User::latest();
+        if($dataSearch){
           $userData->where('email', 'LIKE', "%{$dataSearch}%");
           $userData->orWhere('first_name', 'LIKE', "%{$dataSearch}%");
           $userData->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
           $userData->orWhere('phone', 'LIKE', "%{$dataSearch}%");
-          }
+          } 
+          $userData->whereHas('roles', function ($q) use($dataSearch) {
+            $q->whereIn('slug', ['school']); 
+        }); 
+         
+        $userData->with('ActivationsUser','roles')->where('id', "!=", $user->id);   
+  
        return  $userData->paginate();
     }
 

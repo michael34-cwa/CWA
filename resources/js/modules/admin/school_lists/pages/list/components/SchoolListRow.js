@@ -14,7 +14,8 @@ const propTypes = {
 const SchoolListRow = ({ index, schoolList, pageNo, togglePublish}) => {
    return (
      <tr key={index}>
-       <th scope="row">{pageNo}</th>   
+       <th scope="row">{pageNo}</th>  
+       <td>{schoolList.email}</td>  
        <td>{schoolList.schoolName}</td>
        <td>{schoolList.phone}</td>
        <td>{schoolList.schoolAddress}</td> 
@@ -37,7 +38,7 @@ const SchoolListRow = ({ index, schoolList, pageNo, togglePublish}) => {
                variant="contained"
                color="secondary"
                className="text-capitalize mx-1"
-               onClick={() => togglePublish(schoolList.id)}
+               onClick={() => togglePublish(schoolList.user_id)}
              >
                <i class="fa fa-eye-slash mr-1" aria-hidden="true"></i> Inactive
             </Button >
@@ -46,7 +47,7 @@ const SchoolListRow = ({ index, schoolList, pageNo, togglePublish}) => {
                  size="small"
                  variant="contained"
                  className="colorPrimary text-capitalize mx-1"
-                 onClick={() => togglePublish(schoolList.id)}
+                 onClick={() => togglePublish(schoolList.user_id)}
                >
                  <i class="fa fa-eye mr-1" aria-hidden="true"></i> Active
             </Button>

@@ -15,11 +15,11 @@ class CreateSchoolListsTable extends Migration
     {
         Schema::create('school_lists', function (Blueprint $table) {
            $table->increments('id');
+           $table->integer('school_id')->unsigned();
+           $table->foreign('school_id')->references('id')->on('users')->onDelete('cascade');
            $table->string('school_name');
-           $table->string('phone');
            $table->text('school_description')->nullable();
-           $table->text('school_address')->nullable();
-           $table->boolean('is_active')->default(false);
+           $table->text('school_address')->nullable(); 
            $table->timestamps();
         });
     }

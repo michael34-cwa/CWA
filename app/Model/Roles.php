@@ -13,4 +13,6 @@ class Roles extends Model
       return  $townsByCounty = Roles::get();
        
     }
+
+    
 }

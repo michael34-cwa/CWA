@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Model\Activations');
     }
+
+          public function SchoolLists()
+    {
+        return $this->hasOne('App\Model\SchoolList' ,'school_id', 'id');
+    }
 }

@@ -24,6 +24,7 @@ class SchoolListRequest extends FormRequest
     public function rules()
     {
         return [
+             'email' => 'required|min:2|max:32', 
              'school_name' => 'required|min:2|max:32', 
              'phone' => 'required|min:2|max:20', 
              'school_description' => 'required|min:2|max:200', 

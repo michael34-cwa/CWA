@@ -8,11 +8,11 @@ use App\Model\Schools;
 use App\User;
 
 use App\Model\CategoryCourses;
- use Illuminate\Support\Facades\Request; 
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SchoolRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
- use App\Model\Activations;
+use App\Model\Activations;
 use Activation;
 use App\Model\School;
 
@@ -25,22 +25,26 @@ class TeachersController  extends Controller
      * @return LengthAwarePaginator|mixed
      */
     public function index(Request $request)
-    { 
-       $dataSearch = Request::get('search');
+    {
+
+        $dataSearch   =   Request::get('search');
         $user = \Auth::guard('api')->user();
-        $userData =  User::whereHas('roles', function ($q) {
+        $userData =  User::latest();
+        if ($dataSearch) {
+            $userData->where('email', 'LIKE', "%{$dataSearch}%");
+            $userData->orWhere('first_name', 'LIKE', "%{$dataSearch}%");
+            $userData->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
+            $userData->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+        }
+        $userData->whereHas('roles', function ($q) use ($dataSearch) {
             $q->whereIn('slug', ['teacher']);
-        })->with('ActivationsUser'); 
-          if($dataSearch){
-          $userData->where('email', 'LIKE', "%{$dataSearch}%");
-          $userData->orWhere('first_name', 'LIKE', "%{$dataSearch}%");
-          $userData->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
-          $userData->orWhere('phone', 'LIKE', "%{$dataSearch}%");
-          }
-       return  $userData->paginate();
+        });
+
+        $userData->with('ActivationsUser', 'roles')->where('id', "!=", $user->id);
+        return  $userData->paginate();
     }
 
-   
+
     /**
      * Get single published article
      *
@@ -83,30 +87,29 @@ class TeachersController  extends Controller
     public function store(SchoolRequest $request)
     {
         try {
-           
+
             $data  = $request->all();
             //Get and check user data by email
-            $userData = User::GetUserByMail($data['email']); 
+            $userData = User::GetUserByMail($data['email']);
             //Check Email Exit
-            if (!empty($userData)) { 
-                return response()->json(['message' => 'This email already exit.','status'=>0], 422);
+            if (!empty($userData)) {
+                return response()->json(['message' => 'This email already exit.', 'status' => 0], 422);
             }
-  
+
             $credential = [
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
-                'email' => $data['email'], 
+                'email' => $data['email'],
                 'password' => $data['password'],
-                  'phone' => $data['phone'],
+                'phone' => $data['phone'],
 
             ];
 
             $user = \Sentinel::registerAndActivate($credential);
             if (!empty($user)) {
-                $userUpdate = User::findOrFail($user->id);  
+                $userUpdate = User::findOrFail($user->id);
                 $role = \Sentinel::findRoleByName('teacher');
                 $role->users()->attach($user);
-
             }
             return response()->json($user, 201);
         } catch (\Exception $e) {
@@ -117,7 +120,6 @@ class TeachersController  extends Controller
                 "message" => "The user credentials were incorrect."
             ], 401);
         }
-   
     }
 
     /**
@@ -164,21 +166,21 @@ class TeachersController  extends Controller
     // }
 
     public function update(SchoolRequest $request, $id, $status = null)
-    { 
+    {
 
-        if($status == 0){
-         $user = User::findOrFail($id);
-        $user->update($request->all());
-        }else{
-         $user = \Sentinel::findById($id);
-         $UsrActCkh = Activations::where('user_id',  $id)->first();
-        if (empty($UsrActCkh) || $UsrActCkh['completed'] == '0') {
-            $ActCode = \Activation::create($user);
-            \Activation::complete($user, $ActCode['code']);
+        if ($status == 0) {
+            $user = User::findOrFail($id);
+            $user->update($request->all());
         } else {
-            \Activation::remove($user);
+            $user = \Sentinel::findById($id);
+            $UsrActCkh = Activations::where('user_id',  $id)->first();
+            if (empty($UsrActCkh) || $UsrActCkh['completed'] == '0') {
+                $ActCode = \Activation::create($user);
+                \Activation::complete($user, $ActCode['code']);
+            } else {
+                \Activation::remove($user);
+            }
         }
-       }
         return response()->json($user, 200);
     }
 

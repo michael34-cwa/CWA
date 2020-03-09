@@ -21,15 +21,32 @@ const Form = ({ loading, school_list, errors, onChange, onSubmit }) => {
   return (
     <form onSubmit={e => onSubmit(e)}>
       <div className="row">
+
+        <div className="col-md-6">
+          <FormControl className="w-100 mb-3" >
+            <TextField
+              error={errors.has("email")}
+
+              label="Email" 
+              helperText={`${errors.has("email") ? errors.first("email") : ''}`}
+
+              id="email"
+              name="email"
+              onChange={e => handleChange(e.target.name, e.target.value)}
+            />
+          </FormControl>
+
+        </div>
+
+
         <div className="col-md-6">
           <FormControl className="w-100 mb-3" >
             <TextField
               error={errors.has("schoolName")}
 
-              label="School Name"
-              defaultValue="School Name"
+              label="School Name" 
               helperText={`${errors.has("schoolName") ? errors.first("schoolName").replace("schoolName", "school name") : ''}`}
-              value={school_list.schoolName || ""}
+         
               id="schoolName"
               name="schoolName"
               onChange={e => handleChange(e.target.name, e.target.value)}
@@ -38,22 +55,6 @@ const Form = ({ loading, school_list, errors, onChange, onSubmit }) => {
 
         </div>
 
-        <div className="col-md-6">
-          <FormControl className="w-100 mb-3" >
-            <TextField
-              error={errors.has("phone")}
-
-              label="Phone"
-              defaultValue="School Name"
-              helperText={`${errors.has("phone") ? errors.first("phone") : ''}`} 
-              value={school_list.phone || ""}
-              id="phone"
-              name="phone"
-              onChange={e => handleChange(e.target.name, e.target.value)}
-            />
-          </FormControl>
-
-        </div>
       </div>
  
    
@@ -65,10 +66,10 @@ const Form = ({ loading, school_list, errors, onChange, onSubmit }) => {
               labelId="isActive"
               id="isActive"
               name="isActive"
-              value={school_list.isActive || ""}
+             // value={school_list.isActive || ""}
               placeholder="School Status"
               onChange={e => handleChange(e.target.name, e.target.value)}
-            >
+            > 
               <MenuItem value={0}>In Active</MenuItem>
               <MenuItem value={1}>Active</MenuItem>
             </Select>
@@ -78,29 +79,32 @@ const Form = ({ loading, school_list, errors, onChange, onSubmit }) => {
           </FormControl>
 
         </div>
-           <div className="col-md-6">
-            <FormControl className="w-100 mb-3" >
-              <TextField
-              error={errors.has("schoolAddress")}
 
-                label="School Address"
-                defaultValue="School Address"
-              helperText={`${errors.has("schoolAddress") ? errors.first("schoolAddress").replace("schoolAddress", "school address") : ''}`}
-              value={school_list.schoolAddress || ""}
-              id="schoolAddress"
-              name="schoolAddress"
-                onChange={e => handleChange(e.target.name, e.target.value)}
-              />
-            </FormControl>
- 
-          </div></div>
+
+        <div className="col-md-6">
+          <FormControl className="w-100 mb-3" >
+            <TextField
+              error={errors.has("phone")}
+
+              label="Phone"
+              defaultValue="School Name"
+              helperText={`${errors.has("phone") ? errors.first("phone") : ''}`}
+              value={school_list.phone || ""}
+              id="phone"
+              name="phone"
+              onChange={e => handleChange(e.target.name, e.target.value)}
+            />
+          </FormControl>
+
+        </div>
+      </div>
 
      
 
 
       <div className="row">
       
-        <div className="col-md-12">
+        <div className="col-md-6">
           <FormControl className="w-100 mb-3" >
             <TextField
               error={errors.has("schoolDescription")}
@@ -117,6 +121,23 @@ const Form = ({ loading, school_list, errors, onChange, onSubmit }) => {
           </FormControl>
 
         </div> 
+
+        <div className="col-md-6">
+          <FormControl className="w-100 mb-3" >
+            <TextField
+              error={errors.has("schoolAddress")}
+
+              label="School Address"
+              defaultValue="School Address"
+              helperText={`${errors.has("schoolAddress") ? errors.first("schoolAddress").replace("schoolAddress", "school address") : ''}`}
+              value={school_list.schoolAddress || ""}
+              id="schoolAddress"
+              name="schoolAddress"
+              onChange={e => handleChange(e.target.name, e.target.value)}
+            />
+          </FormControl>
+
+        </div>
      </div>
 
 

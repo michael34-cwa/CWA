@@ -11,11 +11,13 @@ class SchoolList extends Model {
 
   initialize(props) {
      super.initialize(props)  
-    this.schoolName = props.schoolName || "";
-    this.phone = props.phone || "";
-    this.schoolDescription = props.schoolDescription || "";
-    this.schoolAddress = props.schoolAddress || "";
-    this.isActive = props.isActive || ""; 
+    this.user_id = props.user ? props.user.id : "";
+    this.email = props.user ? props.user.email : "";
+    this.schoolName = props.schoolName ? props.schoolName :"";
+    this.phone = props.user ? props.user.phone : "";
+    this.schoolDescription = props.schoolDescription ? props.schoolDescription : "";
+    this.schoolAddress = props.schoolAddress ? props.schoolAddress : "";
+    this.isActive = props.activationsUser ? props.activationsUser.completed : "";  
     this.created_at = props.created_at || "";
     this.updated_at = props.updated_at || ""; 
     // relate user model

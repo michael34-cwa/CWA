@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SchoolListRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Request;
-
+use App\User;
+use App\Model\Activations;
+use Activation;
 
 class SchoolListsController  extends Controller
 {
@@ -22,20 +24,20 @@ class SchoolListsController  extends Controller
     public function index(Request $request)
     {
         $dataSearch   =   Request::get('search');
-        $schoolData =  SchoolList::latest();
+
+
+        $schoolData = SchoolList::with(array('User' => function ($query) {
+            $query->select('id', 'email', 'first_name', 'last_name', 'phone');
+        }, 'ActivationsUser'));
 
         if ($dataSearch) {
-            $schoolData->where('school_name', 'LIKE', "%{$dataSearch}%");
-            $schoolData->orWhere('phone', 'LIKE', "%{$dataSearch}%");
-            $schoolData->orWhere('school_description', 'LIKE', "%{$dataSearch}%");
-            $schoolData->orWhere('school_address', 'LIKE', "%{$dataSearch}%");
+            $schoolData = $schoolData->WhereHas('User', function ($query) use ($dataSearch) {
+                $query->where('email', 'LIKE', "%{$dataSearch}%")->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+            })->orWhere('school_name', 'LIKE', "%{$dataSearch}%")->orWhere('school_address', 'LIKE', "%{$dataSearch}%");
         }
+
         return  $schoolData->paginate();
     }
-
-
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -55,14 +57,46 @@ class SchoolListsController  extends Controller
     public function store(SchoolListRequest $request)
     {
 
-        $schoolList = new SchoolList($request->validated());
-        $schoolList->school_name = $request->school_name;
-        $schoolList->phone = $request->phone;
-        $schoolList->school_description = $request->school_description;
-        $schoolList->school_address = $request->school_address;
-        $schoolList->is_active = $request->is_active;
-        $schoolList->save();
-        return response()->json($schoolList, 201);
+        try {
+
+            $data  = $request->all();
+            //Get and check user data by email
+            $userData = User::GetUserByMail($data['email']);
+            //Check Email Exit
+            if (!empty($userData)) {
+                return response()->json(['message' => 'This email already exit.', 'status' => 0], 422);
+            }
+
+            $credential = [
+                'first_name' => 'School',
+                'last_name' => 'User',
+                'email' => $data['email'],
+                'password' => '123456',
+                'phone' => $data['phone'],
+
+            ];
+
+            $user = \Sentinel::registerAndActivate($credential);
+            if (!empty($user)) {
+                $role = \Sentinel::findRoleByName('school');
+                $role->users()->attach($user);
+
+                $schoolList = new SchoolList();
+                $schoolList->school_id = $user->id;
+                $schoolList->school_name = $request->school_name;
+                $schoolList->school_description = $request->school_description;
+                $schoolList->school_address = $request->school_address;
+                $schoolList->save();
+            }
+            return response()->json($user, 201);
+        } catch (\Exception $e) {
+
+            dd($e->getMessage(), $e->getCode(), $e->getTrace());
+            return response()->json([
+                "error" => "invalid_credentials",
+                "message" => "The user credentials were incorrect."
+            ], 401);
+        }
     }
 
     /**
@@ -74,7 +108,8 @@ class SchoolListsController  extends Controller
      */
     public function show(Request $request, $id)
     {
-        return SchoolList::findOrFail($id);
+
+        return   $this->getList($id);
     }
 
     /**
@@ -95,17 +130,38 @@ class SchoolListsController  extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SchoolListRequest $request, $id)
+    public function update(SchoolListRequest $request, $id, $status = null)
     {
 
-        $schoolList = SchoolList::findOrFail($id);
-        $schoolList->school_name = $request->school_name;
-        $schoolList->phone = $request->phone;
-        $schoolList->school_description = $request->school_description;
-        $schoolList->school_address = $request->school_address;
-        $schoolList->is_active = $request->is_active;
-        $schoolList->save();
+        if ($status == 0) {
+            $user = User::findOrFail($id);
+            $user->phone = $request->phone;
+            $user->save(); 
+            $schoolList = SchoolList::find($user->id);
+            $schoolList->school_name = $request->school_name;
+            $schoolList->school_description = $request->school_description;
+            $schoolList->school_address = $request->school_address;
+            $schoolList->save();
+        } else {
+            $user = \Sentinel::findById($request->user_id);
+            $UsrActCkh =  Activations::where('user_id',  $user->id)->first();
+            if (empty($UsrActCkh) || $UsrActCkh['is_active'] == '0') {
+                $ActCode = \Activation::create($user);
+                \Activation::complete($user, $ActCode['code']);
+            } else {
+                \Activation::remove($user);
+            }
+            $schoolList =   $this->getList($id);
+        }
+
         return response()->json($schoolList, 201);
+    }
+
+    private function getList($id)
+    {
+        return  SchoolList::with(array('User' => function ($query) {
+            $query->select('id', 'email', 'first_name', 'last_name', 'phone');
+        }, 'ActivationsUser'))->find($id);
     }
 
     /**

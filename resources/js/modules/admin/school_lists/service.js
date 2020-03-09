@@ -30,15 +30,18 @@ export function SchoolListAddRequest(params) {
             error: null,
             statusCode
           };
-
           if (statusCode === 422) {
-            const resetErrors = {
-              errors: err.response.data,
-              replace: false,
-              searchStr: "",
-              replaceStr: ""
-            };
-            data.error = Transformer.resetValidationFields(resetErrors);
+            if (err.response.data.status == 0) {
+              toast.warn(err.response.data.message);
+            } else {
+              const resetErrors = {
+                errors: err.response.data,
+                replace: false,
+                searchStr: "",
+                replaceStr: ""
+              };
+              data.error = Transformer.resetValidationFields(resetErrors);
+            }
           } else if (statusCode === 401) {
             data.error = err.response.data.message;
           }
@@ -48,14 +51,14 @@ export function SchoolListAddRequest(params) {
   )
 }
 
-export function  SchoolListUpdateRequest(params) { 
+export function  SchoolListUpdateRequest(params,status) { 
 
   return dispatch => ( 
     new Promise((resolve, reject) => {
-       Http.patch(`school_lists/${params.id}`, transformRequest(params))
+      Http.patch(`school_lists/${params.id}/${status}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully"); 
-          dispatch(SchoolListActions.add(transformResponse(res.data)));
+          dispatch(SchoolListActions.add(transformResponse( res.data)));
           return resolve();
         })
         .catch(err => {
