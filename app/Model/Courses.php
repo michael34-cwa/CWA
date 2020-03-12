@@ -45,6 +45,12 @@ class Courses extends Model
     return $this->belongsToMany('App\Model\CourseCategories', 'category_courses', 'course_id', 'cat_id');
      }
 
+
+  public function getCourse()
+  {
+    return $this->hasOne('App\Model\SchoolCourses', 'id', 'course_id');
+  }
+
      public function getTasks()
     {   
     return $this->hasMany('App\Model\Tasks', 'course_id', 'id');

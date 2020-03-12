@@ -8,7 +8,7 @@ const AdminSideMenu = props => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(!dropdownOpen);
-  console.log(RRNavLink);
+  
   return (
     <div className="side-menu">
       <div class="panel-group" id="accordion">
@@ -117,7 +117,7 @@ const AdminSideMenu = props => {
         </div>
 
 
-        <div class="panel panel-default">
+        {/* <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
               <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
@@ -139,7 +139,7 @@ const AdminSideMenu = props => {
               </Nav>
             </div>
           </div>
-        </div>
+        </div> */}
         
       </div>
 

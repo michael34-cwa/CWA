@@ -77,7 +77,7 @@ const DeleteModel = ({ openModel,opens, id, handleRemove }) => {
                </button>
                 <button color="primary" className="btn btn-danger"
               onClick={() => handleRemove(id)}
-            >Yes, Delete</button>
+            >Yes</button>
  
               </div>
             </div>

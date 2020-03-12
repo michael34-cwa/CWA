@@ -25,8 +25,7 @@ const TaskRow = ({ dataList, course, errors, onChange, onSubmit }) => {
     }
   }
 
-  console.log(course);
- 
+  
   return <div className="container">
     <div className="row">
       <Grid container spacing={1}>

@@ -40,5 +40,7 @@ Route::group(["prefix" => "{$api_version}"], function() {
      Route::prefix('students')
         ->group(base_path('routes/api/students.php'));       
           Route::prefix('school_lists')
-        ->group(base_path('routes/api/school_lists.php'));   
+        ->group(base_path('routes/api/school_lists.php'));
+    Route::prefix('course_assign')
+        ->group(base_path('routes/api/course_assign.php'));  
 });

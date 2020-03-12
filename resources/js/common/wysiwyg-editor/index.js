@@ -38,8 +38,7 @@ class WYSIWYG extends Component {
   onEditorStateChange(editorState) {
     this.setState({
       editorState,
-    })
-    console.log(convertToRaw(editorState.getCurrentContent()));
+    }) 
     if ( convertToRaw(editorState.getCurrentContent()).blocks[0].text.length <=2){  
       this.props.onChange(convertToRaw(editorState.getCurrentContent()).blocks[0].text)
     }else{

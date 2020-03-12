@@ -112,7 +112,6 @@ class Page extends Component {
                     <th>Email</th>
                     <th>School Name</th>
                     <th>Phone</th>
-                    <th>School Address</th> 
                     <th>Created Date</th>
                     <th>Updated Date</th>
                     <th> 

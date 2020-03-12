@@ -33,7 +33,7 @@ class SchoolListsController  extends Controller
         if ($dataSearch) {
             $schoolData = $schoolData->WhereHas('User', function ($query) use ($dataSearch) {
                 $query->where('email', 'LIKE', "%{$dataSearch}%")->orWhere('phone', 'LIKE', "%{$dataSearch}%");
-            })->orWhere('school_name', 'LIKE', "%{$dataSearch}%")->orWhere('school_address', 'LIKE', "%{$dataSearch}%");
+            })->orWhere('school_name', 'LIKE', "%{$dataSearch}%");
         }
 
         return  $schoolData->paginate();

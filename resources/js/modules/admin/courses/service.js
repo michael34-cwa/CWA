@@ -45,8 +45,7 @@ export function courseAddRequest(params) {
 }
  
 
-export function courseUpdateRequest(params, status) {
-  console.log(params); console.log(status);
+export function courseUpdateRequest(params, status) { 
   return dispatch => (
     new Promise((resolve, reject) => {
       Http.patch(`courses/${params.id}/${status}`, transformRequest(params))

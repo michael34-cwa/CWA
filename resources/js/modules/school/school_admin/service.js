@@ -99,8 +99,13 @@ export function  categoryRemoveRequest(id) {
   }
 }
 
-export function categoryListRequest({ pageNumber = 1, value = '', url = "/schools" }) {
+export function categoryListRequest({ pageNumber = 1, value = '', url = "/schools", id = ''}) {
   return dispatch => {
+ 
+    if (id){
+      url = url + '/admin/' + id;
+    }
+   
     if (pageNumber > 1 || value.length >= 2) {
       url = url + `?page=${pageNumber}&search=${value}`;
     }

@@ -38,8 +38,7 @@ class Page extends Component {
   }
 
   pageChange = (event, pageNumber) => { 
-    const value = this.state.searchData;
-    console.log(this.state.searchData);
+    const value = this.state.searchData; 
     this.props.dispatch(categoryListRequest({ pageNumber, value })) 
   };
  

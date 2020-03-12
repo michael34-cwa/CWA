@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Model\SchoolList' ,'school_id', 'id');
     }
+
+    public function SchoolAdmin()
+    {
+        return $this->hasOne('App\Model\SchoolProfile', 'school_id', 'id');
+    }
 }
