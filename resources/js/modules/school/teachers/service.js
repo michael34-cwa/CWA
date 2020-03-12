@@ -100,7 +100,12 @@ export function categoryRemoveRequest(id) {
 }
 
 
-export function categoryListRequest({ pageNumber = 1, value = '', url = "/teachers" }) {
+export function categoryListRequest({ pageNumber = 1, value = '', url = "/teachers", id='' }) {
+
+  if (id) {
+    url = url + '/school/' + id;
+  }
+
   return dispatch => {
     if (pageNumber > 1 || value.length >= 2) {
       url = url + `?page=${pageNumber}&search=${value}`;

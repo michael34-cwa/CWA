@@ -13,8 +13,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SchoolRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use App\Model\Activations;
+use App\Model\TeacherProfiles;
 use Activation;
-use App\Model\School;
+use App\Model\SchoolProfile;
 
 class TeachersController  extends Controller
 {
@@ -89,6 +90,7 @@ class TeachersController  extends Controller
         try {
 
             $data  = $request->all();
+            $userId = \Auth::guard('api')->user(); 
             //Get and check user data by email
             $userData = User::GetUserByMail($data['email']);
             //Check Email Exit
@@ -107,9 +109,22 @@ class TeachersController  extends Controller
 
             $user = \Sentinel::registerAndActivate($credential);
             if (!empty($user)) {
-                $userUpdate = User::findOrFail($user->id);
+                // $userUpdate = User::findOrFail($user->id);
                 $role = \Sentinel::findRoleByName('teacher');
                 $role->users()->attach($user);
+          
+                $schoolId =  SchoolProfile::where('school_id', $userId->id)->first();
+                $teacherList = new TeacherProfiles();
+               if(empty($schoolId)){ 
+                $teacherList->school_id = $userId->id;
+                $teacherList->teacher_id = $user->id;
+                $teacherList->created_by =  $userId->id; 
+             }else{ 
+               $teacherList->school_id = $schoolId->school_admin_id;
+              $teacherList->teacher_id = $user->id;
+                $teacherList->created_by =  $userId->id;
+             }
+                $teacherList->save();
             }
             return response()->json($user, 201);
         } catch (\Exception $e) {
@@ -122,6 +137,26 @@ class TeachersController  extends Controller
         }
     }
 
+    public function teacherList(Request $request, $id)
+    {
+        $dataSearch   =   Request::get('search');
+
+        $user = \Auth::guard('api')->user();
+        $userData =  User::latest();
+        if ($dataSearch) {
+            $userData->where('email', 'LIKE', "%{$dataSearch}%");
+            $userData->orWhere('first_name', 'LIKE', "%{$dataSearch}%");
+            $userData->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
+            $userData->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+        }
+        $userData->whereHas('SchoolTeacher', function ($q) use ($id) {
+            $q->where('school_id', $id);
+        });
+
+        $userData->with('ActivationsUser', 'SchoolTeacher');
+
+        return  $userData->paginate();
+    }
     /**
      * Display the specified resource.
      *

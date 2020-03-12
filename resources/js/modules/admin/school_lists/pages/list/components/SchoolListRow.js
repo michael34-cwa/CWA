@@ -62,6 +62,13 @@ const SchoolListRow = ({ index, schoolList, pageNo, togglePublish}) => {
                <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> School
                </Button >
            </Link>
+
+
+           <Link to={`teachers/${schoolList.user_id}`} >
+             <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
+               <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Teacher
+               </Button >
+           </Link>
            {/* <DeleteModel meaid={category.id} handleRemove={handleRemove} />   */}
          </div>
        </td>

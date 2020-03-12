@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Model\SchoolProfile', 'school_id', 'id');
     }
+
+    public function SchoolTeacher()
+    {
+        return $this->hasOne('App\Model\TeacherProfiles', 'teacher_id', 'id');
+    }
 }

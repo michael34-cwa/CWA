@@ -8,4 +8,5 @@ import tasksRoutes from "../modules/admin/tasks/routes";
 import schoolAdminRoutes from "../modules/school/school_admin/routesAdmin";
 import schoolListsRoutes from "../modules/admin/school_lists/routes";
 import assignCourseRoutes from "../modules/admin/assign_course/routes";
-export default [...webRoutes, ...authRoutes, ...userRoutes, ...courseCtegoriesRoutes, ...coursesRoutes, ...tasksRoutes, ...schoolAdminRoutes, ...schoolListsRoutes, ...assignCourseRoutes]
+import teachersRoutes from "../modules/school/teachers/routesAdmin";
+export default [...webRoutes, ...authRoutes, ...userRoutes, ...courseCtegoriesRoutes, ...coursesRoutes, ...tasksRoutes, ...schoolAdminRoutes, ...schoolListsRoutes, ...assignCourseRoutes, ...teachersRoutes]

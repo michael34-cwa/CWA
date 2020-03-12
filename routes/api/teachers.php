@@ -8,4 +8,5 @@ use Illuminate\Support\Facades\Route;
     Route::get('/{id}', 'TeachersController@show')->name('teachers.show');
     Route::match(['put', 'patch'], '/{id}/{status?}', 'TeachersController@update')->name('teachers.update');
     Route::delete('/{id}', 'TeachersController@delete')->name('teachers.delete');
+    Route::get('/school/{id}', 'TeachersController@teacherList');
 });

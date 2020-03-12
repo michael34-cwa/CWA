@@ -13,8 +13,14 @@ class CreateTeachersTable extends Migration
      */
     public function up()
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::create('teacher_profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('school_id')->unsigned();
+            $table->foreign('school_id')->references('id')->on('users')->onDelete('cascade'); 
+            $table->integer('teacher_id')->unsigned();
+            $table->foreign('teacher_id')->references('id')->on('users')->onDelete('cascade'); 
+            $table->integer('created_by')->unsigned();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
