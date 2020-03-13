@@ -182,6 +182,8 @@ class Page extends Component {
                   <tr>
                     <th>Sr. No.</th> 
                     <th>Course Name</th> 
+                    <th>Created Date</th>
+                    <th>Updated Date</th>
                     <th> 
                       {/* <Link to="/admin/school_lists/create">
                         <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >

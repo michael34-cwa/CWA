@@ -57,9 +57,9 @@ class Page extends Component {
 
 
   togglePublish(id) {
-    const course_categories = this.props.course_categories.find(course_categories => course_categories.id === id); 
+    const course_categories = this.props.course_categories.find(course_categories => course_categories.user_id === id);  
     this.props.dispatch(categoryUpdateRequest(course_categories.toJson(), 1));
-      id = this.props.match.params.id;  
+    id = this.props.match.params.id;  
     this.props.dispatch(categoryListRequest({ id }))
   }
 

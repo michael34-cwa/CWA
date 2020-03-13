@@ -58,7 +58,7 @@ class Page extends Component {
   }
 
   togglePublish(id) {
-    const course_categories = this.props.course_categories.find(course_categories => course_categories.id === id);
+    const course_categories = this.props.course_categories.find(course_categories => course_categories.user_id === id);
     this.props.dispatch(categoryUpdateRequest(course_categories.toJson(), 1));
     id = this.props.match.params.id;
     this.props.dispatch(categoryListRequest({ id }))
@@ -102,16 +102,16 @@ class Page extends Component {
               <th>Phone</th>
               <th>Created Date</th>
               <th>Updated Date</th>
-                    <th>
-                      <Link to="teachers/create">
-                        <Button
-                          size="small"
-                          variant="contained"
-                          className="text-capitalize colorPrimary mx-1"
-                        >
-                          <i class="fa fa-plus" aria-hidden="true"></i>  Add
+                    <th>  
+                      {!this.props.match.params.id ? <Link to="teachers/create">
+                          <Button
+                            size="small"
+                            variant="contained"
+                            className="text-capitalize colorPrimary mx-1"
+                          >
+                            <i class="fa fa-plus" aria-hidden="true"></i>  Add
                       </Button >
-                      </Link>
+                        </Link> : ""}
                     </th>
  
             </tr>

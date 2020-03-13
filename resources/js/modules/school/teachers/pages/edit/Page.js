@@ -97,7 +97,8 @@ class Page extends Component {
     this.props.dispatch(categoryUpdateRequest(category),'0')
       .then(res => {
         this.setState({ loading: false })
-        this.props.history.push('/teachers');
+     //   this.props.history.push('/teachers');
+        this.props.history.goBack();
       })
       .catch(({ error, statusCode }) => {
         this.setState({ loading: false })

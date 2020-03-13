@@ -24,26 +24,25 @@ class SchoolsController  extends Controller
      */
     public function index(Request $request)
     {
-      $dataSearch   =   Request::get('search');
+
  
+
+        $dataSearch   =   Request::get('search');
+
         $user = \Auth::guard('api')->user();
+        $schoolData = SchoolProfile::with(array('User' => function ($query)  use ($user) {
+            $query->select('id', 'email', 'first_name', 'last_name', 'phone')->where('id', "!=", $user->id);
+        }, 'ActivationsUser', 'User'))->where('created_by', $user->id);
 
-        $data =  User::WhereHas('SchoolAdmin', function ($q) use ($user) {
-                $q->where('created_by', $user->id);
-            })
-            ->with('ActivationsUser', 'SchoolAdmin')->where('id', "!=", $user->id);
-         if ($dataSearch) {
-            $data ->orWhere('email', 'LIKE', '%' . $dataSearch . '%')
-               ->orWhere('first_name', 'LIKE',  '%' . $dataSearch . '%')
-                ->orWhere('last_name', 'LIKE',  '%' . $dataSearch . '%')
-                 ->orWhere('phone', 'LIKE',  '%' . $dataSearch . '%');
+        if ($dataSearch) {
+            $schoolData = $schoolData->WhereHas('User', function ($query) use ($dataSearch) {
+                $query->Where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%")->orWhere('email', 'LIKE', "%{$dataSearch}%")->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+            });
+        }
 
-             }
+        return  $schoolData->paginate(); 
 
-        return $data->paginate();
-
-      //  return   SchoolProfile::with('User')->paginate();
-    }
+     }
 
     /**
      * get all published articles
@@ -59,21 +58,21 @@ class SchoolsController  extends Controller
     public function adminList(Request $request,$id)
     {
         $dataSearch   =   Request::get('search');
+
         $user = \Auth::guard('api')->user();
-        $userData =  User::latest();
+        $schoolData = SchoolProfile::with(array('User' => function ($query)  use ( $user) {
+            $query->select('id', 'email', 'first_name', 'last_name', 'phone')->where('id', "!=", $user->id);
+        }, 'ActivationsUser', 'User'))->where('school_admin_id', $id);
+
         if ($dataSearch) {
-            $userData->where('email', 'LIKE', "%{$dataSearch}%");
-            $userData->orWhere('first_name', 'LIKE', "%{$dataSearch}%");
-            $userData->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
-            $userData->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+            $schoolData = $schoolData->WhereHas('User', function ($query) use ($dataSearch) {
+                $query->Where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%")->orWhere('email', 'LIKE', "%{$dataSearch}%")->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+            });
         }
-        $userData->whereHas('SchoolAdmin', function ($q) use ($id) {
-            $q->where('school_admin_id', $id);
-        });
 
-        $userData->with('ActivationsUser', 'SchoolAdmin')->where('id', "!=", $user->id);
+        return  $schoolData->paginate(); 
 
-        return  $userData->paginate();
+ 
     }
 
     /**

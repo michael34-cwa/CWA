@@ -8,7 +8,7 @@ class SchoolCourses extends Model
 {
 
     protected $table = 'school_courses';
-    public $timestamps = false;
+ //   public $timestamps = false;
 
     protected $fillable = ['school_id', 'course_id'];
 
