@@ -6,6 +6,7 @@ import Course from '../../Course'
 import Page from './Page'
   
 const mapStateToProps = state => {  
+ 
    const { data, ...meta } = state.courses;  
    let dataLists = data ? data : [];
   return {

@@ -10,6 +10,7 @@ import Pagination from '../../../../../common/Pagination'
 import Search from '../../../../../common/Search'
 import { Link } from 'react-router-dom'
 import DeleteModel from '../../../../../common/model/DeleteModel'
+import LoadingComponent from '../../../../../common/loader'
 class Page extends Component {
   static displayName = "CoursesPage";
   static propTypes = {
@@ -94,6 +95,7 @@ class Page extends Component {
   render() {
     return (
       <main className="dashboard-right" role="main">
+        <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
           <div className="card-body bg-white">
             <h1 class="text-center">Courses</h1>

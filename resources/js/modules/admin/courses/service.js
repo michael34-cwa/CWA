@@ -46,13 +46,18 @@ export function courseAddRequest(params) {
  
 
 export function courseUpdateRequest(params, status) { 
-  return dispatch => (
+
+  return dispatch => (  
     new Promise((resolve, reject) => {
+      if (status == 1) {
+      dispatch(courseActions.spinerAdd(transformResponse()));
+      }
       Http.patch(`courses/${params.id}/${status}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully");
           if (status == 1){
            dispatch(courseActions.add(transformResponse(res.data)));
+           
           }
            return resolve();
 
@@ -96,7 +101,9 @@ export function courseRemoveRequest(id) {
 }
 
 export function courseListRequest({ pageNumber = 1, value = '', url = "/courses" }) {
+
          return dispatch => {
+           dispatch(courseActions.spinerAdd(transformResponse()));
            if (pageNumber > 1 || value.length >= 2) {
              url = url + `?page=${pageNumber}&search=${value}`;
            }

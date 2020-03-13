@@ -12,6 +12,7 @@ import {
   COURSE_REMOVE,
   COURSE_LIST,
   CATEGORY_LIST,
+  SPINNER_ADD,
 } from "./action-types";
 
 export function add(payload) {
@@ -41,6 +42,15 @@ export function list(payload) {
     payload
   }
 }
+
+export function spinerAdd(payload) {
+  return {
+    type: SPINNER_ADD,
+    payload
+  }
+}
+
+
 export function catList(payload) {
  
   return {
