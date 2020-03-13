@@ -22,8 +22,9 @@ class CourseCategoriesController  extends Controller
     public function index(Request $request)
     { ;
        $dataSearch   =   Request::get('search');
-        return CourseCategories::latest()
+        $technologies =  CourseCategories::latest()
              ->where('category_name', 'LIKE', "%{$dataSearch}%")->paginate();
+        return response()->json($technologies, 201);
     }
 
     /**

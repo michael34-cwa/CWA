@@ -27,19 +27,20 @@ class Page extends Component {
     this.pageChange = this.pageChange.bind(this)
     this.searchChange = this.searchChange.bind(this)
     this.openModel = this.openModel.bind(this) 
-    this.state = { open: false, id: '', searchData: ''  };
+    this.state = { open: false, id: '', searchData: '', loadings: true  };
 
   }
 
   UNSAFE_componentWillMount() {
-    const { dispatch } = this.props
-
-    dispatch(categoryListRequest({}))
+    this.setState({ loadings: true })
+    const { dispatch } = this.props  
+        dispatch(categoryListRequest({}))
+        this.setState({ loadings: false }) 
   }
 
-  pageChange = (event, pageNumber) => { 
-    const value = this.state.searchData; 
-    this.props.dispatch(categoryListRequest({ pageNumber, value })) 
+  pageChange = (event, pageNumber) => {  
+    const value = this.state.searchData;   
+        this.props.dispatch(categoryListRequest({ pageNumber, value })) 
   };
  
  
@@ -63,11 +64,12 @@ class Page extends Component {
 
   handleRemove(id) {
     this.setState({ open: !this.state.open, id: ''  }) 
-    this.props.dispatch(categoryRemoveRequest(id))
+    this.props.dispatch(categoryRemoveRequest(id)) 
+    this.props.dispatch(categoryListRequest({ })) 
   }
 
   renderCategories(pageNo) {
-   
+ 
     return this.props.course_categories.map((category, index) => {
       
         return <CategoryRow key={index}
@@ -81,16 +83,18 @@ class Page extends Component {
     })
 
   }
+  
   render() {
- 
-    return (
-      <main className="dashboard-right" role="main">
+     return ( 
+      <main className="dashboard-right" role="main"> 
+          <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
           <div className="card-body bg-white">
             <h1 class="text-center">Course Categories</h1>
             <div className="table-responsive">
               <Search onChange={this.searchChange} /> 
               <table className="table  table-striped">
+          
                 <thead className="thead-inverse">
                   <tr>
                     <th>Sr. No.</th>

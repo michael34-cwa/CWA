@@ -51,8 +51,7 @@ export function categoryAddRequest(params) {
 export function  categoryUpdateRequest(params) { 
 
   return dispatch => ( 
-    new Promise((resolve, reject) => {
-     // dispatch(categoryActions.spinerAdd(transformRequest(params))) 
+    new Promise((resolve, reject) => { 
       Http.patch(`course_categories/${params.id}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully"); 
@@ -96,22 +95,26 @@ export function  categoryRemoveRequest(id) {
       });
   }
 }
-
+ 
 export function categoryListRequest({ pageNumber = 1, value = '', url = "/course_categories" }) {
          return dispatch => {
+           dispatch(categoryActions.spinerAdd(transformResponse()));
            if (pageNumber > 1 || value.length >= 2) {
              url = url + `?page=${pageNumber}&search=${value}`;
            }
-          
+          new Promise((resolve, reject) => {
            Http.get(url)
-              .then(res => {
+              .then(res => { 
                dispatch(categoryActions.list(transformResponse(res.data)));
+                return resolve(res.data);
               })
-             .catch(err => {
-               // TODO: handle err
+             .catch(err => { 
                console.error(err.response);
+               return reject();
              });
-         };
+           })
+         }
+         
        }
 
 export function  categoryEditRequest(id) { 

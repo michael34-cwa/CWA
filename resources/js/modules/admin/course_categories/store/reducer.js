@@ -72,15 +72,19 @@ function remove(state, id) {
 }
 
 function list(state, payload) { 
+  payload.loading = false 
   state = Object.assign({}, payload)
 
   return state
 }
 
 function spinerAdd(state, payload) {   
-    state.loading = true 
-  return Object.assign({}, state)
- 
+  //   state.loading = true 
+  // return Object.assign({}, ...state)
+  return {
+    ...state,
+    loading: true
+  };
 }
 
 function spinerRemove(state, payload) { 
