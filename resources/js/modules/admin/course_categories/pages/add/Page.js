@@ -81,7 +81,7 @@ import { browserHistory } from 'react-router'
       .dispatch(categoryAddRequest(category)) 
       .then(res => { 
         this.setState({ loading: false })
-    //    this.props.history.push('/admin/course_categories');  
+       this.props.history.push('/admin/course_categories');  
       })
       .catch(({ error, statusCode }) => { 
         this.setState({ loading: false })
