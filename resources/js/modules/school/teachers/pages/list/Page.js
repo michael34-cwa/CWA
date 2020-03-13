@@ -31,8 +31,7 @@ class Page extends Component {
   
   UNSAFE_componentWillMount() {
     const { match, dispatch } = this.props
-    let id = match.params.id;
-
+    let id = match.params.id; 
     dispatch(categoryListRequest({ id }))
   }
    

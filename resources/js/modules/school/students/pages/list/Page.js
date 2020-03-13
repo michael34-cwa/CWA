@@ -30,33 +30,38 @@ class Page extends Component {
   }
 
   UNSAFE_componentWillMount() {
-    const { dispatch } = this.props
-
-    dispatch(categoryListRequest({}))
+    const { match, dispatch } = this.props
+    let id = match.params.id;
+    dispatch(categoryListRequest({ id }))
   }
 
   pageChange = (event, pageNumber) => {
+    const { match, dispatch } = this.props
+    let id = match.params.id;
     const value = this.state.searchData;
-    this.props.dispatch(categoryListRequest({ pageNumber, value }))
+    this.props.dispatch(categoryListRequest({ pageNumber, value, id }))
   }
 
 
 
   searchChange(name, value) {
+    const { match, dispatch } = this.props
+    let id = match.params.id;
     if (value.length >= 2) {
       this.setState({ searchData: value })
-      this.props.dispatch(categoryListRequest({ value }))
+      this.props.dispatch(categoryListRequest({ value, id }))
     } else {
       this.setState({ searchData: '' })
-      this.props.dispatch(categoryListRequest({}))
+      this.props.dispatch(categoryListRequest({ id }))
     }
 
   }
 
   togglePublish(id) {
-    const course_categories = this.props.course_categories.find(course_categories => course_categories.id === id);
+    const course_categories = this.props.course_categories.find(course_categories => course_categories.user_id === id);
     this.props.dispatch(categoryUpdateRequest(course_categories.toJson(), 1));
-    this.props.dispatch(categoryListRequest({}))
+    id = this.props.match.params.id;
+    this.props.dispatch(categoryListRequest({ id }))
   }
 
 
@@ -98,15 +103,15 @@ class Page extends Component {
                     <th>Created Date</th>
                     <th>Updated Date</th>
                     <th>
-                      <Link to="students/create">
-                        <Button
-                          size="small"
-                          variant="contained"
-                          className="text-capitalize colorPrimary mx-1"
-                        >
-                          <i class="fa fa-plus" aria-hidden="true"></i>  Add
+                      {!this.props.match.params.id ? <Link to="students/create">
+                          <Button
+                            size="small"
+                            variant="contained"
+                            className="text-capitalize colorPrimary mx-1"
+                          >
+                            <i class="fa fa-plus" aria-hidden="true"></i>  Add
                       </Button >
-                      </Link>
+                        </Link> : ""}
                     </th>
 
                   </tr>

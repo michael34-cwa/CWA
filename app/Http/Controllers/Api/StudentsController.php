@@ -13,7 +13,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SchoolRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use App\Model\Activations;
+use App\Model\StudentProfile;
 use Activation;
+use App\Model\SchoolProfile;
+use App\Model\TeacherProfiles;
 
 class StudentsController  extends Controller
 {
@@ -24,25 +27,37 @@ class StudentsController  extends Controller
      * @return LengthAwarePaginator|mixed
      */
     public function index(Request $request)
-    {
-        $dataSearch   =   Request::get('search');
-        $user = \Auth::guard('api')->user();
-        $userData =  User::latest();
+    { 
+        $user = \Auth::guard('api')->user(); 
+        $dataSearch   =   Request::get('search'); 
+        $schoolData = StudentProfile::with(array('User' => function ($query) {
+            $query->select('id', 'email', 'first_name', 'last_name', 'phone');
+        }, 'ActivationsUser', 'User'))->where('created_by',  $user->id);
+
         if ($dataSearch) {
-            $userData->orWhere('email', 'LIKE', "%{$dataSearch}%");
-            $userData->orWhere('first_name', 'LIKE', "%{$dataSearch}%");
-            $userData->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
-            $userData->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+            $schoolData = $schoolData->WhereHas('User', function ($query) use ($dataSearch) {
+                $query->Where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%")->orWhere('email', 'LIKE', "%{$dataSearch}%")->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+            });
         }
-        $userData->whereHas('roles', function ($q) use ($dataSearch) {
-            $q->whereIn('slug', ['student']);
-        });
-
-        $userData->with('ActivationsUser', 'roles')->where('id', "!=", $user->id);
-
-        return  $userData->paginate();
+        return  $schoolData->paginate();
     }
 
+
+    public function studentList(Request $request, $id)
+    {
+        $dataSearch   =   Request::get('search');
+
+        $schoolData = StudentProfile::with(array('User' => function ($query) {
+            $query->select('id', 'email', 'first_name', 'last_name', 'phone');
+        }, 'ActivationsUser', 'User'))->where('school_id', $id);
+
+        if ($dataSearch) {
+            $schoolData = $schoolData->WhereHas('User', function ($query) use ($dataSearch) {
+                $query->Where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%")->orWhere('email', 'LIKE', "%{$dataSearch}%")->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+            });
+        }
+        return  $schoolData->paginate();
+    }
 
     /**
      * Get single published article
@@ -88,6 +103,7 @@ class StudentsController  extends Controller
         try {
 
             $data  = $request->all();
+            $userId = \Auth::guard('api')->user(); 
             //Get and check user data by email
             $userData = User::GetUserByMail($data['email']);
             //Check Email Exit
@@ -109,7 +125,21 @@ class StudentsController  extends Controller
                 // $userUpdate->update($request->all());
                 $role = \Sentinel::findRoleByName('student');
                 $role->users()->attach($user);
+
+                $schoolId =  SchoolProfile::where('school_id', $userId->id)->first();
+                $tstudentList = new StudentProfile();
+                if (empty($schoolId)) {
+                    $tstudentList->school_id = $userId->id;
+                    $tstudentList->student_id = $user->id;
+                    $tstudentList->created_by =  $userId->id;
+                } else {
+                    $tstudentList->school_id = $schoolId->school_admin_id;
+                    $tstudentList->student_id = $user->id;
+                    $tstudentList->created_by =  $userId->id;
+                }
+                $tstudentList->save();
             }
+     
             return response()->json($user, 201);
         } catch (\Exception $e) {
 

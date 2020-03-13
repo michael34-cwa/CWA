@@ -55,10 +55,10 @@ export function categoryUpdateRequest(params, status) {
  
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.patch(`students/${params.id}/${status}`, transformRequest(params))
+      Http.patch(`students/${params.user_id}/${status}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully"); 
-          dispatch(categoryActions.add(transformResponse(res.data)));
+       //   dispatch(categoryActions.add(transformResponse(res.data)));
           return resolve();
         })
         .catch(err => {
@@ -99,7 +99,10 @@ export function  categoryRemoveRequest(id) {
   }
 }
  
-export function categoryListRequest({ pageNumber = 1, value = '', url = "/students" }) {
+export function categoryListRequest({ pageNumber = 1, value = '', url = "/students", id = '' }) {
+  if (id) {
+    url = url + '/school/' + id;
+  }
     return dispatch => {
       if (pageNumber > 1 || value.length >= 2) {
         url = url + `?page=${pageNumber}&search=${value}`;

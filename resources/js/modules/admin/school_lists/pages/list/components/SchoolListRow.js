@@ -59,7 +59,7 @@ const SchoolListRow = ({ index, schoolList, pageNo, togglePublish}) => {
 
            <Link to={`school_administrator/${schoolList.user_id}`} >
              <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
-               <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> School
+               <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> School Admin
                </Button >
            </Link>
 
@@ -67,6 +67,12 @@ const SchoolListRow = ({ index, schoolList, pageNo, togglePublish}) => {
            <Link to={`teachers/${schoolList.user_id}`} >
              <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
                <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Teacher
+               </Button >
+           </Link>
+
+           <Link to={`students/${schoolList.user_id}`} >
+             <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
+               <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Students
                </Button >
            </Link>
            {/* <DeleteModel meaid={category.id} handleRemove={handleRemove} />   */}

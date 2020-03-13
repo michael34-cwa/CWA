@@ -25,7 +25,7 @@ const CategoryRow = ({ index, category, togglePublish, pageNo }) => {
       <td>
 
         <div className="btn-group" role="group" aria-label="Actions">
-          <Link to={`students/${category.id}/edit`}>
+          <Link to={`/students/${category.id}/edit`}>
             <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1">
               <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Edit
             </Button >
@@ -40,7 +40,7 @@ const CategoryRow = ({ index, category, togglePublish, pageNo }) => {
               variant="contained"
               color="secondary"
               className="text-capitalize mx-1"
-              onClick={() => togglePublish(category.id)}
+              onClick={() => togglePublish(category.user_id)}
             >
               <i class="fa fa-eye-slash mr-1" aria-hidden="true"></i> Inactive
             </Button >
@@ -51,7 +51,7 @@ const CategoryRow = ({ index, category, togglePublish, pageNo }) => {
                 size="small"
                 variant="contained"
                 className="colorPrimary text-capitalize mx-1"
-                onClick={() => togglePublish(category.id)}
+                onClick={() => togglePublish(category.user_id)}
               >
                 <i class="fa fa-eye mr-1" aria-hidden="true"></i> Active
             </Button>

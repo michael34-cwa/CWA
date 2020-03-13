@@ -9,10 +9,11 @@ class CourseCategory extends Model {
 
   initialize(props) { 
     super.initialize(props)    
-    this.first_name = props.firstName || "";
-    this.last_name = props.lastName || "";
-    this.email = props.email || "";
-    this.phone = props.phone || "";
+    this.user_id = props.user ? props.user.id : '';   
+    this.first_name = props.user ? props.user.firstName : '';
+    this.last_name = props.user ? props.user.lastName : '';
+    this.email = props.user ? props.user.email : '';
+    this.phone = props.user ? props.user.phone : '';
     this.created_at = props.created_at || "";
     this.updated_at = props.updated_at || ""; 
     this.activation = props.activationsUser || ""; 
