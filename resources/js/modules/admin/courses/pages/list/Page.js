@@ -73,6 +73,7 @@ class Page extends Component {
   handleRemove(id) {
     this.setState({ open: !this.state.open, id: '' }) 
     this.props.dispatch(courseRemoveRequest(id));
+  //  this.props.dispatch(categoryListRequest({})) 
   }
 
   renderCourses(pageNo) {

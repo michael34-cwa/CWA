@@ -88,6 +88,7 @@ export function courseUpdateRequest(params, status) {
 
 export function courseRemoveRequest(id) {
   return dispatch => {
+    dispatch(courseActions.spinerAdd(transformResponse()));
     Http.delete(`courses/${id}`)
       .then(() => {
         toast.success("Deteted Successfully");

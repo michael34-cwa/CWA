@@ -67,7 +67,7 @@ function update(state, payload) {
 
 function remove(state, id) {
   const data = state.data.filter(obj => obj.id !== id)
-
+  state.loading = false;
   return Object.assign({}, state, { data })
 }
 
