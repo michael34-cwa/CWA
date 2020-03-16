@@ -47,7 +47,7 @@ export function taskUpdateRequest(params,status) {
   return dispatch => (
     new Promise((resolve, reject) => {
       if (status == 1) {
-        // dispatch(taskActions.spinerAdd(transformResponse()));
+        dispatch(taskActions.spinerAdd(transformResponse()));
       }
       Http.patch(`tasks/${params.id}`, transformRequest(params))
         .then(res => {
@@ -81,7 +81,7 @@ export function taskUpdateRequest(params,status) {
 
 export function taskRemoveRequest(id) {
   return dispatch => {
-    // dispatch(taskActions.spinerAdd(transformResponse()));
+    dispatch(taskActions.spinerAdd(transformResponse()));
     Http.delete(`tasks/${id}`)
       .then(() => {
         toast.success("Deteted Successfully");
