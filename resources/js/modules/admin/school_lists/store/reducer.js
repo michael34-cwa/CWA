@@ -3,8 +3,7 @@ import {
   SCHOOL_LIST_UPDATE,
   SCHOOL_LIST_REMOVE,
   SCHOOL_LIST_LIST,
-  SPINNER_ADD,
-  SPINNER_REMOVE
+  SPINNER_ADD, 
 } from './action-types'
 
 
@@ -33,23 +32,24 @@ const reducer = (state = initialState, { type, payload = null }) => {
     case SCHOOL_LIST_REMOVE:
       return remove(state, payload)
     case SCHOOL_LIST_LIST:
-      return list(state, payload)
-    case SPINNER_REMOVE:
-      return spinerRemove(state, payload)
+      return list(state, payload) 
     default:
       return state
   }
 }
 
-function add(state, payload) { 
-  const SCHOOL_LIST = state.data.find((SCHOOL_LIST) => (SCHOOL_LIST.id === payload.id))
+function add(state, payload) {  
+  const schoolList = state.data.find((schoolList) => (schoolList.id === payload.id))
+ 
 
-  if (!SCHOOL_LIST) {
+  if (!schoolList) {
     const data = [...state.data, payload]
  
     return Object.assign({}, state, { data })
   }
-
+ 
+    state.loading = false;
+ 
   return update(state, payload)
 }
 
@@ -67,7 +67,7 @@ function update(state, payload) {
 
 function remove(state, id) {
   const data = state.data.filter(obj => obj.id !== id)
-
+  state.loading = false;
   return Object.assign({}, state, { data })
 }
 
@@ -77,18 +77,13 @@ function list(state, payload) {
   return state
 }
 
-function spinerAdd(state, payload) {   
-    state.loading = true 
-  return Object.assign({}, state)
+function spinerAdd(state, payload) {
+  return {
+    ...state,
+    loading: true
+  };
+}
+
  
-}
-
-function spinerRemove(state, payload) { 
-  state.loading = false 
-  const data = [...state.data, payload]
-
-  return Object.assign({}, state, { data })
-
-}
 
 export default reducer

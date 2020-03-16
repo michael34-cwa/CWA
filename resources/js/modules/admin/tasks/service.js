@@ -46,6 +46,9 @@ export function taskAddRequest(params) {
 export function taskUpdateRequest(params,status) {    
   return dispatch => (
     new Promise((resolve, reject) => {
+      if (status == 1) {
+        dispatch(taskActions.spinerAdd(transformResponse()));
+      }
       Http.patch(`tasks/${params.id}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully");
@@ -78,6 +81,7 @@ export function taskUpdateRequest(params,status) {
 
 export function taskRemoveRequest(id) {
   return dispatch => {
+    dispatch(taskActions.spinerAdd(transformResponse()));
     Http.delete(`tasks/${id}`)
       .then(() => {
         toast.success("Deteted Successfully");
@@ -92,6 +96,7 @@ export function taskRemoveRequest(id) {
 
 export function taskListRequest({ pageNumber = 1, value = '', url = "/tasks" }) {
          return dispatch => {
+           dispatch(taskActions.spinerAdd(transformResponse()));
            if (pageNumber > 1 || value.length >= 2) {
              url = url + `?page=${pageNumber}&search=${value}`;
            }

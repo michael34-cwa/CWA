@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const DeleteModel = ({ openModel,opens, id, handleRemove }) => {
+const DeleteModel = ({ openModel,opens, ids, handleRemove }) => {
    const classes = useStyles();
   const [open, setOpen] = React.useState(opens);
 
@@ -76,7 +76,7 @@ const DeleteModel = ({ openModel,opens, id, handleRemove }) => {
                   Cancel
                </button>
                 <button color="primary" className="btn btn-danger"
-              onClick={() => handleRemove(id)}
+              onClick={() => handleRemove(ids)}
             >Yes</button>
  
               </div>

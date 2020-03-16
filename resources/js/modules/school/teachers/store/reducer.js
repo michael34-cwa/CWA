@@ -71,10 +71,12 @@ function list(state, payload) {
   return state
 }
 
-function spinerAdd(state, payload) {
-  state = Object.assign({}, payload)
 
-  return state
+function spinerAdd(state, payload) {
+  return {
+    ...state,
+    loading: true
+  };
 }
 
 export default reducer

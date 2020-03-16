@@ -55,10 +55,15 @@ export function  SchoolListUpdateRequest(params,status) {
 
   return dispatch => ( 
     new Promise((resolve, reject) => {
+      if (status == 1) {
+        dispatch(SchoolListActions.spinerAdd(transformResponse()));
+      }
       Http.patch(`school_lists/${params.id}/${status}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully"); 
-          dispatch(SchoolListActions.add(transformResponse( res.data)));
+           if (status == 1) {
+            dispatch(SchoolListActions.add(transformResponse(res.data)));
+           }
           return resolve();
         })
         .catch(err => {
@@ -87,6 +92,7 @@ export function  SchoolListUpdateRequest(params,status) {
 
 export function  SchoolListRemoveRequest(id) {
   return dispatch => {
+    dispatch(SchoolListActions.spinerAdd(transformResponse()));
     Http.delete(`school_lists/${id}`)
       .then(() => {
         toast.success("Deleted Successfully"); 
@@ -101,6 +107,7 @@ export function  SchoolListRemoveRequest(id) {
 
 export function SchoolListListRequest({ pageNumber = 1, value = '', url = "/school_lists" }) {  
          return dispatch => {
+           dispatch(SchoolListActions.spinerAdd(transformResponse()));
            if (pageNumber > 1 || value.length >= 2) {
              url = url + `?page=${pageNumber}&search=${value}`;
            }

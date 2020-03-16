@@ -69,8 +69,10 @@ function update(state, payload) {
 }
 
 function remove(state, id) {
+ 
   const data = state.data.filter(obj => obj.id !== id)
-
+  // state.loading = false;
+ 
   return Object.assign({}, state, { data })
 }
 
@@ -88,18 +90,11 @@ function courseSchoolList(state, payload) {
 }
 
 
-function spinerAdd(state, payload) {   
-    state.loading = true 
-  return Object.assign({}, state)
- 
-}
-
-function spinerRemove(state, payload) { 
-  state.loading = false 
-  const data = [...state.data, payload]
-
-  return Object.assign({}, state, { data })
-
+function spinerAdd(state, payload) {
+  return {
+    ...state,
+    loading: true
+  };
 }
 
 export default reducer

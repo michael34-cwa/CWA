@@ -12,6 +12,7 @@ import {
   TASK_REMOVE,
   TASK_LIST,
   COURSE_LIST,
+  SPINNER_ADD,
 } from "./action-types";
 
 export function add(payload) {
@@ -47,4 +48,11 @@ export function courseList(payload) {
     type: COURSE_LIST,
     payload
   };
+}
+
+export function spinerAdd(payload) {
+  return {
+    type: SPINNER_ADD,
+    payload
+  }
 }

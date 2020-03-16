@@ -10,7 +10,6 @@ import SchoolListRow from './components/SchoolListRow'
 import Pagination from '../../../../../common/Pagination'
 import Search from '../../../../../common/Search'
 import { Link } from 'react-router-dom'
- 
  import DeleteModel from '../../../../../common/model/DeleteModel'
 class Page extends Component { 
   static displayName = 'SchoolListPage'
@@ -56,6 +55,7 @@ class Page extends Component {
       school_list.isActive = 1;
     }
     this.props.dispatch(SchoolListUpdateRequest(school_list.toJson(), '1'));
+    this.props.dispatch(SchoolListListRequest({}))
   }
 
 
@@ -100,6 +100,7 @@ class Page extends Component {
  
     return (
       <main className="dashboard-right" role="main">
+        <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
           <div className="card-body bg-white">
             <h1 class="text-center">School Lists</h1>

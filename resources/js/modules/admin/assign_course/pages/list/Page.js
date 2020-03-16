@@ -13,8 +13,7 @@ import { Link } from 'react-router-dom'
  import DeleteModel from '../../../../../common/model/DeleteModel'
 import AssignModel from '../../../../../common/model/AssignModel'
 import ReeValidate from 'ree-validate' 
-
-class Page extends Component { 
+ class Page extends Component { 
   static displayName = 'AssignCoursePage'
   static propTypes = {
     meta: PropTypes.object.isRequired,
@@ -148,9 +147,12 @@ class Page extends Component {
   }
 
 
-  handleRemove(id) {
+   handleRemove(ids) {
+     const { match, assign_course, dispatch } = this.props
+     let id = match.params.id;
     this.setState({ open: !this.state.open, id: ''  }) 
-    this.props.dispatch(AssignCourseRemoveRequest(id))
+     this.props.dispatch(AssignCourseRemoveRequest(ids)) 
+     this.props.dispatch(AssignCourseListRequest({ id }))
   }
 
   renderSchoolList(pageNo) { 
@@ -172,6 +174,7 @@ class Page extends Component {
  
     return (
       <main className="dashboard-right" role="main">
+        <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
           <div className="card-body bg-white">
             <h1 class="text-center">Assign Courses</h1>
@@ -207,7 +210,7 @@ class Page extends Component {
               </table>
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
-            {this.state.open && <DeleteModel openModel={this.openModel} opens={this.state.open} id={this.state.id} handleRemove={this.handleRemove} />}
+            {this.state.open && <DeleteModel openModel={this.openModel} opens={this.state.open} ids={this.state.id} handleRemove={this.handleRemove} />}
 
            </div>
         </div> 

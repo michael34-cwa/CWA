@@ -104,6 +104,7 @@ export function categoryListRequest({ pageNumber = 1, value = '', url = "/studen
     url = url + '/school/' + id;
   }
     return dispatch => {
+      dispatch(categoryActions.spinerAdd(transformResponse()));
       if (pageNumber > 1 || value.length >= 2) {
         url = url + `?page=${pageNumber}&search=${value}`;
       }

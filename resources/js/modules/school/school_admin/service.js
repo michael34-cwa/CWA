@@ -101,7 +101,7 @@ export function  categoryRemoveRequest(id) {
 
 export function categoryListRequest({ pageNumber = 1, value = '', url = "/schools", id = ''}) {
   return dispatch => {
- 
+    dispatch(categoryActions.spinerAdd(transformResponse()));
     if (id){
       url = url + '/admin/' + id;
     }

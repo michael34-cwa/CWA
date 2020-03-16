@@ -8,7 +8,7 @@ import CategoryRow from '../list/components/CategoryRow'
 import Pagination from '../../../../../common/Pagination'
 import { Link } from 'react-router-dom'
 import Search from '../../../../../common/Search'
-
+import LoadingComponent from '../../../../../common/loader'
 class Page extends Component {
   static displayName = 'CategoriesPage'
   static propTypes = {
@@ -82,9 +82,9 @@ class Page extends Component {
   }
   
   render() {
-    return (
-
+    return ( 
       <main className="dashboard-right" role="main">
+        <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
           <div className="card-body bg-white">
             <h1 class="text-center">School Administrator</h1>

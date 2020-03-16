@@ -3,7 +3,8 @@ import {
   TASK_UPDATE,
   TASK_REMOVE,
   TASK_LIST,
-  COURSE_LIST
+  COURSE_LIST,
+  SPINNER_ADD,
 } from "./action-types";
 
 const initialState = {
@@ -17,11 +18,14 @@ const initialState = {
   perPage: 0,
   prevPageUrl: null,
   to: 0,
-  total: 0
+  total: 0,
+  loading: true
 };
 
 const reducer = (state = initialState, { type, payload = null }) => {
   switch (type) {
+    case SPINNER_ADD:
+      return spinerAdd(state, payload)
     case TASK_ADD:
       return add(state, payload);
     case TASK_UPDATE:
@@ -45,7 +49,7 @@ function add(state, payload) {
 
     return Object.assign({}, state, { data })
   }
-
+  state.loading = false;
   return update(state, payload)
 }
 
@@ -62,7 +66,7 @@ function update(state, payload) {
 
 function remove(state, id) {
   const data = state.data.filter(obj => obj.id !== id)
-
+  state.loading = false;
   return Object.assign({}, state, { data })
 }
 
@@ -70,6 +74,13 @@ function list(state, payload) {
   state = Object.assign({}, payload)
 
   return state
+}
+
+function spinerAdd(state, payload) {
+  return {
+    ...state,
+    loading: true
+  };
 }
 
 function courseList(state, payload) {

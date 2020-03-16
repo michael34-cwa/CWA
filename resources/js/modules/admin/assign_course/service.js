@@ -12,21 +12,17 @@ function transformResponse(params) {
   return Transformer.fetch(params)
 }
 
-export function AssignCourseAddRequest(params,id) { 
-  
-
+export function AssignCourseAddRequest(params,id) {  
   return dispatch => (  
     new Promise((resolve, reject) => {
-      
+      dispatch(AssignCourseActions.spinerAdd(transformResponse()));
       Http.post(`course_assign/${id}`, transformRequest(params))
         .then(res => {
           toast.success("Assigned Successfully"); 
           if (res.data){ 
-          dispatch(AssignCourseActions.list(transformResponse(res.data)));
-         
+          dispatch(AssignCourseActions.list(transformResponse(res.data))); 
           }
-          return resolve(res);
-     
+          return resolve(res); 
         })
         .catch(err => {
           const statusCode = err.response.status;
@@ -89,12 +85,13 @@ export function  AssignCourseUpdateRequest(params,status) {
   )
 }
 
-export function  AssignCourseRemoveRequest(id) {
+export function AssignCourseRemoveRequest(ids) {
   return dispatch => {
-    Http.delete(`course_assign/${id}`)
+  //  dispatch(AssignCourseActions.spinerAdd(transformResponse()));
+    Http.delete(`course_assign/${ids}`)
       .then(() => {
         toast.success("Deleted Successfully"); 
-        dispatch(AssignCourseActions.remove(id)); 
+      // dispatch(AssignCourseActions.remove(id)); 
       })
       .catch(err => {
         // TODO: handle err
@@ -105,6 +102,7 @@ export function  AssignCourseRemoveRequest(id) {
 
 export function AssignCourseListRequest({ id,pageNumber = 1, value = '', url = "/course_assign" }) {  
          return dispatch => {
+           dispatch(AssignCourseActions.spinerAdd(transformResponse()));
            url = url + '/' + id;
            if (pageNumber > 1 || value.length >= 2) {
              url = url + `?page=${pageNumber}&search=${value}`;

@@ -55,10 +55,10 @@ export function courseUpdateRequest(params, status) {
       Http.patch(`courses/${params.id}/${status}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully");
-          if (status == 1){
-           dispatch(courseActions.add(transformResponse(res.data)));
+          // if (status == 1){
+          //  dispatch(courseActions.add(transformResponse(res.data)));
            
-          }
+          // }
            return resolve();
 
         })
@@ -103,7 +103,7 @@ export function courseRemoveRequest(id) {
 
 export function courseListRequest({ pageNumber = 1, value = '', url = "/courses" }) {
 
-         return dispatch => {
+         return dispatch => { 
            dispatch(courseActions.spinerAdd(transformResponse()));
            if (pageNumber > 1 || value.length >= 2) {
              url = url + `?page=${pageNumber}&search=${value}`;

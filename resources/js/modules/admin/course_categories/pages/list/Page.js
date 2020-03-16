@@ -62,9 +62,9 @@ class Page extends Component {
   }
 
 
-  handleRemove(id) {
+  handleRemove(ids) {
     this.setState({ open: !this.state.open, id: ''  }) 
-    this.props.dispatch(categoryRemoveRequest(id)) 
+    this.props.dispatch(categoryRemoveRequest(ids)) 
     this.props.dispatch(categoryListRequest({ })) 
   }
 
@@ -117,7 +117,7 @@ class Page extends Component {
               </table>
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
-            {this.state.open && <DeleteModel openModel={this.openModel} opens={this.state.open} id={this.state.id} handleRemove={this.handleRemove} />}
+             {this.state.open && <DeleteModel openModel={this.openModel} opens={this.state.open} ids={this.state.id} handleRemove={this.handleRemove} />}
 
            </div>
         </div> 
