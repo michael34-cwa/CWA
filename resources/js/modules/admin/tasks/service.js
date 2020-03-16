@@ -100,7 +100,7 @@ export function taskListRequest({ pageNumber = 1, value = '', url = "/tasks" }) 
            if (pageNumber > 1 || value.length >= 2) {
              url = url + `?page=${pageNumber}&search=${value}`;
            }
-           dispatch(taskActions.spinerAdd(transformResponse()));
+        //dispatch(taskActions.spinerAdd(transformResponse()));
            Http.get(url)
              .then(res => { 
                dispatch(taskActions.list(transformResponse(res.data)));

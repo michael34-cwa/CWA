@@ -71,6 +71,7 @@ function remove(state, id) {
 }
 
 function spinerAdd(state, payload) {
+ 
   return {
     ...state,
     loading: true
