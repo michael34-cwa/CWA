@@ -73,6 +73,7 @@ class Page extends Component {
   handleRemove(ids) {
     this.setState({ open: !this.state.open, id: '' }) 
     this.props.dispatch(taskRemoveRequest(ids));
+    this.props.dispatch(taskListRequest({}))
   }
 
   renderTasks(pageNo) {
