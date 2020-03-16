@@ -96,7 +96,7 @@ export function taskRemoveRequest(id) {
 
 export function taskListRequest({ pageNumber = 1, value = '', url = "/tasks" }) {
          return dispatch => {
-           dispatch(taskActions.spinerAdd(transformResponse()));
+        //   dispatch(taskActions.spinerAdd(transformResponse()));
            if (pageNumber > 1 || value.length >= 2) {
              url = url + `?page=${pageNumber}&search=${value}`;
            }
