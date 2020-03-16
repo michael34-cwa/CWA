@@ -1,6 +1,17 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types'
+import moment from 'moment'
+import { dashListRequest  } from '../service'
+import { Button } from '@material-ui/core';
+// import components 
+import { Link } from 'react-router-dom' 
+ import LoadingComponent from '../../../../common/loader'
 
-class dashBord extends Component {
+class Page extends Component { 
+  static propTypes = { 
+     
+    dispatch: PropTypes.func.isRequired
+  };
 
 
   constructor(props) {
@@ -8,19 +19,23 @@ class dashBord extends Component {
 
   }
 
+  UNSAFE_componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch(dashListRequest({}));
+  }
 
   render() {
     return (
       <div className="dashboard-right">
+        <LoadingComponent isLoading={this.props.meta.loading} error={''} />  
         <div className="form-row mb-20">
           <div className="col-lg-3 col-sm-6">
             <div className="card gradient-1">
               <div className="card-body">
-                <h3 className="card-title text-white">Products Sold</h3>
+                <h3 className="card-title text-white">Course Categories</h3>
                 <div className="d-inline-block">
-                  <h2 className="text-white">4565</h2>
-                  <p className="text-white mb-0">Jan - March 2019</p>
-                </div>
+                  <h2 className="text-white">{this.props.courseCategories}</h2>
+                 </div>
                 <span className="float-right display-5 opacity-5">
                   <i className="fa fa-shopping-cart"></i>
                 </span>
@@ -30,10 +45,9 @@ class dashBord extends Component {
           <div className="col-lg-3 col-sm-6">
             <div className="card gradient-2">
               <div className="card-body">
-                <h3 className="card-title text-white">Net Profit</h3>
+                <h3 className="card-title text-white">Course</h3>
                 <div className="d-inline-block">
-                  <h2 className="text-white">$ 8541</h2>
-                  <p className="text-white mb-0">Jan - March 2019</p>
+                  <h2 className="text-white">{this.props.courses}</h2> 
                 </div>
                 <span className="float-right display-5 opacity-5">
                   <i className="fa fa-money"></i>
@@ -44,10 +58,9 @@ class dashBord extends Component {
           <div className="col-lg-3 col-sm-6">
             <div className="card gradient-3">
               <div className="card-body">
-                <h3 className="card-title text-white">New Customers</h3>
+                <h3 className="card-title text-white">Tasks</h3>
                 <div className="d-inline-block">
-                  <h2 className="text-white">4565</h2>
-                  <p className="text-white mb-0">Jan - March 2019</p>
+                  <h2 className="text-white">{this.props.tasks}</h2> 
                 </div>
                 <span className="float-right display-5 opacity-5">
                   <i className="fa fa-users"></i>
@@ -58,10 +71,9 @@ class dashBord extends Component {
           <div className="col-lg-3 col-sm-6">
             <div className="card gradient-4">
               <div className="card-body">
-                <h3 className="card-title text-white">Customer Satisfaction</h3>
+                <h3 className="card-title text-white">School List</h3>
                 <div className="d-inline-block">
-                  <h2 className="text-white">99%</h2>
-                  <p className="text-white mb-0">Jan - March 2019</p>
+                  <h2 className="text-white">{this.props.schoolList}</h2> 
                 </div>
                 <span className="float-right display-5 opacity-5">
                   <i className="fa fa-heart"></i>
@@ -72,22 +84,15 @@ class dashBord extends Component {
         </div>
 
         <div className="form-row boxessection mb-20">
+    
           <div className="col-lg-4 col-sm-6">
             <div className="card ">
               <div className="card-body">
                 <div className="text-center">
-                  <i className="fa fa-tachometer" aria-hidden="true"></i>
-                  <h2> Dashboard</h2>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-sm-6">
-            <div className="card ">
-              <div className="card-body">
-                <div className="text-center">
+                  <Link to="/admin/course_categories">
                   <i className="fa fa-cog" aria-hidden="true"></i>
                   <h2>  Course Categories</h2>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -96,27 +101,33 @@ class dashBord extends Component {
             <div className="card">
               <div className="card-body">
                 <div className="text-center">
+                  <Link to="/admin/courses">
                   <i className="fa fa-globe" aria-hidden="true"></i>
                   <h2> Course</h2>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-lg-4 col-sm-6">
+            <div className="card ">
+              <div className="card-body">
+                <div className="text-center">
+                  <Link to="/admin/tasks">
+                  <i className="fa fa-tachometer" aria-hidden="true"></i>
+                  <h2> Tasks</h2>
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="row mb-20">
-          <div className="col-md-12">
-            <div className="card">
-              <div className="card-body">
-                <h3>Course Categories</h3>
-                <p>You can add edit and update your Course Categories</p>
-              </div>
-            </div>
-          </div>
-        </div>
+ 
 
       </div>
     );
   }
 }
 
-export default dashBord;
+export default Page;

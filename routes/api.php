@@ -22,10 +22,7 @@ Route::group(["prefix" => "{$api_version}"], function() {
         ->group(base_path('routes/api/auth.php'));
     // register users routes
     Route::prefix('users')
-        ->group(base_path('routes/api/users.php'));
-    // register articles routes
-    Route::prefix('articles')
-        ->group(base_path('routes/api/articles.php'));
+        ->group(base_path('routes/api/users.php')); 
         // register courses routes
     Route::prefix('courses')
         ->group(base_path('routes/api/courses.php'));
@@ -42,5 +39,7 @@ Route::group(["prefix" => "{$api_version}"], function() {
           Route::prefix('school_lists')
         ->group(base_path('routes/api/school_lists.php'));
     Route::prefix('course_assign')
-        ->group(base_path('routes/api/course_assign.php'));  
+        ->group(base_path('routes/api/course_assign.php'));
+    Route::prefix('dashboard')
+        ->group(base_path('routes/api/dashboard.php'));  
 });
