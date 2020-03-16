@@ -47,7 +47,7 @@ export function taskUpdateRequest(params,status) {
   return dispatch => (
     new Promise((resolve, reject) => {
       if (status == 1) {
-        // dispatch(taskActions.spinerAdd(transformResponse()));
+       
       }
       Http.patch(`tasks/${params.id}`, transformRequest(params))
         .then(res => {
