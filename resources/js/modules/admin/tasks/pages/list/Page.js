@@ -70,9 +70,9 @@ class Page extends Component {
     this.props.dispatch(taskUpdateRequest(task.toJson(), '1'));
   }
 
-  handleRemove(id) {
+  handleRemove(ids) {
     this.setState({ open: !this.state.open, id: '' }) 
-    this.props.dispatch(taskRemoveRequest(id));
+    this.props.dispatch(taskRemoveRequest(ids));
   }
 
   renderTasks(pageNo) {
@@ -130,7 +130,7 @@ class Page extends Component {
               </table>
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
-            {this.state.open && <DeleteModel openModel={this.openModel} opens={this.state.open} id={this.state.id} handleRemove={this.handleRemove} />}
+            {this.state.open && <DeleteModel openModel={this.openModel} opens={this.state.open} ids={this.state.id} handleRemove={this.handleRemove} />}
 
           </div>
         </div>
