@@ -25,7 +25,7 @@ const initialState = {
 const reducer = (state = initialState, { type, payload = null }) => {
   switch (type) {
     case SPINNER_ADD:
-      return spinerAdd(state, payload)
+      return spinerAdd(state, payload);
     case TASK_ADD:
       return add(state, payload);
     case TASK_UPDATE:
