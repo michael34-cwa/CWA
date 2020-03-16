@@ -70,18 +70,20 @@ function remove(state, id) {
   return Object.assign({}, state, { data })
 }
 
-function list(state, payload) {
-  state = Object.assign({}, payload)
-
-  return state
-}
-
 function spinerAdd(state, payload) {
   return {
     ...state,
     loading: true
   };
 }
+
+
+function list(state, payload) {
+  state = Object.assign({}, payload)
+
+  return state
+}
+
 
 function courseList(state, payload) {
 
