@@ -14,7 +14,7 @@ import LoadingComponent from '../../../../../common/loader'
 class Page extends Component {
   static displayName = "TasksPage";
   static propTypes = {
-    dataList: PropTypes.array.isRequired,
+    dataList: PropTypes.array,
     meta: PropTypes.object.isRequired,
     tasks: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired
