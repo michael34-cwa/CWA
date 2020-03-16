@@ -101,7 +101,7 @@ export function taskListRequest({ pageNumber = 1, value = '', url = "/tasks" }) 
              url = url + `?page=${pageNumber}&search=${value}`;
            }
     
-           Http.get(url)
+           Http.get(url) 
              .then(res => { 
                dispatch(taskActions.list(transformResponse(res.data)));
              })
