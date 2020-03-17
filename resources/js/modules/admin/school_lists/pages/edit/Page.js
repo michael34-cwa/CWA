@@ -25,8 +25,7 @@ class Page extends Component {
     this.validator = new ReeValidate({
       email: "required|min:2|max:32", 
       schoolName: "required|min:2|max:32",
-      phone: 'required|min:2|max:20',
-      isActive: 'required',
+      phone: 'required|min:2|max:20', 
       schoolAddress: 'required|min:2|max:60',
       schoolDescription: 'required|min:2|max:200',
     });

@@ -59,7 +59,23 @@ const Form = ({ loading, school_list, errors, onChange, onSubmit }) => {
       </div>
 
         <div className="row">
-          <div className="col-md-6">
+
+        <div className="col-md-6">
+          <FormControl className="w-100 mb-3" >
+            <TextField
+              error={errors.has("schoolAddress")}
+              label="School Address"
+              defaultValue="School Address"
+              helperText={`${errors.has("schoolAddress") ? errors.first("schoolAddress").replace("schoolAddress", "school address") : ''}`}
+              value={school_list.schoolAddress || ""}
+              id="schoolAddress"
+              name="schoolAddress"
+              onChange={e => handleChange(e.target.name, e.target.value)}
+            />
+          </FormControl>
+
+        </div> 
+          {/* <div className="col-md-6">
             <FormControl className="w-100 mb-3" error={errors.has("isActive")}>
               <InputLabel id="isActive"> School Status</InputLabel>
               <Select
@@ -78,7 +94,7 @@ const Form = ({ loading, school_list, errors, onChange, onSubmit }) => {
               )}
             </FormControl>
 
-          </div>
+          </div> */}
 
           <div className="col-md-6">
             <FormControl className="w-100 mb-3" >
@@ -118,21 +134,7 @@ const Form = ({ loading, school_list, errors, onChange, onSubmit }) => {
               />
             </FormControl> 
           </div>
-          <div className="col-md-6">
-            <FormControl className="w-100 mb-3" >
-              <TextField
-                error={errors.has("schoolAddress")}
-                label="School Address"
-                defaultValue="School Address"
-                helperText={`${errors.has("schoolAddress") ? errors.first("schoolAddress").replace("schoolAddress", "school address") : ''}`}
-                value={school_list.schoolAddress || ""}
-                id="schoolAddress"
-                name="schoolAddress"
-                onChange={e => handleChange(e.target.name, e.target.value)}
-              />
-            </FormControl>
-
-          </div> 
+  
         </div>
 
 

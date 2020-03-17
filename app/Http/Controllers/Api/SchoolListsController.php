@@ -132,12 +132,12 @@ class SchoolListsController  extends Controller
      */
     public function update(SchoolListRequest $request, $id, $status = null)
     {
-
+ 
         if ($status == 0) {
-            $user = User::findOrFail($id);
+            $schoolList = SchoolList::find($id);  
+            $user = User::find($request->user_id);  
             $user->phone = $request->phone;
-            $user->save(); 
-            $schoolList = SchoolList::find($user->id);
+            $user->save();  
             $schoolList->school_name = $request->school_name;
             $schoolList->school_description = $request->school_description;
             $schoolList->school_address = $request->school_address;
