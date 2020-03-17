@@ -1,4 +1,4 @@
-import Model from '../../utils/Model'
+import Model from '../../../utils/Model'
 
 class User extends Model {
   constructor(props) {
@@ -7,14 +7,15 @@ class User extends Model {
     this.initialize(props)
   }
 
-  initialize(props) {
-    super.initialize(props)
-
-    this.name = props.name || ''
+  initialize(props) { 
+    super.initialize(props) 
+    this.firstName = props.firstName || ''
+    this.lastName = props.lastName || ''
     this.email = props.email || ''
-    this.phone = props.phone || ''
-    this.about = props.about || ''
+    this.phone = props.phone || '' 
+    this.oldPassword =   '' 
+    this.password =   '' 
+    this.passwordConfirmation = '' 
   }
 }
-
 export default User

@@ -88,8 +88,7 @@ class LoginController extends Controller
     
          $role =  \Sentinel::findById($user->id)->roles[0];
          
-        $user['rolename'] = $role->slug;
-
+        $user['rolename'] = $role->slug; 
      return response()->json($user);
     }
 }

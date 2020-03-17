@@ -26,13 +26,12 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3',
-            'email' => [
-                'required',
-                Rule::unique('users')->ignore(Auth::user()->id)
-            ],
-            'phone' => 'nullable|min:8|numeric',
-            'about' => 'nullable|min:10|max:1024'
+            
+            'first_name' => 'required|min:2|max:28',
+            'last_name' => 'required|min:2|max:28',
+            'old_password' => 'nullable|min:2|max:28',
+            'password' => 'nullable|min:2|max:28',
+            'password_confirmation' => 'nullable|min:2|max:28|same:password', 
         ];
     }
 }

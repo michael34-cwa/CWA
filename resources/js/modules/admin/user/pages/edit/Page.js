@@ -11,7 +11,7 @@ import Form from './components/Form'
 class Page extends Component {
   static displayName = 'UserPage'
   static propTypes = {
-    user: PropTypes.object.isRequired,
+    admin_user: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   }
   
@@ -19,36 +19,37 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
-       'name': 'required|min:3',
-      'email': 'required|email',
-      'phone': 'min:8|numeric',
-      'about': 'min:10|max:1024',
+      'firstName': 'required|min:2|max:28',
+      'lastName': 'required|min:2|max:28',
+      'email': 'required|email|max:28',
+      'phone': 'required|min:8|numeric|max:28', 
+      'oldPassword': 'min:6|max:28',
+      'password': 'min:6|max:28',
+      'passwordConfirmation': 'min:6|max:28',
     })
     
-    const user = this.props.user.toJson()
-    
+    const admin_user = this.props.admin_user.toJson()
+
     this.state = {
-      user,
-      errors: this.validator.errors
+      admin_user,
+      errors: this.validator.errors,
+      loading: false
     }
     
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   
-  componentWillReceiveProps(nextProps) {
-    const user = nextProps.user.toJson()
-    
-    if (!_.isEqual(this.state.user, user)) {
-      this.setState({ user })
-    }
-    
+  componentWillReceiveProps(nextProps) { 
+    const admin_user = nextProps.admin_user.toJson()  
+    if (!_.isEqual(this.state.admin_user, admin_user)) {
+      this.setState({ admin_user })
+    } 
   }
   
   handleChange(name, value) {
-    const { errors } = this.validator
-    
-    this.setState({ user: { ...this.props.user, [name]: value} })
+    const { errors } = this.validator 
+    this.setState({ admin_user: { ...this.state.admin_user, [name]: value} })
     
     errors.remove(name)
     
@@ -60,22 +61,27 @@ class Page extends Component {
   
   handleSubmit(e) {
     e.preventDefault()
-    const user = this.state.user
+    const admin_user = this.state.admin_user
     const { errors } = this.validator
     
-    this.validator.validateAll(user)
+    this.validator.validateAll(admin_user)
       .then((success) => {
         if (success) {
-          this.submit(user)
+          this.submit(admin_user)
         } else {
           this.setState({ errors })
         }
       })
   }
   
-  submit(user) {
-    this.props.dispatch(userUpdateRequest(user))
+  submit(admin_user) {
+    this.setState({ loading: true })
+    this.props.dispatch(userUpdateRequest(admin_user))
+      .then(res => {
+        this.setState({ loading: false }) 
+      })
       .catch(({ error, statusCode }) => {
+        this.setState({ loading: false }) 
         const { errors } = this.validator
         
         if (statusCode === 422) {
@@ -96,6 +102,7 @@ class Page extends Component {
       <section className="row">
         <div className="col-12 col-md-9 col-sm-12">
           <Form {...this.state}
+                 loading={this.state.loading}
                 onChange={this.handleChange}
                 onSubmit={this.handleSubmit}/>
         </div>

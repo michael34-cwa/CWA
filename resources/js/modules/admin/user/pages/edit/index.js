@@ -14,9 +14,9 @@ import User from '../../User'
 import Page from './Page'
 
 // map store state as properties of the component
-const mapStateToProps = state => {
+const mapStateToProps = state => {   
   return {
-    user: new User(state.user)
+    admin_user: new User(state.admin_user)
   }
 }
 

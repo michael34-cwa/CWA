@@ -13,7 +13,7 @@ const propTypes = {
 
 const Form = ({ loading, category, errors, onChange, onSubmit }) => {
 
-  function handleChange(name, value) {
+  function handleChange(name, value) { 
     if (value !== category[name]) {
       onChange(name, value)
     }
