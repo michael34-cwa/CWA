@@ -25,7 +25,7 @@ const PrivateHeader = ({ user, showNavigation, showDropdown, toggleDropdown, log
   <Collapse className="navbar-collapse justify-content-end" isOpen={showNavigation}>
   
     
-    <ul className="navbar-nav ">
+    <ul className="navbar-nav my-account">
       <Dropdown isOpen={showDropdown} toggle={toggleDropdown}>
      
         <DropdownToggle nav caret>
