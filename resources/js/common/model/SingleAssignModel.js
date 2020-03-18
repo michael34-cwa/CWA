@@ -18,11 +18,10 @@ const propTypes = {
 
 const SingleAssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
  
-  console.log(courses);
-  const [personName, setPersonName] = React.useState([]);
+ 
 
   function handleChange(name, value) { 
-    setPersonName(value); 
+   
     onChange(name, value); 
   }
 
@@ -56,13 +55,11 @@ const SingleAssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }
 
 
   const handleClose = () => {
-    setOpen(false);
-    setPersonName([]);
+    setOpen(false); 
   };
 
   const handleOpen = () => {
-    setOpen(true);
-    setPersonName([]);
+    setOpen(true); 
   };
 
   
@@ -106,11 +103,7 @@ const SingleAssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }
                 X
                </a>
               <h2 id="transition-modal-title" className="text-center mb-0">Select The Courses</h2>
-              {courses.map(name => (
-                <MenuItem key={name.id} value={name.id}>
-                  {name.courseName}
-                </MenuItem>
-              ))}
+            
               <form onSubmit={e => onSubmit(e)}>
                 <div className="row">
                   <div className="col-md-12">
@@ -120,13 +113,13 @@ const SingleAssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }
                         labelId="course_name"
                         className={`${errors.has("course_name") && "is-invalid"}`}
                         id="course_name" 
-                        value={personName}
+                        // value={personName}
                         name="course_name"
                         onChange={e => handleChange(e.target.name, e.target.value)}
-                        MenuProps={MenuProps}
+                       // MenuProps={MenuProps}
                       >
                         {courses.map(name => (
-                          <MenuItem key={name.id} value={name.id}>
+                          <MenuItem key={name.courseId} value={name.courseId}>
                             {name.courseName}
                           </MenuItem>
                         ))}

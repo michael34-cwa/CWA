@@ -10,9 +10,17 @@ class AssignCourse extends Model {
   }
 
   initialize(props) {   
+    if (props.status == 0){
+      status = 'Active'
+    } else if (props.status == 1){
+      status = 'Processs'
+    }else{
+      status = 'Completed'
+    }
     super.initialize(props) 
     this.courseId = props.courseId ? props.courseId : "";
     this.schoolId = props.schoolId ? props.schoolId : "";
+    this.status = status;
     this.courseName = props.getCourse ? props.getCourse.courseName :""; 
     // relate user model
    }
