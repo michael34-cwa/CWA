@@ -163,7 +163,7 @@ import ReeValidate from 'ree-validate'
         assignCourse={assignCourse}
           pageNo={pageNo++}
           index={index}
-     //     togglePublish={this.togglePublish}
+            togglePublish={this.togglePublish}
           openModel={this.openModel}
             handleRemove={this.handleRemove} />
     

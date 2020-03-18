@@ -12,6 +12,7 @@ import school_admin from "../modules/school/school_admin/store/reducer";
 import school_courses from "../modules/school/courses/store/reducer";
 import teachers from "../modules/school/teachers/store/reducer";
 import students from "../modules/school/students/store/reducer";
+import project_admin from "../modules/school/project_admin/store/reducer";
 import students_course from "../modules/student/courses/store/reducer";
 import assign_course from "../modules/admin/assign_course/store/reducer"; 
-export default combineReducers({ auth, user, admin_user, course_categories, courses, tasks, school_lists, school_admin, school_courses, teachers, students, students_course, assign_course, dash_board});
+export default combineReducers({ auth, user, admin_user, course_categories, courses, tasks, school_lists, school_admin, school_courses, teachers, students, students_course, assign_course, dash_board, project_admin});

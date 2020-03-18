@@ -6,5 +6,6 @@ import schoolAdminRoutes from "../modules/school/school_admin/routes"
 import teachersRoutes from "../modules/school/teachers/routes"
 import studentsRoutes from "../modules/school/students/routes"
 import schoolCoursesRoutes from "../modules/school/courses/routes";
-
-export default [...webRoutes, ...authRoutes, ...userRoutes, ...schoolAdminRoutes, ...teachersRoutes, ...studentsRoutes, ...schoolCoursesRoutes]
+import projectAdminRoutes from "../modules/school/project_admin/routes";
+export default [...webRoutes, ...authRoutes, ...userRoutes, ...schoolAdminRoutes, ...teachersRoutes, ...studentsRoutes, ...schoolCoursesRoutes, ...projectAdminRoutes]
+ 
