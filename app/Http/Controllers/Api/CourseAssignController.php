@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Model\Courses;
 use App\Model\SchoolCourses;
+use App\Model\StudentCourses;
+use App\Model\StudentProfile;
 //use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -54,10 +56,8 @@ class CourseAssignController  extends Controller
      * @return  use Illuminate\Http\Request; 
      */
     public function store(Request $request, $id)
-    {
-
-        try {
-
+    { 
+        try { 
             foreach ($request::post('course_name') as $key => $course_id) {
                 $courseData =   SchoolCourses::where('school_id', '=', $id)->where('course_id', '=', $course_id)->first();
 
@@ -104,6 +104,32 @@ class CourseAssignController  extends Controller
             ->paginate();
     }
 
+    public function getCourseStudent(Request $request, $id)
+    {
+        $dataSearch   =   Request::get('search');
+        return StudentCourses::with(['getCourse'])->whereHas('getCourse', function ($q) use ($dataSearch) {
+            if ($dataSearch) {
+                $q->where('course_name', 'LIKE', "%{$dataSearch}%");
+            }
+        })->where('student_id', $id)
+            ->paginate();
+    }
+
+
+    public function getSchoolCourse(Request $request, $id)
+    {
+        $dataSearch   =   Request::get('search');
+      $schoolId =  StudentProfile::where('student_id', $id)->first();
+        return SchoolCourses::with(['getCourse'])->whereHas('getCourse', function ($q) use ($dataSearch) {
+            if ($dataSearch) {
+                $q->where('school_id', 'LIKE', "%{$dataSearch}%");
+            }
+        })->where('school_id', $schoolId->school_id)
+            ->paginate();
+    }
+
+
+    
     /**
      * Show the form for editing the specified resource.
      *

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Model\SchoolProfile;
 use App\Model\ProjectAdmin;
+use App\Model\StudentProfile;
 //use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -48,6 +49,26 @@ class ProjectAdminController  extends Controller
         //
     }
 
+
+    public function studentList(Request $request)
+    {   
+        $user = \Auth::guard('api')->user(); 
+        $dataSearch   =   Request::get('search');
+        $schoolId = ProjectAdmin::where('project_admin_id', $user->id)->first();
+        
+
+        $studentData = StudentProfile::with(array('User' => function ($query) {
+            $query->select('id', 'email', 'first_name', 'last_name', 'phone');
+        }, 'ActivationsUser', 'User'))->where('school_id', $schoolId->school_id);
+
+        if ($dataSearch) {
+            $studentData = $studentData->WhereHas('User', function ($query) use ($dataSearch) {
+                $query->Where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%")->orWhere('email', 'LIKE', "%{$dataSearch}%")->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+            });
+        }
+        return  $studentData->paginate();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -80,23 +101,15 @@ class ProjectAdminController  extends Controller
             if (!empty($user)) {
                 $userUpdate = User::findOrFail($user->id);
                 // $userUpdate->update($request->all());
-                $role = \Sentinel::findRoleByName('student');
+                $role = \Sentinel::findRoleByName('project_admin');
                 $role->users()->attach($user);
 
-              //  $schoolId =  SchoolProfile::where('school_id', $userId->id)->first();
+                $schoolId =  SchoolProfile::where('school_id', $userId->id)->first();
                 $tstudentList = new ProjectAdmin();
-                $tstudentList->school_id = $userId->id;
+                $tstudentList->school_id = $schoolId->school_admin_id;
                 $tstudentList->project_admin_id = $user->id;
                 $tstudentList->created_by =  $userId->id;
-                // if (empty($schoolId)) {
-                //     $tstudentList->school_id = $userId->id;
-                //     $tstudentList->student_id = $user->id;
-                //     $tstudentList->created_by =  $userId->id;
-                // } else {
-                //     $tstudentList->school_id = $schoolId->school_admin_id;
-                //     $tstudentList->project_admin_id = $user->id;
-                //     $tstudentList->created_by =  $userId->id;
-                // }
+  
                 $tstudentList->save();
             }
  

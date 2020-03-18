@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import LoadingComponent from '../../common/loader'
+import LoadingComponent from '../loader'
 import { TextField, Button, FormHelperText, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 const propTypes = {
   handleRemove: PropTypes.func,
@@ -16,7 +16,7 @@ const propTypes = {
 
 
 
-const AssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
+const SingleAssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
  
   console.log(courses);
   const [personName, setPersonName] = React.useState([]);
@@ -106,7 +106,11 @@ const AssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
                 X
                </a>
               <h2 id="transition-modal-title" className="text-center mb-0">Select The Courses</h2>
-
+              {courses.map(name => (
+                <MenuItem key={name.id} value={name.id}>
+                  {name.courseName}
+                </MenuItem>
+              ))}
               <form onSubmit={e => onSubmit(e)}>
                 <div className="row">
                   <div className="col-md-12">
@@ -115,8 +119,7 @@ const AssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
                       <Select
                         labelId="course_name"
                         className={`${errors.has("course_name") && "is-invalid"}`}
-                        id="course_name"
-                        multiple
+                        id="course_name" 
                         value={personName}
                         name="course_name"
                         onChange={e => handleChange(e.target.name, e.target.value)}
@@ -162,5 +165,5 @@ const AssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
     </div>
   );
 }
-AssignModel.propTypes = propTypes
-export default AssignModel;
+SingleAssignModel.propTypes = propTypes
+export default SingleAssignModel;

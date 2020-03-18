@@ -10,6 +10,8 @@ import AdminSideMenu from "../common/sidebar/adminMenu";
 import SchoolSideMenu from "../common/sidebar/schoolMenu";
 import StudentMenu from "../common/sidebar/studentMenu";
 import TeacherMenu from "../common/sidebar/teacherMenu";
+import ProjectAdminMenu from "../common/sidebar/projectAdminMenu";
+
 import { ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css";
 const containerStyle = {
@@ -34,6 +36,8 @@ function PrivateLayout({ children, rolenane}) {
     sideBars = <StudentMenu />;
   } else if (rolenane == 'teacher') {
     sideBars = <TeacherMenu />;
+  } else if (rolenane == 'project_admin') {
+    sideBars = <ProjectAdminMenu />;
   }
     
  

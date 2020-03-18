@@ -19,8 +19,15 @@ class CreateStudentCoursesTable extends Migration
             $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('course_id')->unsigned();
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->integer('project_admin_id')->unsigned();
+            $table->foreign('project_admin_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('school_id')->unsigned();
+            $table->foreign('school_id')->references('id')->on('users')->onDelete('cascade');
+            $table->boolean('status')->enum('0','1');
+            $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

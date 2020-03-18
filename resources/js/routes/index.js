@@ -7,6 +7,8 @@ import adminRoutes from './adminRoutes'
 import schoolRoutes from './schoolRoutes'
 import studentRoutes from './studentRoutes'
 import teacherRoutes from './teacherRoutes'
+import authRoutes from './authRoutes'
+import projectAdminRoutes from './projectAdminRoutes'
 import PrivateRoute from './Private'
 import PublicRoute from './Public'
 import { connect } from 'react-redux'
@@ -49,7 +51,13 @@ const Routes = ({ roleId, dispatch }) => {
           }
         })}
 
-        {schoolRoutes.map((route, i) => {
+        {projectAdminRoutes.map((route, i) => { 
+          if (roleId == 'project_admin') { 
+            return <PrivateRoute key={i} {...route} />
+          }
+        })}
+
+        {authRoutes.map((route, i) => {
           return <PublicRoute key={i} {...route} />
         })}
 
