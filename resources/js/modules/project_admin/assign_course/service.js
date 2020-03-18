@@ -15,12 +15,12 @@ function transformResponse(params) {
 export function AssignCourseAddRequest(params,id) {  
   return dispatch => (  
     new Promise((resolve, reject) => {
-      dispatch(AssignCourseActions.spinerAdd(transformResponse()));
+     // dispatch(AssignCourseActions.spinerAdd(transformResponse()));
       Http.post(`course_assign/student/${id}`, transformRequest(params))
         .then(res => {
           toast.success("Assigned Successfully"); 
           if (res.data){ 
-          dispatch(AssignCourseActions.list(transformResponse(res.data))); 
+         // dispatch(AssignCourseActions.list(transformResponse(res.data))); 
           }
           return resolve(res); 
         })
@@ -54,13 +54,18 @@ export function AssignCourseAddRequest(params,id) {
 export function AssignCourseRemoveRequest(ids) {
   return dispatch => {
   //  dispatch(AssignCourseActions.spinerAdd(transformResponse()));
-    Http.delete(`course_assign/${ids}`)
+    Http.delete(`course_assign/student/${ids}`)
       .then(() => {
         toast.success("Deleted Successfully"); 
       // dispatch(AssignCourseActions.remove(id)); 
       })
       .catch(err => {
-        // TODO: handle err
+        const statusCode = err.response.status;
+        if (statusCode === 422) {
+          if (err.response.data.status == 0) {
+            toast.warn(err.response.data.message);
+          }
+        }
         console.error(err.response);
       });
   }
@@ -93,7 +98,7 @@ export function CourseSchooListRequest({ id,url = "/course_assign/school" }) {
         dispatch(CourseActions.list(transformResponse(res.data)));
       })
       .catch(err => {
-        // TODO: handle err
+    
         console.error(err.response);
       });
   };

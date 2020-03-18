@@ -71,11 +71,45 @@ class CourseAssignController  extends Controller
             if (isset($courseVal)) {
                 $courseData = SchoolCourses::with(['getCourse'])->where('school_id', $id)
                     ->paginate();
-
+                
                 return response()->json($courseData, 201);
             } else {
                 return response()->json('', 201);
             }
+        } catch (\Exception $e) {
+
+            dd($e->getMessage(), $e->getCode(), $e->getTrace());
+            return response()->json([
+                "error" => "invalid_credentials",
+                "message" => "The user credentials were incorrect."
+            ], 401);
+        }
+    }
+
+
+    public function addCourse(Request $request, $id)
+    {
+        try {
+            $courseId =    $request::post('course_name');
+            $user = \Auth::guard('api')->user();
+
+            $stuData =   StudentCourses::where('student_id', $id)->where('status','0')->first();
+
+            if(!empty($stuData)){
+                return response()->json(['message' => 'Course already assigned with this student.', 'status' => 0], 422);
+            }
+            $schoolId =  StudentProfile::where('student_id', $id)->first();
+
+               // if (empty($courseData)) {
+                    $courseVal = new StudentCourses();
+                    $courseVal->student_id = $id;
+                    $courseVal->course_id = $courseId;
+                    $courseVal->project_admin_id = $user->id;
+                    $courseVal->school_id = $schoolId->school_id; 
+                    $courseVal->save();
+             //   }
+     
+            return response()->json($courseVal, 201);
         } catch (\Exception $e) {
 
             dd($e->getMessage(), $e->getCode(), $e->getTrace());
@@ -100,7 +134,7 @@ class CourseAssignController  extends Controller
             if ($dataSearch) {
                 $q->where('course_name', 'LIKE', "%{$dataSearch}%");
             }
-        })->where('school_id', $id)
+        })->where('school_id', $id)->latest()
             ->paginate();
     }
 
@@ -111,7 +145,7 @@ class CourseAssignController  extends Controller
             if ($dataSearch) {
                 $q->where('course_name', 'LIKE', "%{$dataSearch}%");
             }
-        })->where('student_id', $id)
+        })->where('student_id', $id)->latest()
             ->paginate();
     }
 
@@ -124,7 +158,7 @@ class CourseAssignController  extends Controller
             if ($dataSearch) {
                 $q->where('school_id', 'LIKE', "%{$dataSearch}%");
             }
-        })->where('school_id', $schoolId->school_id)
+        })->where('school_id', $schoolId->school_id)->latest()
             ->paginate();
     }
 
@@ -187,4 +221,19 @@ class CourseAssignController  extends Controller
         $article->delete();
         return response([], 200);
     }
+
+    public function deleteCourse($id)
+    {
+        $course  =    StudentCourses::findOrFail($id);
+        if ($course->status == 1) {
+        return response()->json(['message' => 'This Course not completed yet.', 'status' => 0], 422);
+        }
+        if ($course->status == 2) {
+            return response()->json(['message' => 'Completed Course not removed.', 'status' => 0], 422);
+        }
+       $course = StudentCourses::findOrFail($id);
+        $course->delete();
+        return response([], 200);
+    }
+    
 }

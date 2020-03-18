@@ -95,13 +95,16 @@ import ReeValidate from 'ree-validate'
   submit(courseData) {
     this.setState({ loading: true })
     const { match, assign_course, dispatch } = this.props
-    let id = match.params.id; 
+    let id = match.params.id;  
      this.props
        .dispatch(AssignCourseAddRequest(courseData, id)) 
-       .then(res => {    
+       .then(res => {  
+
+         dispatch(AssignCourseListRequest({ id }))  
          this.setState({ loading: false, opens: false })   
        })
       .catch(({ error, statusCode }) => {
+     
         this.setState({ loading: false })
         const { errors } = this.validator;
 
@@ -187,6 +190,7 @@ import ReeValidate from 'ree-validate'
                     <th>Course Name</th> 
                     <th>Created Date</th>
                     <th>Updated Date</th>
+                    <th>Status</th>
                     <th> 
                       {/* <Link to="/admin/school_lists/create">
                         <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
