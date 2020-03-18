@@ -32,80 +32,92 @@ class Page extends Component {
           <div className="col-lg-3 col-sm-6">
             <div className="card gradient-1">
               <div className="card-body">
-                <h3 className="card-title text-white">Course Categories</h3>
-                <div className="d-inline-block">
-                  <h2 className="text-white">{this.props.courseCategories}</h2>
-                 </div>
-                <span className="float-right display-5 opacity-5">
-                  <i className="fa fa-shopping-cart"></i>
-                </span>
+                <h5 className="text-center text-white"><strong>Course Categories</strong></h5>
+                <div className="row">
+                    <div className="col-6 d-flex align-items-center justify-content-center">
+                      <h2 className="text-white m-0">{this.props.courseCategories}</h2>
+                    </div>
+                    <div className="col-6 d-flex align-items-center justify-content-center">
+                      <span className="float-right display-5 opacity-5">
+                        <i className="fa fa-shopping-cart"></i>
+                      </span>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
           <div className="col-lg-3 col-sm-6">
             <div className="card gradient-2">
               <div className="card-body">
-                <h3 className="card-title text-white">Course</h3>
-                <div className="d-inline-block">
-                  <h2 className="text-white">{this.props.courses}</h2> 
+                <h5 className="text-center text-white"><strong>Course</strong></h5>
+                <div className="row">
+                    <div className="col-6 d-flex align-items-center justify-content-center">
+                      <h2 className="text-white m-0">{this.props.courses}</h2>
+                    </div>
+                    <div className="col-6 d-flex align-items-center justify-content-center">
+                      <span className="float-right display-5 opacity-5">
+                        <i className="fa fa-money"></i>
+                      </span>
+                    </div>
                 </div>
-                <span className="float-right display-5 opacity-5">
-                  <i className="fa fa-money"></i>
-                </span>
               </div>
             </div>
           </div>
           <div className="col-lg-3 col-sm-6">
             <div className="card gradient-3">
               <div className="card-body">
-                <h3 className="card-title text-white">Tasks</h3>
-                <div className="d-inline-block">
-                  <h2 className="text-white">{this.props.tasks}</h2> 
+                <h5 className="text-center text-white"><strong>Tasks</strong></h5>
+                <div className="row">
+                    <div className="col-6 d-flex align-items-center justify-content-center">
+                      <h2 className="text-white m-0">{this.props.tasks}</h2>
+                    </div>
+                    <div className="col-6 d-flex align-items-center justify-content-center">
+                      <span className="float-right display-5 opacity-5">
+                        <i className="fa fa-users"></i>
+                      </span>
+                    </div>
                 </div>
-                <span className="float-right display-5 opacity-5">
-                  <i className="fa fa-users"></i>
-                </span>
               </div>
             </div>
           </div>
           <div className="col-lg-3 col-sm-6">
             <div className="card gradient-4">
               <div className="card-body">
-                <h3 className="card-title text-white">School List</h3>
-                <div className="d-inline-block">
-                  <h2 className="text-white">{this.props.schoolList}</h2> 
+                <h5 className="text-center text-white"><strong>School List</strong></h5>
+                <div className="row">
+                    <div className="col-6 d-flex align-items-center justify-content-center">
+                      <h2 className="text-white m-0">{this.props.schoolList}</h2>
+                    </div>
+                    <div className="col-6 d-flex align-items-center justify-content-center">
+                      <span className="float-right display-5 opacity-5">
+                        <i className="fa fa-heart"></i>
+                      </span>
+                    </div>
                 </div>
-                <span className="float-right display-5 opacity-5">
-                  <i className="fa fa-heart"></i>
-                </span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="form-row boxessection mb-20">
+        <div className="form-row boxessection dashboard-box-wrap mb-20">
     
           <div className="col-lg-4 col-sm-6">
             <div className="card ">
               <div className="card-body">
-                <div className="text-center">
-                  <Link to="/admin/course_categories">
+                <Link to="/admin/course_categories" className="text-center d-block">
                   <i className="fa fa-cog" aria-hidden="true"></i>
                   <h2>  Course Categories</h2>
-                  </Link>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
           <div className="col-lg-4 col-sm-6">
             <div className="card">
               <div className="card-body">
-                <div className="text-center">
-                  <Link to="/admin/courses">
+                <Link to="/admin/courses" className="text-center d-block">
                   <i className="fa fa-globe" aria-hidden="true"></i>
                   <h2> Course</h2>
-                  </Link>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -113,12 +125,10 @@ class Page extends Component {
           <div className="col-lg-4 col-sm-6">
             <div className="card ">
               <div className="card-body">
-                <div className="text-center">
-                  <Link to="/admin/tasks">
-                  <i className="fa fa-tachometer" aria-hidden="true"></i>
+                <Link to="/admin/tasks" className="text-center d-block">
+                  <i className="fa fa-link" aria-hidden="true"></i>
                   <h2> Tasks</h2>
-                  </Link>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
