@@ -14,11 +14,11 @@ const propTypes = {
 const AssignCourseRow = ({ index, assignCourse, openModel,pageNo, togglePublish}) => {
    return (
      <tr key={index}>
-       <th scope="row">{pageNo}</th>     
-       <td>{assignCourse.courseName}</td> 
+       <th scope="row">{pageNo}</th>
+       <td>{assignCourse.courseName}</td>
        <td>{assignCourse.createdAt && assignCourse.createdAt.format("MMMM, DD YYYY")}</td>
        <td>{assignCourse.updatedAt && assignCourse.updatedAt.format("MMMM, DD YYYY")}</td>
-       <td>{assignCourse.status}</td> 
+       <td>{assignCourse.status}</td>
        <td>
          <div className="btn-group" role="group" aria-label="Actions">
             

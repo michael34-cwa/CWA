@@ -16,7 +16,7 @@ const propTypes = {
 
 
 
-const SingleAssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
+const SingleAssignModel = ({ openModelAss, openAss, loading,courses, errors, onChange, onSubmit }) => {
  
  
 
@@ -24,6 +24,9 @@ const SingleAssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }
    
     onChange(name, value); 
   }
+
+ 
+
 
   const useStyles = makeStyles(theme => ({
     modal: {
@@ -43,7 +46,7 @@ const SingleAssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }
 
   const classes = useStyles();
  
-  const [open, setOpen] = React.useState(opens);
+  const [open, setOpen] = React.useState(openAss);
  
   // if (opens === false){
   // //  setOpen(false);
@@ -52,17 +55,19 @@ const SingleAssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }
   
   // }, [open]);
 
+  
 
 
   const handleClose = () => {
+
+    openModelAss()  
     setOpen(false); 
   };
 
   const handleOpen = () => {
     setOpen(true); 
   };
-
-  
+ 
 
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -79,11 +84,11 @@ const SingleAssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }
     <div>
 
 
-      <Button
+      {/* <Button
         onClick={handleOpen}
         size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
         <i class="fa fa-plus" aria-hidden="true"></i> Assign Course
-      </Button >
+      </Button > */}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -120,7 +125,7 @@ const SingleAssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }
                       >
                         {courses.map(name => (
                           <MenuItem key={name.courseId} value={name.courseId}>
-                            {name.courseName}
+                            {name.course_name}
                           </MenuItem>
                         ))}
                       </Select>

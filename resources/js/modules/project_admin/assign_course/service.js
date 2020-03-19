@@ -33,9 +33,9 @@ export function AssignCourseAddRequest(params,id) {
           if (statusCode === 422) {
             if (err.response.data.status == 0) {
               toast.warn(err.response.data.message);
-            } else {
+       
               const resetErrors = {
-                errors: err.response.data,
+                errors: [],
                 replace: false,
                 searchStr: "",
                 replaceStr: ""
