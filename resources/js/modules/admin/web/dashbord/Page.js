@@ -32,12 +32,13 @@ class Page extends Component {
           <div className="col-xl-3 col-lg-6 col-md-12">
             <Link to="/admin/course_categories" className="card gradient-1 mb-4">
               <div className="card-body p-3">
-                <h2 className="text-center text-white"><strong>Course Categories</strong></h2>
+                <h2 className="text-center text-white card-title"><strong>Course Categories</strong></h2>
                 <div className="row">
-                    <div className="col-6 d-flex align-items-center justify-content-center">
+                    <div className="col-8 d-flex align-items-start justify-content-center flex-column">
                       <h3 className="text-white m-0 display-5"><strong>{this.props.courseCategories}</strong></h3>
+                      <p className="text-white m-0 date"></p>
                     </div>
-                    <div className="col-6 d-flex align-items-center justify-content-center">
+                    <div className="col-4 d-flex align-items-end justify-content-center flex-column">
                       <span className="float-right display-5 opacity-5">
                         <i className="fa fa-th-large"></i>
                       </span>
@@ -49,12 +50,13 @@ class Page extends Component {
           <div className="col-xl-3 col-lg-6 col-md-12">
             <Link to="/admin/courses" className="card gradient-2 mb-4">
               <div className="card-body p-3">
-                <h2 className="text-center text-white"><strong>Course</strong></h2>
+                <h2 className="text-center text-white card-title"><strong>Course</strong></h2>
                 <div className="row">
-                    <div className="col-6 d-flex align-items-center justify-content-center">
+                    <div className="col-8 d-flex align-items-start justify-content-center flex-column">
                       <h3 className="text-white m-0 display-5"><strong>{this.props.courses}</strong></h3>
+                      <p className="text-white m-0 date"></p>
                     </div>
-                    <div className="col-6 d-flex align-items-center justify-content-center">
+                    <div className="col-4 d-flex align-items-end justify-content-center flex-column">
                       <span className="float-right display-5 opacity-5">
                         <i className="fa fa-bar-chart"></i>
                       </span>
@@ -66,12 +68,13 @@ class Page extends Component {
           <div className="col-xl-3 col-lg-6 col-md-12">
             <Link to="/admin/tasks" className="card gradient-3 mb-4">
               <div className="card-body p-3">
-                <h2 className="text-center text-white"><strong>Tasks</strong></h2>
+                <h2 className="text-center text-white card-title"><strong>Tasks</strong></h2>
                 <div className="row">
-                    <div className="col-6 d-flex align-items-center justify-content-center">
+                    <div className="col-8 d-flex align-items-start justify-content-center flex-column">
                       <h3 className="text-white m-0 display-5"><strong>{this.props.tasks}</strong></h3>
+                      <p className="text-white m-0 date"></p>
                     </div>
-                    <div className="col-6 d-flex align-items-center justify-content-center">
+                    <div className="col-4 d-flex align-items-end justify-content-center flex-column">
                       <span className="float-right display-5 opacity-5">
                         <i className="fa fa-address-card"></i>
                       </span>
@@ -83,12 +86,13 @@ class Page extends Component {
           <div className="col-xl-3 col-lg-6 col-md-12">
             <Link to="/admin/school_lists" className="card gradient-4 mb-4">
               <div className="card-body p-3">
-                <h2 className="text-center text-white"><strong>School List</strong></h2>
+                <h2 className="text-center text-white card-title"><strong>School List</strong></h2>
                 <div className="row">
-                    <div className="col-6 d-flex align-items-center justify-content-center">
+                    <div className="col-8 d-flex align-items-start justify-content-center flex-column">
                       <h3 className="text-white m-0 display-5"><strong>{this.props.schoolList}</strong></h3>
+                      <p className="text-white m-0 date"></p>
                     </div>
-                    <div className="col-6 d-flex align-items-center justify-content-center">
+                    <div className="col-4 d-flex align-items-end justify-content-center flex-column">
                       <span className="float-right display-5 opacity-5">
                         <i className="fa fa-graduation-cap"></i>
                       </span>

@@ -509,9 +509,12 @@ ul.navbar-nav.my-account {
 			opacity: 0.8;
 		}
 		.card-body {
-			h2 {
-				font-size: 22px;
-			}		
+			h3.display-5 {
+				font-size: 2rem;
+			}
+			p.date {
+				font-size: 14px;
+			}	
 			@media (max-width:1199.98px){
 				padding: 2rem !important;
 				h3.display-4 {

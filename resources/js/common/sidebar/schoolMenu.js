@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   NavbarToggler, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, Container, Collapse, Navbar, NavbarBrand, Nav, NavItem, NavLink
 } from "reactstrap";
-
+import { Link } from 'react-router-dom' ;
 import { NavLink as RRNavLink } from "react-router-dom";
 const SchoolSideMenu = props => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -121,9 +121,9 @@ const SchoolSideMenu = props => {
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a href="/courses">
+            <Link to="/courses">
               <i class="fa fa-th-list" aria-hidden="true"></i>Course List
-            </a>
+            </Link>
           </h4>
         </div>
       </div>
