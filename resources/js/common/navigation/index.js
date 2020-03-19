@@ -48,12 +48,10 @@ class Navigation extends Component {
     this.props.dispatch(logout());
   }
 
-  render() {
-    let dbname = '';
-    if (this.props.user.firstName){ 
-      dbname = this.props.user.firstName.charAt(0).toUpperCase() + ' ' + this.props.user.lastName.charAt(0).toUpperCase();
-   
-    }  
+  render() { 
+ 
+    let  dbname = this.props.user.firstName ? this.props.user.firstName.charAt(0).toUpperCase() + ' ' + this.props.user.lastName.charAt(0).toUpperCase() : '';
+  
     return (
       <Navbar className="navbar navbar-expand-md bg-white fixed-top">
         <Link to="/" className="navbar-brand">
