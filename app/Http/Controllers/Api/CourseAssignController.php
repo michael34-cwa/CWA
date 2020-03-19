@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Model\Courses;
+use App\Model\CourseTasks;
 use App\Model\SchoolCourses;
 use App\Model\StudentCourses;
 use App\Model\StudentProfile;
+use App\Model\Tasks;
 //use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -163,17 +164,27 @@ class CourseAssignController  extends Controller
     }
 
 
-    
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+
+    public function getTaskStudent(Request $request, $id)
     {
-        //
+        $dataSearch   =   Request::get('search');
+        $courseStu   =   StudentCourses::findOrFail($id);  
+        return CourseTasks::with(['getTask'])->whereHas('getTask', function ($q) use ($dataSearch) {
+            if ($dataSearch) {
+                $q->where('task_name', 'LIKE', "%{$dataSearch}%");
+            }
+        })->where('student_id', $courseStu->student_id)->latest()
+            ->paginate();
     }
+
+
+    public function taskById(Request $request, $id)
+    {
+        $courseStu   =   StudentCourses::findOrFail($id); 
+        return Tasks::where('course_id', $courseStu->course_id)->latest()->paginate(400);
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -235,5 +246,55 @@ class CourseAssignController  extends Controller
         $course->delete();
         return response([], 200);
     }
-    
+
+
+    public function deleteTask($id)
+    {
+        $course  =    CourseTasks::findOrFail($id);
+        if ($course->status == 1) {
+            return response()->json(['message' => 'This task not completed yet.', 'status' => 0], 422);
+        }
+        if ($course->status == 2) {
+            return response()->json(['message' => 'Completed task not removed.', 'status' => 0], 422);
+        }
+      //  $course = CourseTasks::findOrFail($id);
+        $course->delete();
+        return response([], 200);
+    }
+
+
+
+    public function addTask(Request $request, $id)
+    {
+        try {
+            $taskId =    $request::post('course_name');
+            $user = \Auth::guard('api')->user();
+
+            $stuData =   StudentCourses::where('id', $id)->first();
+
+            // if(!empty($stuData)){
+            //     return response()->json(['message' => 'Course already assigned with this student.', 'status' => 0], 422);
+            // }
+            // $schoolId =  StudentProfile::where('student_id', $id)->first();
+
+               // if (empty($courseData)) {
+                    $courseVal = new CourseTasks();
+                    $courseVal->course_id = $stuData->course_id;
+                    $courseVal->task_id = $taskId;
+                    $courseVal->school_id = $stuData->school_id;
+                    $courseVal->student_id = $stuData->student_id;
+                    $courseVal->created_by = $user->id;
+                    $courseVal->save();
+             //   }
+     
+            return response()->json($courseVal, 201);
+        } catch (\Exception $e) {
+
+            dd($e->getMessage(), $e->getCode(), $e->getTrace());
+            return response()->json([
+                "error" => "invalid_credentials",
+                "message" => "The user credentials were incorrect."
+            ], 401);
+        }
+    }
 }

@@ -16,7 +16,7 @@ const propTypes = {
 
 
 
-const SingleAssignModel = ({ openModelAss, openAss, loading,courses, errors, onChange, onSubmit }) => {
+const SingleAssignModel = ({ openModelAss, name,openAss, loading,courses, errors, onChange, onSubmit }) => {
  
  
 
@@ -107,13 +107,13 @@ const SingleAssignModel = ({ openModelAss, openAss, loading,courses, errors, onC
               <a className="modalclose" onClick={handleClose}>
                 X
                </a>
-              <h2 id="transition-modal-title" className="text-center mb-0">Select The Courses</h2>
+              <h2 id="transition-modal-title" className="text-center mb-0">Select The {name}</h2>
             
               <form onSubmit={e => onSubmit(e)}>
                 <div className="row">
                   <div className="col-md-12">
                     <FormControl className="w-100 mb-3" error={errors.has("course_name")}> 
-                      <InputLabel id="course_name">Course List</InputLabel>
+                      <InputLabel id="course_name">{name} List</InputLabel>
                       <Select
                         labelId="course_name"
                         className={`${errors.has("course_name") && "is-invalid"}`}
@@ -130,7 +130,7 @@ const SingleAssignModel = ({ openModelAss, openAss, loading,courses, errors, onC
                         ))}
                       </Select>
                       {errors.has("course_name") && (
-                        <FormHelperText>{errors.first("course_name").replace("course_name", "course")}</FormHelperText>
+                        <FormHelperText>{errors.first("course_name").replace("course_name",  name  )}</FormHelperText>
                       )}
                     </FormControl>
                   </div>
@@ -148,7 +148,7 @@ const SingleAssignModel = ({ openModelAss, openAss, loading,courses, errors, onC
                       disableElevation
                 //   onClick={handleClose}
                     >
-                      <i className="fa fa-plus mr-2" aria-hidden="true"></i>  Add Course
+                      <i className="fa fa-plus mr-2" aria-hidden="true"></i>  Add {name}
                    </Button>
                   </div>
                 </div>
