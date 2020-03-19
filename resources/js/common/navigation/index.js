@@ -49,6 +49,11 @@ class Navigation extends Component {
   }
 
   render() {
+    let dbname = '';
+    if (this.props.user.firstName){ 
+      dbname = this.props.user.firstName.charAt(0).toUpperCase() + ' ' + this.props.user.lastName.charAt(0).toUpperCase();
+   
+    }  
     return (
       <Navbar className="navbar navbar-expand-md bg-white fixed-top">
         <Link to="/" className="navbar-brand">
@@ -62,6 +67,7 @@ class Navigation extends Component {
         {this.props.isAuthenticated ? (
           <PrivateHeader
             user={this.props.user}
+            dn={ dbname }
             showNavigation={this.state.showNavigation}
             toggleDropdown={this.toggleDropdown}
             showDropdown={this.state.showDropdown}

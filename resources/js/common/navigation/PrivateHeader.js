@@ -22,16 +22,16 @@ const propTypes = {
 }
 
 // initiate comppnent
-const PrivateHeader = ({ user, showNavigation, showDropdown, toggleDropdown, logout }) => (
- 
+const PrivateHeader = ({ user, dn, showNavigation, showDropdown, toggleDropdown, logout }) => (
+
   <Collapse className="navbar-collapse justify-content-end" isOpen={showNavigation}>
-  
+
     <div className="admin-side-menu d-none"><AdminSideMenu /></div>
     <ul className="navbar-nav my-account">
       <Dropdown isOpen={showDropdown} toggle={toggleDropdown}>
      
         <DropdownToggle nav caret>
-            My Account{ user.first_name }
+          {dn} My Account
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-right">
           <Link className='dropdown-item' to={`/users/${user.id}/edit`}>
