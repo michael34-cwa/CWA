@@ -30,6 +30,8 @@ class Navigation extends Component {
     this.logout = this.logout.bind(this);
   }
 
+  
+
   toggleNavbar() {
     this.setState({
       showNavigation: !this.state.showNavigation

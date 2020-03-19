@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from 'react-router-dom' 
 class dashBord extends Component {
 
 
@@ -11,67 +11,29 @@ class dashBord extends Component {
 
   render() {
     return (
-      <div className="dashboard-right">
-        <div className="form-row mb-20">
-          <div className="col-lg-3 col-sm-6">
-            <div className="card gradient-1">
-              <div className="card-body">
-                <h3 className="card-title text-white">Products Sold</h3>
-                <div className="d-inline-block">
-                  <h2 className="text-white">4565</h2>
-                  <p className="text-white mb-0">Jan - March 2019</p>
+      <div className="dashboard-right categories-list">
+        <div className="row mb-20">
+          <div className="col-xl-3 col-lg-6 col-md-12">
+            <Link to="" className="card gradient-1 mb-4">
+              <div className="card-body p-3">
+                <h2 className="text-center text-white card-title"><strong>Courses</strong></h2>
+                <div className="row">
+                    <div className="col-8 d-flex align-items-start justify-content-center flex-column">
+                      <h3 className="text-white m-0 display-5"><strong>4565</strong></h3>
+                      <p className="text-white m-0 date">Jan - March 2019</p>
+                    </div>
+                    <div className="col-4 d-flex align-items-end justify-content-center flex-column">
+                      <span className="float-right display-5 opacity-5">
+                        <i className="fa fa-bar-chart"></i>
+                      </span>
+                    </div>
                 </div>
-                <span className="float-right display-5 opacity-5">
-                  <i className="fa fa-shopping-cart"></i>
-                </span>
               </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-sm-6">
-            <div className="card gradient-2">
-              <div className="card-body">
-                <h3 className="card-title text-white">Net Profit</h3>
-                <div className="d-inline-block">
-                  <h2 className="text-white">$ 8541</h2>
-                  <p className="text-white mb-0">Jan - March 2019</p>
-                </div>
-                <span className="float-right display-5 opacity-5">
-                  <i className="fa fa-money"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-sm-6">
-            <div className="card gradient-3">
-              <div className="card-body">
-                <h3 className="card-title text-white">New Customers</h3>
-                <div className="d-inline-block">
-                  <h2 className="text-white">4565</h2>
-                  <p className="text-white mb-0">Jan - March 2019</p>
-                </div>
-                <span className="float-right display-5 opacity-5">
-                  <i className="fa fa-users"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-sm-6">
-            <div className="card gradient-4">
-              <div className="card-body">
-                <h3 className="card-title text-white">Customer Satisfaction</h3>
-                <div className="d-inline-block">
-                  <h2 className="text-white">99%</h2>
-                  <p className="text-white mb-0">Jan - March 2019</p>
-                </div>
-                <span className="float-right display-5 opacity-5">
-                  <i className="fa fa-heart"></i>
-                </span>
-              </div>
-            </div>
+            </Link>
           </div>
         </div>
 
-        <div className="form-row boxessection mb-20">
+        {/* <div className="form-row boxessection mb-20">
           <div className="col-lg-4 col-sm-6">
             <div className="card ">
               <div className="card-body">
@@ -108,11 +70,11 @@ class dashBord extends Component {
             <div className="card">
               <div className="card-body">
                 <h3>Course Categories</h3>
-                <p>You can add edit and update your Course Categories</p>
+                <p>1You can add edit and update your Course Categories</p>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
       </div>
     );

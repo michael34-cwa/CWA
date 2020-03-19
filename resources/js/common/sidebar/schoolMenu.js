@@ -24,7 +24,7 @@ const SchoolSideMenu = props => {
         <div class="panel-heading">
           <h4 class="panel-title">
             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-              <i class="fa fa-bar-chart" aria-hidden="true"></i>School Administrator<span className="toggleicon"><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus" aria-hidden="true"></i></span>
+              <i class="fa fa-graduation-cap" aria-hidden="true"></i>School Administrator<span className="toggleicon"><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus" aria-hidden="true"></i></span>
             </a>
           </h4>
         </div>

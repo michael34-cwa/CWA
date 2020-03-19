@@ -42,7 +42,7 @@ class dashBord extends Component {
                     </div>
                     <div className="col-4 d-flex align-items-end justify-content-center flex-column">
                       <span className="float-right display-5 opacity-5">
-                      <i class="fas fa-chalkboard-teacher"></i>
+                        <i className="fa fa-th-large"></i>
                       </span>
                     </div>
                 </div>

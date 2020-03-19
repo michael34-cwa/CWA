@@ -59,7 +59,7 @@ const Form = ({ loading,dataList, course, errors, onChange, onSubmit }) => {
 
       <div className="mb-3">
         <label htmlFor="title">Course Description</label>
-        <div className="editor-wrap p-2">
+        <div className="editor-wrap p-2 h-350">
           <MyEditor id="course_description" name="course_description" value={course.course_description || ""} onChange={e => handleChange('course_description', e)} />
        
         </div>

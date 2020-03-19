@@ -30,7 +30,7 @@ const StudentSideMenu = props => {
             <div class="panel-body">
               <Nav vertical>
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/courses" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Course List</NavLink>
+                  <NavLink tag={RRNavLink} to="/courses" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i> Course List</NavLink>
                 </NavItem> 
               </Nav>
             </div>
