@@ -29,13 +29,13 @@ class Page extends Component {
       <div className="dashboard-right categories-list">
         <LoadingComponent isLoading={this.props.meta.loading} error={''} />  
         <div className="row mb-20">
-          <div className="col-lg-6 col-md-12">
-            <div className="card gradient-1 mb-4">
-              <div className="card-body p-5">
+          <div className="col-xl-3 col-lg-6 col-md-12">
+            <Link to="/admin/course_categories" className="card gradient-1 mb-4">
+              <div className="card-body p-3">
                 <h2 className="text-center text-white"><strong>Course Categories</strong></h2>
                 <div className="row">
                     <div className="col-6 d-flex align-items-center justify-content-center">
-                      <h3 className="text-white m-0 display-4"><strong>{this.props.courseCategories}</strong></h3>
+                      <h3 className="text-white m-0 display-5"><strong>{this.props.courseCategories}</strong></h3>
                     </div>
                     <div className="col-6 d-flex align-items-center justify-content-center">
                       <span className="float-right display-5 opacity-5">
@@ -44,15 +44,15 @@ class Page extends Component {
                     </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
-          <div className="col-lg-6 col-md-12">
-            <div className="card gradient-2 mb-4">
-              <div className="card-body p-5">
+          <div className="col-xl-3 col-lg-6 col-md-12">
+            <Link to="/admin/courses" className="card gradient-2 mb-4">
+              <div className="card-body p-3">
                 <h2 className="text-center text-white"><strong>Course</strong></h2>
                 <div className="row">
                     <div className="col-6 d-flex align-items-center justify-content-center">
-                      <h3 className="text-white m-0 display-4"><strong>{this.props.courses}</strong></h3>
+                      <h3 className="text-white m-0 display-5"><strong>{this.props.courses}</strong></h3>
                     </div>
                     <div className="col-6 d-flex align-items-center justify-content-center">
                       <span className="float-right display-5 opacity-5">
@@ -61,15 +61,15 @@ class Page extends Component {
                     </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
-          <div className="col-lg-6 col-md-12">
-            <div className="card gradient-3 mb-4">
-              <div className="card-body p-5">
+          <div className="col-xl-3 col-lg-6 col-md-12">
+            <Link to="/admin/tasks" className="card gradient-3 mb-4">
+              <div className="card-body p-3">
                 <h2 className="text-center text-white"><strong>Tasks</strong></h2>
                 <div className="row">
                     <div className="col-6 d-flex align-items-center justify-content-center">
-                      <h3 className="text-white m-0 display-4"><strong>{this.props.tasks}</strong></h3>
+                      <h3 className="text-white m-0 display-5"><strong>{this.props.tasks}</strong></h3>
                     </div>
                     <div className="col-6 d-flex align-items-center justify-content-center">
                       <span className="float-right display-5 opacity-5">
@@ -78,15 +78,15 @@ class Page extends Component {
                     </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
-          <div className="col-lg-6 col-md-12">
-            <div className="card gradient-4 mb-4">
-              <div className="card-body p-5">
+          <div className="col-xl-3 col-lg-6 col-md-12">
+            <Link to="/admin/school_lists" className="card gradient-4 mb-4">
+              <div className="card-body p-3">
                 <h2 className="text-center text-white"><strong>School List</strong></h2>
                 <div className="row">
                     <div className="col-6 d-flex align-items-center justify-content-center">
-                      <h3 className="text-white m-0 display-4"><strong>{this.props.schoolList}</strong></h3>
+                      <h3 className="text-white m-0 display-5"><strong>{this.props.schoolList}</strong></h3>
                     </div>
                     <div className="col-6 d-flex align-items-center justify-content-center">
                       <span className="float-right display-5 opacity-5">
@@ -95,7 +95,7 @@ class Page extends Component {
                     </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
 
