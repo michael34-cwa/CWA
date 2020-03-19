@@ -14,7 +14,7 @@ class dashBord extends Component {
       <div className="dashboard-right categories-list">
         <div className="row mb-20">
           <div className="col-xl-3 col-lg-6 col-md-12">
-            <Link to="" className="card gradient-1 mb-4">
+            <Link to="/students" className="card gradient-1 mb-4">
               <div className="card-body p-3">
                 <h2 className="text-center text-white card-title"><strong>Students</strong></h2>
                 <div className="row">

@@ -14,7 +14,7 @@ class dashBord extends Component {
       <div className="dashboard-right categories-list">
         <div className="row mb-20">
           <div className="col-xl-3 col-lg-6 col-md-12">
-            <Link to="" className="card gradient-1 mb-4">
+            <Link to="/school_administrator" className="card gradient-1 mb-4">
               <div className="card-body p-3">
                 <h2 className="text-center text-white card-title"><strong>School Administrator</strong></h2>
                 <div className="row">
@@ -32,7 +32,7 @@ class dashBord extends Component {
             </Link>
           </div>
           <div className="col-xl-3 col-lg-6 col-md-12">
-            <Link to="" className="card gradient-2 mb-4">
+            <Link to="/teachers" className="card gradient-2 mb-4">
               <div className="card-body p-3">
                 <h2 className="text-center text-white card-title"><strong>Teachers</strong></h2>
                 <div className="row">
@@ -50,7 +50,7 @@ class dashBord extends Component {
             </Link>
           </div>
           <div className="col-xl-3 col-lg-6 col-md-12">
-            <Link to="" className="card gradient-3 mb-4">
+            <Link to="/students" className="card gradient-3 mb-4">
               <div className="card-body p-3">
                 <h2 className="text-center text-white card-title"><strong>Students</strong></h2>
                 <div className="row">
@@ -68,7 +68,7 @@ class dashBord extends Component {
             </Link>
           </div>
           <div className="col-xl-3 col-lg-6 col-md-12">
-            <Link to="" className="card gradient-4 mb-4">
+            <Link to="/project_admin" className="card gradient-4 mb-4">
               <div className="card-body p-3">
                 <h2 className="text-center text-white card-title"><strong>Project Admins</strong></h2>
                 <div className="row">
@@ -86,7 +86,7 @@ class dashBord extends Component {
             </Link>
           </div>
           <div className="col-xl-3 col-lg-6 col-md-12">
-            <Link to="" className="card gradient-2 mb-4">
+            <Link to="/courses" className="card gradient-2 mb-4">
               <div className="card-body p-3">
                 <h2 className="text-center text-white card-title"><strong>Course List</strong></h2>
                 <div className="row">
