@@ -269,14 +269,13 @@ class CourseAssignController  extends Controller
         try {
             $taskId =    $request::post('course_name');
             $user = \Auth::guard('api')->user();
-
             $stuData =   StudentCourses::where('id', $id)->first();
-
-            // if(!empty($stuData)){
-            //     return response()->json(['message' => 'Course already assigned with this student.', 'status' => 0], 422);
-            // }
-            // $schoolId =  StudentProfile::where('student_id', $id)->first();
-
+            $taskAssnd =  CourseTasks::where('student_id', $stuData->student_id)->where('task_id', $taskId)->where('created_by', $user->id)->first();
+            if(!empty($taskAssnd)){
+                return response()->json(['message' => 'Task already assigned with this student.', 'status' => 0], 422);
+            }
+        
+        
                // if (empty($courseData)) {
                     $courseVal = new CourseTasks();
                     $courseVal->course_id = $stuData->course_id;
