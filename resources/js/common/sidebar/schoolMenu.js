@@ -32,7 +32,7 @@ const SchoolSideMenu = props => {
           <div class="panel-body">
             <Nav vertical>
               <NavItem>
-                <NavLink exact={true}  tag={RRNavLink} to="/school_administrator" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i>Administrator List</NavLink>
+                <NavLink exact={true}  tag={RRNavLink} to="/school_administrator" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i>Administrator List</NavLink>
               </NavItem>
 
               <NavItem>
@@ -57,7 +57,7 @@ const SchoolSideMenu = props => {
           <div class="panel-body">
             <Nav vertical>
               <NavItem>
-                <NavLink exact={true}  tag={RRNavLink} to="/teachers" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i>Teachers List</NavLink>
+                <NavLink exact={true}  tag={RRNavLink} to="/teachers" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i>Teachers List</NavLink>
               </NavItem>
 
               <NavItem>
@@ -81,7 +81,7 @@ const SchoolSideMenu = props => {
           <div class="panel-body">
             <Nav vertical>
               <NavItem>
-                <NavLink exact={true}  tag={RRNavLink} to="/students" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i>Students List</NavLink>
+                <NavLink exact={true}  tag={RRNavLink} to="/students" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i>Students List</NavLink>
               </NavItem>
 
               <NavItem>
@@ -106,7 +106,7 @@ const SchoolSideMenu = props => {
           <div class="panel-body">
             <Nav vertical>
               <NavItem>
-                <NavLink exact={true} tag={RRNavLink} to="/project_admin" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i>Admin List</NavLink>
+                <NavLink exact={true} tag={RRNavLink} to="/project_admin" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i>Admin List</NavLink>
               </NavItem>
 
               <NavItem>
@@ -118,14 +118,14 @@ const SchoolSideMenu = props => {
         </div>
       </div>
 
-
       <div class="panel panel-default">
         <div class="panel-heading">
-          <NavItem>
-            <NavLink exact={true}  tag={RRNavLink} to="/courses" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i>Course List</NavLink>
-          </NavItem>
+          <h4 class="panel-title">
+            <a href="/courses">
+              <i class="fa fa-th-list" aria-hidden="true"></i>Course List
+            </a>
+          </h4>
         </div>
-     
       </div>
 
       </div> 
