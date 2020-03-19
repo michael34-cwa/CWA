@@ -13,6 +13,10 @@ import { Link } from 'react-router-dom'
  import DeleteModel from '../../../../../common/model/DeleteModel'
 import AssignModel from '../../../../../common/model/SingleAssignModel'
 import ReeValidate from 'ree-validate' 
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import { TextField , FormHelperText, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
  class Page extends Component { 
   static displayName = 'AssignCoursePage'
   static propTypes = {
@@ -29,7 +33,8 @@ import ReeValidate from 'ree-validate'
     this.pageChange = this.pageChange.bind(this)
     this.searchChange = this.searchChange.bind(this)
     this.openModel = this.openModel.bind(this) 
-    this.state = { open: false, id: '', searchData: '', type:false  };
+    this.openModelAss = this.openModelAss.bind(this) 
+    this.state = { open: false, id: '', searchData: '', openAss:false  };
    // this.handleCloseModal = this.handleCloseModal.bind(this);
 
 
@@ -79,6 +84,7 @@ import ReeValidate from 'ree-validate'
     e.preventDefault();
   
     const courseData = this.state.courseData;
+ 
     const { errors } = this.validator;
  
       this.validator.validateAll()
@@ -92,7 +98,7 @@ import ReeValidate from 'ree-validate'
     });
   }
 
-  submit(courseData) {
+  submit(courseData) { 
     this.setState({ loading: true })
     const { match, assign_course, dispatch } = this.props
     let id = match.params.id;  
@@ -101,7 +107,7 @@ import ReeValidate from 'ree-validate'
        .then(res => {  
 
          dispatch(AssignCourseListRequest({ id }))  
-         this.setState({ loading: false, opens: false })   
+         this.setState({ loading: false, openAss: false })   
        })
       .catch(({ error, statusCode }) => {
      
@@ -148,6 +154,14 @@ import ReeValidate from 'ree-validate'
   openModel(id) { 
     this.setState({ open: !this.state.open, id: id }) 
   }
+
+
+   openModelAss() {  
+
+     this.setState({ courseData: { ...this.state.courseData, ['course_name']: '' } });
+      
+     this.setState({ openAss: !this.state.openAss })
+   }
 
 
    handleRemove(ids) {
@@ -197,13 +211,20 @@ import ReeValidate from 'ree-validate'
                           <i class="fa fa-plus" aria-hidden="true"></i> Assign Course
                         </Button >
                       </Link>  */}
-                      <AssignModel 
+                      {this.state.openAss &&   <AssignModel 
                         {...this.state}
-                        opens={this.state.opens}
+                        openAss={this.state.openAss}
+                        openModelAss={this.openModelAss}
                         loading={this.state.loading}
                         courses={this.props.course_list} 
                         onChange={this.handleChange}
-                        onSubmit={this.handleSubmit}/>
+                      onSubmit={this.handleSubmit}/> }
+
+                      <Button
+                        onClick={this.openModelAss}
+                        size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
+                        <i class="fa fa-plus" aria-hidden="true"></i> Assign Course
+                      </Button >
                     </th>
                   
                   </tr>

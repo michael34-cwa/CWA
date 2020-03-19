@@ -93,7 +93,7 @@ class CourseAssignController  extends Controller
             $courseId =    $request::post('course_name');
             $user = \Auth::guard('api')->user();
 
-            $stuData =   StudentCourses::where('student_id', $id)->where('status','0')->first();
+            $stuData =   StudentCourses::where('student_id', $id)->where('course_id', $courseId)->first();
 
             if(!empty($stuData)){
                 return response()->json(['message' => 'Course already assigned with this student.', 'status' => 0], 422);
