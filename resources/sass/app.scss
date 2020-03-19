@@ -187,6 +187,10 @@ p.logintext {
 				color: #1e8ece;
     			margin-right: 5px;
 			}
+
+			@media (max-width:767.98px) {
+				border-right: 5px solid #1e8ece;
+			}
 		}
 	}
 	.show {
@@ -233,9 +237,6 @@ span.toggleicon {
 		border-radius: 0.625rem;
 		box-shadow: 6px 11px 41px -28px #a99de7;
 		border: 0;
-		&:hover {
-			opacity: 0.8;
-		}
 	}
 	h1 {
 		font-size: 24px;
@@ -459,13 +460,27 @@ nav.navbar {
 	.navbar-nav {
 		.dropdown {
 			.nav-link {
-				background: #1e8ece;
-				color: #fff;
+				color: #1e8ece;
 				padding: 8px 20px;
-				border: 1px solid;
+				position: relative;
 				&:focus {
-					background: #fff;
-    				color: #1e8ece;
+					color: #6cbb7d;
+				}
+				span.userNameChar {
+					border: 1px solid;
+					border-radius: 50%;
+					width: 35px;
+					height: 35px;
+					display: inline-block;
+					line-height: 35px;
+					text-align: center;
+					margin-right: 6px;
+				}
+
+				@media (max-width:767.98px) {
+					border-left: 5px solid #1e8ece;
+					border-right: 5px solid #1e8ece;
+					border-radius: 5px;
 				}
 			}
 		}
@@ -476,10 +491,12 @@ ul.navbar-nav.my-account {
 	.dropdown-menu-right {
 		span.fa {
 			color: #1e8ece;
+			margin-right: 5px;
 		}
 		.dropdown-item {
-			&:hover {
+			&:hover, &:active {
 				color: #1e8ece;
+				background: #fff;
 			}
 		}
 	}	
@@ -487,14 +504,19 @@ ul.navbar-nav.my-account {
 
 
 .categories-list {
-	.card-body {
-		h2 {
-			font-size: 22px;
-		}		
-		@media (max-width:1199.98px){
-			padding: 2rem !important;
-			h3.display-4 {
-				font-size: 2.5rem;
+	.card {
+		&:hover {
+			opacity: 0.8;
+		}
+		.card-body {
+			h2 {
+				font-size: 22px;
+			}		
+			@media (max-width:1199.98px){
+				padding: 2rem !important;
+				h3.display-4 {
+					font-size: 2.5rem;
+				}
 			}
 		}
 	}

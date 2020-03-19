@@ -31,7 +31,7 @@ const PrivateHeader = ({ user, dn, showNavigation, showDropdown, toggleDropdown,
       <Dropdown isOpen={showDropdown} toggle={toggleDropdown}>
      
         <DropdownToggle nav caret>
-          {dn} My Account
+          <span className="userNameChar">{dn}</span> My Account
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-right">
           <Link className='dropdown-item' to={`/users/${user.id}/edit`}>
