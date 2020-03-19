@@ -5,6 +5,16 @@ const style = {
   position: 'fixed',
   bottom: '1rem',
   right: '1rem',
+  background:'#1e8ece',
+  borderRadius: '50%',
+  width: '30px',
+  height: '30px',
+  textAlign: 'center',
+  lineHeight: '30px',
+}
+
+const styleArrow = {
+  color: '#fff',
 }
 
 class ScrollTop extends Component {
@@ -58,8 +68,8 @@ class ScrollTop extends Component {
       return (<a href="#" title='Back to top'
                  style={style}
                  onClick={(e) => { this.scrollToTop(e) }}>
-        <i className="fa fa-chevron-circle-up"
-           style={{ fontSize: '3rem' }}
+        <i className="fa fa-chevron-up"
+           style={styleArrow}
            aria-hidden="true" />
       </a>)
     }

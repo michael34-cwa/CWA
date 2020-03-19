@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom'
 
 // import components
 import { Collapse, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
-import NavItem from './NavItem'
+import NavItem from './NavItem';
+import AdminSideMenu from '../sidebar/adminMenu'
+import { Hidden } from '@material-ui/core';
 
 // define component name
 const displayName = 'PrivateHeader'
@@ -24,7 +26,7 @@ const PrivateHeader = ({ user, showNavigation, showDropdown, toggleDropdown, log
  
   <Collapse className="navbar-collapse justify-content-end" isOpen={showNavigation}>
   
-    
+    <div className="admin-side-menu d-none"><AdminSideMenu /></div>
     <ul className="navbar-nav my-account">
       <Dropdown isOpen={showDropdown} toggle={toggleDropdown}>
      

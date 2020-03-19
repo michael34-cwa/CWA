@@ -57,7 +57,8 @@ class Navigation extends Component {
         <NavbarToggler
           className="navbar-toggler d-lg-none"
           onClick={this.toggleNavbar}
-        />
+        ><i class="fa fa-bars" aria-hidden="true"></i>
+        </NavbarToggler>
         {this.props.isAuthenticated ? (
           <PrivateHeader
             user={this.props.user}

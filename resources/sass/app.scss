@@ -452,7 +452,7 @@ a.accordion-toggle.collapsed {
 	margin-bottom: 20px;
 }
 nav.navbar {
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 	.navbar-nav {
 		.dropdown {
 			.nav-link {
@@ -481,6 +481,23 @@ ul.navbar-nav.my-account {
 		}
 	}	
 }
+
+
+.categories-list {
+	.card-body {		
+		@media (max-width:1199.98px){
+			padding: 2rem !important;
+			h2 {
+				font-size: 24px;
+			}
+			h3.display-4 {
+				font-size: 2.5rem;
+			}
+		}
+	}
+}
+
+
 .editor-wrap {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.19);
 }
@@ -523,5 +540,13 @@ button.colorPrimary:hover, a.colorPrimary:hover {
     }
     .mb-20 {
 		margin-bottom: 0px;
+	}	
+}
+@media (max-width: 767.98px) {
+	.admin-side-menu.d-none {
+		display: block !important;
+	}
+	main.dashbard-area .dashbard-inner .side-menu {
+		display: none;
 	}
 }

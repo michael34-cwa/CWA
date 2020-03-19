@@ -26,71 +26,71 @@ class Page extends Component {
 
   render() {
     return (
-      <div className="dashboard-right">
+      <div className="dashboard-right categories-list">
         <LoadingComponent isLoading={this.props.meta.loading} error={''} />  
-        <div className="form-row mb-20">
-          <div className="col-lg-3 col-sm-6">
-            <div className="card gradient-1">
-              <div className="card-body">
-                <h5 className="text-center text-white"><strong>Course Categories</strong></h5>
+        <div className="row mb-20">
+          <div className="col-lg-6 col-md-12">
+            <div className="card gradient-1 mb-4">
+              <div className="card-body p-5">
+                <h2 className="text-center text-white"><strong>Course Categories</strong></h2>
                 <div className="row">
                     <div className="col-6 d-flex align-items-center justify-content-center">
-                      <h2 className="text-white m-0">{this.props.courseCategories}</h2>
+                      <h3 className="text-white m-0 display-4"><strong>{this.props.courseCategories}</strong></h3>
                     </div>
                     <div className="col-6 d-flex align-items-center justify-content-center">
                       <span className="float-right display-5 opacity-5">
-                        <i className="fa fa-shopping-cart"></i>
+                        <i className="fa fa-th-large"></i>
                       </span>
                     </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-lg-3 col-sm-6">
-            <div className="card gradient-2">
-              <div className="card-body">
-                <h5 className="text-center text-white"><strong>Course</strong></h5>
+          <div className="col-lg-6 col-md-12">
+            <div className="card gradient-2 mb-4">
+              <div className="card-body p-5">
+                <h2 className="text-center text-white"><strong>Course</strong></h2>
                 <div className="row">
                     <div className="col-6 d-flex align-items-center justify-content-center">
-                      <h2 className="text-white m-0">{this.props.courses}</h2>
+                      <h3 className="text-white m-0 display-4"><strong>{this.props.courses}</strong></h3>
                     </div>
                     <div className="col-6 d-flex align-items-center justify-content-center">
                       <span className="float-right display-5 opacity-5">
-                        <i className="fa fa-money"></i>
+                        <i className="fa fa-bar-chart"></i>
                       </span>
                     </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-lg-3 col-sm-6">
-            <div className="card gradient-3">
-              <div className="card-body">
-                <h5 className="text-center text-white"><strong>Tasks</strong></h5>
+          <div className="col-lg-6 col-md-12">
+            <div className="card gradient-3 mb-4">
+              <div className="card-body p-5">
+                <h2 className="text-center text-white"><strong>Tasks</strong></h2>
                 <div className="row">
                     <div className="col-6 d-flex align-items-center justify-content-center">
-                      <h2 className="text-white m-0">{this.props.tasks}</h2>
+                      <h3 className="text-white m-0 display-4"><strong>{this.props.tasks}</strong></h3>
                     </div>
                     <div className="col-6 d-flex align-items-center justify-content-center">
                       <span className="float-right display-5 opacity-5">
-                        <i className="fa fa-users"></i>
+                        <i className="fa fa-address-card"></i>
                       </span>
                     </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-lg-3 col-sm-6">
-            <div className="card gradient-4">
-              <div className="card-body">
-                <h5 className="text-center text-white"><strong>School List</strong></h5>
+          <div className="col-lg-6 col-md-12">
+            <div className="card gradient-4 mb-4">
+              <div className="card-body p-5">
+                <h2 className="text-center text-white"><strong>School List</strong></h2>
                 <div className="row">
                     <div className="col-6 d-flex align-items-center justify-content-center">
-                      <h2 className="text-white m-0">{this.props.schoolList}</h2>
+                      <h3 className="text-white m-0 display-4"><strong>{this.props.schoolList}</strong></h3>
                     </div>
                     <div className="col-6 d-flex align-items-center justify-content-center">
                       <span className="float-right display-5 opacity-5">
-                        <i className="fa fa-heart"></i>
+                        <i className="fa fa-graduation-cap"></i>
                       </span>
                     </div>
                 </div>
@@ -99,8 +99,7 @@ class Page extends Component {
           </div>
         </div>
 
-        <div className="form-row boxessection dashboard-box-wrap mb-20">
-    
+        {/* <div className="form-row boxessection dashboard-box-wrap mb-20">
           <div className="col-lg-4 col-sm-6">
             <div className="card ">
               <div className="card-body">
@@ -121,7 +120,6 @@ class Page extends Component {
               </div>
             </div>
           </div>
-
           <div className="col-lg-4 col-sm-6">
             <div className="card ">
               <div className="card-body">
@@ -132,7 +130,7 @@ class Page extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
  
 
       </div>

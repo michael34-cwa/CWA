@@ -21,7 +21,7 @@ const AdminSideMenu = props => {
           <div class="panel-heading">
             <h4 class="panel-title">
               <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                <i class="fa fa-archive" aria-hidden="true"></i> Course Categories <span className="toggleicon"><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus" aria-hidden="true"></i></span>
+                <i class="fa fa-th-large" aria-hidden="true"></i> Course Categories <span className="toggleicon"><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus" aria-hidden="true"></i></span>
               </a>
             </h4>
           </div>
@@ -29,7 +29,7 @@ const AdminSideMenu = props => {
             <div class="panel-body">
               <Nav vertical  >
                 <NavItem>
-                  <NavLink exact={true}  tag={RRNavLink} to="/admin/course_categories" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Course Categories List</NavLink>
+                  <NavLink exact={true}  tag={RRNavLink} to="/admin/course_categories" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i> Course Categories List</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={RRNavLink} to="/admin/course_categories/create" activeClassName="active"><i class="fa fa-plus" aria-hidden="true"></i> Add Course Category</NavLink>
@@ -52,7 +52,7 @@ const AdminSideMenu = props => {
             <div class="panel-body">
               <Nav vertical>
                 <NavItem>
-                  <NavLink exact={true}  tag={RRNavLink} to="/admin/courses" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Course List</NavLink>
+                  <NavLink exact={true}  tag={RRNavLink} to="/admin/courses" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i> Course List</NavLink>
                 </NavItem>
 
                 <NavItem>
@@ -79,7 +79,7 @@ const AdminSideMenu = props => {
               <Nav vertical>
 
                 <NavItem>
-                  <NavLink exact={true}  tag={RRNavLink} to="/admin/tasks" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i> Tasks List</NavLink>
+                  <NavLink exact={true}  tag={RRNavLink} to="/admin/tasks" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i> Tasks List</NavLink>
                 </NavItem>
 
                 <NavItem>
@@ -96,7 +96,7 @@ const AdminSideMenu = props => {
           <div class="panel-heading">
             <h4 class="panel-title">
               <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-                <i class="fa fa-bar-chart" aria-hidden="true"></i>School Lists<span className="toggleicon"><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus" aria-hidden="true"></i></span>
+                <i class="fa fa-graduation-cap" aria-hidden="true"></i>School Lists<span className="toggleicon"><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus" aria-hidden="true"></i></span>
               </a>
             </h4>
           </div>
@@ -104,7 +104,7 @@ const AdminSideMenu = props => {
             <div class="panel-body">
               <Nav vertical>
                 <NavItem>
-                  <NavLink exact={true} tag={RRNavLink} to="/admin/school_lists" activeClassName="active"><i class="fa fa-list" aria-hidden="true"></i>School List</NavLink>
+                  <NavLink exact={true} tag={RRNavLink} to="/admin/school_lists" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i>School List</NavLink>
                 </NavItem>
 
                 <NavItem>
