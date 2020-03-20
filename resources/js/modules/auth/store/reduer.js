@@ -10,7 +10,6 @@ import {
 const initialState = {
   isAuthenticated: false,
   rolesCheck: '',
-  logRole:'',
 };
 
 const reducer = (state = initialState, { type, payload = null }) => {
@@ -55,10 +54,10 @@ function checkAuth(state) {
 }
 
 function logout(state) {
- 
-  localStorage.removeItem('access_token') 
+  localStorage.removeItem('access_token')
+
   return {
-    ...state, isAuthenticated: false, rolesCheck: '', logRole: state
+    ...state, isAuthenticated: false
   }
 }
 

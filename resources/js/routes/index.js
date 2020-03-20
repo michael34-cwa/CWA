@@ -22,22 +22,24 @@ const propTypes = {
 }
 
 
-const Routes = ({ roleId, isAuthenticated, logRoles}) => { 
- 
+const Routes = ({ roleId, isAuthenticated}) => { 
+  
   return <Router>
     <Layout>
       <Switch>
  
-        {/* {
-          isAuthenticated == false && logRoles == 'admin'
+        {
+          isAuthenticated == false &&
           authRoutes.map((route, i) => {
-            if (route.auth){  
+            if (route.auth){ 
+      
                 return <PrivateRoute key={i} {...route} />
-              } 
+              }
+      
               return <PublicRoute key={i} {...route} />
       
           })
-        } */}
+        }
 
 
         { 
@@ -98,7 +100,6 @@ function mapStateToProps(store) {
   return {
     isAuthenticated: store.auth.isAuthenticated,
     roleId: roleId,
-    logRoles: store.auth.logRole,
   }
 }
 
