@@ -31,7 +31,7 @@ export function login(credentials) {
       Http.post("auth/login", credentials)
         .then(res => {
           const data = Transformer.fetch(res.data);
-          dispatch(authActions.authLogin(data.accessToken));
+          dispatch(authActions.authLogin(data));
         
           return resolve();
         })

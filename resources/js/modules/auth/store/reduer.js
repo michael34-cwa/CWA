@@ -9,6 +9,8 @@ import {
 
 const initialState = {
   isAuthenticated: false,
+  rolesCheck: '',
+  logRole:'',
 };
 
 const reducer = (state = initialState, { type, payload = null }) => {
@@ -28,18 +30,22 @@ const reducer = (state = initialState, { type, payload = null }) => {
 };
 
 function login(state, payload) {
-  localStorage.setItem('access_token', payload);
-  HTTP.defaults.headers.common['Authorization'] = `Bearer ${payload}`;
-
+  console.log(payload.data);
+  localStorage.setItem('access_token', payload.data.accessToken);
+  HTTP.defaults.headers.common['Authorization'] = `Bearer ${payload.data.accessToken}`;
+  
   return {
-    ...state, isAuthenticated: true,
+    ...state, isAuthenticated: true, rolesCheck: payload.role
   }
 }
-
+ 
 function checkAuth(state) {
+
   state = Object.assign({}, state, {
+
     isAuthenticated: !!localStorage.getItem('access_token')
   })
+
 
   if (state.isAuthenticated) {
     HTTP.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
@@ -49,16 +55,16 @@ function checkAuth(state) {
 }
 
 function logout(state) {
-  localStorage.removeItem('access_token')
-
+ 
+  localStorage.removeItem('access_token') 
   return {
-    ...state, isAuthenticated: false
+    ...state, isAuthenticated: false, rolesCheck: '', logRole: state
   }
 }
 
 function resetPassword(state) {
   return {
-    ...state, resetPassword: true,
+    ...state, resetPassword: true, rolesCheck: ''
   }
 }
 

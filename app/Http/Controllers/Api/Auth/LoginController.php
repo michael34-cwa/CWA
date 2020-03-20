@@ -30,6 +30,10 @@ class LoginController extends Controller
         if($role->slug == 'admin' && $request->loginType !== '/admin/login'){ 
          return response()->json(['message'=>'Please enter a valid email address.'],401);
         }
+
+        if ($role->slug != 'admin' && $request->loginType == '/admin/login') {
+            return response()->json(['message' => 'Please enter a valid email address.'], 401);
+        }
   
            $user = \Sentinel::findById($userData->id);   
            $activation =   Activation::completed($user); 
@@ -61,6 +65,9 @@ class LoginController extends Controller
         if (!$response->isOk()) {
             return response()->json($data, 401);
         }
+
+        $data = response()->json(['data' => $data, 'role' => $role->slug]);
+
 
         return $data;
     }

@@ -10,9 +10,7 @@ class Task extends Model {
   }
 
   initialize(props) {    
-    super.initialize(props) 
-    console.log('props');
-    console.log(props);
+    super.initialize(props)  
     // this.courseId = props.courseId ? props.courseId : ""; 
     this.courseId = props.id ? props.id : ""; 
     this.course_name = props.taskName ? props.taskName :""; 

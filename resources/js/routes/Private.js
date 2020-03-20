@@ -5,12 +5,14 @@ import { connect } from 'react-redux'
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const PrivateRoute = ({ component: Component, isAuthenticated, roleId, ...rest }) => {
-  let logoutUrl = '';
+  let logoutUrl = ''; 
+
   if (roleId == 'admin') {
     logoutUrl = '/admin/login'
   } else {
     logoutUrl = '/login'
   }
+ 
   return <Route {...rest} render={props => {
 
     return (
@@ -24,8 +26,12 @@ const PrivateRoute = ({ component: Component, isAuthenticated, roleId, ...rest }
         {isAuthenticated ? ( 
           <Component {...props} />
         ) : (
-            window.location = logoutUrl
+          //  window.location = logoutUrl
     
+            <Redirect to={{
+                    pathname: logoutUrl,
+                    state: { from: props.location },
+                    }}/>
              /* // <Redirect
             //   to={{
             //     pathname: roleId,
@@ -48,8 +54,9 @@ PrivateRoute.propTypes = {
 }
 
 // Retrieve data from store as props
-function mapStateToProps(store) {
+function mapStateToProps(store) { 
   return {
+
     isAuthenticated: store.auth.isAuthenticated,
     roleId: store.user.rolename,
   }

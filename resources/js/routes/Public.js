@@ -1,9 +1,10 @@
 import React, { Suspense } from 'react'
-import PropTypes from 'prop-types'
-import { Route } from 'react-router-dom'
+import PropTypes from 'prop-types' 
  import CircularProgress from "@material-ui/core/CircularProgress";
+import { Route, Redirect, Link } from 'react-router-dom'
 const PublicRoutes = ({ component: Component, ...rest }) => {
   return <Route {...rest} render={props => {   
+    
     return (
       <Suspense
         fallback={
@@ -11,7 +12,9 @@ const PublicRoutes = ({ component: Component, ...rest }) => {
             <CircularProgress />
           </div>
         }
+        
       >
+      
         <Component {...props} />
       </Suspense>
     );

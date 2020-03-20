@@ -48,6 +48,8 @@ class Navigation extends Component {
     e.preventDefault();
 
     this.props.dispatch(logout());
+  
+ 
   }
 
   render() { 

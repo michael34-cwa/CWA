@@ -3,11 +3,11 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 // import components
+import authRoutes from './authRoutes'
 import adminRoutes from './adminRoutes'
 import schoolRoutes from './schoolRoutes'
 import studentRoutes from './studentRoutes'
-import teacherRoutes from './teacherRoutes'
-import authRoutes from './authRoutes'
+import teacherRoutes from './teacherRoutes' 
 import projectAdminRoutes from './projectAdminRoutes'
 import PrivateRoute from './Private'
 import PublicRoute from './Public'
@@ -22,45 +22,64 @@ const propTypes = {
 }
 
 
-const Routes = ({ roleId, dispatch }) => {
-
+const Routes = ({ roleId, isAuthenticated, logRoles}) => { 
+ 
   return <Router>
     <Layout>
       <Switch>
-        {adminRoutes.map((route, i) => {
-          if (roleId == 'admin') {
-            return <PrivateRoute key={i} {...route} />
-          }
-        })}
+ 
+        {/* {
+          isAuthenticated == false && logRoles == 'admin'
+          authRoutes.map((route, i) => {
+            if (route.auth){  
+                return <PrivateRoute key={i} {...route} />
+              } 
+              return <PublicRoute key={i} {...route} />
+      
+          })
+        } */}
 
-        {schoolRoutes.map((route, i) => {
-          if (roleId == 'school') {
-            return <PrivateRoute key={i} {...route} />
-          }
-        })}
 
-        {studentRoutes.map((route, i) => {
-          if (roleId == 'student') {
-            return <PrivateRoute key={i} {...route} />
-          }
-        })}
+        { 
+          isAuthenticated == true && roleId == 'admin' &&
+            adminRoutes.map((route, i) => {   
+              return <PrivateRoute key={i} {...route} />
+            }) 
 
-        {teacherRoutes.map((route, i) => {
-          if (roleId == 'teacher') {
-            return <PrivateRoute key={i} {...route} />
-          }
-        })}
+        }  
 
-        {projectAdminRoutes.map((route, i) => { 
-          if (roleId == 'project_admin') { 
-            return <PrivateRoute key={i} {...route} />
-          }
-        })}
+ 
+ 
+        {
+          isAuthenticated == true &&   roleId == 'school' &&
+            schoolRoutes.map((route, i) => { 
+              return <PrivateRoute key={i} {...route} />
+            }) 
+        }
 
-        {authRoutes.map((route, i) => {
-          return <PublicRoute key={i} {...route} />
-        })}
+        {
+          isAuthenticated == true &&  roleId == 'student' &&
+            studentRoutes.map((route, i) => { 
+              return <PrivateRoute key={i} {...route} />
+            }) 
+        }
 
+        {
+          isAuthenticated == true &&  roleId == 'teacher' &&
+            teacherRoutes.map((route, i) => {
+              return <PrivateRoute key={i} {...route} />
+            }) 
+        }
+
+        {
+          isAuthenticated == true &&   roleId == 'project_admin' &&
+            projectAdminRoutes.map((route, i) => {
+              return <PrivateRoute key={i} {...route} />
+            }) 
+        }  
+
+
+       
       </Switch>
     </Layout>
   </Router>
@@ -69,9 +88,17 @@ const Routes = ({ roleId, dispatch }) => {
 Routes.propTypes = propTypes
 
 // Retrieve data from store as props
-function mapStateToProps(store) {
+function mapStateToProps(store) { 
+  let roleId = '';
+  if (store.auth.rolesCheck == '') {
+    roleId = store.user.rolename;
+  } else {
+    roleId = store.auth.rolesCheck;
+  }
   return {
-    roleId: store.user.rolename,
+    isAuthenticated: store.auth.isAuthenticated,
+    roleId: roleId,
+    logRoles: store.auth.logRole,
   }
 }
 

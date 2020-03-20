@@ -91,6 +91,10 @@ class Page extends Component {
   submit(credentials) {
     this.setState({ loading: true })
     this.props.dispatch(login(credentials))
+      .then(res => {
+   
+ 
+      })
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator
         this.setState({ loading: false })
