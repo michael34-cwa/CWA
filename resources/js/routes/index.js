@@ -23,23 +23,59 @@ const propTypes = {
 
 
 const Routes = ({ roleId, isAuthenticated}) => { 
-  
+
   return <Router>
     <Layout>
       <Switch>
  
         {
-          isAuthenticated == false &&
-          authRoutes.map((route, i) => {
-            if (route.auth){ 
-      
-                return <PrivateRoute key={i} {...route} />
+          isAuthenticated == false && 
+          
+           roleId == 'admin' ?
+              adminRoutes.map((route, i) => {   
+                  if (route.auth) {
+                    return <PrivateRoute key={i} {...route} />
+                  }
+                  return <PublicRoute key={i} {...route} />
+                }) 
+            : roleId == 'school' ?
+              schoolRoutes.map((route, i) => {
+                if (route.auth) {
+                  return <PrivateRoute key={i} {...route} />
+                }
+                return <PublicRoute key={i} {...route} />
+              }) 
+              : roleId == 'student' ?
+                studentRoutes.map((route, i) => {
+                  if (route.auth) {
+                    return <PrivateRoute key={i} {...route} />
+                  }
+                  return <PublicRoute key={i} {...route} />
+                })
+                : roleId == 'teacher' ?
+                  teacherRoutes.map((route, i) => {
+                    if (route.auth) {
+                      return <PrivateRoute key={i} {...route} />
+                    }
+                    return <PublicRoute key={i} {...route} />
+                  })
+                  : roleId == 'project_Admin' ?
+                    projectAdminRoutes.map((route, i) => {
+                      if (route.auth) {
+                        return <PrivateRoute key={i} {...route} />
+                      }
+                      return <PublicRoute key={i} {...route} />
+                    })
+                    : 
+               isAuthenticated == false &&  
+              authRoutes.map((route, i) => {
+                return <PublicRoute key={i} {...route} />
+              })
+
+        
               }
-      
-              return <PublicRoute key={i} {...route} />
-      
-          })
-        }
+         
+       
 
 
         { 
