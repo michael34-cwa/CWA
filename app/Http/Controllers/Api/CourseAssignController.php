@@ -174,7 +174,7 @@ class CourseAssignController  extends Controller
             if ($dataSearch) {
                 $q->where('task_name', 'LIKE', "%{$dataSearch}%");
             }
-        })->where('student_id', $courseStu->student_id)->latest()
+        })->where('student_id', $courseStu->student_id)->where('course_id', $courseStu->course_id)->latest()
             ->paginate();
     }
 

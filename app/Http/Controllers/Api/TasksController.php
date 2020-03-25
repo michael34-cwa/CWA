@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Model\Tasks;
 use App\Model\Courses;
+use App\Model\CourseTasks;
  use Illuminate\Support\Facades\Request; 
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -95,6 +96,14 @@ class TasksController  extends Controller
            return Tasks::where('id',$id)->with('getCourse')->first();  
     }
 
+    public function taskStatus(Request $request, $id)
+    { 
+        $task = CourseTasks::findOrFail($id);
+        $task->status = '2';  
+        $task->save(); 
+      return response()->json($task, 201);
+    }
+    
 
         public function taskList()
     { 
@@ -110,6 +119,12 @@ class TasksController  extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function studentTask(Request $request, $id)
+    { 
+ 
+           return Tasks::where('id',$id)->with('getTaskPro')->first();  
     }
 
     /**

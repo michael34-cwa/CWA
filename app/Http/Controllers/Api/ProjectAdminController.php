@@ -102,11 +102,18 @@ class ProjectAdminController  extends Controller
                 $userUpdate = User::findOrFail($user->id);
                 // $userUpdate->update($request->all());
                 $role = \Sentinel::findRoleByName('project_admin');
-                $role->users()->attach($user);
-
+                $role->users()->attach($user); 
+             
                 $schoolId =  SchoolProfile::where('school_id', $userId->id)->first();
                 $tstudentList = new ProjectAdmin();
+               if(empty($schoolId)){
+                $tstudentList->school_id =$userId->id;
+
+               }else{
                 $tstudentList->school_id = $schoolId->school_admin_id;
+
+               }
+             
                 $tstudentList->project_admin_id = $user->id;
                 $tstudentList->created_by =  $userId->id;
   

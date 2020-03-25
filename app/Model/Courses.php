@@ -55,6 +55,11 @@ class Courses extends Model
     {   
     return $this->hasMany('App\Model\Tasks', 'course_id', 'id');
      }
+
+     public function getCourseTasks()
+     {   
+     return $this->belongsToMany('App\Model\Tasks', 'course_tasks','course_id', 'task_id');
+      }
   
      public function getSchoolCourse()
     {

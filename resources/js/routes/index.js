@@ -59,7 +59,7 @@ const Routes = ({ roleId, isAuthenticated}) => {
                     }
                     return <PublicRoute key={i} {...route} />
                   })
-                  : roleId == 'project_Admin' ?
+                  : roleId == 'project_admin' ?
                     projectAdminRoutes.map((route, i) => {
                       if (route.auth) {
                         return <PrivateRoute key={i} {...route} />

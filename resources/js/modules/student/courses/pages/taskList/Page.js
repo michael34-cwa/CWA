@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { courseEditRequest, courseUpdateRequest } from '../../service'
 import ReeValidate from 'ree-validate'
-
+import LoadingComponent from '../../../../../common/loader'
 // import components
 import TaskRow from './components/TaskRow'
 
@@ -120,6 +120,7 @@ class Page extends Component {
   render() {
     return <main className="dashboard-right" role="main">
     <div class="card"><div class="card-body bg-white">
+    <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
       <h1>Course Details</h1>
         {this.renderList() }
       </div>

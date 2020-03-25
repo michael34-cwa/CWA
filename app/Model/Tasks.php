@@ -25,6 +25,11 @@ protected $fillable = ['task_name','task_description','course_id','is_active'];
     {   
     return $this->hasOne('App\Model\Courses', 'id', 'course_id');
      }
+
+     public function getTaskPro()
+     {   
+     return $this->hasOne('App\Model\CourseTasks', 'task_id', 'id');
+      }
     /**
      * Load all for logged in user and paginate
      *

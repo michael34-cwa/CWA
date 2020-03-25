@@ -188,9 +188,7 @@ import ReeValidate from 'ree-validate'
     })
 
   }
-  render() {
-    console.log('this.props.task_list')
-    console.log(this.props.task_list )
+  render() { 
     return (
       <main className="dashboard-right" role="main">
         <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 

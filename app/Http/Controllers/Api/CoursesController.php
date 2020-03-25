@@ -39,16 +39,19 @@ class CoursesController  extends Controller
    
          return Courses::whereHas('getSchoolCourse', function ($q) {
             $q->whereIn('school_id', [ \Auth::guard('api')->user()->id]);
-        })->with(['getTasks','getCategory'])->paginate();
+        })->with(['getCourseTasks','getCategory'])->paginate();
  
     }
          
     public function getStudentCourses()
     {
-   
+        $dataSearch  =  Request::get('search');
+        $user = \Auth::guard('api')->user();
          return Courses::whereHas('getStudentCourse', function ($q) {
             $q->whereIn('student_id', [ \Auth::guard('api')->user()->id]);
-        })->with(['getTasks','getCategory'])->paginate(); 
+        })->with(array('getCourseTasks' => function ($query)  use ($user) {
+            $query->where('student_id', $user->id);
+        }, 'getCategory'))->where('course_name', 'LIKE', "%{$dataSearch}%")->paginate(); 
     }
 
 
@@ -140,7 +143,10 @@ class CoursesController  extends Controller
      */
     public function courseTasks($id)
     {
-         return Courses::with(['getTasks','getCategory'])->find($id);  
+        $user = \Auth::guard('api')->user();
+         return Courses::with(array('getCourseTasks' => function ($query)  use ($user) {
+            $query->where('student_id', $user->id);
+        }, 'getCategory'))->find($id);
     }
 
         /**
