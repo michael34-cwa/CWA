@@ -5,13 +5,15 @@ import Task from '../../Task'
 import Page from './Page'
 
 const mapStateToProps = (state, router) => {
- 
-  const { params } = router.match
-console.log(state)
-    const task = state.courses.data.find(course => course.id === Number(params.id))
-  
+  let  taskDils = '';
+  const { params } = router.match 
+    const tasks = state.courses.data.find(course => course.id === Number(params.cid))
+   console.log(tasks) 
+    if(tasks != undefined){
+       taskDils = tasks.getCourseTasks.find(course => course.id === Number(params.id))
+    }
   return {
-    course: task ? new Task(task) : new Task({}),
+    course: taskDils ? new Task(taskDils) : new Task({}),
    }
 }
 

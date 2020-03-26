@@ -13,6 +13,7 @@ const propTypes = {
 }
  
 const CourseRow = ({ course }) => { 
+ 
   return (
  
     <React.Fragment>
@@ -21,7 +22,7 @@ const CourseRow = ({ course }) => {
         <Paper> {'Course Name: ' + course.courseName}</Paper>
          <div className="course-technology">
         <Paper>Technology: &nbsp; 
-        {course.catId ? course.catId.map(function(item, index) {
+        { course.catId.length >0 ? course.catId.map(function(item, index) {
         return <span className="chip-course">{item.categoryName}</span>;
           }).reduce((prev, curr) => [prev, ' ', curr]):''}  
         </Paper>

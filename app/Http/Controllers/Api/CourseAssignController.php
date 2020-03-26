@@ -278,6 +278,7 @@ class CourseAssignController  extends Controller
         
                // if (empty($courseData)) {
                     $courseVal = new CourseTasks();
+                    $courseVal->student_corse_id = $stuData->id;
                     $courseVal->course_id = $stuData->course_id;
                     $courseVal->task_id = $taskId;
                     $courseVal->school_id = $stuData->school_id;

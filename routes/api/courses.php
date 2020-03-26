@@ -6,6 +6,7 @@ Route::group(['middleware' => 'auth:api'], function() {
      Route::get('/get_courses', 'CoursesController@getCourses')->name('courses.getCourses');
      Route::get('/get_student_courses', 'CoursesController@getStudentCourses');
     Route::get('/courses_category_list', 'CoursesController@coursesCategoryList');
+    Route::post('/course_status/{id}', 'CoursesController@courseStatus');
     Route::post('/', 'CoursesController@store')->name('courses.store');
     Route::get('/', 'CoursesController@index')->name('courses.index');
     Route::get('/{id}', 'CoursesController@show')->name('courses.show');

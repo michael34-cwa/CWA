@@ -10,7 +10,7 @@ const mapStateToProps = (state, router) => {
     const { dataList,meta } = state.courses;
   // let dataLists = dataList ? dataList : [];
   const course = state.courses.data.find(course => course.id === Number(params.id))
- 
+
   return {
     course: course ? new Course(course) : new Course({}),
        meta: Object.assign({}, meta)

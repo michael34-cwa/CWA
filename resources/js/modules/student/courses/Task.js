@@ -8,12 +8,14 @@ class Task extends Model {
     this.initialize(props)
   }
  
-  initialize(props) { 
+  initialize(props) {   
+ 
+
     super.initialize(props)    
     this.taskName = props.taskName || "";
     this.taskDescription = props.taskDescription || ""; 
-    this.status = props.getTaskPro ? props.getTaskPro.status : "";
-    this.taskId = props.getTaskPro ? props.getTaskPro.id : "";
+    this.status = props.pivot ? props.pivot.status : "";
+    this.taskId = props.pivot ? props.pivot.id : "";
     
     // relate user model
     this.user = props.user ? new User(props.user) : null

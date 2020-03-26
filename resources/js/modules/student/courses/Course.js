@@ -9,12 +9,14 @@ class Course extends Model {
   }
 
   initialize(props) {  
+    console.log('props');
+console.log(props);
     super.initialize(props)     
-    this.courseName = props.courseName || "";
-    this.courseDescription = props.courseDescription || "";
+    this.courseName = props.getStudentCourse ? props.getStudentCourse.courseName : "";
+    this.courseDescription = props.getStudentCourse ? props.getStudentCourse.courseDescription : "";
     this.getTasks = props.getCourseTasks || "";
-    this.catId = props.getCategory|| "";
-    this.isActive = props.isActive || false; 
+    this.catId = props.getCategory ? props.getCategory: [];
+    this.status = props.status || ""; 
     this.createdAt = props.createdAt ? moment(props.createdAt) : null;
     this.updatedAt = props.updatedAt ? moment(props.updatedAt) : null; 
     // relate user model

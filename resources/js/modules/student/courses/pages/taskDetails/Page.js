@@ -1,6 +1,6 @@
 // import libs
 import React, { Component } from 'react'
-import { taskDetailsRequest,taskStatusRequest } from '../../service'
+import { taskDetailsRequest,courseEditRequest,taskStatusRequest } from '../../service'
 import { Button } from '@material-ui/core';
 import StatusModel from '../../../../../common/model/StatusModel'
 // import components
@@ -22,11 +22,21 @@ class Page extends Component {
   }
 
   UNSAFE_componentWillMount() {
-
+   
     this.loadCourse()
 
   }
   
+  loadCourse() {  
+    const { match, course, dispatch } = this.props
+ //    if (!course.id) {  
+    //  dispatch(taskDetailsRequest(match.params.id)) 
+    let id = match.params.cid
+ 
+    dispatch(courseEditRequest(id))   
+  //   } 
+  }
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     const course = nextProps.course.toJson()
     
@@ -49,12 +59,7 @@ class Page extends Component {
   }
 
 
-  loadCourse() {  
-    const { match, course, dispatch } = this.props
-      if (!course.id) {  
-      dispatch(taskDetailsRequest(match.params.id))  
-     } 
-  }
+
 
   openModelAss() {  
  
@@ -66,12 +71,14 @@ class Page extends Component {
     const { course } = this.props
  
     if (course.id) {
-      return <TaskRow {...this.state}  />
+      return <TaskRow 
+        course={course}  
+      />
     }
   }
   
   render() {  
-
+ 
     const {course}  = this.props  
     return <main className="dashboard-right" role="main">
         

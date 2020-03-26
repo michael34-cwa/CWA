@@ -192,3 +192,38 @@ export function categoryListRequest({ url = "/courses/courses_category_list" }) 
       });
   };
 }
+
+
+
+export function courseStatusRequest(params) {  
+  return dispatch => (
+    new Promise((resolve, reject) => {
+      Http.post(`/courses/course_status/${params}`, transformRequest(params))
+        .then(res => {
+          toast.success("Updated Successfully");
+           dispatch(courseActions.add(transformResponse(res.data)));
+          return resolve(res);
+        })
+        .catch(err => {
+          const statusCode = err.response.status;
+          const data = {
+            error: null,
+            statusCode
+          };
+
+          if (statusCode === 422) {
+            const resetErrors = {
+              errors: err.response.data,
+              replace: false,
+              searchStr: "",
+              replaceStr: ""
+            };
+            data.error = Transformer.resetValidationFields(resetErrors);
+          } else if (statusCode === 401) {
+            data.error = err.response.data.message;
+          }
+          return reject(data);
+        });
+    })
+  )
+}

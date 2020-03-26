@@ -6,7 +6,7 @@ use App\Model\Courses;
 use App\Model\CourseCategories;
 use App\Model\CategoryCourses;
  use Illuminate\Support\Facades\Request;
-
+ use App\Model\StudentCourses;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CoursesRequest;
@@ -47,11 +47,15 @@ class CoursesController  extends Controller
     {
         $dataSearch  =  Request::get('search');
         $user = \Auth::guard('api')->user();
-         return Courses::whereHas('getStudentCourse', function ($q) {
-            $q->whereIn('student_id', [ \Auth::guard('api')->user()->id]);
-        })->with(array('getCourseTasks' => function ($query)  use ($user) {
-            $query->where('student_id', $user->id);
-        }, 'getCategory'))->where('course_name', 'LIKE', "%{$dataSearch}%")->paginate(); 
+   
+        return StudentCourses::whereHas('getStudentCourse', function ($q) use ($dataSearch) {
+            if( $dataSearch){
+                $q->where('course_name', 'LIKE', "%{$dataSearch}%");
+            }
+            }) 
+        ->with(array('getCourseTasks','getCategory','getStudentCourse'))
+        ->where('student_id', $user->id)->paginate();
+
     }
 
 
@@ -144,9 +148,10 @@ class CoursesController  extends Controller
     public function courseTasks($id)
     {
         $user = \Auth::guard('api')->user();
-         return Courses::with(array('getCourseTasks' => function ($query)  use ($user) {
-            $query->where('student_id', $user->id);
-        }, 'getCategory'))->find($id);
+   
+        return StudentCourses::with(array('getStudentCourse','getCourseTasks','getCategory','getStudentCourse'))->where('student_id', $user->id)->find($id);
+ 
+        
     }
 
         /**
@@ -210,5 +215,20 @@ class CoursesController  extends Controller
         $article->delete();
 
         return response([], 200);
+    }
+
+ 
+    public function courseStatus(Request $request, $id)
+    {
+      $studentCourse = StudentCourses::findOrFail($id);
+     if($studentCourse->status == 0){ 
+      $corse =  Courses::find($studentCourse->course_id);
+         $dbname = $corse->course_name.'_'.$studentCourse->school_id.'_'.time();
+        \Artisan::call('mysql:createdb '. $dbname);
+        $studentCourse->status = '1'; 
+     }   
+      $studentCourse->save();
+      
+        return response()->json($id, 201);
     }
 }

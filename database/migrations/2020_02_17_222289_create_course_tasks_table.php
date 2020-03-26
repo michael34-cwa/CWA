@@ -15,6 +15,8 @@ class CreateCourseTasksTable extends Migration
     {
         Schema::create('course_tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('student_corse_id')->unsigned();
+            $table->foreign('student_corse_id')->references('id')->on('student_courses')->onDelete('cascade');
             $table->integer('course_id')->unsigned();
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->integer('task_id')->unsigned();

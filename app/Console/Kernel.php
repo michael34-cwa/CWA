@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         RefreshDatabase::class, // refresh database
         PassportConfigure::class,
+        Commands\mysql::class
     ];
 
     /**

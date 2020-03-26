@@ -4,26 +4,11 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom'
 
-const displayName = 'CourseFrom'
-const propTypes = {
-  course: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-}
+  
 
-const TaskRow = ({ dataList, course, errors, onChange, onSubmit }) => {
+const TaskRow = ({course }) => {
 
  
-  function handleChange(name, value) {
-    if (name === 'catId') {
-      setPersonName(value);
-    }
-
-    if (value !== course[name]) {
-      onChange(name, value);
-    }
-  }
 
   
   return <div className="container">
@@ -40,7 +25,7 @@ const TaskRow = ({ dataList, course, errors, onChange, onSubmit }) => {
        <div className="course_categories">
       <h5 className="my-3">Course Categories:</h5>
           <ul>
-          {course.catId ? course.catId.map(function (item, index) {
+          {course.catId.length >0  ? course.catId.map(function (item, index) {
             return <li className="chip-course">{item.categoryName}</li>;
           }).reduce((prev, curr) => [prev, ' ', curr]) : ''}
         </ul>
@@ -58,7 +43,7 @@ const TaskRow = ({ dataList, course, errors, onChange, onSubmit }) => {
                   <div className="course-boxes">
                     <Paper className="task_name"> {itemTask.taskName}</Paper>
      <Paper> {'The infections found in the two jails, in the northern'}</Paper>
-                     <Paper className="text-center">  <Link className="btn btn-primary mt-3" to={`/task_details/${itemTask.id}`}>  View Task</Link></Paper>
+                     <Paper className="text-center">  <Link className="btn btn-primary mt-3" to={`/task_details/${course.id}/${itemTask.id}`}>  View Task</Link></Paper>
                      </div>
                      </Grid>
                    </React.Fragment>
@@ -70,7 +55,6 @@ const TaskRow = ({ dataList, course, errors, onChange, onSubmit }) => {
   </div>
 }
 
-TaskRow.displayName = displayName
-TaskRow.propTypes = propTypes
+ 
 
 export default TaskRow
