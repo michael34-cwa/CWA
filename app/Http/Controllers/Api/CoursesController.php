@@ -226,11 +226,12 @@ class CoursesController  extends Controller
   
          $dbname = $corse->course_name.'_'.$studentCourse->school_id.'_'.time();
          $dbname =  preg_replace('/\s+/', ' ', $dbname);
+         echo    $dbname; die;
         \Artisan::call('mysql:createdb '. $dbname);
         $studentCourse->status = '1'; 
      }   
       $studentCourse->save();
       
-        return response()->json($id, 201);
+        return response()->json($studentCourse, 201);
     }
 }
