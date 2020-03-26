@@ -22,7 +22,7 @@ class StudentCourses extends Model
       //  return $this->belongsToMany('App\Model\CourseCategories', 'category_courses', 'course_id', 'cat_id');
  //    return $this->hasMany('App\Model\CategoryCourses', 'course_id','course_id');
 
-       return $this->belongsToMany('App\Model\CourseCategories', 'category_courses', 'course_id', 'cat_id','id');
+       return $this->belongsToMany('App\Model\CourseCategories', 'category_courses', 'course_id', 'cat_id','course_id');
 
     }
 
