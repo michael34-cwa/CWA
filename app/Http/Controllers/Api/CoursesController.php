@@ -223,9 +223,9 @@ class CoursesController  extends Controller
       $studentCourse = StudentCourses::findOrFail($id);
      if($studentCourse->status == 0){ 
       $corse =  Courses::find($studentCourse->course_id);
-  
-         $dbname = $corse->course_name.'_'.$studentCourse->school_id.'_'.time();
-         $dbname =  preg_replace('/\s+/', ' ', $dbname);
+      $courseName =  preg_replace('/\s+/', ' ',$corse->course_name);
+         $dbname = $courseName.'_'.$studentCourse->school_id.'_'.time();
+      
          echo    $dbname; die;
         \Artisan::call('mysql:createdb '. $dbname);
         $studentCourse->status = '1'; 
