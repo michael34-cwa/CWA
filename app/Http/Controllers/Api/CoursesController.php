@@ -223,7 +223,10 @@ class CoursesController  extends Controller
       $studentCourse = StudentCourses::findOrFail($id);
      if($studentCourse->status == 0){ 
       $corse =  Courses::find($studentCourse->course_id);
+      print_r($corse);
          $dbname = $corse->course_name.'_'.$studentCourse->school_id.'_'.time();
+
+         echo  $dbname ; die;
         \Artisan::call('mysql:createdb '. $dbname);
         $studentCourse->status = '1'; 
      }   
