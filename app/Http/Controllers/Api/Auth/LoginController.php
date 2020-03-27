@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use Activation;
 use App\Model\User;
+use App\Model\SchoolList;
+use App\Model\SchoolProfile;
 use Cartalyst\Sentinel\Sentinel;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Cartalyst\Sentinel\Users\UserInterface;
@@ -93,9 +95,24 @@ class LoginController extends Controller
         $user = \Auth::guard('api')->user();
         
     
-         $role =  \Sentinel::findById($user->id)->roles[0];
-         
-        $user['rolename'] = $role->slug; 
+          $role =  \Sentinel::findById($user->id)->roles[0]; 
+        $roleName = $role->slug; 
+        if($roleName === 'school'){
+        $schollist =   SchoolList::where('school_id',$user->id)->first();
+        
+        if(empty($schollist)){
+            $scholpro =   SchoolProfile::where('school_id',$user->id)->first();
+      
+            $schoolList =  SchoolList::where('school_id',$scholpro->school_admin_id)->first();  
+        }else{ 
+            $schoolList =  SchoolList::where('school_id',$user->id)->first(); 
+        }
+        $user['schoolist'] =$schoolList;
+        }
+       
+         $user['rolename'] = $roleName; 
+
+
      return response()->json($user);
     }
 }

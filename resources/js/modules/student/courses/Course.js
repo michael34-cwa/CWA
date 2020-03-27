@@ -9,8 +9,6 @@ class Course extends Model {
   }
 
   initialize(props) {  
-    console.log('props');
-console.log(props);
     super.initialize(props)     
     this.courseName = props.getStudentCourse ? props.getStudentCourse.courseName : "";
     this.courseDescription = props.getStudentCourse ? props.getStudentCourse.courseDescription : "";

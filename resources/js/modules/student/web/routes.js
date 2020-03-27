@@ -6,7 +6,7 @@ const routes = [
     path: "/",
     exact: true,
     auth: true,
-    component: lazy(() => import("./pages/dashbord/index"))
+    component: lazy(() => import("./dashbord/index"))
   }, 
   
 ];

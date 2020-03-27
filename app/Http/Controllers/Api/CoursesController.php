@@ -222,11 +222,10 @@ class CoursesController  extends Controller
     {
       $studentCourse = StudentCourses::findOrFail($id);
      if($studentCourse->status == 0){ 
-      $corse =  Courses::find($studentCourse->course_id);  
-      $courseName =  str_replace(' ', '',$corse->course_name);
-         $dbname = $courseName.'_'.$studentCourse->school_id.'_'.time();
-      
-         echo    $dbname; 
+      $corse =  Courses::find($studentCourse->course_id);   
+      $courseName =  str_replace(' ', '',strtolower($corse->course_name));
+      $dbname = $courseName.'_'.$studentCourse->school_id.'_'.time();
+  
         \Artisan::call('mysql:createdb '. $dbname);
         $studentCourse->status = '1'; 
      }   
