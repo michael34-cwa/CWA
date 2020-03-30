@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route; 
  //   Route::get('/task_list', 'TasksController@taskList')->name('tasks.taskList');
     Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('/students', 'TeachersController@studentList');
     Route::post('/', 'TeachersController@store')->name('teachers.store');
     Route::get('/', 'TeachersController@index')->name('teachers.index');
     Route::get('/{id}', 'TeachersController@show')->name('teachers.show');

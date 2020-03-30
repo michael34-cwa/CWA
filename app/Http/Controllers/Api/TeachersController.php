@@ -16,7 +16,7 @@ use App\Model\Activations;
 use App\Model\TeacherProfiles;
 use Activation;
 use App\Model\SchoolProfile;
-
+use App\Model\StudentProfile;
 class TeachersController  extends Controller
 {
     /**
@@ -224,6 +224,24 @@ class TeachersController  extends Controller
 
         // $article->delete();
 
-        // return response([], 200);
+        //
+         return response([], 200);
+    }
+
+    public function studentList(Request $request)
+    {
+        $userId = \Auth::guard('api')->user(); 
+        $dataSearch   =   Request::get('search');  
+        $studentId = TeacherProfiles::where('teacher_id',$userId->id)->first();
+        $schoolData = StudentProfile::with(array('User' => function ($query) {
+            $query->select('id', 'email', 'first_name', 'last_name', 'phone');
+        }, 'ActivationsUser', 'User'))->where('school_id', $studentId->school_id);
+
+        if ($dataSearch) {
+            $schoolData = $schoolData->WhereHas('User', function ($query) use ($dataSearch) {
+                $query->Where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%")->orWhere('email', 'LIKE', "%{$dataSearch}%")->orWhere('phone', 'LIKE', "%{$dataSearch}%");
+            });
+        }
+        return  $schoolData->paginate();
     }
 }
