@@ -9,6 +9,7 @@ import LoadingComponent from '../../../../../common/loader'
 // import components
 import { Button } from '@material-ui/core';
 import TaskRow from './components/TaskRow'
+import { Link } from "react-router-dom";
 
 class Page extends Component {
   static displayName = 'EditCourse'
@@ -108,27 +109,36 @@ class Page extends Component {
                         togglePublish={this.togglePublish} 
 
                       /> }
-
+  {
+         course.status != 0? (
+           
+          <a href={'http://localhost/cwamanager/index.php?token='+localStorage.getItem('access_token')+'&student='+course.path} target="blank">
+<Button
+           
+          size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
+          <i class="fa fa-plus" aria-hidden="true"></i> Start
+        </Button > </a>
+         ) : ''}
          {
          course.status == 0? (
           <Button
           onClick={this.openModelAss}
           size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
-          <i class="fa fa-plus" aria-hidden="true"></i> Complete
+          <i class="fa fa-plus" aria-hidden="true"></i> Start
         </Button >
           )
          : 
          course.status == 1? (
          
           <Button
-          onClick={this.openModelAss}
+        //  onClick={this.openModelAss}
           size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
-          <i class="fa fa-plus" aria-hidden="true"></i> Complete
+           Pending
         </Button >
           ) : (
             <Button 
             size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
-            <i class="fa fa-plus" aria-hidden="true"></i> Completed
+            Completed
           </Button >
           ) 
          }

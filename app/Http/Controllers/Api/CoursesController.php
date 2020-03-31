@@ -221,12 +221,19 @@ class CoursesController  extends Controller
     public function courseStatus(Request $request, $id)
     {
       $studentCourse = StudentCourses::findOrFail($id);
+
+   
      if($studentCourse->status == 0){ 
       $corse =  Courses::find($studentCourse->course_id);   
       $courseName =  str_replace(' ', '',strtolower($corse->course_name));
       $dbname = $courseName.'_'.$studentCourse->school_id.'_'.time();
-  
+      $flname = $courseName.'_'.$studentCourse->student_id;
+      $structure = '../../../html/'.$flname; 
+      if (!mkdir($structure, 0777, true)) {
+        die('Failed to create folders...');
+    } 
         \Artisan::call('mysql:createdb '. $dbname);
+        $studentCourse->path = $flname; 
         $studentCourse->status = '1'; 
      }   
       $studentCourse->save();

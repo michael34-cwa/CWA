@@ -10,6 +10,7 @@ use Activation;
 use App\Model\User;
 use App\Model\SchoolList;
 use App\Model\SchoolProfile;
+use App\Model\StudentCourses;
 use Cartalyst\Sentinel\Sentinel;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Cartalyst\Sentinel\Users\UserInterface;
@@ -109,7 +110,8 @@ class LoginController extends Controller
         }
         $user['schoolist'] =$schoolList;
         }
-       
+
+ 
          $user['rolename'] = $roleName; 
 
 

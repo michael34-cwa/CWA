@@ -24,6 +24,7 @@ class CreateStudentCoursesTable extends Migration
             $table->integer('school_id')->unsigned();
             $table->foreign('school_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('status')->enum('0','1','2');
+            $table->string('path')->nullable();
             $table->timestamps();
         });
     }
