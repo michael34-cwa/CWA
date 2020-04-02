@@ -101,7 +101,19 @@ class DashboardController extends Controller
        $student = $this->thousandsCurrencyFormat($student);
        return response()->json(['student'=>$student], 201);
     }
+
+    public function teacherDashboard(Request $request)
+    {
+      $user = \Auth::guard('api')->user();
+  
+        $school_id = TeacherProfiles::where('teacher_id',$user->id)->first();
+        $student = StudentProfile::where('school_id',  $school_id->school_id)->count();
+
+       $student = $this->thousandsCurrencyFormat($student);
+       return response()->json(['student'=>$student], 201);
+    }
    
+
     private function thousandsCurrencyFormat($num)
   { 
     if ($num > 1000) { 

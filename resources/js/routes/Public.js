@@ -4,11 +4,15 @@ import PropTypes from 'prop-types'
 import { Route, Redirect, Link } from 'react-router-dom'
 const PublicRoutes = ({ component: Component, ...rest }) => {
   return <Route {...rest} render={props => {   
-    
+    if(props.match.path == '/'){
+      props.history.push('/login');  
+    }
     return (
       <Suspense
         fallback={
+       
           <div className="d-flex align-items-center justify-content-center w-100">
+             
             <CircularProgress />
           </div>
         }

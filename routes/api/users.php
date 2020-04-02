@@ -7,4 +7,5 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::patch('/project/{id}', 'UserController@projectUpdate');
     Route::patch('/student/{id}', 'UserController@studentUpdate');
     Route::patch('/school/{id}/{sid}', 'UserController@schoolUpdate');
+    Route::patch('/teacher/{id}', 'UserController@teacherUpdate');
 });     

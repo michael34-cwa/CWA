@@ -1,7 +1,7 @@
 // import modular routes
-import webRoutes from "../modules/school/web/routes"
+import webRoutes from "../modules/school/teachers/web/routes"
 import authRoutes from "../modules/auth/routes"
-import userRoutes from "../modules/user/routes" 
+import userRoutes from "../modules/school/teachers/user/routes" 
 // import teachersRoutes from "../modules/school/teachers/routes"
 import studentsRoutes from "../modules/school/teachers/students/routes"
  

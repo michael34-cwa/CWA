@@ -112,11 +112,11 @@ class Page extends Component {
   {
          course.status != 0? (
            
-          <a href={'http://localhost/cwamanager/index.php?token='+localStorage.getItem('access_token')+'&student='+course.path} target="blank">
+          <a href={'http://localhost/cwamanager/index.php?token='+localStorage.getItem('access_token')+'&student=CWA/projects/'+course.path} target="blank">
 <Button
            
           size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
-          <i class="fa fa-plus" aria-hidden="true"></i> Start
+          <i class="fa fa-plus" aria-hidden="true"></i> Cpanel
         </Button > </a>
          ) : ''}
          {

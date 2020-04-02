@@ -37,7 +37,7 @@ const TaskRow = ({course }) => {
       <h2>Tasks</h2>    
       <Grid container spacing={1}>
         <Grid container item xs={12} spacing={3}>
-          {course.getTasks > 0 ? course.getTasks.map((itemTask, index) => {
+          {course.getTasks.length > 0 ? course.getTasks.map((itemTask, index) => {
                 return <React.Fragment>
                   <Grid item xs={4}>
                   <div className="course-boxes">

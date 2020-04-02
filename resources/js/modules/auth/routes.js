@@ -13,6 +13,11 @@ export default [
     component: lazy(() => import("./pages/login/index"))
   },
   {
+    path: "/",
+    exact: true,
+    component: lazy(() => import("./pages/login/index"))
+  },
+  {
     path: "/register",
     exact: true,
     component: lazy(() => import("./pages/register/index"))

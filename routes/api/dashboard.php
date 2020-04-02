@@ -9,4 +9,5 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/school', 'DashboardController@schoolDashboard'); 
     Route::get('/project', 'DashboardController@projectDashboard'); 
     Route::get('/student', 'DashboardController@studentDashboard');
+    Route::get('/teacher', 'DashboardController@teacherDashboard');
 });

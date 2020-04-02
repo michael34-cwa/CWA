@@ -68,7 +68,8 @@ const Routes = ({ roleId, isAuthenticated}) => {
                     })
                     : 
                isAuthenticated == false &&  
-              authRoutes.map((route, i) => {
+              authRoutes.map((route, i) => { 
+                
                 return <PublicRoute key={i} {...route} />
               })
 

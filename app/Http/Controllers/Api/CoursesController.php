@@ -228,8 +228,10 @@ class CoursesController  extends Controller
       $courseName =  str_replace(' ', '',strtolower($corse->course_name));
       $dbname = $courseName.'_'.$studentCourse->school_id.'_'.time();
       $flname = $courseName.'_'.$studentCourse->student_id;
-      $structure = '../../../html/'.$flname; 
-      if (!mkdir($structure, 0777, true)) {
+       $path = $_SERVER['DOCUMENT_ROOT'];  
+       $path = str_replace("public","",$path);
+        $structure = $path.'projects/'.$flname; 
+      if (!mkdir($structure, 0777, true)) {  
         die('Failed to create folders...');
     } 
         \Artisan::call('mysql:createdb '. $dbname);

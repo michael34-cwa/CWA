@@ -106,6 +106,27 @@ class UserController extends Controller
     }
 
     
+    public function teacherUpdate(UserRequest $request, $id)
+    {
+ 
+      $data = $this->profileCheck($request, $id);
+    
+      if( $data != ''){
+        return response()->json(['message'=>$data,'status'=>1], 422);
+      }
+     
+
+        $user = User::findOrFail($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->phone = $request->phone;
+        $user->save();
+
+
+        return response()->json([
+            'user' => $user
+        ], 201);
+    }
 
 private function profileCheck($request, $id){
 

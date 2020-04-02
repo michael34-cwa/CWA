@@ -99,7 +99,7 @@ class TasksController  extends Controller
     public function taskStatus(Request $request, $id)
     { 
         $task = CourseTasks::findOrFail($id);
-        $task->status = '2';  
+        $task->status = '1';  
         $task->save(); 
       return response()->json($task, 201);
     }

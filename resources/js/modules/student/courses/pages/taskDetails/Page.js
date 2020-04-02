@@ -103,18 +103,25 @@ class Page extends Component {
                       /> }
 
          {
-         course.status == 0? '': 
-         course.status == 1? (
+         course.status == 0? (
          
           <Button
           onClick={this.openModelAss}
           size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
-          <i class="fa fa-plus" aria-hidden="true"></i> Complete
+          <i class="fa fa-plus" aria-hidden="true"></i> Start
+        </Button >
+          ) : 
+         course.status == 1? (
+         
+          <Button
+         // onClick={this.openModelAss}
+          size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
+          Process
         </Button >
           ) : (
             <Button 
             size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
-            <i class="fa fa-plus" aria-hidden="true"></i> Completed
+            Completed
           </Button >
           ) 
          }
