@@ -34,3 +34,27 @@ export function studentListRequest({ pageNumber = 1, value = '', url = "/teacher
          };
        }
  
+
+
+
+export function courseListRequest({id, pageNumber = 1, value = '', url = "/courses/get_student_courses" }) {
+  return dispatch => {
+    dispatch(studentActions.spinerAdd(transformResponse()));
+    url  = url+'/'+id;
+    if (pageNumber > 1 || value.length >= 2) {
+      url = url+'/'+id+ `?page=${pageNumber}&search=${value}`;
+    }
+
+    Http.get(url)
+      .then(res => {
+        dispatch(studentActions.list(transformResponse(res.data)));
+      })
+      .catch(err => {
+        // TODO: handle err
+        console.error(err.response);
+      });
+  };
+}
+
+
+

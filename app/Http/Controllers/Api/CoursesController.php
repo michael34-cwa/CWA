@@ -43,18 +43,21 @@ class CoursesController  extends Controller
  
     }
          
-    public function getStudentCourses()
+    public function getStudentCourses($id=null)
     {
         $dataSearch  =  Request::get('search');
-        $user = \Auth::guard('api')->user();
-   
+        if($id == null){
+            $user = \Auth::guard('api')->user();
+           $id =  $user->id;
+        }
+       
         return StudentCourses::whereHas('getStudentCourse', function ($q) use ($dataSearch) {
             if( $dataSearch){
                 $q->where('course_name', 'LIKE', "%{$dataSearch}%");
             }
             }) 
         ->with(array('getCourseTasks','getCategory','getStudentCourse'))
-        ->where('student_id', $user->id)->paginate();
+        ->where('student_id',$id)->paginate();
 
     }
 

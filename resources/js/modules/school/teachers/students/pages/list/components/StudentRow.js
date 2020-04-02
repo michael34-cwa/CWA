@@ -23,9 +23,9 @@ const CategoryRow = ({ index, category, togglePublish, pageNo }) => {
       <td>
 
         <div className="btn-group" role="group" aria-label="Actions">
-          <Link to={`/assign_course/${category.user_id}`}>
+          <Link to={`/courses/${category.user_id}`}>
             <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1">
-              <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Assign Courses
+              <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Course Lists
             </Button >
           </Link> 
            

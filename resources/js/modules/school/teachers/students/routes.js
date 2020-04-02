@@ -8,16 +8,10 @@ export default [
     auth: true,
     component: lazy(() => import("./pages/list/index"))
   },
-  // {
-  //   path: "/students/create",
-  //   exact: true,
-  //   auth: true,
-  //   component: lazy(() => import("./pages/add/index"))
-  // },
-  // {
-  //   path: "/students/:id/edit",
-  //   exact: true,
-  //   auth: true,
-  //   component: lazy(() => import("./pages/edit/index"))
-  // }
+  {
+    path: "/courses/:id",
+    exact: true,
+    auth: true,
+    component: lazy(() => import("./pages/listCorse/index"))
+  }
 ];
