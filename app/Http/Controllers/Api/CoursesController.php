@@ -148,11 +148,11 @@ class CoursesController  extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function courseTasks($id)
+    public function courseTasks($id,$sid)
     {
-        $user = \Auth::guard('api')->user();
+        // $user = \Auth::guard('api')->user();
    
-        return StudentCourses::with(array('getStudentCourse','getCourseTasks','getCategory','getStudentCourse'))->where('student_id', $user->id)->find($id);
+        return StudentCourses::with(array('getStudentCourse','getCourseTasks','getCategory','getStudentCourse'))->where('student_id', $sid)->find($id);
  
         
     }

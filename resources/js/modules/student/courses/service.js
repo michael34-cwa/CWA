@@ -150,10 +150,10 @@ export function courseListRequest({ pageNumber = 1, value = '', url = "/courses/
 
 
 
-export function courseEditRequest(id) {
+export function courseEditRequest(id,sid) {
   return dispatch => {
     dispatch(courseActions.spinerAdd(transformResponse()));
-    Http.get(`courses/course_tasks/${id}`)
+    Http.get(`courses/course_tasks/${id}/${sid}`)
       .then(res => {
         dispatch(courseActions.add(transformResponse(res.data)));
       })

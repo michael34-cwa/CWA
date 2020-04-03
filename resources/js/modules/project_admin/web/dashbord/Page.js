@@ -28,10 +28,11 @@ class Page extends Component {
     return (
       <div className="dashboard-right categories-list">
         <LoadingComponent isLoading={this.props.meta.loading} error={''} />  
-         <div className="row mb-20">
-         
+        <h1 className="text-center">Project Administration</h1>
+         <div className="row mb-20"> 
         
           <div className="col-xl-3 col-lg-6 col-md-12">
+         
             <Link to="/students" className="card gradient-3 mb-4">
               <div className="card-body p-3">
                 <h2 className="text-center text-white card-title"><strong>Assigned Courses</strong></h2>

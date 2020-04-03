@@ -28,7 +28,7 @@ const CourseRow = ({ course }) => {
         </Paper>
         </div>
         <Paper className="text-center button_bottom">
-          <Link className="btn btn-primary" to={`course_tasks/${course.id}`}>  View All Tasks </Link>
+          <Link className="btn btn-primary" to={`course_tasks/${course.id}/${course.studentId}`}>  View All Tasks </Link>
         </Paper>
         </div>
       </Grid> 

@@ -34,6 +34,16 @@ class Page extends Component {
     dispatch(studentListRequest({ id }))
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const course = nextProps.course;
+     console.log('course');
+    console.log(course);
+    if (!_.isEqual(this.state.course, course)) {
+      this.setState({ course })
+    }
+
+  }
+
   pageChange = (event, pageNumber) => {
     const { match, dispatch } = this.props
     let id = match.params.id;

@@ -26,8 +26,9 @@ class TasksController  extends Controller
         if($dataSearch){
          $q->where('course_name', 'LIKE', "%{$dataSearch}%");
         }
-        }) ->latest()
+        })
          ->orWhere('task_name', 'LIKE', "%{$dataSearch}%")
+         ->latest()
          ->paginate();  
 
    
@@ -99,8 +100,12 @@ class TasksController  extends Controller
     public function taskStatus(Request $request, $id)
     { 
         $task = CourseTasks::findOrFail($id);
-        $task->status = '1';  
-        $task->save(); 
+      if($task->status == '1'){
+        $task->status = '2';
+      }else{
+        $task->status = '1';
+      }
+         $task->save(); 
       return response()->json($task, 201);
     }
     

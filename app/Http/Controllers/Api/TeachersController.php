@@ -235,7 +235,7 @@ class TeachersController  extends Controller
         $studentId = TeacherProfiles::where('teacher_id',$userId->id)->first();
         $schoolData = StudentProfile::with(array('User' => function ($query) {
             $query->select('id', 'email', 'first_name', 'last_name', 'phone');
-        }, 'ActivationsUser', 'User'))->where('school_id', $studentId->school_id);
+        }, 'User'))->where('school_id', $studentId->school_id);
 
         if ($dataSearch) {
             $schoolData = $schoolData->WhereHas('User', function ($query) use ($dataSearch) {

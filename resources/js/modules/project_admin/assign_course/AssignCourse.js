@@ -11,9 +11,9 @@ class AssignCourse extends Model {
 
   initialize(props) {   
     if (props.status == 0){
-      status = 'Active'
+      status = 'Assigned'
     } else if (props.status == 1){
-      status = 'Processs'
+      status = 'In-Progress'
     }else{
       status = 'Completed'
     }

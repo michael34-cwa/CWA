@@ -63,13 +63,13 @@ class Page extends Component {
   }
 
 
-  renderCourses() {
+  renderCourses(pageNo) {
      return this.props.courses.map((course, index) => {
       return (
         <CourseRow
-          key={index}
+           key={index}
           course={course}
-          index={index}
+          pageNo={pageNo++}
         />
       );
     });
@@ -78,16 +78,32 @@ class Page extends Component {
   render() {
     return (
       <main className="dashboard-right" role="main">
-            <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
-        <h1>Courses</h1>
-        <Search onChange={this.searchChange} /> 
-        <div>
-        
-          {this.renderCourses()}
-          
-        </div>
-        <Pagination meta={this.props.meta} onChange={this.pageChange} />
+        <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
+        <div className="card">
+          <div className="card-body bg-white">
+            <h1 class="text-center">Courses</h1>
+            <div className="table-responsive">
+              <Search onChange={this.searchChange} /> 
+              <table className="table  table-striped">
+                <thead className="thead-inverse">
+                  <tr>
+                    <th width="70px">Sr. No.</th>
+                    <th width="150px">Name</th>
+                    <th>Category</th>
+                    <th width="140px">Created Date</th>
+                    <th width="140px">Updated Date</th>
+            
+                  </tr>
+                </thead>
+                {this.props.courses.length >= 1 ? this.renderCourses(this.props.meta.from) : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}
 
+              </table>
+            </div>
+            <Pagination meta={this.props.meta} onChange={this.pageChange} />
+            {this.state.open && <DeleteModel openModel={this.openModel} opens={this.state.open} ids={this.state.id} handleRemove={this.handleRemove} />}
+
+          </div>
+        </div>
       </main>
     );
   }

@@ -27,7 +27,8 @@ class Page extends Component {
   render() {
     return (
       <div className="dashboard-right categories-list">
-        <LoadingComponent isLoading={this.props.meta.loading} error={''} />  
+        <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
+        <h1 className="text-center">Student Dashboard</h1> 
          <div className="row mb-20">
          
         

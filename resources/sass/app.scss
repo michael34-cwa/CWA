@@ -32,6 +32,13 @@ a:hover {
 	>.dropdown-menu {
 		display: block;
 	}
+}button.colorDanger {
+    background: #ff0000;
+    color: #fff;
+}
+button.colorDanger:hover {
+    background: #ff0000;
+    color: #fff;
 }
 .login {
 	width: 90%;

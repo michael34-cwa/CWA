@@ -12,5 +12,5 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/{id}', 'CoursesController@show')->name('courses.show');
     Route::match(['put', 'patch'], '/{id}/{status?}', 'CoursesController@update')->name('courses.update');
     Route::delete('/{id}', 'CoursesController@delete')->name('courses.delete');
-    Route::get('/course_tasks/{id}', 'CoursesController@courseTasks');
+    Route::get('/course_tasks/{id}/{sid}', 'CoursesController@courseTasks');
 });
