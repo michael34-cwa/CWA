@@ -108,7 +108,7 @@ class Page extends Component {
         {
           user.rolename == 'student' ? course.status != 0 ? (
 
-            <a href={'http://13.58.112.125/filemanager/index.php?token=' + localStorage.getItem('access_token') + '&student=projects/' + course.path} target="blank">
+            <a href={'http://13.58.112.125/FileManager/index.php?token=' + localStorage.getItem('access_token') + '&student=projects/' + course.path} target="blank">
               <Button
 
                 size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >

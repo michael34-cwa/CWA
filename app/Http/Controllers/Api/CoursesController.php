@@ -230,13 +230,18 @@ class CoursesController  extends Controller
       $corse =  Courses::find($studentCourse->course_id);   
       $courseName =  str_replace(' ', '',strtolower($corse->course_name));
       $dbname = $courseName.'_'.$studentCourse->school_id.'_'.time();
-      $flname = $courseName.'_'.$studentCourse->student_id;
+      $flname = $courseName.'_'.$studentCourse->student_id.'_'.$studentCourse->course_id;
        $path = $_SERVER['DOCUMENT_ROOT'];  
-       $path = str_replace("public","",$path);
-        $structure = $path.'projects/'.$flname; 
+ 
+       $path = str_replace("public","",$path); 
+  	$path = str_replace("html","",$path);   
+        $structure = $path.'filemanager/projects/'.$flname;
+	$oldmask = umask(0); 
       if (!mkdir($structure, 0777, true)) {  
         die('Failed to create folders...');
     } 
+	umask($oldmask);
+
         \Artisan::call('mysql:createdb '. $dbname);
         $studentCourse->path = $flname; 
         $studentCourse->status = '1'; 
