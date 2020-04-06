@@ -15,6 +15,7 @@ class Task extends Model {
     this.taskName = props.taskName || "";
     this.taskDescription = props.taskDescription || ""; 
     this.status = props.pivot ? props.pivot.status : "";
+    this.description = props.pivot ? props.pivot.description : "";
     this.taskId = props.pivot ? props.pivot.id : "";
     
     // relate user model

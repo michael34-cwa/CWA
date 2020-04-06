@@ -84,6 +84,24 @@ class TasksController  extends Controller
       return response()->json($task, 201);
     }
 
+
+    public function taskDis(Request $request, $id)
+    { 
+     $description  = Request::post('description'); 
+    //  print_r( $description); die;
+
+    //     $input = $this->validate($request, [
+    //         'description' => 'required|min:2|max:500',
+    //      ] );
+
+
+        $task = CourseTasks::findOrFail($id);
+        $task->status = '0';  
+        $task->description = $description;  
+        $task->save(); 
+        return response()->json($task, 201);
+    }
+
     /**
      * Display the specified resource.
      *

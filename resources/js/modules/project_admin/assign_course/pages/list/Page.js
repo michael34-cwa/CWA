@@ -9,13 +9,9 @@ import LoadingComponent from '../../../../../common/loader'
 import AssignCourseRow from './components/AssignCourseRow'
 import Pagination from '../../../../../common/Pagination'
 import Search from '../../../../../common/Search'
-import { Link } from 'react-router-dom' 
- import DeleteModel from '../../../../../common/model/DeleteModel'
+  import DeleteModel from '../../../../../common/model/DeleteModel'
 import AssignModel from '../../../../../common/model/SingleAssignModel'
-import ReeValidate from 'ree-validate' 
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import ReeValidate from 'ree-validate'  
 import { TextField , FormHelperText, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
  class Page extends Component { 
   static displayName = 'AssignCoursePage'
