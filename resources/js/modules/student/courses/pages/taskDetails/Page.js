@@ -279,6 +279,7 @@ class Page extends Component {
 
         }
 
+   { user.rolename == 'student' && course.description != null &&  course.description }
         {this.renderList()}
       </div>
       </div>
