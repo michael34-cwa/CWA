@@ -87,6 +87,7 @@ class TasksController  extends Controller
 
     public function taskDis(Request $request, $id)
     { 
+        $id = base64_decode(urldecode($id));
      $description  = Request::post('description'); 
     //  print_r( $description); die;
 
@@ -111,12 +112,13 @@ class TasksController  extends Controller
      */
     public function show(Request $request, $id)
     { 
- 
+        $id = base64_decode(urldecode($id));
            return Tasks::where('id',$id)->with('getCourse')->first();  
     }
 
     public function taskStatus(Request $request, $id)
     { 
+        $id = base64_decode(urldecode($id));
         $task = CourseTasks::findOrFail($id);
       if($task->status == '1'){
         $task->status = '2';
@@ -130,7 +132,7 @@ class TasksController  extends Controller
 
         public function taskList()
     { 
-        return Courses::all();
+        return Courses::where('is_active','1')->latest()->get();
     }
     
     /**
@@ -146,7 +148,7 @@ class TasksController  extends Controller
 
     public function studentTask(Request $request, $id)
     { 
- 
+        $id = base64_decode(urldecode($id));
            return Tasks::where('id',$id)->with('getTaskPro')->first();  
     }
 
@@ -159,6 +161,7 @@ class TasksController  extends Controller
      */
     public function update(TasksRequest $request, $id)
     {   
+        $id = base64_decode(urldecode($id));
         $task = Tasks::findOrFail($id);
         $task->task_name = $request->task_name; 
         $task->task_description = $request->task_description; 
@@ -176,6 +179,7 @@ class TasksController  extends Controller
      */
     public function delete($id)
     {
+        $id = base64_decode(urldecode($id));
         $article = Tasks::findOrFail($id);
 
         $article->delete();

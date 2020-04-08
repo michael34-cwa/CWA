@@ -20,7 +20,7 @@ import { browserHistory } from 'react-router'
     super(props)
     
     this.validator = new ReeValidate({
-      category_name: "required|min:2"
+      category_name: "required|min:2|max:100"
     });
     
     const category = this.props.category.toJson()

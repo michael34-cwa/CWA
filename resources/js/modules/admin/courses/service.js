@@ -55,10 +55,10 @@ export function courseUpdateRequest(params, status) {
       Http.patch(`courses/${params.id}/${status}`, transformRequest(params))
         .then(res => {
           toast.success("Updated Successfully");
-          // if (status == 1){
-          //  dispatch(courseActions.add(transformResponse(res.data)));
+          if (status == 1){
+           dispatch(courseActions.add(transformResponse(res.data)));
            
-          // }
+          }
            return resolve();
 
         })

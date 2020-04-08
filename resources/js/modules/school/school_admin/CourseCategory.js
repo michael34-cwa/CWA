@@ -9,7 +9,7 @@ class School extends Model {
 
   initialize(props) { 
     super.initialize(props) 
-    this.user_id = props.user ? props.user.id : '';   
+    this.user_id = props.user ?  window.btoa(props.user.id)  : '';   
     this.first_name = props.user ? props.user.firstName : '';
     this.last_name = props.user ? props.user.lastName : '';
     this.email = props.user ? props.user.email : '';

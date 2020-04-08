@@ -9,7 +9,7 @@ const mapStateToProps = (state, router) => {
   const { params } = router.match
     const { dataList } = state.courses;
    let dataLists = dataList ? dataList : [];
-  const course = state.courses.data.find(course => course.id === Number(params.id))
+  const course = state.courses.data.find(course => course.id == window.atob(params.id))
  
   return {
     course: course ? new Course(course) : new Course({}),

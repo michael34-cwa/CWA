@@ -12,7 +12,8 @@ class UserController extends Controller
 
     public function update(UserRequest $request, $id)
     {
- 
+      $id = base64_decode(urldecode($id));
+
         $data = $this->profileCheck($request, $id);
     
         if( $data != ''){
@@ -35,7 +36,8 @@ class UserController extends Controller
 
     public function projectUpdate(UserRequest $request, $id)
     {
- 
+      $id = base64_decode(urldecode($id));
+
       $data = $this->profileCheck($request, $id);
     
       if( $data != ''){
@@ -58,7 +60,8 @@ class UserController extends Controller
 
     public function studentUpdate(UserRequest $request, $id)
     {
- 
+      $id = base64_decode(urldecode($id));
+
       $data = $this->profileCheck($request, $id);
     
       if( $data != ''){
@@ -82,7 +85,8 @@ class UserController extends Controller
 
     public function schoolUpdate(UserRequest $request, $id, $sid)
     {
- 
+      $id = base64_decode(urldecode($id));
+
       $data = $this->profileCheck($request, $id);
     
       if( $data != ''){
@@ -108,7 +112,8 @@ class UserController extends Controller
     
     public function teacherUpdate(UserRequest $request, $id)
     {
- 
+      $id = base64_decode(urldecode($id));
+
       $data = $this->profileCheck($request, $id);
     
       if( $data != ''){
@@ -130,7 +135,7 @@ class UserController extends Controller
 
 private function profileCheck($request, $id){
 
-
+ 
     if ($request->old_password == '' && $request->password != '') {
        return 'Please enter old password.';
     }

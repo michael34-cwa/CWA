@@ -20,8 +20,8 @@ class Page extends Component {
     super(props)
     
     this.validator = new ReeValidate({
-      taskName: "required|min:2",
-      taskDescription: "required|min:2",
+      taskName: "required|min:2|max:100",
+      taskDescription: "min:2|max:1000",
       isActive: "required",
       catId: "required"
     })

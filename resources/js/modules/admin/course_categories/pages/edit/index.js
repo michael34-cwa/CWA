@@ -7,9 +7,9 @@ import Page from './Page'
 const mapStateToProps = (state, router) => {  
  
   
-  const { params} = router.match
-  const category = state.course_categories.data.find(category => category.id === Number(params.id))
-  return {
+  const { params} = router.match 
+  const category = state.course_categories.data.find(category => category.id == window.atob(params.id))
+   return {
     category: category ? new CourseCategory(category) : new CourseCategory({}),
     loading: state.course_categories.loading
   }

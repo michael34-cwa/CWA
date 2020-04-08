@@ -34,7 +34,7 @@ const PrivateHeader = ({ user, dn, showNavigation, showDropdown, toggleDropdown,
           <span className="userNameChar">{dn}</span> My Account
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-right">
-          <Link className='dropdown-item' to={`/users/${user.id}/edit`}>
+          <Link className='dropdown-item' to={`/users/${window.btoa(user.id)}/edit`}>
             <span className="fa fa-user-o" title="logout" aria-hidden="true"/> Profile
           </Link>
           <DropdownItem divider />

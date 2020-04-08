@@ -6,7 +6,6 @@ import { taskAddRequest, courseListRequest } from "../../service";
 import ReeValidate from 'ree-validate'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
 // import components
 import Form from './components/Form'
 
@@ -21,8 +20,8 @@ class Page extends Component {
     super(props);
 
     this.validator = new ReeValidate({
-      task_name: "required|min:2",
-      task_description: "required|min:2",
+      task_name: "required|min:2|max:100",
+      task_description: "min:2|max:1000",
       is_active:"required",
       course_id: "required"
     });
@@ -66,8 +65,9 @@ class Page extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const task = this.state.task;
+
+    const { errors } = this.validator; 
     this.validator.validateAll() 
-    const { errors } = this.validator;
 
     this.validator.validateAll(task).then(success => {
       if (success) {

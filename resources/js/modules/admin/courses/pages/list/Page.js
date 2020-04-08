@@ -37,8 +37,8 @@ class Page extends Component {
   }
  
 
-  togglePublish(id) {
-    const course = this.props.courses.find(course => course.id === id);
+  togglePublish(id) { 
+    const course = this.props.courses.find(course => course.id == id);
 
     if (!course) return;
     if (course.isActive) {
@@ -73,7 +73,7 @@ class Page extends Component {
   handleRemove(ids) {
     this.setState({ open: !this.state.open, id: '' }) 
     this.props.dispatch(courseRemoveRequest(ids));
-  //  this.props.dispatch(categoryListRequest({})) 
+    this.props.dispatch(courseListRequest({})) 
   }
 
   renderCourses(pageNo) {

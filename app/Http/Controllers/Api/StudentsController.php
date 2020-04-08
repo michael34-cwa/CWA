@@ -45,6 +45,8 @@ class StudentsController  extends Controller
 
     public function studentList(Request $request, $id)
     {
+        $id = base64_decode(urldecode($id));
+
         $dataSearch   =   Request::get('search');
 
         $schoolData = StudentProfile::with(array('User' => function ($query) {
@@ -160,8 +162,9 @@ class StudentsController  extends Controller
      */
     public function show(Request $request, $id)
     {
+        $id = base64_decode(urldecode($id));
 
-        return User::where('id', $id)->first();
+        return   $schoolData = StudentProfile::with('User')->where('id', $id)->first();
         //  return Courses::findOrFail($id);
     }
 

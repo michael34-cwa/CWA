@@ -20,10 +20,11 @@ class CourseCategoriesController  extends Controller
      * @return LengthAwarePaginator|mixed
      */
     public function index(Request $request)
-    { ;
+    { 
        $dataSearch   =   Request::get('search');
         $technologies =  CourseCategories::latest()
              ->where('category_name', 'LIKE', "%{$dataSearch}%")->paginate();
+        
         return response()->json($technologies, 201);
     }
 
@@ -82,6 +83,7 @@ class CourseCategoriesController  extends Controller
      */
     public function show(Request $request, $id)
     { 
+        $id = base64_decode(urldecode($id));
         return CourseCategories::findOrFail($id);
     }
 
@@ -105,6 +107,7 @@ class CourseCategoriesController  extends Controller
      */
     public function update(TechnologiesRequest $request, $id)
     {
+        $id = base64_decode(urldecode($id));
         $technologies = CourseCategories::findOrFail($id);
         $technologies->category_name = $request->category_name; 
         $technologies->save();
@@ -120,6 +123,7 @@ class CourseCategoriesController  extends Controller
      */
     public function delete($id)
     {
+        $id = base64_decode(urldecode($id));
         $article = CourseCategories::findOrFail($id);
 
         $article->delete();

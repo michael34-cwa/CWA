@@ -81,7 +81,7 @@ class Page extends Component {
     e.preventDefault()
     const category = this.state.category
     const { errors } = this.validator
-    
+    this.validator.validateAll() 
     this.validator.validateAll(category)
       .then((success) => {
         if (success) {

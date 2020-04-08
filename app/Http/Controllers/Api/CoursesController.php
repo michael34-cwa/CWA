@@ -36,19 +36,20 @@ class CoursesController  extends Controller
 
        public function getCourses()
     {
-   
          return Courses::whereHas('getSchoolCourse', function ($q) {
             $q->whereIn('school_id', [ \Auth::guard('api')->user()->id]);
         })->with(['getCourseTasks','getCategory'])->paginate();
- 
     }
          
     public function getStudentCourses($id=null)
     {
+     
         $dataSearch  =  Request::get('search');
         if($id == null){
             $user = \Auth::guard('api')->user();
            $id =  $user->id;
+        }else{
+            $id = base64_decode(urldecode($id));
         }
        
         return StudentCourses::whereHas('getStudentCourse', function ($q) use ($dataSearch) {
@@ -135,7 +136,7 @@ class CoursesController  extends Controller
      */
     public function show(Request $request, $id)
     {
- 
+        $id = base64_decode(urldecode($id));
     return Courses::where('id',$id)->with('getCategory')->first();  
       //  return Courses::findOrFail($id);
     }
@@ -151,7 +152,8 @@ class CoursesController  extends Controller
     public function courseTasks($id,$sid)
     {
         // $user = \Auth::guard('api')->user();
-   
+        $id = base64_decode(urldecode($id));
+        $sid = base64_decode(urldecode($sid));
         return StudentCourses::with(array('getStudentCourse','getCourseTasks','getCategory','getStudentCourse'))->where('student_id', $sid)->find($id);
  
         
@@ -188,7 +190,7 @@ class CoursesController  extends Controller
 
       public function update(CoursesRequest $request, $id,$status=null)
     { 
-    
+        $id = base64_decode(urldecode($id)); 
         $course = Courses::findOrFail($id); 
         $course->course_name = $request->course_name;
         $course->course_description = $request->course_description;
@@ -213,6 +215,8 @@ class CoursesController  extends Controller
      */
     public function delete($id)
     {
+        $id = base64_decode(urldecode($id));
+
         $article = Courses::findOrFail($id);
 
         $article->delete();
@@ -223,8 +227,9 @@ class CoursesController  extends Controller
  
     public function courseStatus(Request $request, $id)
     {
-      $studentCourse = StudentCourses::findOrFail($id);
+        $id = base64_decode(urldecode($id));
 
+      $studentCourse = StudentCourses::findOrFail($id); 
    
      if($studentCourse->status == 0){ 
       $corse =  Courses::find($studentCourse->course_id);   

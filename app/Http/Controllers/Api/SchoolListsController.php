@@ -108,7 +108,7 @@ class SchoolListsController  extends Controller
      */
     public function show(Request $request, $id)
     {
-
+        $id = base64_decode(urldecode($id));   
         return   $this->getList($id);
     }
 
@@ -132,7 +132,7 @@ class SchoolListsController  extends Controller
      */
     public function update(SchoolListRequest $request, $id, $status = null)
     {
- 
+        $id = base64_decode(urldecode($id));
         if ($status == 0) {
             $schoolList = SchoolList::find($id);  
             $user = User::find($request->user_id);  
@@ -159,7 +159,7 @@ class SchoolListsController  extends Controller
 
     private function getList($id)
     {
-        return  SchoolList::with(array('User' => function ($query) {
+         return  SchoolList::with(array('User' => function ($query) {
             $query->select('id', 'email', 'first_name', 'last_name', 'phone');
         }, 'ActivationsUser'))->find($id);
     }
@@ -172,6 +172,7 @@ class SchoolListsController  extends Controller
      */
     public function delete($id)
     {
+        $id = base64_decode(urldecode($id));
         $article = SchoolList::findOrFail($id);
 
         $article->delete();

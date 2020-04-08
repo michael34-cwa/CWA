@@ -107,13 +107,17 @@ const Form = ({ loading,dataList, task, errors, onChange, onSubmit }) => {
 
       <div className="form-group row">
         <div className="col-md-12 ml-auto">
-          <button
+        <Button 
+            variant="contained" 
             disabled={errors.any()}
             type="submit"
-            className="btn btn-primary"
+            className="text-capitalize colorPrimary"
+            disableElevation
           >
-           <i class="fa fa-plus" aria-hidden="true"></i>  Add a Task
-          </button>
+            <i className="fa fa-plus mr-2" aria-hidden="true"></i>   Add a Task
+          </Button>
+          
+     
         </div>
       </div>
     </form>

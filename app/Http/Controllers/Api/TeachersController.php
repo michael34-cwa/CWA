@@ -137,6 +137,7 @@ class TeachersController  extends Controller
 
     public function teacherList(Request $request, $id)
     {
+        $id = base64_decode(urldecode($id));
         $dataSearch   =   Request::get('search');
   
         $schoolData = TeacherProfiles::with(array('User' => function ($query) {
@@ -159,10 +160,12 @@ class TeachersController  extends Controller
      */
     public function show(Request $request, $id)
     {
+        $id = base64_decode(urldecode($id));
+      
+        return    $schoolData = TeacherProfiles::with('User')->where('id', $id)->first();
 
-        return User::where('id', $id)->first();
-        //  return Courses::findOrFail($id);
-    }
+      
+     }
 
     /**
      * Show the form for editing the specified resource.
@@ -195,7 +198,7 @@ class TeachersController  extends Controller
 
     public function update(SchoolRequest $request, $id, $status = null)
     {
-
+        $id = base64_decode(urldecode($id));
         if ($status == 0) {
             $user = User::findOrFail($id);
             $user->update($request->all());
@@ -220,6 +223,7 @@ class TeachersController  extends Controller
      */
     public function delete($id)
     {
+        $id = base64_decode(urldecode($id));
         // $article = Schools::findOrFail($id);
 
         // $article->delete();

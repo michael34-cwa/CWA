@@ -11,7 +11,7 @@ class ProjectAdmin extends Model {
 
   initialize(props) { 
      super.initialize(props)  
-    this.user_id = props.user ? props.user.id : '';
+    this.user_id = props.user ? window.btoa(props.user.id) : '';
     this.firstName = props.user ? props.user.firstName : '';
     this.lastName = props.user ? props.user.lastName : '';
     this.email = props.user ? props.user.email : '';

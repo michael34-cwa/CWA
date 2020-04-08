@@ -59,6 +59,7 @@ class CourseAssignController  extends Controller
     public function store(Request $request, $id)
     { 
         try { 
+            $id = base64_decode(urldecode($id));
             foreach ($request::post('course_name') as $key => $course_id) {
                 $courseData =   SchoolCourses::where('school_id', '=', $id)->where('course_id', '=', $course_id)->first();
 

@@ -40,7 +40,7 @@ class SchoolsController  extends Controller
             });
         }
 
-        return  $schoolData->paginate(); 
+        return  $schoolData->latest()->paginate(); 
 
      }
 
@@ -57,6 +57,7 @@ class SchoolsController  extends Controller
 
     public function adminList(Request $request,$id)
     {
+        $id = base64_decode(urldecode($id));
         $dataSearch   =   Request::get('search');
 
         $user = \Auth::guard('api')->user();
@@ -174,8 +175,11 @@ class SchoolsController  extends Controller
      */
     public function show(Request $request, $id)
     {
-
-        return User::where('id', $id)->first();
+        $id = base64_decode(urldecode($id));
+        // return User::where('id', $id)->first();
+ 
+        return    $schoolData = SchoolProfile::with('User')->where('id', $id)->first();
+  
         //  return Courses::findOrFail($id);
     }
 
@@ -210,7 +214,7 @@ class SchoolsController  extends Controller
 
     public function update(SchoolRequest $request, $id, $status = null)
     { 
-
+        $id = base64_decode(urldecode($id));
         if($status == 0){
          $user = User::findOrFail($id);
         $user->update($request->all());
@@ -235,6 +239,7 @@ class SchoolsController  extends Controller
      */
     public function delete($id)
     {
+        $id = base64_decode(urldecode($id));
         // $article = Schools::findOrFail($id);
 
         // $article->delete();

@@ -18,8 +18,8 @@ class Page extends Component {
     super(props);
 
     this.validator = new ReeValidate({
-      course_name: "required|min:2",
-      course_description: "required|min:2",
+      course_name: "required|min:2|max:100",
+      course_description: "min:2|max:1000",
       is_active:"required",
       catId: "required"
     });
@@ -52,9 +52,9 @@ class Page extends Component {
  
     const { errors } = this.validator;
 
-    errors.remove(name);
     this.setState({ course: { ...this.state.course, [name]: value } });
  
+    errors.remove(name);
     this.validator.validate(name, value).then(() => { 
       this.setState({ errors });
     });

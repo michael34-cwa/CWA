@@ -140,7 +140,8 @@ class ProjectAdminController  extends Controller
      */
     public function show(Request $request, $id)
     {
- 
+        $id = base64_decode(urldecode($id));
+
         return   $this->getList($id);
     }
 
@@ -164,6 +165,7 @@ class ProjectAdminController  extends Controller
      */
     public function update(SchoolRequest $request, $id, $status = null)
     {
+        $id = base64_decode(urldecode($id));
 
         if ($status == 0) {
             $user = User::findOrFail($id);
@@ -184,6 +186,8 @@ class ProjectAdminController  extends Controller
 
     private function getList($id)
     {
+       // $id = base64_decode(urldecode($id));
+
         return  ProjectAdmin::with(array('User' => function ($query) {
             $query->select('id', 'email', 'first_name', 'last_name', 'phone');
         }, 'ActivationsUser'))->find($id);
@@ -197,6 +201,8 @@ class ProjectAdminController  extends Controller
      */
     public function delete($id)
     {
+                $id = base64_decode(urldecode($id));
+
         $article = SchoolList::findOrFail($id);
 
         $article->delete();

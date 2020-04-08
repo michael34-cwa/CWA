@@ -24,15 +24,13 @@ class CoursesRequest extends FormRequest
     public function rules()
     {
         return [
-             'course_name' => 'required|min:2', 
-             'course_description' => 'required|min:2', 
+             'course_name' => 'required|min:2'
         ];
     }
     public function attributes()
 {
     return [
-        'course_name' => 'Course Name',
-        'course_description' => 'Course Description',
+        'course_name' => 'Course Name'
     ];
 }
 }
