@@ -11,8 +11,8 @@ class AssignCourse extends Model {
 
   initialize(props) {    
     super.initialize(props) 
-    this.courseId = props.courseId ? props.courseId : "";
-    this.schoolId = props.schoolId ? props.schoolId : "";
+    this.courseId = props.courseId ? window.btoa(props.courseId) : "";
+    this.schoolId = props.schoolId ? window.btoa(props.schoolId) : "";
     this.course_name = props.getCourse ? props.getCourse.courseName :""; 
     // relate user model
    }

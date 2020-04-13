@@ -10,7 +10,7 @@ const propTypes = {
   handleRemove: PropTypes.func.isRequired,
 }
 
-const CourseRow = ({ index, course, togglePublish, handleRemove }) => { 
+const CourseRow = ({ index, course }) => { 
   return (
     <tr key={index}>
       <th scope="row">{index + 1}</th>
@@ -25,7 +25,7 @@ const CourseRow = ({ index, course, togglePublish, handleRemove }) => {
 
       <td>{course.createdAt && course.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{course.updatedAt && course.updatedAt.format("MMMM, DD YYYY")}</td>
-      <td className="btn-right">
+      {/* <td className="btn-right">
         <div className="btn-group" role="group" aria-label="Actions">
           {course.isActive ? (
             <button
@@ -52,7 +52,7 @@ const CourseRow = ({ index, course, togglePublish, handleRemove }) => {
            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
           </button>
         </div>
-      </td>
+      </td> */}
     </tr>
   );
 }

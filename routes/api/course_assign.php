@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/student/{id}', 'CourseAssignController@getCourseStudent');
-    Route::get('/school/{id}', 'CourseAssignController@getSchoolCourse');
+    Route::get('/school/{id?}', 'CourseAssignController@getSchoolCourse');
     Route::post('/student/{id?}', 'CourseAssignController@addCourse');
     Route::delete('/student/{id}', 'CourseAssignController@deleteCourse');
     Route::get('/task/{id}', 'CourseAssignController@getTaskStudent');

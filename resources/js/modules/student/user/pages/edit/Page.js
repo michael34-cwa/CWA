@@ -22,7 +22,7 @@ class Page extends Component {
       'firstName': 'required|min:2|max:28',
       'lastName': 'required|min:2|max:28',
       'email': 'required|email|max:28',
-      'phone': 'required|min:8|numeric|max:28', 
+      'phone': 'required|min:8|max:28', 
       'oldPassword': 'min:6|max:28',
       'password': 'min:6|max:28',
       'passwordConfirmation': 'min:6|max:28',
@@ -47,17 +47,31 @@ class Page extends Component {
     } 
   }
   
-  handleChange(name, value) {
-    const { errors } = this.validator 
+  handleChange(name, value) { 
+    const { errors } = this.validator
     this.setState({ project_user: { ...this.state.project_user, [name]: value} })
-    
-    errors.remove(name)
-    
-    this.validator.validate(name, value)
-      .then(() => {
+    errors.remove(name) 
+    if (name === 'passwordConfirmation') { 
+       const result = this.validator.rules.confirmed(value, this.state.project_user.password); 
+          if (!result) {
+            this.validator.errors.add(name, 'Confirm password not matched with password');
+          }
+    }else if(name === 'phone'){
+    //   if(! value.match(/\d{3}[\-]\d{3}[\-]\d{4}/)){
+    //     this.validator.errors.add(name, 'US phone number not valid'); 
+    //  }     
+      if(! value.match(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)){
+        this.validator.errors.add(name, 'US phone number not valid'); 
+     }     
+    } else {  
+      this.validator.validate(name, value)
+        .then(() => {
           this.setState({ errors })
-      })
+        })
+    } 
+
   }
+
   
   handleSubmit(e) {
     e.preventDefault()

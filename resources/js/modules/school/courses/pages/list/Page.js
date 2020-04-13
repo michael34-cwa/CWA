@@ -3,11 +3,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { courseListRequest, courseUpdateRequest, courseRemoveRequest } from '../../service'
+import { Button } from '@material-ui/core';
 
 // import components
 import CourseRow from './components/CourseRow'
-import Pagination from './components/Pagination'
+import Pagination from '../../../../../common/Pagination'
+import Search from '../../../../../common/Search'
 import { Link } from 'react-router-dom'
+import LoadingComponent from '../../../../../common/loader'
 
 class Page extends Component {
   static displayName = "CoursesPage";
@@ -21,9 +24,8 @@ class Page extends Component {
   constructor(props) {
     super(props);
 
-    this.togglePublish = this.togglePublish.bind(this);
-    this.handleRemove = this.handleRemove.bind(this);
-    this.pageChange = this.pageChange.bind(this);
+     this.pageChange = this.pageChange.bind(this);
+    this.searchChange = this.searchChange.bind(this)
   }
 
   UNSAFE_componentWillMount() {
@@ -31,25 +33,24 @@ class Page extends Component {
      dispatch(courseListRequest({}));
   }
 
-  pageChange(pageNumber) {
-    this.props.dispatch(courseListRequest({ pageNumber }));
+  pageChange = (event, pageNumber) => {
+    const value = this.state.searchData;
+    this.props.dispatch(courseListRequest({ pageNumber, value }))
   }
 
-  togglePublish(id) {
-    const course = this.props.courses.find(course => course.id === id);
-
-    if (!course) return;
-    if (course.isActive) {
-      course.isActive = 0;
+ 
+  searchChange(name, value) {
+    if (value.length >= 2) {
+      this.setState({ searchData: value })
+      this.props.dispatch(courseListRequest({ value }))
     } else {
-      course.isActive = 1;
-    } 
-    this.props.dispatch(courseUpdateRequest(course.toJson(),'1'));
+      this.setState({ searchData: '' })
+      this.props.dispatch(courseListRequest({}))
+    }
+
   }
 
-  handleRemove(id) {
-    this.props.dispatch(courseRemoveRequest(id));
-  }
+ 
 
   renderCourses() {
  
@@ -59,20 +60,22 @@ class Page extends Component {
           key={index}
           course={course}
           index={index}
-          togglePublish={this.togglePublish}
-          handleRemove={this.handleRemove}
         />
       );
     });
   }
 
-  render() {
+  render() {  
     return (
       <main className="dashboard-right" role="main">
-        <h1>Courses</h1>
-        <div className="table-responsive">
-          <table className="table  table-striped">
-            <thead className="thead-inverse">
+        <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
+        <div className="card">
+          <div className="card-body bg-white">
+            <h1 class="text-center">Courses</h1>
+            <div className="table-responsive">
+              <Search onChange={this.searchChange} /> 
+              <table className="table  table-striped">
+                <thead className="thead-inverse">
               <tr>
                 <th>Sr. No.</th>
                 <th>Name</th>
@@ -80,17 +83,16 @@ class Page extends Component {
                 <th>Category</th>
                 <th>Created Date</th>
                 <th>Updated Date</th>
-                <th>
-                  <Link to="/courses/create" className="btn btn-success">
-                    <i class="fa fa-plus" aria-hidden="true"></i>  Add
-                  </Link>
-                </th>
               </tr>
-            </thead>
-            <tbody>{this.renderCourses()}</tbody>
-          </table>
+              </thead>
+                {this.props.courses.length >= 1 ? this.renderCourses(this.props.meta.from) : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}
+
+              </table>
+            </div>
+            <Pagination meta={this.props.meta} onChange={this.pageChange} />
+ 
+          </div>
         </div>
-        <Pagination meta={this.props.meta} onChange={this.pageChange} />
       </main>
     );
   }

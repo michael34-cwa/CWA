@@ -49,19 +49,24 @@ import { browserHistory } from 'react-router'
     
   }
   
-  handleChange(name, value) {
-
+  handleChange(name, value) { 
     const { errors } = this.validator
-  
     this.setState({ category: { ...this.state.category, [name]: value} })
+    errors.remove(name) 
+    if (name === 'passwordConfirmation') { 
+       const result = this.validator.rules.confirmed(value, this.state.category.password); 
+          if (!result) {
+            this.validator.errors.add(name, 'Confirm password not matched with password');
+          }
+    } else {  
+      this.validator.validate(name, value)
+        .then(() => {
+          this.setState({ errors })
+        })
+    } 
 
-    errors.remove(name)
-  
-    this.validator.validate(name, value)
-      .then(() => {
-        this.setState({ errors })
-      })
   }
+  
   
   handleSubmit(e) {
   

@@ -32,13 +32,17 @@ export function categoryAddRequest(params) {
           };
 
           if (statusCode === 422) {
-            const resetErrors = {
-              errors: err.response.data,
-              replace: false,
-              searchStr: "",
-              replaceStr: ""
-            };
-            data.error = Transformer.resetValidationFields(resetErrors);
+            if (err.response.data.status == 0) {
+              toast.warn(err.response.data.message);
+            } else {
+              const resetErrors = {
+                errors: err.response.data,
+                replace: false,
+                searchStr: "",
+                replaceStr: ""
+              };
+              data.error = Transformer.resetValidationFields(resetErrors);
+            }
           } else if (statusCode === 401) {
             data.error = err.response.data.message;
           }

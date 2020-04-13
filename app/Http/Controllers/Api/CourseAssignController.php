@@ -7,6 +7,7 @@ use App\Model\SchoolCourses;
 use App\Model\StudentCourses;
 use App\Model\StudentProfile;
 use App\Model\Tasks;
+use App\Model\Courses;
 //use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -59,9 +60,9 @@ class CourseAssignController  extends Controller
     public function store(Request $request, $id)
     { 
         try { 
-            $id = base64_decode(urldecode($id));
-            foreach ($request::post('course_name') as $key => $course_id) {
-                $courseData =   SchoolCourses::where('school_id', '=', $id)->where('course_id', '=', $course_id)->first();
+             $id = base64_decode(urldecode($id));
+             $course_id = base64_decode(urldecode($request::post('course_name')));     
+             $courseData =   SchoolCourses::where('school_id', '=', $id)->where('course_id', '=', $course_id)->first();
 
                 if (empty($courseData)) {
                     $courseVal = new SchoolCourses();
@@ -69,14 +70,14 @@ class CourseAssignController  extends Controller
                     $courseVal->course_id = $course_id;
                     $courseVal->save();
                 }
-            }
+           
             if (isset($courseVal)) {
                 $courseData = SchoolCourses::with(['getCourse'])->where('school_id', $id)
                     ->paginate();
                 
                 return response()->json($courseData, 201);
             } else {
-                return response()->json('', 201);
+                return response()->json(['message' => 'This course already assigned to this school', 'status' => 0], 422);
             }
         } catch (\Exception $e) {
 
@@ -92,7 +93,10 @@ class CourseAssignController  extends Controller
     public function addCourse(Request $request, $id)
     {
         try {
+            $id = base64_decode(urldecode($id));   
+
             $courseId =    $request::post('course_name');
+            $courseId = base64_decode(urldecode($courseId));   
             $user = \Auth::guard('api')->user();
 
             $stuData =   StudentCourses::where('student_id', $id)->where('course_id', $courseId)->first();
@@ -131,6 +135,7 @@ class CourseAssignController  extends Controller
      */
     public function show(Request $request, $id)
     {
+        $id = base64_decode(urldecode($id));    
         $dataSearch   =   Request::get('search');
         return SchoolCourses::with(['getCourse'])->whereHas('getCourse', function ($q) use ($dataSearch) {
             if ($dataSearch) {
@@ -142,6 +147,8 @@ class CourseAssignController  extends Controller
 
     public function getCourseStudent(Request $request, $id)
     {
+        $id = base64_decode(urldecode($id));   
+
         $dataSearch   =   Request::get('search');
         return StudentCourses::with(['getCourse'])->whereHas('getCourse', function ($q) use ($dataSearch) {
             if ($dataSearch) {
@@ -152,8 +159,10 @@ class CourseAssignController  extends Controller
     }
 
 
-    public function getSchoolCourse(Request $request, $id)
+    public function getSchoolCourse(Request $request, $id =null)
     {
+        if($id != ''){
+        $id = base64_decode(urldecode($id));   
         $dataSearch   =   Request::get('search');
       $schoolId =  StudentProfile::where('student_id', $id)->first();
         return SchoolCourses::with(['getCourse'])->whereHas('getCourse', function ($q) use ($dataSearch) {
@@ -162,6 +171,10 @@ class CourseAssignController  extends Controller
             }
         })->where('school_id', $schoolId->school_id)->latest()
             ->paginate();
+    }else{ 
+     return response()->json(['data' => Courses::where('is_active',1)->latest()->get()], 201);
+
+    }
     }
 
 
@@ -169,6 +182,8 @@ class CourseAssignController  extends Controller
 
     public function getTaskStudent(Request $request, $id)
     {
+        $id = base64_decode(urldecode($id));   
+
         $dataSearch   =   Request::get('search');
         $courseStu   =   StudentCourses::findOrFail($id);  
         return CourseTasks::with(['getTask'])->whereHas('getTask', function ($q) use ($dataSearch) {
@@ -182,6 +197,8 @@ class CourseAssignController  extends Controller
 
     public function taskById(Request $request, $id)
     {
+        $id = base64_decode(urldecode($id));   
+
         $courseStu   =   StudentCourses::findOrFail($id); 
         return Tasks::where('course_id', $courseStu->course_id)->latest()->paginate(400);
     }
@@ -196,6 +213,7 @@ class CourseAssignController  extends Controller
      */
     public function update(SchoolListRequest $request, $id, $status = null)
     {
+        $id = base64_decode(urldecode($id));   
 
         if ($status == 0) {
             $user = User::findOrFail($id);
@@ -228,7 +246,9 @@ class CourseAssignController  extends Controller
      * @return \Illuminate\Http\Response
      */
     public function delete($id)
-    {
+    {        $id = base64_decode(urldecode($id));   
+
+
         $article = SchoolCourses::findOrFail($id);
         $article->delete();
         return response([], 200);
@@ -236,6 +256,8 @@ class CourseAssignController  extends Controller
 
     public function deleteCourse($id)
     {
+        $id = base64_decode(urldecode($id));   
+
         $course  =    StudentCourses::findOrFail($id);
         if ($course->status == 1) {
         return response()->json(['message' => 'This Course not completed yet.', 'status' => 0], 422);
@@ -251,6 +273,8 @@ class CourseAssignController  extends Controller
 
     public function deleteTask($id)
     {
+        $id = base64_decode(urldecode($id));   
+
         $course  =    CourseTasks::findOrFail($id);
         if ($course->status == 1) {
             return response()->json(['message' => 'This task not completed yet.', 'status' => 0], 422);
@@ -267,7 +291,10 @@ class CourseAssignController  extends Controller
 
     public function addTask(Request $request, $id)
     {
+
         try {
+            $id = base64_decode(urldecode($id));   
+
             $taskId =    $request::post('course_name');
             $user = \Auth::guard('api')->user();
             $stuData =   StudentCourses::where('id', $id)->first();

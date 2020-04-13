@@ -199,6 +199,7 @@ class StudentsController  extends Controller
 
     public function update(SchoolRequest $request, $id, $status = null)
     {
+        $id = base64_decode(urldecode($id));
 
         if ($status == 0) {
             $user = User::findOrFail($id);

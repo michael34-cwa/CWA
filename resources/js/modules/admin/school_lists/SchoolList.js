@@ -11,7 +11,7 @@ class SchoolList extends Model {
 
   initialize(props) {
      super.initialize(props)  
-    this.user_id = props.user ? props.user.id : "";
+    this.user_id = props.user ? window.btoa(props.user.id) : "";
     this.email = props.user ? props.user.email : "";
     this.schoolName = props.schoolName ? props.schoolName :"";
     this.phone = props.user ? props.user.phone : "";

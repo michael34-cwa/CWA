@@ -10,7 +10,7 @@ export default [
   },
  
   {
-    path: "/admin/students/:id/edit",
+    path: "/students/:id/edit",
     exact: true,
     auth: true,
     component: lazy(() => import("./pages/edit/index"))

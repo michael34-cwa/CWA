@@ -15,7 +15,7 @@ function transformResponse(params) {
 export function AssignCourseAddRequest(params,id) {  
   return dispatch => (  
     new Promise((resolve, reject) => {
-      dispatch(AssignCourseActions.spinerAdd(transformResponse()));
+    //  dispatch(AssignCourseActions.spinerAdd(transformResponse()));
       Http.post(`course_assign/${id}`, transformRequest(params))
         .then(res => {
           toast.success("Assigned Successfully"); 
@@ -119,7 +119,7 @@ export function AssignCourseListRequest({ id,pageNumber = 1, value = '', url = "
          };
        }
 
-export function CourseSchooListRequest({   url = "/courses" }) {
+export function CourseSchooListRequest({   url = "/course_assign/school" }) {
   return dispatch => {
  
     Http.get(url)

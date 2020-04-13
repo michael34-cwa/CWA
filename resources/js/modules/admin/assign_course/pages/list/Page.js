@@ -11,7 +11,7 @@ import Pagination from '../../../../../common/Pagination'
 import Search from '../../../../../common/Search'
 import { Link } from 'react-router-dom' 
  import DeleteModel from '../../../../../common/model/DeleteModel'
-import AssignModel from '../../../../../common/model/AssignModel'
+import AssignModel from '../../../../../common/model/SingleAssignModel'
 import ReeValidate from 'ree-validate' 
  class Page extends Component { 
   static displayName = 'AssignCoursePage'
@@ -28,8 +28,10 @@ import ReeValidate from 'ree-validate'
     this.handleRemove = this.handleRemove.bind(this)
     this.pageChange = this.pageChange.bind(this)
     this.searchChange = this.searchChange.bind(this)
+    this.openModelAss = this.openModelAss.bind(this) 
     this.openModel = this.openModel.bind(this) 
-    this.state = { open: false, id: '', searchData: '', type:false  };
+   // this.setState({ open: !this.state.open, id: ''  }) 
+    this.state = { open:false ,openAss: false, id: '', searchData: '', type:false  };
    // this.handleCloseModal = this.handleCloseModal.bind(this);
 
 
@@ -75,6 +77,18 @@ import ReeValidate from 'ree-validate'
     });
   }
 
+  openModelAss() {  
+    const { errors } = this.validator;
+    this.setState({ courseData: { ...this.state.courseData, ['course_name']: '' } });
+     
+    this.validator.validate('course_name', '1').then(() => {
+      this.setState({ errors });
+    });
+    
+    this.setState({ openAss: !this.state.openAss })
+  }
+
+
   handleSubmit(e) {
     e.preventDefault();
   
@@ -99,7 +113,7 @@ import ReeValidate from 'ree-validate'
      this.props
        .dispatch(AssignCourseAddRequest(courseData, id)) 
        .then(res => {    
-         this.setState({ loading: false, opens: false })   
+         this.setState({ loading: false, openAss: false })   
        })
       .catch(({ error, statusCode }) => {
         this.setState({ loading: false })
@@ -171,7 +185,7 @@ import ReeValidate from 'ree-validate'
 
   }
   render() {
- 
+
     return (
       <main className="dashboard-right" role="main">
         <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
@@ -193,13 +207,20 @@ import ReeValidate from 'ree-validate'
                           <i class="fa fa-plus" aria-hidden="true"></i> Assign Course
                         </Button >
                       </Link>  */}
-                      <AssignModel 
+                          <Button
+                        onClick={this.openModelAss}
+                        size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
+                        <i class="fa fa-plus" aria-hidden="true"></i> Assign Course
+                      </Button >
+                       {this.state.openAss &&   <AssignModel 
                         {...this.state}
-                        opens={this.state.opens}
+                        openAss={this.state.openAss}
+                        name={'Course'}
+                        openModelAss={this.openModelAss}
                         loading={this.state.loading}
                         courses={this.props.course_list} 
                         onChange={this.handleChange}
-                        onSubmit={this.handleSubmit}/>
+                        onSubmit={this.handleSubmit}/> }
                     </th>
                   
                   </tr>

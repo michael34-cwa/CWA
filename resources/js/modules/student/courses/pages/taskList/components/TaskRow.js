@@ -43,7 +43,7 @@ const TaskRow = ({course ,rolename}) => {
                   <div className="course-boxes">
                     <Paper className="task_name"> {itemTask.taskName}</Paper>
      <Paper> {'The infections found in the two jails, in the northern'}</Paper>
-                     <Paper className="text-center">  <Link className="btn btn-primary mt-3" to={`/task_details/${course.id}/${itemTask.id}/${course.studentId}`}>  View Task</Link></Paper>
+                     <Paper className="text-center">  <Link className="btn btn-primary mt-3" to={`/task_details/${course.id}/${window.btoa(itemTask.id)}/${course.studentId}`}>  View Task</Link></Paper>
                      </div>
                      </Grid>
                    </React.Fragment>

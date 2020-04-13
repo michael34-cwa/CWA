@@ -58,9 +58,9 @@ class Navigation extends Component {
   
     return (
       <Navbar className="navbar navbar-expand-md bg-white fixed-top">
-        <Link to="/" className="navbar-brand">
+        {/* <Link to="/" className="navbar-brand"> */}
           <img src={logo} alt={"logo"} /> 
-        </Link>
+        {/* </Link> */}
         <NavbarToggler
           className="navbar-toggler d-lg-none"
           onClick={this.toggleNavbar}

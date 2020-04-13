@@ -187,8 +187,8 @@ import { TextField , FormHelperText, FormControl, InputLabel, MenuItem, Select }
     })
 
   }
-  render() {
- 
+  render() { 
+
     return (
       <main className="dashboard-right" role="main">
         <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 

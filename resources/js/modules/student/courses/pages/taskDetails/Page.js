@@ -1,11 +1,11 @@
 // import libs
 import React, { Component } from 'react'
-import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest } from '../../service'
+import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest } from '../../service'
 import { Button } from '@material-ui/core';
 import StatusModel from '../../../../../common/model/StatusModel'
 import RejectModel from '../../../../../common/model/RejectModel'
 import LoadingComponent from '../../../../../common/loader'
-
+import ChatBox from '../../../../../common/model/ChatBox'
 // import components
 import TaskRow from './components/TaskRow'
 import ReeValidate from 'ree-validate'  
@@ -41,9 +41,9 @@ class Page extends Component {
      this.handleChange = this.handleChange.bind(this);
   
 
-  
- 
-
+   //  this.handlehatSubmit = this.handleChatSubmit.bind(this);
+    //  this.handleChatChange = this.handleChatChange.bind(this);
+   
   }
 
   UNSAFE_componentWillMount() {
@@ -53,17 +53,18 @@ class Page extends Component {
   }
 
   backBtn(){
-    this.props.history.goBack();
-
+    this.props.history.goBack(); 
   }
+
   loadCourse() {
-    const { match, course, dispatch } = this.props
-    //    if (!course.id) {  
-    //  dispatch(taskDetailsRequest(match.params.id)) 
+    const { match, course, dispatch } = this.props 
     let id = match.params.cid
     let sid = match.params.sid
+    let tid = match.params.id  
+ 
     dispatch(courseEditRequest(id, sid))
-    //   } 
+    dispatch(chatListRequest(tid))
+     
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -193,7 +194,7 @@ class Page extends Component {
   render() {
 
     const { course, user } = this.props
-
+console.log(this.props);
     return <main className="dashboard-right" role="main">
    <Button
                     onClick={this.backBtn}
@@ -272,7 +273,7 @@ class Page extends Component {
             </div>
 
 
-          ) : course.status == 2 &&           
+          ) : course.status == 2  && user.rolename == 'teacher' &&           
               <span class="badge badge-primary">Completed</span>
 
 
@@ -282,7 +283,15 @@ class Page extends Component {
    { user.rolename == 'student' && course.description != null &&  course.description }
         {this.renderList()}
       </div>
+
+    
       </div>
+      {  <ChatBox 
+                        {...this.state}
+                        loading={this.state.loading} 
+                        course={this.state.course}  
+                        onChange={this.handleChange}
+                        onSubmit={this.handleSubmit}/>}
     </main>
   }
 }

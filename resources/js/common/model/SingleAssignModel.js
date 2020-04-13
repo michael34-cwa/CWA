@@ -11,8 +11,7 @@ const propTypes = {
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  opens: PropTypes.boolean,
-}
+ }
 
 
 

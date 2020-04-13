@@ -1,6 +1,7 @@
 import Http from '../../../utils/Http'
 import Transformer from '../../../utils/Transformer'
 import * as courseActions from './store/actions'
+import * as taskActions from '../../school/students/store/actions'
 import { toast } from "react-toastify";
 function transformRequest(parms) {
   return Transformer.send(parms)
@@ -148,7 +149,19 @@ export function courseListRequest({ pageNumber = 1, value = '', url = "/courses/
 }
 
 
-
+export function chatListRequest( tid) {
+ 
+  return dispatch => {
+    Http.get(`tasks/chat/${tid}`)
+      .then(res => {
+        dispatch(taskActions.list(transformResponse(res.data)));
+      })
+      .catch(err => {
+        // TODO: handle err
+        console.error(err.response);
+      });
+  };
+}
 
 export function courseEditRequest(id,sid) {
   return dispatch => {
@@ -229,7 +242,7 @@ export function courseStatusRequest(params) {
 }
 
 
-export function taskDisRequest(params,id) {   console.log(params);
+export function taskDisRequest(params,id) {    
 
   return dispatch => (
     new Promise((resolve, reject) => {

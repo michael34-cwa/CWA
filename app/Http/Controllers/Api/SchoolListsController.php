@@ -133,9 +133,10 @@ class SchoolListsController  extends Controller
     public function update(SchoolListRequest $request, $id, $status = null)
     {
         $id = base64_decode(urldecode($id));
+        $user_id = base64_decode(urldecode($request->user_id));
         if ($status == 0) {
             $schoolList = SchoolList::find($id);  
-            $user = User::find($request->user_id);  
+            $user = User::find( $user_id);  
             $user->phone = $request->phone;
             $user->save();  
             $schoolList->school_name = $request->school_name;
@@ -143,7 +144,7 @@ class SchoolListsController  extends Controller
             $schoolList->school_address = $request->school_address;
             $schoolList->save();
         } else {
-            $user = \Sentinel::findById($request->user_id);
+            $user = \Sentinel::findById( $user_id);
             $UsrActCkh =  Activations::where('user_id',  $user->id)->first();
             if (empty($UsrActCkh) || $UsrActCkh['is_active'] == '0') {
                 $ActCode = \Activation::create($user);
@@ -159,6 +160,7 @@ class SchoolListsController  extends Controller
 
     private function getList($id)
     {
+        $id = base64_decode(urldecode($id));
          return  SchoolList::with(array('User' => function ($query) {
             $query->select('id', 'email', 'first_name', 'last_name', 'phone');
         }, 'ActivationsUser'))->find($id);

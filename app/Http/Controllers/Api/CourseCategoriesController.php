@@ -67,11 +67,16 @@ class CourseCategoriesController  extends Controller
      */
     public function store(TechnologiesRequest $request)
     { 
-
+      $catCheck =  CourseCategories::where('category_name','LIKE', "%{$request->category_name}%")->first();
+ 
+    if(empty($catCheck)){
        $technologies = new CourseCategories($request->validated());
        $technologies->category_name = $request->category_name; 
        $technologies->save(); 
       return response()->json($technologies, 201);
+    }else{
+      return response()->json(['message' => 'This category already exits', 'status' => 0], 422);
+    }
     }
 
     /**

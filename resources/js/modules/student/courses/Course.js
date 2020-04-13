@@ -12,7 +12,7 @@ class Course extends Model {
     this.courseName = props.getStudentCourse ? props.getStudentCourse.courseName : "";
     this.courseDescription = props.getStudentCourse ? props.getStudentCourse.courseDescription : "";
     this.getTasks = props.getCourseTasks || "";
-    this.studentId = props.studentId || "";
+    this.studentId = window.btoa(props.studentId) || "";
     this.catId = props.getCategory ? props.getCategory: [];
     this.status = props.status || ""; 
     this.createdAt = props.createdAt ? moment(props.createdAt) : null;

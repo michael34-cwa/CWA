@@ -47,17 +47,25 @@ class Page extends Component {
     } 
   }
   
-  handleChange(name, value) {
-    const { errors } = this.validator 
+  handleChange(name, value) { 
+    const { errors } = this.validator
     this.setState({ project_user: { ...this.state.project_user, [name]: value} })
-    
-    errors.remove(name)
-    
-    this.validator.validate(name, value)
-      .then(() => {
+    errors.remove(name) 
+    if (name === 'passwordConfirmation') { 
+       const result = this.validator.rules.confirmed(value, this.state.project_user.password); 
+          if (!result) {
+            this.validator.errors.add(name, 'Confirm password not matched with password');
+          }
+    } else {  
+      this.validator.validate(name, value)
+        .then(() => {
           this.setState({ errors })
-      })
+        })
+    } 
+
   }
+
+ 
   
   handleSubmit(e) {
     e.preventDefault()

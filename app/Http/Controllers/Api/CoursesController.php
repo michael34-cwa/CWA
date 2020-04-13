@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Model\Courses;
 use App\Model\CourseCategories;
 use App\Model\CategoryCourses;
+use App\Model\SchoolProfile;
  use Illuminate\Support\Facades\Request;
  use App\Model\StudentCourses;
 use Illuminate\Support\Str;
@@ -36,9 +37,17 @@ class CoursesController  extends Controller
 
        public function getCourses()
     {
-         return Courses::whereHas('getSchoolCourse', function ($q) {
-            $q->whereIn('school_id', [ \Auth::guard('api')->user()->id]);
-        })->with(['getCourseTasks','getCategory'])->paginate();
+        $dataSearch   =   Request::get('search'); 
+      $id =  \Auth::guard('api')->user()->id;
+      $school = SchoolProfile::where('school_id',$id)->first();
+   
+      if(! empty($school)){
+        $id =  $school['school_admin_id'];
+      }
+      
+         return Courses::whereHas('getSchoolCourse', function ($q)  use ($id) {
+            $q->where('school_id', $id );
+        })->with(['getCategory'])->Where('course_name', 'LIKE', "%{$dataSearch}%")->latest()->paginate();
     }
          
     public function getStudentCourses($id=null)
