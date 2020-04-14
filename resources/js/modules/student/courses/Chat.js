@@ -1,7 +1,7 @@
 import moment from 'moment'
 import Model from '../../../utils/Model'
-import User from '../../user/User'
-class Task extends Model {
+
+class Chat extends Model {
   constructor(props) {
     super(props)
 
@@ -12,15 +12,10 @@ class Task extends Model {
  
 
     super.initialize(props)    
-    this.taskName = props.taskName || "";
-    this.taskDescription = props.taskDescription || ""; 
-    this.status = props.pivot ? props.pivot.status : "";
-    this.description = props.pivot ? props.pivot.description : "";
-    this.taskId = props.pivot ? window.btoa(props.pivot.id) : "";
-    
-    // relate user model
-    this.user = props.user ? new User(props.user) : null
-  }
+    this.message = props.message || ""; 
+    this.name = props.sender ? props.sender.firstName: '';
+     this.senderId = props.sender ? props.sender.id: '';
+    }
 }
 
-export default Task
+export default Chat

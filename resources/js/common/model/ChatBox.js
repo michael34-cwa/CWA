@@ -11,9 +11,9 @@ const propTypes = {
 
 
 
-const ChatBox = ({ loading, course, errors, onChange, onSubmit }) => {
-
-
+const ChatBox = ({ loading, chats, user, errors, onChange, onSubmit }) => {
+console.log(chats)
+console.log(user)
 
   function handleChange(name, value) {
 
@@ -29,14 +29,20 @@ const ChatBox = ({ loading, course, errors, onChange, onSubmit }) => {
 
    <div class="container ">
     <div class="chat-log">
-      <div class="chat-log__item">
+      {/* <div class="chat-log__item chat-log__item--own">
         <h3 class="chat-log__author">Felipe <small>14:30</small></h3>
         <div class="chat-log__message">Yo man</div>
+      </div> */}
+{  
+     chats.map((chat, index) => {
+      let curruser = user.id === chat.senderId ? 'chat-log__item--own' : '';
+      return   <div class={'chat-log__item'+' '+ curruser }>
+        <h3 class="chat-log__author">{chat.name} <small>{chat.createdAt && chat.createdAt.format("MMMM, DD YYYY h:sa")} </small></h3>
+        <div class="chat-log__message">{chat.message} </div>
       </div>
-      <div class="chat-log__item chat-log__item--own">
-        <h3 class="chat-log__author">Fabrício <small>14:30</small></h3>
-        <div class="chat-log__message">BRB</div>
-      </div>
+    })
+}
+
     </div>
 
   <div class="chat-form">
@@ -45,11 +51,11 @@ const ChatBox = ({ loading, course, errors, onChange, onSubmit }) => {
           <div class="col-sm-10 col-xs-8">
 
           <TextField
-           error={errors.has("chat")} 
+      //     error={errors.has("chat")} 
           label="Chat"
           style={{ margin: 8 }}
-          helperText={`${errors.has("chat") ? errors.first("chat").replace("chat", "chat") : ''}`}
-          value={course.description || ""}
+        //  helperText={`${errors.has("chat") ? errors.first("chat").replace("chat", "chat") : ''}`}
+          value={ ""}
           id="chat"
           name="chat"
           onChange={e => handleChange(e.target.name, e.target.value)}
@@ -68,7 +74,7 @@ const ChatBox = ({ loading, course, errors, onChange, onSubmit }) => {
           <div class="col-sm-10 col-xs-8">
           <Button
             variant="contained"
-            disabled={errors.any()}
+        //    disabled={errors.any()}
             type="submit"
             className="text-capitalize colorPrimary"
             disableElevation 

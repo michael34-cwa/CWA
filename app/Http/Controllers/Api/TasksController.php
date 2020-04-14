@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Model\Tasks;
 use App\Model\Courses;
 use App\Model\CourseTasks;
+use App\Model\StudentCourses;
 use App\Model\Chats;
  use Illuminate\Support\Facades\Request; 
 use Illuminate\Support\Str;
@@ -188,10 +189,12 @@ class TasksController  extends Controller
         return response([], 200);
     }
 
-    public function getChat(Request $request, $id)
+    public function getChat(Request $request, $id,$sid)
     { 
         $id = base64_decode(urldecode($id));
-    $chat =  Chats::with(['Sender','Receiver'])->where('task_id',$id)->get();
+         $sid = base64_decode(urldecode($sid));
+        $scholid =  StudentCourses::find($sid);
+      $chat = Chats::with(['Sender'])->where('school_id',$scholid->school_id)->where('task_id',$id)->get();
       return response()->json(['data' => $chat], 201);
     }
     

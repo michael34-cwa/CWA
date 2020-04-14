@@ -4,8 +4,7 @@ import Chat from '../../Chat'
 // import components
 import Page from './Page'
 
-const mapStateToProps = (state, router) => {
- console.log(state)
+const mapStateToProps = (state, router) => { 
   let  taskDils = ''; 
   const { params } = router.match  
   const tasks = state.courses.data.find(course => course.id == window.atob(params.cid))
@@ -13,11 +12,11 @@ const mapStateToProps = (state, router) => {
        taskDils = tasks.getCourseTasks.find(course => course.id == window.atob(params.id))
     }
     let chats = state.students.data.length > 0 ? state.students.data : [];
-  return {
+   return {
     course: taskDils ? new Task(taskDils) : new Task({}),
     user: state.admin_user,
-    chat: chats ? new Chat(chats) : new Chat({}),
-
+    chat: chats.map(chat => new Chat(chat)),
+  
    }
 }
 

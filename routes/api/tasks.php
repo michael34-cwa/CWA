@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('/task_list', 'TasksController@taskList')->name('tasks.taskList');
     Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('chat/{id}', 'TasksController@getChat');
+    Route::get('chat/{id}/{sid}', 'TasksController@getChat');
     Route::get('student/{id}', 'TasksController@studentTask');
     Route::post('student/{id}', 'TasksController@taskStatus');
     Route::post('task_dis/{id}', 'TasksController@taskDis');

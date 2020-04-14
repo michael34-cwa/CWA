@@ -21,8 +21,8 @@ class CreateChatsTable extends Migration
             // $table->foreign('school_id')->references('id')->on('users');
             $table->integer('sender_id')->unsigned();
             $table->foreign('sender_id')->references('id')->on('users');
-            $table->integer('receiver_id')->unsigned();
-            $table->foreign('receiver_id')->references('id')->on('users');
+            $table->integer('school_id')->unsigned();
+            $table->foreign('school_id')->references('id')->on('users');
             $table->text('message');
             $table->timestamps();
         });

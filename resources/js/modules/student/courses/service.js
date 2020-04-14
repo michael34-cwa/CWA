@@ -149,10 +149,10 @@ export function courseListRequest({ pageNumber = 1, value = '', url = "/courses/
 }
 
 
-export function chatListRequest( tid) {
+export function chatListRequest( tid,id) {
  
   return dispatch => {
-    Http.get(`tasks/chat/${tid}`)
+    Http.get(`tasks/chat/${tid}/${id}`)
       .then(res => {
         dispatch(taskActions.list(transformResponse(res.data)));
       })

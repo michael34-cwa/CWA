@@ -22,12 +22,13 @@ class Page extends Component {
       description: "required|min:2|max:500", 
     });
     const course = this.props.course.toJson()
- 
+    const chat = this.props.chat
     this.state = {
       errors: this.validator.errors,
       loading: false,
       taskDis: { description:''},
       course,
+      chat,
       status : '',
       openAss: false 
       ,openCan: false
@@ -57,13 +58,13 @@ class Page extends Component {
   }
 
   loadCourse() {
-    const { match, course, dispatch } = this.props 
+    const { match, course, dispatch,chat } = this.props 
     let id = match.params.cid
     let sid = match.params.sid
     let tid = match.params.id  
- 
+
     dispatch(courseEditRequest(id, sid))
-    dispatch(chatListRequest(tid))
+    dispatch(chatListRequest(tid,id))
      
   }
 
@@ -190,12 +191,22 @@ class Page extends Component {
       />
     }
   }
+  renderChat() {
+    const { chat, user  } = this.props
 
+    return <ChatBox 
+                  
+                        loading={this.state.loading} 
+                        chats={chat}  
+                        user={user}  
+                        onChange={this.handleChange}
+                        onSubmit={this.handleSubmit}/>
+
+  }
   render() {
 
-    const { course, user } = this.props
-console.log(this.props);
-    return <main className="dashboard-right" role="main">
+    const { course, user ,chat} = this.props
+     return <main className="dashboard-right" role="main">
    <Button
                     onClick={this.backBtn}
                     size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
@@ -286,12 +297,8 @@ console.log(this.props);
 
     
       </div>
-      {  <ChatBox 
-                        {...this.state}
-                        loading={this.state.loading} 
-                        course={this.state.course}  
-                        onChange={this.handleChange}
-                        onSubmit={this.handleSubmit}/>}
+      {this.renderChat()}
+      
     </main>
   }
 }
