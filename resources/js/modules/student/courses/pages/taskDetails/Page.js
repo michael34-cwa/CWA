@@ -206,6 +206,7 @@ class Page extends Component {
   render() {
 
     const { course, user ,chat} = this.props
+   
      return <main className="dashboard-right" role="main">
    <Button
                     onClick={this.backBtn}

@@ -117,7 +117,7 @@ class Page extends Component {
  
             </tr>
           </thead> 
-            {this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>} 
+            {this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="7" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>} 
            </table>
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />

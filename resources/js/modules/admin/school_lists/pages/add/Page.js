@@ -56,13 +56,19 @@ import { browserHistory } from 'react-router'
     this.setState({ school_list: { ...this.state.school_list, [name]: value} })
 
     errors.remove(name)
-    
+    if(name === 'phone'){
+   
+      if(! value.match(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)){
+        this.validator.errors.add(name, 'US phone number not valid'); 
+     }     
+    } else {
     this.validator.validate(name, value)
       .then(() => {
        
         this.setState({ errors })
       })
   }
+}
   
   handleSubmit(e) {
   

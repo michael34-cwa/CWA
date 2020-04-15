@@ -7,10 +7,8 @@ import { Link } from 'react-router-dom'
   
 
 const TaskRow = ({course ,rolename}) => {
-
- 
-
-  
+console.log('course')
+console.log(course)
   return <div className="container">
     <div className="row">
       <Grid container spacing={1}>
@@ -42,8 +40,8 @@ const TaskRow = ({course ,rolename}) => {
                   <Grid item xs={4}>
                   <div className="course-boxes">
                     <Paper className="task_name"> {itemTask.taskName}</Paper>
-     <Paper> {'The infections found in the two jails, in the northern'}</Paper>
-                     <Paper className="text-center">  <Link className="btn btn-primary mt-3" to={`/task_details/${course.id}/${window.btoa(itemTask.id)}/${course.studentId}`}>  View Task</Link></Paper>
+      <div dangerouslySetInnerHTML={{ __html: itemTask.taskDescription.substr(0, 200).trim()+'....'  }} />
+          { course.status  >0 ? <Paper className="text-center">  <Link className="btn btn-primary mt-3" to={`/task_details/${course.id}/${window.btoa(itemTask.id)}/${course.studentId}`}>  View Task</Link></Paper> : '' }
                      </div>
                      </Grid>
                    </React.Fragment>

@@ -25,12 +25,17 @@ class ProjectAdminController  extends Controller
      */
     public function index(Request $request)
     {
-        $dataSearch   =   Request::get('search'); 
-        $user = \Auth::guard('api')->user();
         $dataSearch   =   Request::get('search');
+        $user = \Auth::guard('api')->user();
+        $schoolId = SchoolProfile::select('school_admin_id')->where('school_id',$user->id)->first();
+        if(empty($schoolId)){
+         $schoolId = $user->id;
+        }else{
+         $schoolId  =  $schoolId->school_admin_id;
+        }
         $schoolData = ProjectAdmin::with(array('User' => function ($query) {
             $query->select('id', 'email', 'first_name', 'last_name', 'phone');
-        }, 'ActivationsUser', 'User'))->where('created_by',  $user->id);
+        }, 'ActivationsUser', 'User'))->where('school_id', $schoolId);
 
         if ($dataSearch) {
             $schoolData = $schoolData->WhereHas('User', function ($query) use ($dataSearch) {
@@ -66,7 +71,7 @@ class ProjectAdminController  extends Controller
                 $query->Where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%")->orWhere('email', 'LIKE', "%{$dataSearch}%")->orWhere('phone', 'LIKE', "%{$dataSearch}%");
             });
         }
-        return  $studentData->paginate();
+        return  $studentData->latest()->paginate();
     }
 
     /**

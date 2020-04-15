@@ -24,15 +24,18 @@ class SchoolsController  extends Controller
      */
     public function index(Request $request)
     {
-
- 
-
-        $dataSearch   =   Request::get('search');
-
         $user = \Auth::guard('api')->user();
-        $schoolData = SchoolProfile::with(array('User' => function ($query)  use ($user) {
-            $query->select('id', 'email', 'first_name', 'last_name', 'phone')->where('id', "!=", $user->id);
-        }, 'ActivationsUser', 'User'))->where('created_by', $user->id);
+       $schoolId = SchoolProfile::select('school_admin_id')->where('school_id',$user->id)->first();
+       if(empty($schoolId)){
+        $schoolId = $user->id;
+       }else{
+        $schoolId  =  $schoolId->school_admin_id;
+       }
+        $dataSearch   =   Request::get('search');
+ 
+        $schoolData = SchoolProfile::with(array('User' => function ($query)  use ($user,$schoolId) {
+            $query->select('id', 'email', 'first_name', 'last_name', 'phone');
+        }, 'ActivationsUser', 'User'))->where('school_admin_id',$schoolId)->where('school_id', "!=", $user->id);
 
         if ($dataSearch) {
             $schoolData = $schoolData->WhereHas('User', function ($query) use ($dataSearch) {

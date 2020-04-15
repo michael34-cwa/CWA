@@ -105,7 +105,7 @@ class Page extends Component {
         <Search onChange={this.searchChange} /> 
         <div>
         
-          {this.renderCourses()}
+          {this.props.courses.length >0 ? this.renderCourses(): 'Not course found'}
           
         </div>
         <Pagination meta={this.props.meta} onChange={this.pageChange} />

@@ -56,6 +56,11 @@ class Page extends Component {
           if (!result) {
             this.validator.errors.add(name, 'Confirm password not matched with password');
           }
+    }else if(name === 'phone'){
+   
+      if(! value.match(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)){
+        this.validator.errors.add(name, 'US phone number not valid'); 
+     }     
     } else {  
       this.validator.validate(name, value)
         .then(() => {
