@@ -57,6 +57,10 @@ class SchoolsController  extends Controller
         return Courses::loadAllPublished();
     }
 
+    public function chatList()
+    {
+        return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTSzg2OTA2NGIwYzA4NDY3MWQyNGU3ODQ5N2U4OTZmMmQzLTE1ODcxMDc1ODYiLCJncmFudHMiOnsiaWRlbnRpdHkiOiJ1c2VyIiwidmlkZW8iOnsicm9vbSI6InRhc2sifX0sImlhdCI6MTU4NzEwNzU4NiwiZXhwIjoxNTg3MTIxOTg2LCJpc3MiOiJTSzg2OTA2NGIwYzA4NDY3MWQyNGU3ODQ5N2U4OTZmMmQzIiwic3ViIjoiQUM2MzdiNTE3NDk5YWRmZjliYWQzMzQ4ODc5MmQzMjY2MyJ9.yxVbjM-jEBLaIcUjTAEDZAzcDl9C6JBybt6nyP73zh8';
+    }
 
     public function adminList(Request $request,$id)
     {

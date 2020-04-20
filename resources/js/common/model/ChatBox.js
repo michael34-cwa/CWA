@@ -11,10 +11,7 @@ const propTypes = {
 
 
 
-const ChatBox = ({ loading, chats, user, errors, onChange, onSubmit }) => {
-console.log(chats)
-console.log(user)
-
+const ChatBox = ({ loading,token, chats, user, errors, onChange, onSubmit }) => {
   function handleChange(name, value) {
 
     onChange(name, value)
@@ -79,6 +76,15 @@ console.log(user)
             className="text-capitalize colorPrimary"
             disableElevation 
          >Send</Button>
+      <Button
+            variant="contained"
+        //    disabled={errors.any()}
+            type="submit"
+            className="text-capitalize colorPrimary"
+            disableElevation 
+         >
+<a target="_blank"  href={'https://maykilscorner.com/?token='+token}>video chat</a>
+</Button>
           </div>
         </div>
       </form>
