@@ -36,7 +36,7 @@ class SchoolListsController  extends Controller
             })->orWhere('school_name', 'LIKE', "%{$dataSearch}%");
         }
 
-        return  $schoolData->paginate();
+        return  $schoolData->latest()->paginate();
     }
     /**
      * Show the form for creating a new resource.

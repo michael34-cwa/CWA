@@ -18,7 +18,7 @@ const AssignCourseRow = ({ index, assignCourse, openModel,pageNo, togglePublish}
        <td>{assignCourse.courseName}</td>
        <td>{assignCourse.createdAt && assignCourse.createdAt.format("MMMM, DD YYYY")}</td>
        <td>{assignCourse.updatedAt && assignCourse.updatedAt.format("MMMM, DD YYYY")}</td>
-       <td>{assignCourse.status}</td>
+       {/* <td>{assignCourse.status}</td> */}
        <td>
          <div className="btn-group" role="group" aria-label="Actions">
              

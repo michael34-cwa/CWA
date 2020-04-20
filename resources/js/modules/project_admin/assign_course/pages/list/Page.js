@@ -204,7 +204,7 @@ import { TextField , FormHelperText, FormControl, InputLabel, MenuItem, Select }
                     <th>Course Name</th> 
                     <th>Created Date</th>
                     <th>Updated Date</th>
-                    <th>Status</th>
+                    {/* <th>Status</th> */}
                     <th> 
                       {/* <Link to="/admin/school_lists/create">
                         <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >

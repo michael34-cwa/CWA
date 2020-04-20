@@ -62,7 +62,8 @@ class Page extends Component {
     let id = match.params.cid
     let sid = match.params.sid
     let tid = match.params.id  
-
+      
+     
     dispatch(courseEditRequest(id, sid))
     dispatch(chatListRequest(tid,id))
      
@@ -192,11 +193,17 @@ class Page extends Component {
     }
   }
   renderChat() {
-    const { chat, user  } = this.props
-
+    const { chat, user, course } = this.props
+  
+    var jwt = require('jwt-simple');
+  var payload = { usr:user.firstName,task:window.atob(course.taskId) };
+   var secret = 'sddsd322343esfsfsdf233423efsdc';
+    
+    var token = jwt.encode(payload, secret);
     return <ChatBox 
                   
                         loading={this.state.loading} 
+                        token={token} 
                         chats={chat}  
                         user={user}  
                         onChange={this.handleChange}
@@ -206,6 +213,8 @@ class Page extends Component {
   render() {
 
     const { course, user ,chat} = this.props
+ 
+
      return <main className="dashboard-right" role="main">
    <Button
                     onClick={this.backBtn}
@@ -298,7 +307,6 @@ class Page extends Component {
     
       </div>
       {this.renderChat()}
-      
     </main>
   }
 }

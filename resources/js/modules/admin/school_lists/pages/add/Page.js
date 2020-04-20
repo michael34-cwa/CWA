@@ -67,7 +67,12 @@ import { browserHistory } from 'react-router'
        
         this.setState({ errors })
       })
+<<<<<<< HEAD
   }}
+=======
+  }
+}
+>>>>>>> 8ef47b4d4d3182d1f668dc53ba9b0c2fbc42c305
   
   handleSubmit(e) {
   

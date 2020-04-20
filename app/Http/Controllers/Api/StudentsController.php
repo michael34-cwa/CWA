@@ -28,11 +28,17 @@ class StudentsController  extends Controller
      */
     public function index(Request $request)
     { 
-        $user = \Auth::guard('api')->user(); 
-        $dataSearch   =   Request::get('search'); 
+        $dataSearch   =   Request::get('search');
+        $user = \Auth::guard('api')->user();
+        $schoolId = SchoolProfile::select('school_admin_id')->where('school_id',$user->id)->first();
+        if(empty($schoolId)){
+         $schoolId = $user->id;
+        }else{
+         $schoolId  =  $schoolId->school_admin_id;
+        }
         $schoolData = StudentProfile::with(array('User' => function ($query) {
             $query->select('id', 'email', 'first_name', 'last_name', 'phone');
-        }, 'ActivationsUser', 'User'))->where('created_by',  $user->id);
+        }, 'ActivationsUser', 'User'))->where('school_id', $schoolId);
 
         if ($dataSearch) {
             $schoolData = $schoolData->WhereHas('User', function ($query) use ($dataSearch) {

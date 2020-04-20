@@ -32,7 +32,6 @@ class SchoolRequest extends FormRequest
             //     'required',
             //     Rule::unique('users')->ignore(Auth::user()->id)
             //],
-            'phone' => 'nullable|min:8|numeric', 
-        ];
+         ];
     }
 }
