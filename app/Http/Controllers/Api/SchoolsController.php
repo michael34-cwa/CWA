@@ -24,15 +24,18 @@ class SchoolsController  extends Controller
      */
     public function index(Request $request)
     {
-
- 
-
-        $dataSearch   =   Request::get('search');
-
         $user = \Auth::guard('api')->user();
-        $schoolData = SchoolProfile::with(array('User' => function ($query)  use ($user) {
-            $query->select('id', 'email', 'first_name', 'last_name', 'phone')->where('id', "!=", $user->id);
-        }, 'ActivationsUser', 'User'))->where('created_by', $user->id);
+       $schoolId = SchoolProfile::select('school_admin_id')->where('school_id',$user->id)->first();
+       if(empty($schoolId)){
+        $schoolId = $user->id;
+       }else{
+        $schoolId  =  $schoolId->school_admin_id;
+       }
+        $dataSearch   =   Request::get('search');
+ 
+        $schoolData = SchoolProfile::with(array('User' => function ($query)  use ($user,$schoolId) {
+            $query->select('id', 'email', 'first_name', 'last_name', 'phone');
+        }, 'ActivationsUser', 'User'))->where('school_admin_id',$schoolId)->where('school_id', "!=", $user->id);
 
         if ($dataSearch) {
             $schoolData = $schoolData->WhereHas('User', function ($query) use ($dataSearch) {
@@ -54,6 +57,10 @@ class SchoolsController  extends Controller
         return Courses::loadAllPublished();
     }
 
+    public function chatList()
+    {
+        return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTSzg2OTA2NGIwYzA4NDY3MWQyNGU3ODQ5N2U4OTZmMmQzLTE1ODcxMDc1ODYiLCJncmFudHMiOnsiaWRlbnRpdHkiOiJ1c2VyIiwidmlkZW8iOnsicm9vbSI6InRhc2sifX0sImlhdCI6MTU4NzEwNzU4NiwiZXhwIjoxNTg3MTIxOTg2LCJpc3MiOiJTSzg2OTA2NGIwYzA4NDY3MWQyNGU3ODQ5N2U4OTZmMmQzIiwic3ViIjoiQUM2MzdiNTE3NDk5YWRmZjliYWQzMzQ4ODc5MmQzMjY2MyJ9.yxVbjM-jEBLaIcUjTAEDZAzcDl9C6JBybt6nyP73zh8';
+    }
 
     public function adminList(Request $request,$id)
     {
