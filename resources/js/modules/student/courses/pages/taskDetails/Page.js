@@ -29,7 +29,7 @@ class Page extends Component {
       errors: this.validator.errors,
       loading: false,
       taskDis: { description:''},
-      chatVal:'',
+      chatVal: { chat:''},
       course,
       chat,
       status : '',
@@ -64,13 +64,30 @@ class Page extends Component {
     let sid = match.params.sid
     let tid = match.params.id  
       
-    let schoolId = this.props.course.schoolId;
-    let taskid = this.props.course.id;
+
      
     dispatch(courseEditRequest(id, sid))
-    dispatch(chatListRequest(tid,id))
-     
+    
+ 
+    let schoolId = this.props.course.schoolId;
+    let taskid = this.props.course.id;
+    //dispatch(chatListRequest(tid,id));
   }
+
+  componentDidMount() {
+  
+    const { match, course, dispatch,chat } = this.props 
+    let id = match.params.cid
+    let sid = match.params.sid
+    let tid = match.params.id  
+      
+    this.interval = setInterval(() => dispatch(chatListRequest(tid,id)), 2000);
+  }
+ 
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+  
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     const course = nextProps.course.toJson()
@@ -147,7 +164,8 @@ class Page extends Component {
     const chatVal = this.state.chatVal;
      const { errors } = this.validator;
  
-    
+    // this.validator.validateAll(chatVal)
+
     this.validator.validateAll(chatVal).then(success => {
       if (success) {  
        this.submitChat(chatVal);
@@ -175,7 +193,7 @@ class Page extends Component {
       //  dispatch(courseEditRequest(id, sid))
       dispatch(chatListRequest(tid,id))
 
-         this.setState({ loading: false,  chatVal:''})   
+         this.setState({ loading: false,  chatVal: { chat:''},})   
        })
       .catch(({ error, statusCode }) => {
      
