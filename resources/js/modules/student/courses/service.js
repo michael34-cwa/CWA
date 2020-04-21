@@ -169,8 +169,8 @@ export function chatAddRequest(params, taskid,schoolId) {
     new Promise((resolve, reject) => {
       Http.post(`tasks/chat/${taskid}/${schoolId}`, transformRequest(params))
         .then(res => {
-          toast.success("Added Successfully");
-          //  dispatch(courseActions.add(transformResponse(res.data)));
+       //   toast.success("Added Successfully");
+          dispatch(taskActions.add(transformResponse(res.data)));
           return resolve(res);
         })
         .catch(err => {
