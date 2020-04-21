@@ -265,9 +265,10 @@ class Page extends Component {
   }
   renderChat() {
     const { chat, user, course } = this.props
-  
+    let schoolId =  window.atob(course.schoolId);
+   let taskid =    window.atob(course.id);
     var jwt = require('jwt-simple');
-  var payload = { usr:user.firstName,task:window.atob(course.taskId) };
+  var payload = { usr:user.firstName,task:schoolId+'_'+taskid };
    var secret = 'sddsd322343esfsfsdf233423efsdc';
     
     var token = jwt.encode(payload, secret);
