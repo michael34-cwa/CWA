@@ -1,6 +1,6 @@
 // import libs
 import React, { Component } from 'react'
-import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest } from '../../service'
+import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest,chatAddRequest } from '../../service'
 import { Button } from '@material-ui/core';
 import StatusModel from '../../../../../common/model/StatusModel'
 import RejectModel from '../../../../../common/model/RejectModel'
@@ -9,17 +9,19 @@ import ChatBox from '../../../../../common/model/ChatBox'
 // import components
 import TaskRow from './components/TaskRow'
 import ReeValidate from 'ree-validate'  
+
 class Page extends Component {
 
   constructor(props) {
     super(props)
-
+  
     this.togglePublish = this.togglePublish.bind(this);
     this.openModelAss = this.openModelAss.bind(this)
     this.backBtn = this.backBtn.bind(this)
 
     this.validator = new ReeValidate({
       description: "required|min:2|max:500", 
+      chat: "required|min:2|max:500",
     });
     const course = this.props.course.toJson()
     const chat = this.props.chat
@@ -27,6 +29,7 @@ class Page extends Component {
       errors: this.validator.errors,
       loading: false,
       taskDis: { description:''},
+      chatVal:'',
       course,
       chat,
       status : '',
@@ -41,10 +44,8 @@ class Page extends Component {
      this.handleSubmit = this.handleSubmit.bind(this);
      this.handleChange = this.handleChange.bind(this);
   
-
-   //  this.handlehatSubmit = this.handleChatSubmit.bind(this);
-    //  this.handleChatChange = this.handleChatChange.bind(this);
-   
+   this.handleSubmitChat = this.handleSubmitChat.bind(this);
+     this.handleChangeChat = this.handleChangeChat.bind(this);
   }
 
   UNSAFE_componentWillMount() {
@@ -63,6 +64,8 @@ class Page extends Component {
     let sid = match.params.sid
     let tid = match.params.id  
       
+    let schoolId = this.props.course.schoolId;
+    let taskid = this.props.course.id;
      
     dispatch(courseEditRequest(id, sid))
     dispatch(chatListRequest(tid,id))
@@ -121,6 +124,74 @@ class Page extends Component {
     }
     
   }
+
+  handleChangeChat(name, value) { 
+   
+ 
+    const { errors} = this.validator
+
+   this.setState({ chatVal: { ...this.state.chatVal, [name]: value} })
+
+    errors.remove(name)
+    
+    this.validator.validate(name, value)
+      .then(() => {
+       
+        this.setState({ errors })
+      })
+  }
+
+  handleSubmitChat(e) {
+    e.preventDefault();
+  
+    const chatVal = this.state.chatVal;
+     const { errors } = this.validator;
+ 
+    
+    this.validator.validateAll(chatVal).then(success => {
+      if (success) {  
+       this.submitChat(chatVal);
+      } else {
+        this.setState({ errors });
+      }
+    });
+  }
+
+
+  submitChat(chatVal) { 
+    this.setState({ loading: true })
+    const { match , dispatch } = this.props
+ //  let id = match.params.cid;  
+    // let sid = match.params.sid;  
+    let schoolId = this.props.course.schoolId;
+   let taskid = this.props.course.id;
+
+   let id = match.params.cid
+    let tid = match.params.id  
+
+     this.props
+       .dispatch(chatAddRequest(chatVal, taskid,schoolId)) 
+       .then(res => {  
+      //  dispatch(courseEditRequest(id, sid))
+      dispatch(chatListRequest(tid,id))
+
+         this.setState({ loading: false,  chatVal:''})   
+       })
+      .catch(({ error, statusCode }) => {
+     
+        this.setState({ loading: false })
+        const { errors } = this.validator;
+
+        if (statusCode === 422) {
+          _.forOwn(error, (message, field) => {
+            errors.add(field, message);
+          });
+        }
+
+        this.setState({ errors });
+      });
+  }
+
 
   handleChange(name, value) { 
   
@@ -194,27 +265,28 @@ class Page extends Component {
   }
   renderChat() {
     const { chat, user, course } = this.props
-  
+    let schoolId =  window.atob(course.schoolId);
+   let taskid =    window.atob(course.id);
     var jwt = require('jwt-simple');
-  var payload = { usr:user.firstName,task:window.atob(course.taskId) };
+  var payload = { usr:user.firstName,task:schoolId+'_'+taskid };
    var secret = 'sddsd322343esfsfsdf233423efsdc';
     
     var token = jwt.encode(payload, secret);
     return <ChatBox 
-                  
+    {...this.state}
                         loading={this.state.loading} 
                         token={token} 
-                        chats={chat}  
+                        chats={chat} 
+                        chatValue={this.state.chatVal}   
                         user={user}  
-                        onChange={this.handleChange}
-                        onSubmit={this.handleSubmit}/>
+                        onChange={this.handleChangeChat  }
+                        onSubmit={this.handleSubmitChat}/>
 
   }
   render() {
 
     const { course, user ,chat} = this.props
- 
-
+  
      return <main className="dashboard-right" role="main">
    <Button
                     onClick={this.backBtn}

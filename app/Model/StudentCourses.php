@@ -34,7 +34,7 @@ class StudentCourses extends Model
 
     public function getCourseTasks()
     {   
-    return $this->belongsToMany('App\Model\Tasks', 'course_tasks','student_corse_id', 'task_id')->withPivot(['id','status','description']);
+    return $this->belongsToMany('App\Model\Tasks', 'course_tasks','student_corse_id', 'task_id')->withPivot(['id','school_id','status','description']);
      }
  
 }

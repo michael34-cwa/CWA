@@ -191,6 +191,7 @@ class TasksController  extends Controller
 
     public function getChat(Request $request, $id,$sid)
     { 
+        
         $id = base64_decode(urldecode($id));
          $sid = base64_decode(urldecode($sid));
         $scholid =  StudentCourses::find($sid);
@@ -198,4 +199,19 @@ class TasksController  extends Controller
       return response()->json(['data' => $chat], 201);
     }
     
+    public function addChat(Request $request, $taskid, $schoolId)
+    {
+        $user = \Auth::guard('api')->user();
+       $taskid = base64_decode(urldecode($taskid));
+       $schoolId = base64_decode(urldecode($schoolId));
+      
+     $chats = new Chats();
+     $chats->task_id = $taskid; 
+     $chats->sender_id = $user->id; 
+     $chats->school_id = $schoolId; 
+     $chats->message = Request::get('chat'); 
+     $chats->save(); 
+   return response()->json($chats, 201);
+      
+     }
 }

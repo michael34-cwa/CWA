@@ -149,10 +149,10 @@ export function courseListRequest({ pageNumber = 1, value = '', url = "/courses/
 }
 
 
-export function chatListRequest( tid,id) {
+export function chatListRequest(taskid,schoolId) {
  
   return dispatch => {
-    Http.get(`tasks/chat/${tid}/${id}`)
+    Http.get(`tasks/chat/${taskid}/${schoolId}`)
       .then(res => {
         dispatch(taskActions.list(transformResponse(res.data)));
       })
@@ -162,6 +162,41 @@ export function chatListRequest( tid,id) {
       });
   };
 }
+
+
+export function chatAddRequest(params, taskid,schoolId) { 
+  return dispatch => (
+    new Promise((resolve, reject) => {
+      Http.post(`tasks/chat/${taskid}/${schoolId}`, transformRequest(params))
+        .then(res => {
+          toast.success("Added Successfully");
+          //  dispatch(courseActions.add(transformResponse(res.data)));
+          return resolve(res);
+        })
+        .catch(err => {
+          const statusCode = err.response.status;
+          const data = {
+            error: null,
+            statusCode
+          };
+
+          if (statusCode === 422) {
+            const resetErrors = {
+              errors: err.response.data,
+              replace: false,
+              searchStr: "",
+              replaceStr: ""
+            };
+            data.error = Transformer.resetValidationFields(resetErrors);
+          } else if (statusCode === 401) {
+            data.error = err.response.data.message;
+          }
+          return reject(data);
+        });
+    })
+  )
+}
+
 
 export function courseEditRequest(id,sid) {
   return dispatch => {
