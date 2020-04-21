@@ -7,16 +7,15 @@ class Task extends Model {
 
     this.initialize(props)
   }
- 
-  initialize(props) {   
- console.log(props);
- console.log('props');
+  
+  initialize(props) {    
     super.initialize(props)    
     this.taskName = props.taskName || "";
     this.taskDescription = props.taskDescription || ""; 
     this.status = props.pivot ? props.pivot.status : "";
     this.description = props.pivot ? props.pivot.description : "";
     this.taskId = props.pivot ? window.btoa(props.pivot.id) : "";
+    this.schoolId = props.pivot ? window.btoa(props.pivot.schoolId) : "";
      // relate user model
     this.user = props.user ? new User(props.user) : null
   }

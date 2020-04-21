@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types'
 import LoadingComponent from '../loader'
-import { TextField, Button, FormHelperText, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 const propTypes = {
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -11,7 +11,7 @@ const propTypes = {
 
 
 
-const ChatBox = ({ loading,token, chats, user, errors, onChange, onSubmit }) => {
+const ChatBox = ({ loading,token, chats,chatValue, user, errors, onChange, onSubmit }) => {
   function handleChange(name, value) {
 
     onChange(name, value)
@@ -48,11 +48,11 @@ const ChatBox = ({ loading,token, chats, user, errors, onChange, onSubmit }) => 
           <div class="col-sm-10 col-xs-8">
 
           <TextField
-      //     error={errors.has("chat")} 
+         error={errors.has("chat")} 
           label="Chat"
           style={{ margin: 8 }}
-        //  helperText={`${errors.has("chat") ? errors.first("chat").replace("chat", "chat") : ''}`}
-          value={ ""}
+          helperText={`${errors.has("chat") ? errors.first("chat").replace("chat", "chat") : ''}`}
+          value={ chatValue.chat}
           id="chat"
           name="chat"
           onChange={e => handleChange(e.target.name, e.target.value)}
@@ -71,19 +71,16 @@ const ChatBox = ({ loading,token, chats, user, errors, onChange, onSubmit }) => 
           <div class="col-sm-10 col-xs-8">
           <Button
             variant="contained"
-        //    disabled={errors.any()}
+           disabled={errors.any()}
             type="submit"
             className="text-capitalize colorPrimary"
             disableElevation 
          >Send</Button>
       <Button
-            variant="contained"
-        //    disabled={errors.any()}
-            type="submit"
+            variant="contained" 
             className="text-capitalize colorPrimary"
-            disableElevation 
-         >
-<a target="_blank"  href={'https://maykilscorner.com/?token='+token}>video chat</a>
+          >
+<a target="_blank"  href={'https://chat.maykilscorner.com/?token='+token}>video chat</a>
 </Button>
           </div>
         </div>
