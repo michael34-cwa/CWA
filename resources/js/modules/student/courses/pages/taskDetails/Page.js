@@ -119,7 +119,10 @@ class Page extends Component {
   }
 
 
- 
+  scrollToBottom = () => {
+    window.scrollTo(0, document.body.scrollHeight);
+    //this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
 
   openModelCan() {  
 
@@ -192,6 +195,7 @@ class Page extends Component {
        .then(res => {  
       //  dispatch(courseEditRequest(id, sid))
       dispatch(chatListRequest(tid,id))
+      this.scrollToBottom();
 
          this.setState({ loading: false,  chatVal: { chat:''},})   
        })
