@@ -198,10 +198,10 @@ class Page extends Component {
        .dispatch(chatAddRequest(chatVal, taskid,schoolId)) 
        .then(res => {  
       //  dispatch(courseEditRequest(id, sid))
-      dispatch(chatListRequest(tid,id))
+    //  dispatch(chatListRequest(tid,id))
       this.scrollToBottom();
      
-         this.setState({ loading: false,  chatVal: { chat:''},})   
+         this.setState({ loading: false,  chatVal: { chat:''}})   
        })
       .catch(({ error, statusCode }) => {
      
