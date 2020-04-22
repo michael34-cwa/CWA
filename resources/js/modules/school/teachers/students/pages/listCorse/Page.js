@@ -92,10 +92,10 @@ class Page extends Component {
                     <th>Category</th>
                     <th width="140px">Created Date</th>
                     <th width="140px">Updated Date</th>
-            
+                    <th></th>
                   </tr>
                 </thead>
-                {this.props.courses.length >= 1 ? this.renderCourses(this.props.meta.from) : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}
+                <tbody>{this.props.courses.length >= 1 ? this.renderCourses(this.props.meta.from) : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>
 
               </table>
             </div>

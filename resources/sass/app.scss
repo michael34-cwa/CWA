@@ -20,9 +20,12 @@ a {
   color: #ffffff;
   text-decoration: none;
   background-color: transparent;
-}
-a:hover {
-	text-decoration: none;
+  &:hover {
+	  text-decoration: none;
+	}
+  &:focus {
+		outline: none;
+	}
 }
 .has-shadow {
 	border-radius: 0.625rem;

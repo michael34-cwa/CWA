@@ -22,14 +22,16 @@ const CourseRow = ({  index,course,pageNo }) => {
     </td> 
     <td>{course.createdAt && course.createdAt.format("MMMM, DD YYYY")}</td>
     <td>{course.updatedAt && course.updatedAt.format("MMMM, DD YYYY")}</td>
-    <div className="btn-group" role="group" aria-label="Actions">
-          <Link to={`/course_tasks/${course.id}/${course.studentId}`}>
-            <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1">
-              <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> View Task
-            </Button >
-          </Link>  
+    <td>
+      <div className="btn-group" role="group" aria-label="Actions">
+        <Link to={`/course_tasks/${course.id}/${course.studentId}`}>
+          <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1">
+            <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> View Task
+          </Button >
+        </Link>  
 
-        </div>
+      </div>
+    </td>
   </tr>
   
   
