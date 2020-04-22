@@ -154,14 +154,13 @@ export function chatListRequest(taskid,schoolId,uid) {
   return dispatch => {
     Http.get(`tasks/chat/${taskid}/${schoolId}`)
       .then(res => {
-       // window.scrollTo(0, document.body.scrollHeight)
-         dispatch(taskActions.list(transformResponse(res.data)));
+          dispatch(taskActions.list(transformResponse(res.data)));
  
         let last = res.data.data[res.data.data.length - 1];
     
         if(window.atob(schoolId) == last.school_id && window.atob(taskid) == last.task_id && 0 == last.read && uid != last.sender_id){
     //   toast.success("Updated Successfully");
-    window.scrollTo(0, document.body.scrollHeight);
+        window.scrollTo(0, document.body.scrollHeight);
 
        Http.post(`tasks/chat/${taskid}/${schoolId}/${last.id}/1`, transformRequest());  
         }
