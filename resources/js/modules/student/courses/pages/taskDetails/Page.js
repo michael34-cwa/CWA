@@ -81,7 +81,9 @@ class Page extends Component {
     let sid = match.params.sid
     let tid = match.params.id  
       
-    this.interval = setInterval(() => dispatch(chatListRequest(tid,id)), 2000);
+    this.interval = setInterval(() => dispatch(chatListRequest(tid,id))
+    , 2000);
+ 
   }
  
   componentWillUnmount() {
@@ -196,7 +198,7 @@ class Page extends Component {
       //  dispatch(courseEditRequest(id, sid))
       dispatch(chatListRequest(tid,id))
       this.scrollToBottom();
-
+      localStorage.setItem("chatread", 1);
          this.setState({ loading: false,  chatVal: { chat:''},})   
        })
       .catch(({ error, statusCode }) => {
@@ -299,6 +301,7 @@ class Page extends Component {
                         loading={this.state.loading} 
                         token={token} 
                         chats={chat} 
+                        school={this.props.course.schoolId}
                         chatValue={this.state.chatVal}   
                         user={user}  
                         onChange={this.handleChangeChat  }

@@ -11,15 +11,30 @@ const propTypes = {
 
 
 
-const ChatBox = ({ loading,token, chats,chatValue, user, errors, onChange, onSubmit }) => {
+const ChatBox = ({ loading,token, chats,school,chatValue, user, errors, onChange, onSubmit }) => {
   function handleChange(name, value) {
 
     onChange(name, value)
 
   }
 
+  let last = chats[chats.length - 1];
 
 
+if(last){
+
+//   console.log(last.schoolId);
+// console.log(window.atob(school));
+// console.log(user.id);
+// console.log(last.senderId);
+// console.log('last.senderId');
+
+
+  if(window.atob(school) == last.schoolId && user.id != last.senderId &&  localStorage.getItem("lastname") == 1){
+    window.scrollTo(0, document.body.scrollHeight)
+    localStorage.setItem("chatread", 0);
+  }
+}
   return (
   
   
@@ -32,7 +47,7 @@ const ChatBox = ({ loading,token, chats,chatValue, user, errors, onChange, onSub
       </div> */}
 {  
      chats.map((chat, index) => {
-      let curruser = user.id === chat.senderId ? 'chat-log__item--own' : '';
+      let curruser = user.id == chat.senderId ? '' : 'chat-log__item--own';
       return   <div class={'chat-log__item'+' '+ curruser }>
         <h3 class="chat-log__author">{chat.name} <small>{chat.createdAt && chat.createdAt.format("MMMM, DD YYYY h:sa")} </small></h3>
         <div class="chat-log__message">{chat.message} </div>

@@ -10,11 +10,11 @@ class Chat extends Model {
  
   initialize(props) {   
  
-
     super.initialize(props)    
     this.message = props.message || ""; 
     this.name = props.sender ? props.sender.firstName: '';
      this.senderId = props.sender ? props.sender.id: '';
+     this.schoolId = props.sender ? props.schoolId: '';
     }
 }
 

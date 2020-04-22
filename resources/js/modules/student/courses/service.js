@@ -154,6 +154,7 @@ export function chatListRequest(taskid,schoolId) {
   return dispatch => {
     Http.get(`tasks/chat/${taskid}/${schoolId}`)
       .then(res => {
+       // window.scrollTo(0, document.body.scrollHeight)
         dispatch(taskActions.list(transformResponse(res.data)));
       })
       .catch(err => {
