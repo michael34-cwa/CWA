@@ -30,10 +30,10 @@ if(last){
 // console.log('last.senderId');
 
 
-  if(window.atob(school) == last.schoolId && user.id != last.senderId &&  localStorage.getItem("lastname") == 1){
-    window.scrollTo(0, document.body.scrollHeight)
-    localStorage.setItem("chatread", 0);
-  }
+  // if(window.atob(school) == last.schoolId && user.id != last.senderId &&  localStorage.getItem("lastname") == 1){
+  //   window.scrollTo(0, document.body.scrollHeight)
+  //   localStorage.setItem("chatread", 0);
+  // }
 }
   return (
   

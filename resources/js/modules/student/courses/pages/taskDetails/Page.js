@@ -76,12 +76,14 @@ class Page extends Component {
 
   componentDidMount() {
   
-    const { match, course, dispatch,chat } = this.props 
+    const { match, course, dispatch,chat,user } = this.props 
     let id = match.params.cid
     let sid = match.params.sid
     let tid = match.params.id  
-      
-    this.interval = setInterval(() => dispatch(chatListRequest(tid,id))
+    let schoolId = this.props.course.schoolId;
+    let taskid = this.props.course.id;
+ 
+    this.interval = setInterval(() => dispatch(chatListRequest(this.props.course.id,this.props.course.schoolId,user.id))
     , 2000);
  
   }
@@ -198,7 +200,7 @@ class Page extends Component {
       //  dispatch(courseEditRequest(id, sid))
       dispatch(chatListRequest(tid,id))
       this.scrollToBottom();
-      localStorage.setItem("chatread", 1);
+     
          this.setState({ loading: false,  chatVal: { chat:''},})   
        })
       .catch(({ error, statusCode }) => {
