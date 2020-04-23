@@ -39,28 +39,28 @@ if(last){
   
   
 
-   <div class="container ">
-    <div class="chat-log">
-      {/* <div class="chat-log__item chat-log__item--own">
-        <h3 class="chat-log__author">Felipe <small>14:30</small></h3>
-        <div class="chat-log__message">Yo man</div>
+   <div className="chat-wrapper">
+    <div className="chat-log">
+      {/* <div className="chat-log__item chat-log__item--own">
+        <h3 className="chat-log__author">Felipe <small>14:30</small></h3>
+        <div className="chat-log__message">Yo man</div>
       </div> */}
 {  
      chats.map((chat, index) => {
       let curruser = user.id == chat.senderId ? '' : 'chat-log__item--own';
-      return   <div class={'chat-log__item'+' '+ curruser }>
-        <h3 class="chat-log__author">{chat.name} <small>{chat.createdAt && chat.createdAt.format("MMMM, DD YYYY h:sa")} </small></h3>
-        <div class="chat-log__message">{chat.message} </div>
+      return   <div className={'chat-log__item'+' '+ curruser }>
+        <h3 className="chat-log__author">{chat.name} <small>{chat.createdAt && chat.createdAt.format("MMMM, DD YYYY h:sa")} </small></h3>
+        <div className="chat-log__message">{chat.message} </div>
       </div>
     })
 }
 
     </div>
 
-  <div class="chat-form">
+  <div className="chat-form">
      <form onSubmit={e => onSubmit(e)}>
-        <div class="row">
-          <div class="col-sm-10 col-xs-8">
+        <div className="row">
+          <div className="col-sm-10 col-xs-8">
 
           <TextField
          error={errors.has("chat")} 
@@ -81,9 +81,9 @@ if(last){
 
 
  
-            {/* <input type="text" class="form-control" id="" placeholder="Message" /> */}
+            {/* <input type="text" className="form-control" id="" placeholder="Message" /> */}
           </div>
-          <div class="col-sm-10 col-xs-8">
+          <div className="col-sm-10 col-xs-8">
           <Button
             variant="contained"
            disabled={errors.any()}
