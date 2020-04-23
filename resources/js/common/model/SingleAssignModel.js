@@ -106,7 +106,7 @@ const SingleAssignModel = ({ openModelAss, name,openAss, loading,courses, errors
               <a className="modalclose" onClick={handleClose}>
                 X
                </a>
-              <h2 id="transition-modal-title" className="text-center mb-0">Select The {name}</h2>
+              <h3 id="transition-modal-title" className="text-center mb-0 blue-txt">Select The {name}</h3>
             
               <form onSubmit={e => onSubmit(e)}>
                 <div className="row">

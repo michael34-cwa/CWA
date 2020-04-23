@@ -315,9 +315,9 @@ class Page extends Component {
     const { course, user ,chat} = this.props
   
      return <main className="dashboard-right" role="main">
-   <Button
+      <Button
                     onClick={this.backBtn}
-                    size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
+                    size="small" variant="contained" className="colorPrimary text-capitalize mb-2"  >
                     Back
         </Button > 
       <div class="card"><div class="card-body bg-white">

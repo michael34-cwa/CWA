@@ -72,21 +72,18 @@ class Page extends Component {
         <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
           <div className="card-body bg-white">
-            <h1 className="text-center" id="1s">Students List</h1>
+            <h1 className="text-center" id="student-lst-3">Students List</h1>
             <div className="table-responsive">
               <Search onChange={this.searchChange} />
               <table className="table  table-striped">
                 <thead className="thead-inverse">
-
-
                   <tr>
                     <th>Sr. No.</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
-                    <th>Phone</th> 
-                    
-
+                    <th>Phone</th>                    
+                    <th></th>
                   </tr>
                 </thead>
                 {this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="10" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}

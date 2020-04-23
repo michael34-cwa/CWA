@@ -105,7 +105,7 @@ const AssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
               <a className="modalclose" onClick={handleClose}>
                 X
                </a>
-              <h2 id="transition-modal-title" className="text-center mb-0">Select The Courses</h2>
+              <h3 id="transition-modal-title" className="text-center mb-0 blue-txt">Select The Courses</h3>
 
               <form onSubmit={e => onSubmit(e)}>
                 <div className="row">
