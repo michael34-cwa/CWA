@@ -109,6 +109,7 @@ class Page extends Component {
                     <th>Sr. No.</th>
                     <th>Task Name</th>
                     <th>Course Name</th>
+                    <th>Youtube</th>
                     <th>Created Date</th>
                     <th>Updated Date</th>
                     <th>

@@ -82,6 +82,7 @@ class TasksController  extends Controller
         $task->task_description = $request->task_description; 
         $task->course_id = $request->course_id; 
         $task->is_active = $request->is_active; 
+        $task->link = $request->link; 
         $task->save(); 
       return response()->json($task, 201);
     }

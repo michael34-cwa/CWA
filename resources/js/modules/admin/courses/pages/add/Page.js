@@ -21,7 +21,8 @@ class Page extends Component {
       course_name: "required|min:2|max:100",
       course_description: "min:2|max:1000",
       is_active:"required",
-      catId: "required"
+      catId: "required",
+      type: "required"
     });
 
     const course = this.props.course.toJson();
