@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
            $table->integer('course_id')->unsigned();
            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
            $table->boolean('is_active')->default(false);
+           $table->text('link')->nullable();
            $table->timestamps();
         });
     }

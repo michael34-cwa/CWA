@@ -69,7 +69,7 @@ const DeleteModel = ({ openModel,opens, ids, handleRemove }) => {
               <a className="modalclose" onClick={handleClose}>
                 X
                </a>
-              <h2 id="transition-modal-title" className="text-center mb-0">Delete Confirmation</h2>
+              <h3 id="transition-modal-title" className="text-center mb-0 blue-txt">Delete Confirmation</h3>
               <p id="transition-modal-description" className="text-center mt-3 mb-4">{'Are you sure want to delete?'}</p>
               <div className="text-center">
                 <button type="button" className="btn btn-primary mr-2" onClick={handleClose}>

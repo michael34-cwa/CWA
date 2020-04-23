@@ -87,7 +87,7 @@ class Page extends Component {
         <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
           <div className="card-body bg-white">
-            <h1 class="text-center">School Administrator</h1>
+            <h1 class="text-center" id="school-administrator">School Administrator</h1>
             <div className="table-responsive">
               <Search onChange={this.searchChange} /> 
               <table className="table  table-striped">
@@ -113,7 +113,7 @@ class Page extends Component {
                     </th>
                   </tr>
                 </thead>
-                {this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="7" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>} 
+                <tbody>{this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="7" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>
  
               </table>
             </div>

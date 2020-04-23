@@ -12,7 +12,7 @@ const propTypes = {
   onSubmit: PropTypes.func.isRequired
 };
 
-const Form = ({ loading,dataList, task, errors, onChange, onSubmit }) => {
+const Form = ({ loading,dataList,types, task, errors, onChange, onSubmit }) => {
 
  
   function handleChange(name, value) {
@@ -21,8 +21,8 @@ const Form = ({ loading,dataList, task, errors, onChange, onSubmit }) => {
       onChange(name, value);
     }
   }
+  
  
-
   return (
     <form onSubmit={e => onSubmit(e)}>
 
@@ -102,7 +102,25 @@ const Form = ({ loading,dataList, task, errors, onChange, onSubmit }) => {
         {<LoadingComponent isLoading={loading} error={''} />}
       </div>
 
-      
+  {  types == 1 ? <div className="row">
+        <div className="col-md-12">
+          <FormControl className="w-100 mb-3" >
+            <TextField
+            //  error={errors.has("link")}
+
+              label="Youtbe Link"
+           //   defaultValue="Youtbe Link"
+            //  helperText={`${errors.has("link") ? errors.first("link").replace("link", "link") : ''}`}
+             // value={task.task_name || ""}
+              id="link"
+              name="link"
+              onChange={e => handleChange(e.target.name, e.target.value)}
+            />
+          </FormControl>
+
+
+        </div>
+            </div> : "" }
 
 
       <div className="form-group row">

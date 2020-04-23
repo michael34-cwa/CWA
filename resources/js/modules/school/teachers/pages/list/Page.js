@@ -88,21 +88,19 @@ class Page extends Component {
         <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
           <div className="card-body bg-white">
-            <h1 class="text-center">Teachers List</h1>
+            <h1 class="text-center" id="teachers-list">Teachers List</h1>
             <div className="table-responsive">
               <Search onChange={this.searchChange} />
               <table className="table  table-striped">
                 <thead className="thead-inverse">
-
- 
-            <tr>
-              <th>Sr. No.</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-                <th>Email</th>
-              <th>Phone</th>
-              <th>Created Date</th>
-              <th>Updated Date</th>
+                  <tr>
+                    <th>Sr. No.</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Created Date</th>
+                    <th>Updated Date</th>
                     <th>  
                       {!this.props.match.params.id ? <Link to="teachers/create">
                           <Button
@@ -113,12 +111,11 @@ class Page extends Component {
                             <i class="fa fa-plus" aria-hidden="true"></i>  Add
                       </Button >
                         </Link> : ""}
-                    </th>
- 
-            </tr>
-          </thead> 
-            {this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="7" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>} 
-           </table>
+                    </th>      
+                  </tr>
+                </thead> 
+                <tbody>{this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="7" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>
+              </table>
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
           </div>

@@ -108,7 +108,7 @@ const RejectModel = ({ openModelCan,openCan, loading, course,errors, onChange, o
               <a className="modalclose" onClick={handleClose}>
                 X
                </a>
-              <h2 id="transition-modal-title" className="text-center mb-0">Enter the comment</h2>
+              <h3 id="transition-modal-title" className="text-center mb-0 blue-txt">Enter the comment</h3>
             
               <form onSubmit={e => onSubmit(e)}>
                 <div className="row">

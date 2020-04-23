@@ -30,7 +30,8 @@ class Page extends Component {
      this.state = { 
       task,
       errors: this.validator.errors,
-       loading: false
+       loading: false,
+       type:0
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,7 +52,12 @@ class Page extends Component {
   }
 
   handleChange(name, value) {
-    const { errors } = this.validator;
+    if(name == 'course_id'){
+   var corsetpe =   this.props.dataList.find(corse=> corse.id == value)
+    this.setState({ type: corsetpe.type});
+  }  
+         
+         const { errors } = this.validator;
 
     this.setState({ task: { ...this.state.task, [name]: value } });
 
@@ -109,6 +115,7 @@ class Page extends Component {
       
         <Form
           {...this.state}
+          types={this.state.type}
           dataList={this.props.dataList}
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}

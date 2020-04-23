@@ -39,67 +39,58 @@ if(last){
   
   
 
-   <div class="container ">
-    <div class="chat-log">
-      {/* <div class="chat-log__item chat-log__item--own">
-        <h3 class="chat-log__author">Felipe <small>14:30</small></h3>
-        <div class="chat-log__message">Yo man</div>
+   <div className="chat-wrapper">
+    <div className="chat-log">
+      {/* <div className="chat-log__item chat-log__item--own">
+        <h3 className="chat-log__author">Felipe <small>14:30</small></h3>
+        <div className="chat-log__message">Yo man</div>
       </div> */}
 {  
      chats.map((chat, index) => {
       let curruser = user.id == chat.senderId ? '' : 'chat-log__item--own';
-      return   <div class={'chat-log__item'+' '+ curruser }>
-        <h3 class="chat-log__author">{chat.name} <small>{chat.createdAt && chat.createdAt.format("MMMM, DD YYYY h:sa")} </small></h3>
-        <div class="chat-log__message">{chat.message} </div>
+      return   <div className={'chat-log__item'+' '+ curruser }>
+        <h3 className="chat-log__author">{chat.name} <small>{chat.createdAt && chat.createdAt.format("MMMM, DD YYYY h:sa")} </small></h3>
+        <div className="chat-log__message">{chat.message} </div>
       </div>
     })
 }
 
     </div>
 
-  <div class="chat-form">
-     <form onSubmit={e => onSubmit(e)}>
-        <div class="row">
-          <div class="col-sm-10 col-xs-8">
-
-          <TextField
-         error={errors.has("chat")} 
-          label="Chat"
-          style={{ margin: 8 }}
-          helperText={`${errors.has("chat") ? errors.first("chat").replace("chat", "chat") : ''}`}
-          value={ chatValue.chat}
-          id="chat"
-          name="chat"
-          onChange={e => handleChange(e.target.name, e.target.value)}
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="outlined"
-        />
-
-
- 
-            {/* <input type="text" class="form-control" id="" placeholder="Message" /> */}
-          </div>
-          <div class="col-sm-10 col-xs-8">
-          <Button
-            variant="contained"
-           disabled={errors.any()}
-            type="submit"
-            className="text-capitalize colorPrimary"
-            disableElevation 
-         >Send</Button>
+  <div className="chat-form">
+    <form onSubmit={e => onSubmit(e)}>
+      <TextField
+        error={errors.has("chat")} 
+        label="Chat"
+        helperText={`${errors.has("chat") ? errors.first("chat").replace("chat", "chat") : ''}`}
+        value={ chatValue.chat}
+        id="chat"
+        className="chat-text-field"
+        name="chat"
+        onChange={e => handleChange(e.target.name, e.target.value)}
+        fullWidth
+        margin="normal"
+        InputLabelProps={{
+        shrink: true,
+        }}
+        variant="outlined"
+      />
       <Button
-            variant="contained" 
-            className="text-capitalize colorPrimary"
-          >
-<a target="_blank"  href={'https://chat.maykilscorner.com/?token='+token}>video chat</a>
-</Button>
-          </div>
-        </div>
-      </form>
+      variant="contained"
+      disabled={errors.any()}
+      type="submit"
+      className="text-capitalize colorPrimary"
+      disableElevation 
+      >
+        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+      </Button>
+      <Button
+      variant="contained" 
+      className="text-capitalize colorPrimary"
+      >
+        <a target="_blank"  href={'https://chat.maykilscorner.com/?token='+token}><i class="fa fa-video-camera" aria-hidden="true"></i> </a>
+      </Button>
+    </form>
     </div>
     {<LoadingComponent isLoading={loading} error={''} />}
     </div>

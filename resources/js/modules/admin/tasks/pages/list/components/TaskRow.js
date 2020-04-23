@@ -18,6 +18,9 @@ const TaskRow = ({ index, task, togglePublish,   openModel, pageNo }) => {
       <th scope="row">{pageNo}</th>  
       <td>{task.taskName}</td> 
       <td>{task.courseName.courseName}</td>
+  <td>{task.link ? (<a  target="_blank" href={task.link}><Button
+           size="small" variant="contained" className="colorPrimary text-capitalize mx-1" 
+            >Link</Button></a> ) : ''}</td>
       <td>{task.createdAt && task.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{task.updatedAt && task.updatedAt.format("MMMM, DD YYYY")}</td>
       <td className="btn-right">

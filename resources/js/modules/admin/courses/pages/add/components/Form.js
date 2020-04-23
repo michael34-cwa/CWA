@@ -69,7 +69,7 @@ const Form = ({ loading,dataList, course, errors, onChange, onSubmit }) => {
       </div>
 
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-4">
           <FormControl className="w-100 mb-3" error = {errors.has("is_active")}>
             <InputLabel id="is_active"> Course Status</InputLabel>
             <Select
@@ -89,7 +89,7 @@ const Form = ({ loading,dataList, course, errors, onChange, onSubmit }) => {
           </FormControl>
          
         </div>
-        <div className="col-md-6">
+        <div className="col-md-4">
           <FormControl className="w-100 mb-3" error = {errors.has("catId")}>
             <InputLabel id="catId">Course Categories</InputLabel>
             <Select
@@ -113,6 +113,29 @@ const Form = ({ loading,dataList, course, errors, onChange, onSubmit }) => {
               )}
           </FormControl>
         </div>
+        <div className="col-md-4">
+          <FormControl className="w-100 mb-3" error = {errors.has("type")}>
+            <InputLabel id="type">Course Type</InputLabel>
+            <Select
+              labelId="type"
+              className={`${errors.has("type") &&  "is-invalid"}`}
+              id="type"
+            //  value={personName}
+              name="type"
+              onChange={e => handleChange(e.target.name, e.target.value)}
+              MenuProps={MenuProps}
+            >
+                 <MenuItem value={'0'}>Normal</MenuItem>
+              <MenuItem value={'1'}>Informative</MenuItem>
+            </Select>
+              {errors.has("type") && (
+                <FormHelperText>{errors.first("type").replace("type", "type")}</FormHelperText>
+              )}
+          </FormControl>
+        </div>
+
+
+
         {<LoadingComponent isLoading={loading} error={''} />}
       </div>
 

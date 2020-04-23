@@ -65,7 +65,7 @@ const DeleteModel = ({ openModelAss,openAss, taskId, togglePublish,discription,t
               <a className="modalclose" onClick={handleClose}>
                 X
                </a>
-      <h2 id="transition-modal-title" className="text-center mb-0">{title}</h2>
+              <h3 id="transition-modal-title" className="text-center mb-0 blue-txt">{title}</h3>
               <p id="transition-modal-description" className="text-center mt-3 mb-4">{discription}</p>
               <div className="text-center">
                 <button type="button" className="btn btn-primary mr-2" onClick={handleClose}>

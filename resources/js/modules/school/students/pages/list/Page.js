@@ -89,13 +89,11 @@ class Page extends Component {
         <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
           <div className="card-body bg-white">
-            <h1 class="text-center">Students List</h1>
+            <h1 class="text-center" id="students-list">Students List</h1>
             <div className="table-responsive">
               <Search onChange={this.searchChange} />
               <table className="table  table-striped">
                 <thead className="thead-inverse">
-
-
                   <tr>
                     <th>Sr. No.</th>
                     <th>First Name</th>
@@ -115,10 +113,9 @@ class Page extends Component {
                       </Button >
                         </Link> : ""}
                     </th>
-
                   </tr>
                 </thead>
-                {this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="10" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}
+                <tbody>{this.props.course_categories.length >= 1 ? this.renderCategories(this.props.meta.from) : <tr> <td colspan="10" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}</tbody>
               </table>
             </div>
             <Pagination meta={this.props.meta} onChange={this.pageChange} />
