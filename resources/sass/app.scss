@@ -604,6 +604,11 @@ button.colorPrimary:hover, a.colorPrimary:hover {
 	padding: 20px;
 	
 	.chat-log {
+
+		height: 60vh;
+		overflow-y: scroll;
+		padding: 0px 15px;
+
 		.chat-log__item {
 			background: #1e8ece;
 			padding: 10px;
@@ -655,6 +660,24 @@ button.colorPrimary:hover, a.colorPrimary:hover {
 				background: #6dbb7d;
 				left: calc(100% - 16px);
 				transform: skew(-40Deg);
+			}
+		}
+	}
+	.chat-form form {
+		display: flex;
+		display: -ms-flexbox;
+		align-content: center;
+		padding: 25px 0;
+		
+		.chat-text-field {
+			margin: 0;
+		}
+		button {
+			line-height: 1;
+			height: auto;
+
+			a:hover {
+				color: #fff;
 			}
 		}
 	}

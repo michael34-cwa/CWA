@@ -58,48 +58,39 @@ if(last){
     </div>
 
   <div className="chat-form">
-     <form onSubmit={e => onSubmit(e)}>
-        <div className="row">
-          <div className="col-sm-10 col-xs-8">
-
-          <TextField
-         error={errors.has("chat")} 
-          label="Chat"
-          style={{ margin: 8 }}
-          helperText={`${errors.has("chat") ? errors.first("chat").replace("chat", "chat") : ''}`}
-          value={ chatValue.chat}
-          id="chat"
-          name="chat"
-          onChange={e => handleChange(e.target.name, e.target.value)}
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="outlined"
-        />
-
-
- 
-            {/* <input type="text" className="form-control" id="" placeholder="Message" /> */}
-          </div>
-          <div className="col-sm-10 col-xs-8">
-          <Button
-            variant="contained"
-           disabled={errors.any()}
-            type="submit"
-            className="text-capitalize colorPrimary"
-            disableElevation 
-         >Send</Button>
+    <form onSubmit={e => onSubmit(e)}>
+      <TextField
+        error={errors.has("chat")} 
+        label="Chat"
+        helperText={`${errors.has("chat") ? errors.first("chat").replace("chat", "chat") : ''}`}
+        value={ chatValue.chat}
+        id="chat"
+        className="chat-text-field"
+        name="chat"
+        onChange={e => handleChange(e.target.name, e.target.value)}
+        fullWidth
+        margin="normal"
+        InputLabelProps={{
+        shrink: true,
+        }}
+        variant="outlined"
+      />
       <Button
-            variant="contained" 
-            className="text-capitalize colorPrimary"
-          >
-<a target="_blank"  href={'https://chat.maykilscorner.com/?token='+token}>video chat</a>
-</Button>
-          </div>
-        </div>
-      </form>
+      variant="contained"
+      disabled={errors.any()}
+      type="submit"
+      className="text-capitalize colorPrimary"
+      disableElevation 
+      >
+        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+      </Button>
+      <Button
+      variant="contained" 
+      className="text-capitalize colorPrimary"
+      >
+        <a target="_blank"  href={'https://chat.maykilscorner.com/?token='+token}><i class="fa fa-video-camera" aria-hidden="true"></i> </a>
+      </Button>
+    </form>
     </div>
     {<LoadingComponent isLoading={loading} error={''} />}
     </div>
