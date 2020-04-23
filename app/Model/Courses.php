@@ -20,7 +20,7 @@ class Courses extends Model
      */
     protected $table = 'courses';
 
-    protected $fillable = [ 'course_name', 'course_description', 'cat_id', 'is_active'];
+    protected $fillable = [ 'course_name', 'course_description', 'cat_id', 'is_active','type'];
 
     /**
      * The attributes that should be mutated to dates.

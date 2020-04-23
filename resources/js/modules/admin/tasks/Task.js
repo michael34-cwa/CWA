@@ -1,6 +1,5 @@
 import moment from 'moment'
 import Model from '../../../utils/Model'
-import User from '../../user/User'
 class Task extends Model {
   constructor(props) {
     super(props)
@@ -14,9 +13,9 @@ class Task extends Model {
     this.taskDescription = props.taskDescription || "";
     this.courseId = props.getCourse ? props.getCourse.id :[]; 
     this.courseName = props.getCourse || "";
+    this.link = props.link || "";
     this.isActive = props.isActive || "";
     // relate user model
-    this.user = props.user ? new User(props.user) : null
   }
 }
 

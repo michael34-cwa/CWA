@@ -108,6 +108,7 @@ class Page extends Component {
                     <th width="70px">Sr. No.</th>
                     <th width="150px">Name</th>
                     <th>Category</th>
+                    <th>Type</th>
                     <th width="140px">Created Date</th>
                     <th width="140px">Updated Date</th>
                     <th>

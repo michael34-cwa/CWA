@@ -85,6 +85,7 @@ const Form = ({ loading,dataList, task, errors, onChange, onSubmit }) => {
             className={`${errors.has("courseId") && "is-invalid"}`}
             id="courseId"
             name="courseId"
+            readOnly
             value={task.courseId}
             placeholder="Course Name"
             onChange={e => handleChange(e.target.name, e.target.value)}
@@ -108,7 +109,7 @@ const Form = ({ loading,dataList, task, errors, onChange, onSubmit }) => {
      
     <div className="form-group row">
       <div className="col-md-12 ml-auto">
-        <button disabled={errors.any()} type="submit" className="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update Courses</button>
+        <button disabled={errors.any()} type="submit" className="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update Task</button>
       </div>
     </div>
   </form>

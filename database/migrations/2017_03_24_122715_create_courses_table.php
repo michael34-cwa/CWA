@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration
            $table->string('course_name');
            $table->text('course_description')->nullable();
             $table->boolean('is_active')->default(false);
+            $table->boolean('type')->enum('0', '1');
            $table->timestamps();
         });
     }

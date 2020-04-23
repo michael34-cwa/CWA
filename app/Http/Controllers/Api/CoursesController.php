@@ -129,6 +129,7 @@ class CoursesController  extends Controller
         $course->course_name = $request->course_name;
         $course->course_description = $request->course_description;
         $course->is_active = $request->is_active;
+        $course->type = $request->type == 1 ? '1' : '0';
         $course->save();
         if($course){
         $course->getCategory()->attach($request->cat_id);

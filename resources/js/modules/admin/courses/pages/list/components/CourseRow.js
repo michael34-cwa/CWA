@@ -21,8 +21,8 @@ const CourseRow = ({ index, course, togglePublish, openModel, pageNo }) => {
           return <span className="chip-course">{item.categoryName}</span>;
         }).reduce((prev, curr) => [prev, ' ', curr]) : ''}
       </td>
-
-
+      <td>{course.typeDis}</td> 
+      
       <td>{course.createdAt && course.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{course.updatedAt && course.updatedAt.format("MMMM, DD YYYY")}</td>
       <td className="btn-right">
