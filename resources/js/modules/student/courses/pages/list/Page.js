@@ -101,14 +101,24 @@ class Page extends Component {
     return (
       <main className="dashboard-right" role="main">
             <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
-        <h1>Courses</h1>
-        <Search onChange={this.searchChange} /> 
-        <div>
+        <div className="card">
+        <div className="card-body">
+        <Grid item container>
+          <Grid item xs={12} lg={6} className="d-flex align-item-center">
+            <h1>Courses</h1>
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <Search onChange={this.searchChange} />
+          </Grid> 
+        </Grid>
+        <Grid item container spacing={4}>
         
           {this.props.courses.length >0 ? this.renderCourses(): 'Not course found'}
           
-        </div>
+        </Grid>
         <Pagination meta={this.props.meta} onChange={this.pageChange} />
+        </div>
+        </div>
 
       </main>
     );

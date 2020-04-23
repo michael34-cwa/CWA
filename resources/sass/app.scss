@@ -59,6 +59,13 @@ button.colorDanger:hover {
 		border-bottom: 2px solid #1e8ece;
 	}
 }
+.d-flex {
+	display: flex;
+	display: -ms-flexbox;
+}
+.align-item-center {
+	align-items: center;
+}
 .blue-txt {
 	color: #1e8ece;
 }

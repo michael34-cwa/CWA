@@ -405,7 +405,48 @@ class Page extends Component {
 
     
       </div>
-      {this.renderChat()}
+      
+      <div className="container-fluid">
+<div className="row">
+            <div className="col-xs-12 col-lg-7">
+              <div className="embedded-video-wrapper">
+                <h4>1-Embedded Video</h4>
+              </div>
+              <div className="row">
+                <div className="col-xs-12 col-sm-4">
+                  <div className="timer-wrapper">
+                    <h4>2-Timer</h4>
+                  </div>
+                </div>
+                <div className="col-xs-12 col-sm-8">                  
+                  <div className="timer-editor-wrapper">
+                    <h4>3-Transcriber-Editing box with timer</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-xs-12 col-lg-5">
+              <div className="row">
+                <div className="col-xs-12 col-md-5">
+                  <div className="completed-transcription-wrapper">
+                    <h4>4-Completed Transcription</h4>
+                  </div>
+                </div>
+                <div className="col-xs-12 col-md-5">
+                  <div className="twillo-videochat-1-wrapper">
+                    <h4>Twillo Video Chat 1</h4>
+                  </div>
+                  <div className="twillo-videochat-2-wrapper">
+                    <h4>Twillo Video Chat 2</h4>
+                  </div>
+                  <div className="mainChat-wrapper">
+                  {this.renderChat()}
+                  </div>
+                </div>
+              </div>  
+            </div>
+          </div>
+          </div>
     </main>
   }
 }

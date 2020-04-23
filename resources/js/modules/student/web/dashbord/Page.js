@@ -28,7 +28,7 @@ class Page extends Component {
     return (
       <div className="dashboard-right categories-list">
         <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
-        <h1 className="text-center">Student Dashboard</h1> 
+        {/* <h1 className="text-center" id="student-dashboard-1">Student Dashboard</h1>  */}
          <div className="row mb-20">
          
         
