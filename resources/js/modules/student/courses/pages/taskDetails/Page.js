@@ -405,9 +405,10 @@ class Page extends Component {
 
     
       </div>
-      
+      <div className="card">
+        <div class="card-body">
       <div className="container-fluid">
-<div className="row">
+        <div className="row">
             <div className="col-xs-12 col-lg-7">
               <div className="embedded-video-wrapper">
                 <h4>1-Embedded Video</h4>
@@ -427,12 +428,12 @@ class Page extends Component {
             </div>
             <div className="col-xs-12 col-lg-5">
               <div className="row">
-                <div className="col-xs-12 col-md-5">
+                <div className="col-xs-12 col-md-6">
                   <div className="completed-transcription-wrapper">
                     <h4>4-Completed Transcription</h4>
                   </div>
                 </div>
-                <div className="col-xs-12 col-md-5">
+                <div className="col-xs-12 col-md-6">
                   <div className="twillo-videochat-1-wrapper">
                     <h4>Twillo Video Chat 1</h4>
                   </div>
@@ -445,6 +446,8 @@ class Page extends Component {
                 </div>
               </div>  
             </div>
+          </div>
+          </div>
           </div>
           </div>
     </main>
