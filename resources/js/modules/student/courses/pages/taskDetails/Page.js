@@ -1,13 +1,17 @@
 // import libs
 import React, { Component } from 'react'
-import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest,chatAddRequest } from '../../service'
+import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest,chatAddRequest,taskTimeRequest } from '../../service'
 import { Button } from '@material-ui/core';
 import StatusModel from '../../../../../common/model/StatusModel'
 import RejectModel from '../../../../../common/model/RejectModel'
 import LoadingComponent from '../../../../../common/loader'
 import ChatBox from '../../../../../common/model/ChatBox'
+import ReactPlayer from 'react-player'
+import Duration from './Duration'
 // import components
 import TaskRow from './components/TaskRow'
+import Form from './components/Form'
+
 import ReeValidate from 'ree-validate'  
 
 class Page extends Component {
@@ -21,13 +25,20 @@ class Page extends Component {
 
     this.validator = new ReeValidate({
       description: "required|min:2|max:500", 
-      chat: "required|min:2|max:500",
+      chat: "required|min:2|max:500", 
     });
+
+    this.validatorT = new ReeValidate({ 
+      start_time: "required", 
+      end_time: "required", 
+      vid_disc: "min:2|max:800", 
+    });  
     const course = this.props.course.toJson()
     const chat = this.props.chat
     this.state = {
       errors: this.validator.errors,
-      loading: false,
+      errorst: this.validatorT.errorst,
+       loading: false,
       taskDis: { description:''},
       chatVal: { chat:''},
       course,
@@ -38,14 +49,19 @@ class Page extends Component {
     };
 
 
+    
 
      this.openModelCan = this.openModelCan.bind(this)
 
      this.handleSubmit = this.handleSubmit.bind(this);
      this.handleChange = this.handleChange.bind(this);
   
-   this.handleSubmitChat = this.handleSubmitChat.bind(this);
+    this.handleSubmitChat = this.handleSubmitChat.bind(this);
      this.handleChangeChat = this.handleChangeChat.bind(this);
+
+     this.handleChangeTime = this.handleChangeTime.bind(this);
+     this.handleSubmitTime = this.handleSubmitTime.bind(this);
+
   }
 
   UNSAFE_componentWillMount() {
@@ -148,6 +164,72 @@ class Page extends Component {
     }
     
   }
+
+
+  handleChangeTime(name, value) { 
+   
+ 
+    const { errorst} = this.validatorT
+
+   this.setState({ course: { ...this.state.course, [name]: value} })
+
+   errorst.remove(name)
+    
+    this.validatorT.validate(name, value)
+      .then(() => {
+       
+        this.setState({ errorst })
+      })
+  }
+
+
+  handleSubmitTime(e) {  
+    e.preventDefault();
+   
+    const course = this.state.course;
+     const { errors } = this.validator;
+ 
+   //  this.validator.validateAll() 
+   this.submitTime(course);
+    // this.validator.validateAll(course).then(success => {
+    //   if (success) {  
+    //    this.submitTime(course);
+    //   } else {
+    //     this.setState({ errors });
+    //   }
+    // });
+  }
+
+
+
+  submitTime(course) { 
+    this.setState({ loading: true })
+    const { match , dispatch } = this.props
+    let id = match.params.cid;  
+    let sid = match.params.sid;  
+     this.props
+       .dispatch(taskTimeRequest(course, id)) 
+       .then(res => {  
+    //    dispatch(courseEditRequest(id, sid))
+      
+         this.setState({ loading: false })   
+       })
+      .catch(({ error, statusCode }) => {
+     
+        this.setState({ loading: false })
+        const { errors } = this.validator;
+
+        if (statusCode === 422) {
+          _.forOwn(error, (message, field) => {
+            errors.add(field, message);
+          });
+        }
+
+        this.setState({ errors });
+      });
+  }
+
+
 
   handleChangeChat(name, value) { 
    
@@ -289,6 +371,8 @@ class Page extends Component {
       />
     }
   }
+
+
   renderChat() {
     const { chat, user, course } = this.props
     let schoolId =  window.atob(course.schoolId);
@@ -310,10 +394,78 @@ class Page extends Component {
                         onSubmit={this.handleSubmitChat}/>
 
   }
+
+  state = {
+    url: null,
+    pip: false,
+    playing: true,
+    controls: false,
+    light: false,
+    volume: 0.8,
+    muted: false,
+    played: 0,
+    loaded: 0,
+    duration: 0,
+    playbackRate: 1.0,
+    loop: false
+  }
+  load = url => {
+    this.setState({
+      url,
+      played: 0,
+      loaded: 0,
+      pip: false
+    })
+  }
+  handlePlay = () => {
+    console.log('onPlay')
+    this.setState({ playing: true })
+  }
+
+  handleDuration = (duration) => {
+    console.log('onDuration', duration)
+    this.setState({ duration })
+  }
+
+  handleProgress = state => {
+    console.log('onProgress', state)
+    // We only want to update time slider if we are not currently seeking
+    if (!this.state.seeking) {
+      this.setState(state)
+    }
+  }
+
+
+  handlePause = () => {
+    var timestamp = this.state.duration *  this.state.played;
+ 
+   var time = this.myTime(timestamp);
+ this.setState({ playing: false ,course: { start_time:'0.00' , end_time:  time}})
+      
+  }
+
+
+  myTime (seconds) {
+  const date = new Date(seconds * 1000)
+  const hh = date.getUTCHours()
+  const mm = date.getUTCMinutes()
+  const ss = this.pad(date.getUTCSeconds())
+  if (hh) {
+    return `${hh}:${this.pad(mm)}:${ss}`
+  }
+  return `${mm}:${ss}`
+}
+
+ pad (string) {
+  return ('0' + string).slice(-2)
+}
+ 
+
   render() {
+    const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state
 
     const { course, user ,chat} = this.props
-  
+    
      return <main className="dashboard-right" role="main">
       <Button
                     onClick={this.backBtn}
@@ -405,7 +557,87 @@ class Page extends Component {
 
     
       </div>
-      {this.renderChat()}
+      
+      <div className="container-fluid">
+<div className="row">
+            <div className="col-xs-12">
+              <div className="embedded-video-wrapper">
+                <h4>1-Embedded Video</h4>
+                <ReactPlayer
+                 url={course.link}
+                //  className='react-player'
+                //  width='100%'
+                //  height='500%'
+                 onPlay={this.handlePlay}
+                 onDuration={this.handleDuration}
+                 playing={playing}
+                 onProgress={this.handleProgress}
+                 onPause={this.handlePause}
+                    />
+                      <table>
+            <tbody>
+              <tr> 
+         
+                       <td>{playing ? 'true' : 'false'}</td>
+                       </tr>
+                       
+                       <tr>
+                <th>duration</th>
+                <td><Duration seconds={duration} /></td>
+              </tr>
+              <tr>
+                <th>elapsed</th>
+                <td><Duration seconds={ this.state.duration *  this.state.played} /></td>
+              </tr>
+              <tr>
+                <th>remaining</th>
+                <td><Duration seconds={duration * (1 - played)} /></td>
+              </tr>
+                       </tbody></table>
+              </div>
+              {/* <div className="row">
+                <div className="col-xs-12 col-sm-4">
+                  <div className="timer-wrapper">
+                    <h4>2-Timer</h4>
+                  </div>
+                </div>
+                <div className="col-xs-12 col-sm-8">                  
+                  <div className="timer-editor-wrapper">
+                    <h4>3-Transcriber-Editing box with timer</h4>
+                  </div>
+                </div>
+              </div> */}
+            </div>
+            <div className="col-xs-12">
+              <div className="row">
+                <div className="col-xs-12">
+                  <div className="completed-transcription-wrapper">
+                    <h4>4-Completed Transcription</h4>
+
+               <Form
+          {...this.state} 
+          onChangeTime={this.handleChangeTime}
+          onSubmit={this.handleSubmitTime}
+          course={this.state.course}
+        />
+                  </div>
+                </div>
+                {/* <div className="col-xs-12 col-md-5">
+                  <div className="twillo-videochat-1-wrapper">
+                    <h4>Twillo Video Chat 1</h4>
+                  </div>
+                  <div className="twillo-videochat-2-wrapper">
+                    <h4>Twillo Video Chat 2</h4>
+                  </div>
+                  <div className="mainChat-wrapper">
+                  
+                  </div>
+                </div> */}
+              </div>  
+            </div>
+            {this.renderChat()}
+          </div>
+          </div>
     </main>
   }
 }
