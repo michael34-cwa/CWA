@@ -106,7 +106,7 @@ class Page extends Component {
             <h1 class="text-center">School Lists</h1>
             <div className="table-responsive">
               <Search onChange={this.searchChange} /> 
-              <table className="table  table-striped">
+              <table className="table  table-striped school-list-table">
                 <thead className="thead-inverse">
                   <tr>
                     <th>Sr. No.</th>

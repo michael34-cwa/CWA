@@ -31,9 +31,9 @@ console.log(course)
       </div> 
        </Grid>
       </Grid>  
-      <div className="task-list">  
+      <div className="task-list  px-0 col-sm-12 w-100">  
       <h2>Tasks</h2>    
-      <Grid container spacing={1}>
+      <Grid container item spacing={1}>
         <Grid container item xs={12} spacing={3}>
           {course.getTasks.length > 0 ? course.getTasks.map((itemTask, index) => {
                 return <React.Fragment>

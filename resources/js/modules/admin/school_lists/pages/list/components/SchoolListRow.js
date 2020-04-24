@@ -21,7 +21,7 @@ const SchoolListRow = ({ index, schoolList, pageNo, togglePublish}) => {
         <td>{schoolList.createdAt && schoolList.createdAt.format("MMMM, DD YYYY")}</td>
        <td>{schoolList.updatedAt && schoolList.updatedAt.format("MMMM, DD YYYY")}</td>
        <td>
-         <div className="btn-group" role="group" aria-label="Actions">
+         <div className="btn-group school-list-btn-group" role="group" aria-label="Actions">
             
              
            <Link to={`school_lists/${schoolList.id}/edit`} >
