@@ -1,6 +1,6 @@
 // import libs
 import React, { Component } from 'react'
-import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest,chatAddRequest,taskTimeRequest } from '../../service'
+import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest,chatAddRequest,taskTimeRequest ,logsListRequest} from '../../service'
 import { Button } from '@material-ui/core';
 import StatusModel from '../../../../../common/model/StatusModel'
 import RejectModel from '../../../../../common/model/RejectModel'
@@ -11,6 +11,7 @@ import Duration from './Duration'
 // import components
 import TaskRow from './components/TaskRow'
 import Form from './components/Form'
+import LogsRow from './components/LogsRow'
 
 import ReeValidate from 'ree-validate'  
 
@@ -99,13 +100,20 @@ class Page extends Component {
     let schoolId = this.props.course.schoolId;
     let taskid = this.props.course.id;
  
-    this.interval = setInterval(() => dispatch(chatListRequest(this.props.course.id,this.props.course.schoolId,user.id))
-    , 2000);
+    // alert(window.atob(id))
+    // alert(window.atob(sid))
+    // alert(window.atob(tid))
+    // this.interval = setInterval(() => dispatch(chatListRequest(this.props.course.id,this.props.course.schoolId,user.id))
+    // , 2000);
+    
+    dispatch( logsListRequest(tid,id) );
+   
+
  
   }
  
-  componentWillUnmount() {
-    clearInterval(this.interval);
+  componentWillUnmount() { 
+    logsListRequest(this.props.course.id,this.props.course.schoolId);
   }
   
 
@@ -460,8 +468,25 @@ class Page extends Component {
   return ('0' + string).slice(-2)
 }
  
+renderLogs() {
+
+  return this.props.logData.map((logs, index) => {
+    return (
+      <LogsRow
+        key={index}
+        logs={logs} 
+        index={index+1}
+        togglePublish={this.togglePublish}
+        openModel={this.openModel}
+        handleRemove={this.handleRemove}
+      />
+    );
+  });
+}
 
   render() {
+    console.log(this.props); 
+    console.log('this.props'); 
     const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state
 
     const { course, user ,chat} = this.props
@@ -613,6 +638,27 @@ class Page extends Component {
                 <div className="col-xs-12">
                   <div className="completed-transcription-wrapper">
                     <h4>4-Completed Transcription</h4>
+                    <div className="table-responsive">
+               <table className="table  table-striped">
+                <thead className="thead-inverse">
+                  <tr>
+                    <th width="70px">Sr. No.</th>
+                    <th width="150px">Student Name</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Details</th>
+                    <th width="140px">Created Date</th>
+                    <th width="140px">Updated Date</th>
+                    <th> 
+                    </th>
+                  </tr>
+                </thead>
+                 {this.props.logData.length >= 1 ? this.renderLogs() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>} */}
+
+              </table>
+            </div>
+
+
 
                <Form
           {...this.state} 
