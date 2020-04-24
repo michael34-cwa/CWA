@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('student/{id}', 'TasksController@studentTask');
     Route::post('student/{id}', 'TasksController@taskStatus');
     Route::post('task_dis/{id}', 'TasksController@taskDis');
+    Route::get('task_logs/{tid}/{sid}', 'TasksController@getLogs');
     Route::post('/', 'TasksController@store')->name('tasks.store');
     Route::get('/', 'TasksController@index')->name('tasks.index');
     Route::get('/{id}', 'TasksController@show')->name('tasks.show');

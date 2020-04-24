@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
+use App\Model\TaskLogs;
 use App\Model\Tasks;
 use App\Model\Courses;
 use App\Model\CourseTasks;
@@ -92,11 +92,7 @@ class TasksController  extends Controller
     { 
         $id = base64_decode(urldecode($id));
      $description  = Request::post('description'); 
-    //  print_r( $description); die;
-
-    //     $input = $this->validate($request, [
-    //         'description' => 'required|min:2|max:500',
-    //      ] );
+ 
 
 
         $task = CourseTasks::findOrFail($id);
@@ -223,4 +219,17 @@ class TasksController  extends Controller
    return response()->json($chats, 201);
       
      }
+
+
+     public function getLogs($tid,$sid)
+     { 
+  
+         $id = base64_decode(urldecode($tid)); 
+         $scholid = base64_decode(urldecode($sid));
+         $scholid =  StudentCourses::find($scholid); 
+     
+         $logs = TaskLogs::with(['User'])->where('school_id',$scholid->school_id)->where('task_id',$id)->get();
+       return response()->json(['data' => $logs], 201);
+     }
+     
 }

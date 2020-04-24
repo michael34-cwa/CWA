@@ -2,6 +2,7 @@ import Http from '../../../utils/Http'
 import Transformer from '../../../utils/Transformer'
 import * as courseActions from './store/actions'
 import * as taskActions from '../../school/students/store/actions'
+import * as logActions from '../../admin/school_lists/store/actions'
 import { toast } from "react-toastify";
 function transformRequest(parms) {
   return Transformer.send(parms)
@@ -148,6 +149,24 @@ export function courseListRequest({ pageNumber = 1, value = '', url = "/courses/
   };
 }
 
+
+
+export function logsListRequest(taskid,schoolId) {
+ 
+  return dispatch => {
+    Http.get(`tasks/task_logs/${taskid}/${schoolId}`)
+      .then(res => {
+   
+          dispatch(logActions.list(transformResponse(res.data))); 
+          return resolve(res);
+
+      })
+      .catch(err => {
+        // TODO: handle err
+        console.error(err.response);
+      });
+  };
+}
 
 export function chatListRequest(taskid,schoolId,uid) {
  

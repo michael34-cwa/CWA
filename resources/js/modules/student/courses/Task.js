@@ -9,8 +9,7 @@ class Task extends Model {
   }
   
   initialize(props) {    
-    console.log(props)
-    super.initialize(props)    
+     super.initialize(props)    
     this.taskName = props.taskName || "";
     this.taskDescription = props.taskDescription || ""; 
     this.link = props.link || ""; 
