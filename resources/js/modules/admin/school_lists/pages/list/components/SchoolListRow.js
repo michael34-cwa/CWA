@@ -12,6 +12,8 @@ const propTypes = {
 }
 
 const SchoolListRow = ({ index, schoolList, pageNo, togglePublish}) => {
+
+  
    return (
      <tr key={index}>
        <th scope="row">{pageNo}</th>  
@@ -51,6 +53,13 @@ const SchoolListRow = ({ index, schoolList, pageNo, togglePublish}) => {
                  <i class="fa fa-eye mr-1" aria-hidden="true"></i> Active
             </Button>
              )}
+
+          <Link to={`groups/${schoolList.schoolId}`} >
+             <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
+               <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Group
+               </Button >
+           </Link>
+
            <Link to={`assign_course/${schoolList.user_id}`} >
              <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
                <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Course
@@ -63,12 +72,12 @@ const SchoolListRow = ({ index, schoolList, pageNo, togglePublish}) => {
                </Button >
            </Link>
 
-
+{/* 
            <Link to={`teachers/${schoolList.user_id}`} >
              <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
                <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Teacher
                </Button >
-           </Link>
+           </Link> */}
 
            <Link to={`students/${schoolList.user_id}`} >
              <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >

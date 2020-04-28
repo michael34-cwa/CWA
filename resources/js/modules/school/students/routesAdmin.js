@@ -8,7 +8,12 @@ export default [
     auth: true,
     component: lazy(() => import("./pages/list/index"))
   },
- 
+  {
+    path: "/students/create/:sid",
+    exact: true,
+    auth: true,
+    component: lazy(() => import("./pages/add/index"))
+  },
   {
     path: "/students/:id/edit",
     exact: true,

@@ -90,8 +90,12 @@ import { browserHistory } from 'react-router'
   
   submit(category) { 
     this.setState({ loading: true })
+    let sid = this.props.match.params.sid 
+    if(!sid){
+     sid = '';
+    }
     this.props
-      .dispatch(categoryAddRequest(category)) 
+      .dispatch(categoryAddRequest(category,sid)) 
       .then(res => { 
      //   this.props.history.push('/school_administrator');  
         this.setState({ loading: false })
@@ -112,10 +116,10 @@ import { browserHistory } from 'react-router'
   }
   
   render() {
-    
-    return <div className="dashboard-right"><div className="card"><div className="card-body bg-white">
+      return <div className="dashboard-right"><div className="card"><div className="card-body bg-white">
       <h1 class="page-heading text-center">Add School Administrator</h1> 
        <Form {...this.state}
+           
             onChange={this.handleChange}
             onSubmit={this.handleSubmit} />
     </div></div></div>

@@ -27,6 +27,9 @@ class Page extends Component {
     this.validator = new ReeValidate({
       description: "required|min:2|max:500", 
       chat: "required|min:2|max:500", 
+      start_time: "required", 
+      end_time: "required", 
+      vid_disc: "min:2|max:800", 
     });
 
     this.validatorT = new ReeValidate({ 
@@ -35,6 +38,8 @@ class Page extends Component {
       vid_disc: "min:2|max:800", 
     });  
     const course = this.props.course.toJson()
+ 
+  //  const logData = this.props.logData.toJson()
     const chat = this.props.chat
     this.state = {
       errors: this.validator.errors,
@@ -42,7 +47,9 @@ class Page extends Component {
        loading: false,
       taskDis: { description:''},
       chatVal: { chat:''},
+      logeid: '',
       course,
+      logData: { start_time:'' , end_time: ''},
       chat,
       status : '',
       openAss: false 
@@ -63,6 +70,7 @@ class Page extends Component {
      this.handleChangeTime = this.handleChangeTime.bind(this);
      this.handleSubmitTime = this.handleSubmitTime.bind(this);
 
+     this.editLog = this.editLog.bind(this);
   }
 
   UNSAFE_componentWillMount() {
@@ -138,7 +146,17 @@ class Page extends Component {
       });
   }
 
+  editLog = (id) => {
+    this.setState({logeid:id})
 
+    
+   let data = this.props.logData.find(Logs => window.atob(Logs.id) == window.atob(id))
+     
+   this.setState({ start_time:data.startTime , end_time:  data.endTime, vid_disc:  data.vidDisc})
+ 
+  }
+
+  
 
 
   openModelAss() {
@@ -177,16 +195,16 @@ class Page extends Component {
   handleChangeTime(name, value) { 
    
  
-    const { errorst} = this.validatorT
+    const { errors} = this.validator
 
-   this.setState({ course: { ...this.state.course, [name]: value} })
+   this.setState({ logData: { ...this.state.logData, [name]: value} })
 
-   errorst.remove(name)
+   errors.remove(name)
     
-    this.validatorT.validate(name, value)
+    this.validator.validate(name, value)
       .then(() => {
        
-        this.setState({ errorst })
+        this.setState({ errors })
       })
   }
 
@@ -448,7 +466,7 @@ class Page extends Component {
     var timestamp = this.state.duration *  this.state.played;
  
    var time = this.myTime(timestamp);
- this.setState({ playing: false ,course: { start_time:'0.00' , end_time:  time}})
+ this.setState({ playing: false ,logData: { start_time:'0.00' , end_time:  time}})
       
   }
 
@@ -476,6 +494,7 @@ renderLogs() {
         key={index}
         logs={logs} 
         index={index+1}
+        editLog={this.editLog}
         togglePublish={this.togglePublish}
         openModel={this.openModel}
         handleRemove={this.handleRemove}
@@ -485,8 +504,7 @@ renderLogs() {
 }
 
   render() {
-    console.log(this.props); 
-    console.log('this.props'); 
+ 
     const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state
 
     const { course, user ,chat} = this.props
@@ -662,9 +680,10 @@ renderLogs() {
 
                <Form
           {...this.state} 
-          onChangeTime={this.handleChangeTime}
+          onChange={this.handleChangeTime}
           onSubmit={this.handleSubmitTime}
-          course={this.state.course}
+          course={this.state.logData}
+          logId={this.state.logId}
         />
                   </div>
                 </div>

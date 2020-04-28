@@ -89,9 +89,13 @@ class Page extends Component {
   }
 
   submit(category) {
+    let sid = this.props.match.params.sid 
+    if(!sid){
+     sid = '';
+    }
     this.setState({ loading: true })
     this.props
-      .dispatch(categoryAddRequest(category))
+      .dispatch(categoryAddRequest(category,sid))
       .then(res => {
         this.setState({ loading: false })
      //   this.props.history.push('/students');

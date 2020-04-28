@@ -11,11 +11,11 @@ function transformResponse(params) {
   return Transformer.fetch(params)
 }
 
-export function categoryAddRequest(params) { 
-  
+export function categoryAddRequest(params,sid) { 
+ 
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.post("/schools", transformRequest(params))
+      Http.post(`schools/${sid}`, transformRequest(params))
         .then(res => {
            
           toast.success("Added Successfully");
