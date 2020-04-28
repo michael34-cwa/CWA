@@ -11,7 +11,7 @@ const propTypes = {
   openModel: PropTypes.func.isRequired,
 }
 
-const LogsRow = ({ index, logs, togglePublish, openModel, pageNo }) => {
+const LogsRow = ({ index, logs, togglePublish, editLog, pageNo }) => {
   return (
     <tr key={index}>
       <th scope="row">{index++}</th>  
@@ -22,43 +22,17 @@ const LogsRow = ({ index, logs, togglePublish, openModel, pageNo }) => {
       <td>{logs.createdAt && logs.createdAt.format("MMMM, DD YYYY")}</td>
       <td>{logs.updatedAt && logs.updatedAt.format("MMMM, DD YYYY")}</td>
       <td className="btn-right">
-        {/* <div className="btn-group" role="group" aria-label="Actions">
-          {course.isActive ? (
-            <Button
-              size="small"
-              variant="contained"
-              color="secondary"
-              className="text-capitalize mx-1"
-              onClick={() => togglePublish(course.id)}
-            >
-              <i class="fa fa-eye-slash mr-1" aria-hidden="true"></i> Inactive
-            </Button >
-          ) : (
-              <Button
-                size="small"
-                variant="contained"
-                className="colorPrimary text-capitalize mx-1"
-                onClick={() => togglePublish(course.id)}
-              >
-                <i class="fa fa-eye mr-1" aria-hidden="true"></i> Active
-            </Button>
-            )}
-
-          <Link to={`courses/${course.id}/edit`}>
-            <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1">
-              <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Edit
-          </Button >
-          </Link>
-          <Button
+         <div className="btn-group" role="group" aria-label="Actions">
+         <Button
             size="small"
             variant="contained"
             color="secondary"
             className="text-capitalize mx-1"
-            onClick={() => openModel(course.id)}
+            onClick={() => editLog(logs.id)}
           >
-            <i class="fa fa-trash-o mr-1" aria-hidden="true"></i> Delete
-          </Button>
-        </div> */}
+           Edit
+          </Button> 
+        </div> 
       </td>
     </tr>
   );

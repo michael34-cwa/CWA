@@ -82,6 +82,10 @@ class Page extends Component {
   }
   
   render() {
+    let sid = this.props.match.params.id
+    if(!sid){
+      sid = '';
+    }
     return ( 
       <main className="dashboard-right" role="main">
         <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
@@ -101,7 +105,7 @@ class Page extends Component {
                     <th>Created Date</th>
                     <th>Updated Date</th>
                     <th>
-                      {! this.props.match.params.id ? <Link to="school_administrator/create">
+                 <Link to={'/school_administrator/create/'+sid}>
                       <Button
                         size="small"
                         variant="contained"
@@ -109,7 +113,7 @@ class Page extends Component {
                       > 
                           <i class="fa fa-plus" aria-hidden="true"></i>  Add 
                       </Button >
-                      </Link> : ""}
+                      </Link>  
                     </th>
                   </tr>
                 </thead>

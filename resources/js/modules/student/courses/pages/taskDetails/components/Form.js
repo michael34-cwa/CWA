@@ -6,21 +6,21 @@ import LoadingComponent from '../../../../../../common/loader'
 
 const displayName = 'TaskFrom'
 const propTypes = {
-  course: PropTypes.object.isRequired,
+   course: PropTypes.object.isRequired,
    errors: PropTypes.object.isRequired,
   onChangeTime: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired
 };
 
-const Form = ({ loading,course, errors, onChangeTime, onSubmit }) => {
+const Form = ({logId, loading,course, errors, onChange, onSubmit }) => {
  
   function handleChangeTime(name, value) {
- 
+    console.log(value)
     if (value !== course[name]) {
-      onChangeTime(name, value);
+      onChange(name, value);
     }
   }
- 
+ console.log(course)
   return (
     <form onSubmit={e => onSubmit(e)}>
 
@@ -62,7 +62,7 @@ const Form = ({ loading,course, errors, onChangeTime, onSubmit }) => {
         <label htmlFor="title">Video Description</label>
         <div className="editor-wrap p-2">
           <MyEditor id="vid_disc" name="vid_disc"
-          //  value={task.task_description || ""} 
+         value={course.vidDisc || ""} 
            onChange={e => handleChangeTime('vid_disc', e)} />
 
         </div>

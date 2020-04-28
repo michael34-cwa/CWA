@@ -78,7 +78,7 @@ class SchoolsController  extends Controller
             });
         }
 
-        return  $schoolData->paginate(); 
+        return  $schoolData->latest()->paginate(); 
 
  
     }
@@ -121,7 +121,7 @@ class SchoolsController  extends Controller
      * @param SchoolRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SchoolRequest $request)
+    public function store(SchoolRequest $request,$sid=null)
     {
         try {
            
@@ -152,7 +152,14 @@ class SchoolsController  extends Controller
               $schoolList = new SchoolProfile();
                 if(empty($schoolId)){ 
                     $schoolList->school_id = $user->id;
-                    $schoolList->school_admin_id =  $userId->id;
+                    if($sid ==''){
+                        $schoolList->school_admin_id =  $userId->id;
+                    }else{
+                        $sid = base64_decode(urldecode($sid));
+
+                        $schoolList->school_admin_id =   $sid;
+                    }
+                 
                     $schoolList->created_by =  $userId->id; 
                 }else{ 
                     $schoolList->school_id = $user->id;

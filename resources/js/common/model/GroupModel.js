@@ -4,27 +4,28 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import LoadingComponent from '../../common/loader'
+import LoadingComponent from '../loader'
 import { TextField, Button, FormHelperText, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 const propTypes = {
   handleRemove: PropTypes.func,
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  opens: PropTypes.boolean,
-}
+ }
 
 
 
-const AssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
+const GroupModel = ({ openModelAss, name,openAss, loading,modelData, errors, onChange, onSubmit }) => {
  
-  console.log(courses);
-  const [personName, setPersonName] = React.useState([]);
+ 
 
   function handleChange(name, value) { 
-    setPersonName(value); 
+   
     onChange(name, value); 
   }
+
+ 
+
 
   const useStyles = makeStyles(theme => ({
     modal: {
@@ -44,7 +45,7 @@ const AssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
 
   const classes = useStyles();
  
-  const [open, setOpen] = React.useState(opens);
+  const [open, setOpen] = React.useState(openAss);
  
   // if (opens === false){
   // //  setOpen(false);
@@ -53,19 +54,19 @@ const AssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
   
   // }, [open]);
 
+  
 
 
   const handleClose = () => {
-    setOpen(false);
-    setPersonName([]);
+
+    openModelAss()  
+    setOpen(false); 
   };
 
   const handleOpen = () => {
-    setOpen(true);
-    setPersonName([]);
+    setOpen(true); 
   };
-
-  
+ 
 
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -81,12 +82,6 @@ const AssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
   return (
     <div>
 
-
-      <Button
-        onClick={handleOpen}
-        size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
-        <i class="fa fa-plus" aria-hidden="true"></i> Assign Course
-      </Button >
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -105,31 +100,30 @@ const AssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
               <a className="modalclose" onClick={handleClose}>
                 X
                </a>
-              <h3 id="transition-modal-title" className="text-center mb-0 blue-txt">Select The Courses</h3>
-
+              <h3 id="transition-modal-title" className="text-center mb-0 blue-txt">Select The {name}</h3>
+            
               <form onSubmit={e => onSubmit(e)}>
                 <div className="row">
                   <div className="col-md-12">
-                    <FormControl className="w-100 mb-3" error={errors.has("course_name")}> 
-                      <InputLabel id="course_name">Course List</InputLabel>
+                    <FormControl className="w-100 mb-3" error={errors.has("name")}> 
+                      <InputLabel id="name">{name} List</InputLabel>
                       <Select
-                        labelId="course_name"
-                        className={`${errors.has("course_name") && "is-invalid"}`}
-                        id="course_name"
-                        multiple
-                        value={personName}
-                        name="course_name"
+                        labelId="name"
+                        className={`${errors.has("name") && "is-invalid"}`}
+                        id="name" 
+                        // value={personName}
+                        name="name"
                         onChange={e => handleChange(e.target.name, e.target.value)}
-                        MenuProps={MenuProps}
+                       // MenuProps={MenuProps}
                       >
-                        {courses.map(name => (
-                          <MenuItem key={name.id} value={name.id}>
-                            {name.courseName}
+                        {modelData.map(name => (
+                          <MenuItem key={name.useId} value={name.useId}>
+                            {name.name}
                           </MenuItem>
                         ))}
                       </Select>
-                      {errors.has("course_name") && (
-                        <FormHelperText>{errors.first("course_name").replace("course_name", "course")}</FormHelperText>
+                      {errors.has("name") && (
+                        <FormHelperText>{errors.first("name").replace("name",  name  )}</FormHelperText>
                       )}
                     </FormControl>
                   </div>
@@ -147,7 +141,7 @@ const AssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
                       disableElevation
                 //   onClick={handleClose}
                     >
-                      <i className="fa fa-plus mr-2" aria-hidden="true"></i>  Add Course
+                      <i className="fa fa-plus mr-2" aria-hidden="true"></i>  Add {name}
                    </Button>
                   </div>
                 </div>
@@ -162,5 +156,5 @@ const AssignModel = ({ opens,loading,courses, errors, onChange, onSubmit }) => {
     </div>
   );
 }
-AssignModel.propTypes = propTypes
-export default AssignModel;
+GroupModel.propTypes = propTypes
+export default GroupModel;

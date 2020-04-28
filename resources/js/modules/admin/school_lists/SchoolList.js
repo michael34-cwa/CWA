@@ -9,10 +9,11 @@ class SchoolList extends Model {
     this.initialize(props)
   }
 
-  initialize(props) {
+  initialize(props) {  console.log(props)
      super.initialize(props)  
     this.user_id = props.user ? window.btoa(props.user.id) : "";
     this.email = props.user ? props.user.email : "";
+    this.schoolId = props.user ?  window.btoa(props.schoolId) : ""; 
     this.schoolName = props.schoolName ? props.schoolName :"";
     this.phone = props.user ? props.user.phone : "";
     this.schoolDescription = props.schoolDescription ? props.schoolDescription : "";

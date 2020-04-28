@@ -45,7 +45,7 @@ class StudentsController  extends Controller
                 $query->Where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%")->orWhere('email', 'LIKE', "%{$dataSearch}%")->orWhere('phone', 'LIKE', "%{$dataSearch}%");
             });
         }
-        return  $schoolData->paginate();
+        return  $schoolData->latest()->paginate();
     }
 
 
@@ -64,7 +64,7 @@ class StudentsController  extends Controller
                 $query->Where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%")->orWhere('email', 'LIKE', "%{$dataSearch}%")->orWhere('phone', 'LIKE', "%{$dataSearch}%");
             });
         }
-        return  $schoolData->paginate();
+        return  $schoolData->latest()->paginate();
     }
 
     /**
@@ -106,7 +106,7 @@ class StudentsController  extends Controller
      * @param SchoolRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SchoolRequest $request)
+    public function store(SchoolRequest $request,$sid=null)
     {
         try {
 
@@ -135,9 +135,17 @@ class StudentsController  extends Controller
                 $role->users()->attach($user);
 
                 $schoolId =  SchoolProfile::where('school_id', $userId->id)->first();
+            
                 $tstudentList = new StudentProfile();
-                if (empty($schoolId)) {
-                    $tstudentList->school_id = $userId->id;
+                if (empty($schoolId)) { 
+                    if($sid ==''){
+                        $tstudentList->school_id =  $userId->id;
+                    }else{
+                        $sid = base64_decode(urldecode($sid));
+
+                        $tstudentList->school_id = $sid;   
+                    }
+ 
                     $tstudentList->student_id = $user->id;
                     $tstudentList->created_by =  $userId->id;
                 } else {
