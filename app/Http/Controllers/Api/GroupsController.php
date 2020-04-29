@@ -8,6 +8,8 @@ use App\Model\GroupStudents;
 use App\Model\GroupCourses;
 use App\Model\GroupTasks;
 use App\Model\Tasks;
+use App\Model\Courses;
+use App\Model\StudentsGroup;
 
 //use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -47,12 +49,24 @@ class GroupsController  extends Controller
     {  
         $id = base64_decode(urldecode($id));
         $dataSearch   =   Request::get('search'); 
-            $students =   GroupStudents::with(['User'])->whereHas('User', function($q) use ($dataSearch) {
+   
+            $students =   GroupStudents::whereHas('getCourse', function($q) use ($dataSearch) {
                 if($dataSearch){
-                 $q->where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
+                 $q->where('course_name', 'LIKE', "%{$dataSearch}%");
                 }
-                })->where('group_id',$id)->latest()->paginate();
-        
+                })
+                ->orWhereHas('getTask', function($q) use ($dataSearch) {
+                    if($dataSearch){
+                     $q->where('task_name', 'LIKE', "%{$dataSearch}%");
+                    }
+                    }) 
+                    ->orWhereHas('User', function($q) use ($dataSearch) {
+                        if($dataSearch){
+                             $q->where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
+                           }
+                    })
+                    ->with(['getCourse','getTask','User'])->where('group_id',$id)->latest()->paginate();
+
         return response()->json($students, 201);
     }
 
@@ -174,20 +188,47 @@ class GroupsController  extends Controller
         try {
           $id = base64_decode(urldecode($id));   
 
-              $stuId =   base64_decode($request::post('name'));
+              $stuId =    $request::post('name');
+              $corsId =   base64_decode($request::post('course_name'));
+              $tskId =    $request::post('task_name');
+         
+              $courseVal =   GroupStudents::where('course_id', $corsId)->where('task_id', $tskId)->where('group_id', $id)->first();
 
-            $stuData =   GroupStudents::where('student_id', $stuId)->where('group_id', $id)->first();
-     
-            if(!empty($stuData)){
-                return response()->json(['message' => 'Student already assigned with this group.', 'status' => 0], 422);
-            }
- 
-              if (empty($courseData)) {
-                    $courseVal = new GroupStudents();
-                    $courseVal->student_id = $stuId;
+              if(empty($courseVal)){ 
+         
+              $courseVal = new GroupStudents();
+                    $courseVal->course_id = $corsId;
+                    $courseVal->task_id = $tskId;
                     $courseVal->group_id = $id; 
                     $courseVal->save();
-               }
+
+                } 
+
+                if( $courseVal)
+                {
+                $student =   StudentsGroup::where('group_students_id',$courseVal->id)->pluck('student_id')->toArray();
+              
+                print_r($student);
+                print_r($stuId);
+                $result = array_intersect( $student, $stuId);
+// print_r($result);
+
+              
+//                 die;   
+                $courseVal->User()->attach($stuId);
+                }
+                //   $stuData =   GroupStudents::where('student_id', $stuId)->where('group_id', $id)->first();
+     
+            // if(!empty($stuData)){
+            //     return response()->json(['message' => 'Student already assigned with this group.', 'status' => 0], 422);
+            // }
+ 
+            //   if (empty($courseData)) {
+            //         $courseVal = new GroupStudents();
+            //         $courseVal->student_id = $stuId;
+            //         $courseVal->group_id = $id; 
+            //         $courseVal->save();
+            //    }
      
             return response()->json($courseVal, 201);
         } catch (\Exception $e) {
@@ -269,6 +310,16 @@ class GroupsController  extends Controller
 
     }
 
+    public function courseList(Request $request)
+    { 
+
+        $course =   Courses::latest()->get();
+
+         return response()->json(['data'=>$course], 201);
+
+    }
+
+    
 
     public function addTask(Request $request, $id)
     {

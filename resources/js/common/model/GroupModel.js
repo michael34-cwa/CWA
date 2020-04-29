@@ -5,6 +5,8 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import LoadingComponent from '../loader'
+import { toast } from "react-toastify";
+
 import { TextField, Button, FormHelperText, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 const propTypes = {
   handleRemove: PropTypes.func,
@@ -15,12 +17,20 @@ const propTypes = {
 
 
 
-const GroupModel = ({ openModelAss, name,openAss, loading,modelData, errors, onChange, onSubmit }) => {
+const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task,errors, onChange, onSubmit }) => {
  
  
+  const [personName, setPersonName] = React.useState([]);
+
 
   function handleChange(name, value) { 
-   
+    if(name == 'name'){
+    if(value.length >= 3){ 
+      toast.success("Please select not more then 2 students"); 
+    }else{
+    setPersonName(value); 
+    }
+  }
     onChange(name, value); 
   }
 
@@ -61,10 +71,12 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, errors, onC
 
     openModelAss()  
     setOpen(false); 
+    setPersonName([]);
   };
 
   const handleOpen = () => {
     setOpen(true); 
+    setPersonName([]);
   };
  
 
@@ -100,21 +112,71 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, errors, onC
               <a className="modalclose" onClick={handleClose}>
                 X
                </a>
-              <h3 id="transition-modal-title" className="text-center mb-0 blue-txt">Select The {name}</h3>
+              <h3 id="transition-modal-title" className="text-center mb-0 blue-txt">Select The Course</h3>
             
               <form onSubmit={e => onSubmit(e)}>
                 <div className="row">
                   <div className="col-md-12">
+
+                  <FormControl className="w-100 mb-3" error={errors.has("course_name")}> 
+                      <InputLabel id="course_name">Course List</InputLabel>
+                      <Select
+                        labelId="course_name"
+                        className={`${errors.has("course_name") && "is-invalid"}`}
+                        id="course_name" 
+                        //  value={personName}
+ 
+                        name="course_name"
+                        onChange={e => handleChange(e.target.name, e.target.value)}
+                      //  MenuProps={MenuProps}
+                      >
+                        {course.map(name => (
+                          <MenuItem key={name.courseId} value={name.courseId}>
+                            {name.course_name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      {errors.has("course_name") && (
+                        <FormHelperText>{errors.first("course_name").replace("course_name",  'Course'  )}</FormHelperText>
+                      )}
+                    </FormControl>
+
+
+                    <FormControl className="w-100 mb-3" error={errors.has("task_name")}> 
+                      <InputLabel id="task_name">Task List</InputLabel>
+                      <Select
+                        labelId="course_name"
+                        className={`${errors.has("task_name") && "is-invalid"}`}
+                        id="task_name" 
+                        //  value={personName}
+ 
+                        name="task_name"
+                        onChange={e => handleChange(e.target.name, e.target.value)}
+                      //  MenuProps={MenuProps}
+                      >
+                        {task.map(name => (
+                          <MenuItem key={name.taskId} value={name.taskId}>
+                            {name.task_name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      {errors.has("task_name") && (
+                        <FormHelperText>{errors.first("task_name").replace("task_name",  'Task'  )}</FormHelperText>
+                      )}
+                    </FormControl>
+
                     <FormControl className="w-100 mb-3" error={errors.has("name")}> 
                       <InputLabel id="name">{name} List</InputLabel>
                       <Select
                         labelId="name"
                         className={`${errors.has("name") && "is-invalid"}`}
                         id="name" 
-                        // value={personName}
+                         value={personName}
+                        multiple
+
                         name="name"
                         onChange={e => handleChange(e.target.name, e.target.value)}
-                       // MenuProps={MenuProps}
+                       MenuProps={MenuProps}
                       >
                         {modelData.map(name => (
                           <MenuItem key={name.useId} value={name.useId}>
@@ -126,6 +188,9 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, errors, onC
                         <FormHelperText>{errors.first("name").replace("name",  name  )}</FormHelperText>
                       )}
                     </FormControl>
+
+
+                    
                   </div>
                   {<LoadingComponent isLoading={loading} error={''} />}
                 </div>

@@ -1,7 +1,9 @@
 import Http from '../../../utils/Http'
 import Transformer from '../../../utils/Transformer'
 import * as AssignCourseActions from '../assign_course/store/actions'
+import * as CorseActions from './../../school/project_admin/store/actions'
 import * as CourseActions from './../courses/store/actions'
+import * as TaskActions from './../tasks/store/actions'
 import { toast } from "react-toastify";
 
 function transformRequest(parms) {
@@ -135,15 +137,34 @@ export function StudentSchooListRequest({ sid }) {
 
 export function  AssignCourseEditRequest(id) { 
   return dispatch => {
-    Http.get(`course_assign/${id}`)
+    Http.get(`groups/course_list`)
       .then(res => {
-        dispatch(AssignCourseActions.add(transformResponse(res.data)));
+        dispatch(CorseActions.list(transformResponse(res.data)));
       })
       .catch(err => {
         // TODO: handle err
         console.error(err.response);
       });
   }
+
+}
+
+  export function AssignTaskListRequest({ value }) {
+    let url = "/groups/task_by_id/"+value;
+    return dispatch => { 
+      Http.get(url)
+        .then(res => {
+        
+          dispatch(TaskActions.list(transformResponse(res.data)));
+        })
+        .catch(err => {
+          // TODO: handle err
+          console.error(err.response);
+        });
+    };
+
+
+  
 }
 
  

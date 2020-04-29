@@ -13,10 +13,16 @@ const propTypes = {
 
 const AssignCourseRow = ({ index, assignCourse, openModel,pageNo, togglePublish}) => {
  
-   return (
+   return ( 
      <tr key={index}>
        <th scope="row">{pageNo}</th>     
-       <td>{assignCourse.studentName}</td> 
+       <td>{assignCourse.courseName}</td> 
+       <td>{assignCourse.taskName}</td> 
+
+       {assignCourse.user.length > 0  ? assignCourse.user.map(function (item, index) {
+          return <span className="chip-course">{item.firstName+' '+item.lastName}</span>;
+        }).reduce((prev, curr) => [prev, ' ', curr]) : ''}
+
        <td>{assignCourse.createdAt && assignCourse.createdAt.format("MMMM, DD YYYY")}</td>
        <td>{assignCourse.updatedAt && assignCourse.updatedAt.format("MMMM, DD YYYY")}</td>
        <td>
@@ -29,11 +35,11 @@ const AssignCourseRow = ({ index, assignCourse, openModel,pageNo, togglePublish}
                </Button >
             </Link> */}
 
-<Link to={`/admin/group_courses/${assignCourse.id}`} >
+{/* <Link to={`/admin/group_courses/${assignCourse.id}`} >
               <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
                <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Assign Courses
                </Button >
-            </Link>
+            </Link> */}
 
            <Button
              size="small"
