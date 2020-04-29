@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { AssignStudentListRequest, AssignStudentAddRequest, AssignCourseRemoveRequest, StudentSchooListRequest} from '../../service'
+import { AssignStudentListRequest, AssignStudentAddRequest, AssignCourseRemoveRequest, StudentSchooListRequest,AssignCourseEditRequest,AssignTaskListRequest} from '../../service'
 import { Button } from '@material-ui/core';
 import LoadingComponent from '../../../../../common/loader'
 // import components
@@ -37,10 +37,12 @@ import ReeValidate from 'ree-validate'
 
     this.validator = new ReeValidate({
       name: "required", 
+      course_name: "required", 
+      task_name: "required", 
     });
  
     this.state = {
-      courseData: { name:''},
+      courseData: { name:'',course_name:'',task_name:''},
       errors: this.validator.errors,
       loading: false
     };
@@ -56,8 +58,11 @@ import ReeValidate from 'ree-validate'
     const { match, assign_student, dispatch } = this.props
     let id  =   match.params.id;
     let sid  =   match.params.sid;
-    dispatch(AssignStudentListRequest({ id }))
+    dispatch(AssignCourseEditRequest({ }))
+
+    dispatch(AssignStudentListRequest({ id })) 
     dispatch(StudentSchooListRequest({sid}))
+
   }
 
   pageChange = (event, pageNumber) => { 
@@ -68,6 +73,12 @@ import ReeValidate from 'ree-validate'
  
  
   handleChange(name, value) { 
+    const { dispatch } = this.props
+
+    if(name == 'course_name'){
+      dispatch(AssignTaskListRequest({ value })) 
+
+    }
     const { errors } = this.validator;
    
     this.setState({ courseData: { ...this.state.courseData, [name]: value } });
@@ -79,11 +90,11 @@ import ReeValidate from 'ree-validate'
 
   openModelAss() {  
     const { errors } = this.validator;
-    this.setState({ courseData: { ...this.state.courseData, ['name']: '' } });
+    // this.setState({ courseData: { ...this.state.courseData, ['name']: '' } });
      
-    this.validator.validate('name', '1').then(() => {
-      this.setState({ errors });
-    });
+    // this.validator.validate('name', '1').then(() => {
+    //   this.setState({ errors });
+    // });
     
     this.setState({ openAss: !this.state.openAss })
   }
@@ -200,7 +211,9 @@ import ReeValidate from 'ree-validate'
                 <thead className="thead-inverse">
                   <tr>
                     <th>Sr. No.</th> 
-                    <th>student Name</th> 
+                    <th>Course Name</th>
+                    <th>Task Name</th> 
+                    <th>Student Name</th> 
                     <th>Created Date</th>
                     <th>Updated Date</th>
                     <th> 
@@ -221,6 +234,8 @@ import ReeValidate from 'ree-validate'
                         openModelAss={this.openModelAss}
                         loading={this.state.loading}
                         modelData={this.props.student_list} 
+                        course={this.props.course_list} 
+                        task={this.props.task_list} 
                         onChange={this.handleChange}
                         onSubmit={this.handleSubmit}/> }
                     </th>

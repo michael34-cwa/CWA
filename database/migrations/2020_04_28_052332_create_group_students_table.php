@@ -14,13 +14,13 @@ class CreateGroupStudentsTable extends Migration
     public function up()
     {
         Schema::create('group_students', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id'); 
             $table->integer('group_id')->unsigned();
- 
-            $table->integer('student_id')->unsigned();
-  
-
-              $table->timestamps();
+             $table->integer('course_id')->unsigned();
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->integer('task_id')->unsigned();
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade'); 
+            $table->timestamps();
         });
     }
 
