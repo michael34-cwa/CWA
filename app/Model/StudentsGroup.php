@@ -8,6 +8,5 @@ class StudentsGroup extends Model
 {
     protected $table = 'students_groups';
 
-    protected $fillable = ['group_id', 'course_id', 'task_id'];
 
 }
