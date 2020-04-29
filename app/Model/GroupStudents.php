@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class GroupStudents extends Model
 {
+    protected $table = 'group_students';
+
+    protected $fillable = ['group_id', 'course_id', 'task_id'];
+
+
     public function User()
     {
         return $this->belongsToMany('App\User',  'students_groups', 'group_students_id','student_id');

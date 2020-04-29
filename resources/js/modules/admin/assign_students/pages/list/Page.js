@@ -59,7 +59,7 @@ import ReeValidate from 'ree-validate'
     let id  =   match.params.id;
     let sid  =   match.params.sid;
     dispatch(AssignCourseEditRequest({ }))
-
+ 
     dispatch(AssignStudentListRequest({ id })) 
     dispatch(StudentSchooListRequest({sid}))
 

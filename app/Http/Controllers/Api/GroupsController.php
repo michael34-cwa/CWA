@@ -47,25 +47,25 @@ class GroupsController  extends Controller
 
     public function studentAssign(Request $request,$id)
     {  
-        $id = base64_decode(urldecode($id));
+       $id = base64_decode(urldecode($id));  
         $dataSearch   =   Request::get('search'); 
    
-            $students =   GroupStudents::whereHas('getCourse', function($q) use ($dataSearch) {
+            $students =   GroupStudents::where('group_id', $id)->whereHas('getCourse', function($q) use ($dataSearch) {
                 if($dataSearch){
                  $q->where('course_name', 'LIKE', "%{$dataSearch}%");
                 }
                 })
-                ->orWhereHas('getTask', function($q) use ($dataSearch) {
-                    if($dataSearch){
-                     $q->where('task_name', 'LIKE', "%{$dataSearch}%");
-                    }
-                    }) 
-                    ->orWhereHas('User', function($q) use ($dataSearch) {
-                        if($dataSearch){
-                             $q->where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
-                           }
-                    })
-                    ->with(['getCourse','getTask','User'])->where('group_id',$id)->latest()->paginate();
+                // ->whereHas('getTask', function($q) use ($dataSearch) {
+                //     if($dataSearch){
+                //      $q->where('task_name', 'LIKE', "%{$dataSearch}%");
+                //     }
+                //     }) 
+                //     ->whereHas('User', function($q) use ($dataSearch) {
+                //         if($dataSearch){
+                //              $q->where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
+                //            }
+                //     })
+                    ->with(['getCourse','getTask','User'])->latest()->paginate();
 
         return response()->json($students, 201);
     }
