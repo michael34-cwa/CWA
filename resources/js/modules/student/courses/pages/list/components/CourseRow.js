@@ -21,20 +21,20 @@ const CourseRow = ({ course,cataroy }) => {
         <Paper> {'Course Name: ' + course.courseName}</Paper>
          <div className="course-technology">
         <Paper>Technology: &nbsp; 
-         {/* <span className="chip-course">{'Laravel'}</span> */}
+         <span className="chip-course">{'Laravel'}</span>
         {
-        cataroy.length >0 ? cataroy.map(function(items, indexs) { 
-        course.catId.map(function(item, index) {
-          console.log(items.categoryName)
-          return  <div> {items.categoryName} </div>
-      //  return <span className="chip-course">{items.categoryName}</span>;  
-          }) 
-        }) : ''
+      //   cataroy.length >0 ? cataroy.map(function(items, indexs) { 
+      //   course.catId.map(function(item, index) {
+      //     console.log(items.categoryName)
+      //     return  <div> {items.categoryName} </div>
+      // //  return <span className="chip-course">{items.categoryName}</span>;  
+      //     }) 
+      //   }) : ''
           }  
         </Paper>
         </div>
         <Paper className="text-center button_bottom">
-          <Link className="btn btn-primary" to={`task_details/${course.id}`}>  View Tasks </Link>
+          <Link className="btn btn-primary" to={`task_details/${course.id}`}>  View  Tasks </Link>
         </Paper>
         </div>
       </Grid> 
