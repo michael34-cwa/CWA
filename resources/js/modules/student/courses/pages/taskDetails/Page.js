@@ -389,11 +389,13 @@ class Page extends Component {
 
 
   renderList() {
-    const { course } = this.props
+    
+    const { course ,courseOne} = this.props
 
     if (course.id) {
       return <TaskRow
         course={course}
+        courseOne={courseOne}
       />
     }
   }
@@ -517,7 +519,7 @@ class Page extends Component {
         </Button > 
       <div class="card"><div class="card-body bg-white">
     
-        <h1>Task Details</h1>
+        <h1>Course Details</h1>
         {/* <a target="_blank" href={"/file_manager/"+course.id}>
 
         <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1" onClick={this.pageChange}  >
