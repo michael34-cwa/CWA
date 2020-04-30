@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import Task from '../../Task'
+import Course from '../../Course'
 import Chat from '../../Chat'
 import Logs from '../../Logs'
 // import components
@@ -17,12 +18,13 @@ const mapStateToProps = (state, router) => {
    
    taskDils = state.courses.data.find(course => course.id == window.atob(params.cid))
    console.log(taskDils)
-
+   
+   let  taskCorse= taskDils ? taskDils :"";
    let  taskSig= taskDils ? taskDils.getCourseTasks :"";
- 
-   console.log(taskSig)
+  
    return {
     course: taskSig ? new Task(taskSig) : new Task({}),
+    courseOne: taskCorse ? new Course(taskCorse) : new Course({}),
     user: state.admin_user,
   //  chat: chats.map(chat => new Chat(chat)),
    //  logData: data.map(logData => new Logs(logData)), 
