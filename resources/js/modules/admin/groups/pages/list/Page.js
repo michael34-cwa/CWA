@@ -98,6 +98,12 @@ import { Link } from 'react-router-dom'
           <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
           <div className="card-body bg-white">
+          <Button
+          
+              onClick={(e) => this.props.history.goBack()}
+                    size="small" variant="contained" className="colorPrimary text-capitalize mb-2"  >
+                    Back
+        </Button > 
             <h1 class="text-center">Groups</h1>
             <div className="table-responsive">
               <Search onChange={this.searchChange} /> 

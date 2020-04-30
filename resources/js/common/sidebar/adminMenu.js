@@ -131,11 +131,11 @@ const AdminSideMenu = props => {
             <div class="panel-body">
               <Nav vertical>
                 <NavItem>
-                  <NavLink exact={true} tag={RRNavLink} to="/admin/school_lists" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i>School List</NavLink>
+                  <NavLink exact={true} tag={RRNavLink} to="/admin/school_lists" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i>Schools</NavLink>
                 </NavItem>
 
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/admin/school_lists/create" activeClassName="active"><i class="fa fa-plus" aria-hidden="true"></i> Add New School List</NavLink>
+                  <NavLink tag={RRNavLink} to="/admin/school_lists/create" activeClassName="active"><i class="fa fa-plus" aria-hidden="true"></i> Add New School</NavLink>
                 </NavItem>
 
               </Nav>

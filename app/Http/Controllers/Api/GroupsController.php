@@ -50,22 +50,31 @@ class GroupsController  extends Controller
        $id = base64_decode(urldecode($id));  
         $dataSearch   =   Request::get('search'); 
    
-            $students =   GroupStudents::where('group_id', $id)->whereHas('getCourse', function($q) use ($dataSearch) {
-                if($dataSearch){
-                 $q->where('course_name', 'LIKE', "%{$dataSearch}%");
+            $students =   GroupStudents::where('group_id',$id)->latest();
+
+            if($dataSearch){
+            $students->whereHas('getCourse', function($q) use ($dataSearch) { 
+                 $q->where('course_name', 'LIKE', "%{$dataSearch}%"); 
+                });
+            }
+
+            if($dataSearch){
+                $students->orWhereHas('getTask', function($q) use ($dataSearch) {
+                      $q->where('task_name', 'LIKE', "%{$dataSearch}%");
+                   
+                    }) ;
                 }
-                })
-                // ->whereHas('getTask', function($q) use ($dataSearch) {
-                //     if($dataSearch){
-                //      $q->where('task_name', 'LIKE', "%{$dataSearch}%");
-                //     }
-                //     }) 
-                //     ->whereHas('User', function($q) use ($dataSearch) {
-                //         if($dataSearch){
-                //              $q->where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
-                //            }
-                //     })
-                    ->with(['getCourse','getTask','User'])->latest()->paginate();
+
+                if($dataSearch){
+                    $students->orWhereHas('User', function($qu) use ($dataSearch) {
+                        $qu->where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
+                       
+                        }) ;
+                    }
+    
+          
+             
+                $students =     $students->with(['getCourse','getTask','User'])->paginate();
 
         return response()->json($students, 201);
     }
@@ -208,15 +217,20 @@ class GroupsController  extends Controller
                 {
                 $student =   StudentsGroup::where('group_students_id',$courseVal->id)->pluck('student_id')->toArray();
               
-                print_r($student);
-                print_r($stuId);
-                $result = array_intersect( $student, $stuId);
-// print_r($result);
-
               
-//                 die;   
-                $courseVal->User()->attach($stuId);
+                $result = array_intersect( $student, $stuId); 
+                if(empty($result)){
+                    if(count($student) >=2){
+               return response()->json(['message' => 'Only 2 students can be assigned to a group.', 'status' => 0], 422);             
+ 
+                      }  else{
+                  $courseVal->User()->attach($stuId);
+                        }
+            
+                }else{
+                    return response()->json(['message' => 'Student already assigned with this group.', 'status' => 0], 422);             
                 }
+            }
                 //   $stuData =   GroupStudents::where('student_id', $stuId)->where('group_id', $id)->first();
      
             // if(!empty($stuData)){
@@ -313,7 +327,7 @@ class GroupsController  extends Controller
     public function courseList(Request $request)
     { 
 
-        $course =   Courses::latest()->get();
+        $course =   Courses::latest()->where('type','1')->get();
 
          return response()->json(['data'=>$course], 201);
 

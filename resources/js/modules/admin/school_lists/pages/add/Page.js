@@ -26,6 +26,8 @@ import { browserHistory } from 'react-router'
       isActive: 'required',  
       schoolAddress: 'required|min:2|max:60',
       schoolDescription: 'required|min:2|max:200',
+      password: 'required|min:6|max:32',
+      passwordConfirmation: 'required|min:6|max:32'
     });
     
     const school_list = this.props.school_list.toJson()
@@ -55,25 +57,44 @@ import { browserHistory } from 'react-router'
 
     this.setState({ school_list: { ...this.state.school_list, [name]: value} })
 
-    errors.remove(name)
-    if(name === 'phone'){
+    errors.remove(name) 
+    if (name === 'passwordConfirmation') { 
+       const result = this.validator.rules.confirmed(value, this.state.school_list.password); 
+          if (!result) {
+            this.validator.errors.add(name, 'Confirm password not matched with password');
+          }
+    } else  if(name === 'phone'){
+
+    
+     var no = this.formatPhoneNumber(value);
+    
+     this.setState({ school_list: { ...this.state.school_list, ['phone']: no} })
    
-      if(! value.match(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)){
-        this.validator.errors.add(name, 'US phone number not valid'); 
-     }     
-    } else {
-    this.validator.validate(name, value)
-      .then(() => {
-       
-        this.setState({ errors })
-      })
-<<<<<<< HEAD
-  }}
-=======
-  }
+     if(! no.match(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)){
+      this.validator.errors.add(name, 'US phone number not valid'); 
+   }    
+    } else {  
+      this.validator.validate(name, value)
+        .then(() => {
+          this.setState({ errors })
+        })
+    } 
 }
->>>>>>> 8ef47b4d4d3182d1f668dc53ba9b0c2fbc42c305
   
+formatPhoneNumber(phone) {
+  //normalize string and remove all unnecessary characters
+  phone = phone.replace(/[^\d]/g, "");
+
+  //check if number length equals to 10
+  if (phone.length <= 10) {
+      //reformat and return phone number
+      return phone.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+  }
+
+   return this.state.school_list.phone;
+}
+
+
   handleSubmit(e) {
   
     e.preventDefault()

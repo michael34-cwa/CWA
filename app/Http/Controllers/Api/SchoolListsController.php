@@ -71,7 +71,7 @@ class SchoolListsController  extends Controller
                 'first_name' => 'School',
                 'last_name' => 'User',
                 'email' => $data['email'],
-                'password' => '123456',
+                'password' => $data['password'],
                 'phone' => $data['phone'],
 
             ];
