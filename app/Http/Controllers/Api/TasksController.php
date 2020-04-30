@@ -5,6 +5,7 @@ use App\Model\TaskLogs;
 use App\Model\Tasks;
 use App\Model\Courses;
 use App\Model\CourseTasks;
+use App\Model\CourseCategories;
 use App\Model\StudentCourses;
 use App\Model\Chats;
  use Illuminate\Support\Facades\Request; 
@@ -230,6 +231,14 @@ class TasksController  extends Controller
      
          $logs = TaskLogs::with(['User'])->where('school_id',$scholid->school_id)->where('task_id',$id)->get();
        return response()->json(['data' => $logs], 201);
+     }
+     
+
+     public function categoryGet()
+     { 
+    
+         $category = CourseCategories::get();
+       return response()->json(['data' => $category], 201);
      }
      
 }

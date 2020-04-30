@@ -3,6 +3,7 @@ import Transformer from '../../../utils/Transformer'
 import * as courseActions from './store/actions'
 import * as taskActions from '../../school/students/store/actions'
 import * as logActions from '../../admin/school_lists/store/actions'
+import * as catActions from '../../admin/course_categories/store/actions'
 import { toast } from "react-toastify";
 function transformRequest(parms) {
   return Transformer.send(parms)
@@ -150,6 +151,23 @@ export function courseListRequest({ pageNumber = 1, value = '', url = "/courses/
 }
 
 
+
+export function courseCategotyRequest() {
+ 
+  return dispatch => {
+    Http.get(`tasks/category`)
+      .then(res => {
+   
+          dispatch(catActions.list(transformResponse(res.data))); 
+          return resolve(res);
+
+      })
+      .catch(err => {
+        // TODO: handle err
+        console.error(err.response);
+      });
+  };
+}
 
 export function logsListRequest(taskid,schoolId) {
  

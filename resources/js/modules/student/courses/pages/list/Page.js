@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { courseListRequest, courseUpdateRequest, courseRemoveRequest } from '../../service'
+import { courseListRequest, courseUpdateRequest, courseRemoveRequest,courseCategotyRequest } from '../../service'
 import Search from '../../../../../common/Search'
 // import components
 import CourseRow from './components/CourseRow'
@@ -41,6 +41,7 @@ class Page extends Component {
   UNSAFE_componentWillMount() {
     const { dispatch } = this.props;
      dispatch(courseListRequest({}));
+   //  dispatch(courseCategotyRequest({}));
   }
 
  
@@ -89,6 +90,7 @@ class Page extends Component {
         <CourseRow
           key={index}
           course={course}
+     //     cataroy={this.props.cataroy}
           index={index}
           togglePublish={this.togglePublish}
           handleRemove={this.handleRemove}

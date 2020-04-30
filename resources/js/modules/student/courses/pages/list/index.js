@@ -6,12 +6,14 @@ import Course from '../../Course'
 import Page from './Page'
   
 const mapStateToProps = state => {  
+ 
    const { data, ...meta } = state.courses; 
 
   let dataLists = data ? data : []; 
-  return {
+   return {
     courses: dataLists.map(courses => new Course(courses)), 
-    meta: Object.assign({}, meta)
+    meta: Object.assign({}, meta) ,
+   // cataroy : state.course_categories.data ?  state.course_categories.data : []
   };
 }
 
