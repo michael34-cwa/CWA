@@ -27,8 +27,8 @@ const Form = ({ loading,group, errors, onChange, onSubmit }) => {
               error={errors.has("group_name")}
               id="group_name"
               name="group_name"
-              label="group Name"
-              placeholder="group Name"
+              label="Group Name"
+              placeholder="Group Name"
               helperText={`${errors.has("group_name") ? errors.first("group_name").replace("_", " ") : ''}`}
               value={group.group_name || ""}
               onChange={e => handleChange(e.target.name, e.target.value)}
@@ -48,7 +48,7 @@ const Form = ({ loading,group, errors, onChange, onSubmit }) => {
             className="text-capitalize colorPrimary"
             disableElevation
           >
-            <i className="fa fa-plus mr-2" aria-hidden="true"></i> Add Course group
+            <i className="fa fa-plus mr-2" aria-hidden="true"></i> Add course group
           </Button>
           
         </div>

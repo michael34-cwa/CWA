@@ -91,6 +91,12 @@ class Page extends Component {
         <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
           <div className="card-body bg-white">
+          <Button
+          
+          onClick={(e) => this.props.history.goBack()}
+                size="small" variant="contained" className="colorPrimary text-capitalize mb-2"  >
+                Back
+    </Button > 
             <h1 class="text-center" id="school-administrator">School Administrator</h1>
             <div className="table-responsive">
               <Search onChange={this.searchChange} /> 

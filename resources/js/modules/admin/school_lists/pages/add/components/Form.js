@@ -141,6 +141,39 @@ const Form = ({ loading, school_list, errors, onChange, onSubmit }) => {
      </div>
 
 
+     <div className="row">
+        <div className="col-md-6">
+          <FormControl className="w-100 mb-3" >
+            <TextField
+              error={errors.has("password")}
+              type="password"
+              label="Password"
+              defaultValue="Password"
+              helperText={`${errors.has("password") ? errors.first("password") : ''}`}
+           //   value={category.password || ""}
+              id="password"
+              name="password"
+              onChange={e => handleChange(e.target.name, e.target.value)}
+            />
+          </FormControl>
+        </div>
+
+        <div className="col-md-6">
+          <FormControl className="w-100 mb-3" >
+            <TextField
+              error={errors.has("passwordConfirmation")}
+              type="password"
+              label="Password Confirmation"
+              defaultValue="Password Confirmation"
+              helperText={`${errors.has("passwordConfirmation") ? errors.first("passwordConfirmation").replace("passwordConfirmation", "password confirmation") : ''}`}
+             // value={category.passwordConfirmation || ""}
+              id="passwordConfirmation"
+              name="passwordConfirmation"
+              onChange={e => handleChange(e.target.name, e.target.value)}
+            />
+          </FormControl>
+        </div>
+       </div>
         {<LoadingComponent isLoading={loading} error={''} />}
    
 

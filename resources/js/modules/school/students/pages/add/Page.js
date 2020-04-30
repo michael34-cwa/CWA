@@ -60,9 +60,15 @@ class Page extends Component {
           }
     } else  if(name === 'phone'){
    
-      if(! value.match(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)){
-        this.validator.errors.add(name, 'US phone number not valid'); 
-     }     
+  
+      var no = this.formatPhoneNumber(value);
+    
+      this.setState({ category: { ...this.state.category, ['phone']: no} })
+    
+      if(! no.match(/^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/)){
+       this.validator.errors.add(name, 'US phone number not valid'); 
+    } 
+
     } else {  
       this.validator.validate(name, value)
         .then(() => {
@@ -72,6 +78,18 @@ class Page extends Component {
 
   }
 
+  formatPhoneNumber(phone) {
+    //normalize string and remove all unnecessary characters
+    phone = phone.replace(/[^\d]/g, "");
+  
+    //check if number length equals to 10
+    if (phone.length <= 10) {
+        //reformat and return phone number
+        return phone.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+    }
+  
+     return this.state.category.phone;
+  }
   handleSubmit(e) {
 
     e.preventDefault()

@@ -56,15 +56,15 @@ const SchoolListRow = ({ index, schoolList, pageNo, togglePublish}) => {
 
           <Link to={`groups/${schoolList.schoolId}`} >
              <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
-               <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Group
+               <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Groups
                </Button >
            </Link>
 
-           <Link to={`assign_course/${schoolList.user_id}`} >
+           {/* <Link to={`assign_course/${schoolList.user_id}`} >
              <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >
                <i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> Course
                </Button >
-           </Link>
+           </Link> */}
 
            <Link to={`school_administrator/${schoolList.user_id}`} >
              <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >

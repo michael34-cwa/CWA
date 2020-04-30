@@ -25,8 +25,8 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
 
   function handleChange(name, value) { 
     if(name == 'name'){
-    if(value.length >= 3){ 
-      toast.success("Please select not more then 2 students"); 
+    if(value.length > 2){ 
+      toast.success("Only 2 students can be assigned to a group."); 
     }else{
     setPersonName(value); 
     }

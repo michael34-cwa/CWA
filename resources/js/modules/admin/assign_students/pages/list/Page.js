@@ -90,9 +90,15 @@ import ReeValidate from 'ree-validate'
 
   openModelAss() {  
     const { errors } = this.validator;
-    // this.setState({ courseData: { ...this.state.courseData, ['name']: '' } });
+    this.setState({ courseData: { ...this.state.courseData, ['course_name']: '' } });
      
-    // this.validator.validate('name', '1').then(() => {
+    this.validator.validate('course_name', '1').then(() => {
+      this.setState({ errors });
+    });
+    
+    // this.setState({ courseData: { ...this.state.courseData, ['course_name']: '' } });
+     
+    // this.validator.validate('course_name', '1').then(() => {
     //   this.setState({ errors });
     // });
     
@@ -204,6 +210,12 @@ import ReeValidate from 'ree-validate'
         <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
           <div className="card-body bg-white">
+          <Button
+          
+          onClick={(e) => this.props.history.goBack()}
+                size="small" variant="contained" className="colorPrimary text-capitalize mb-2"  >
+                Back
+    </Button > 
             <h1 class="text-center">Assign Student</h1>
             <div className="table-responsive">
               <Search onChange={this.searchChange} /> 

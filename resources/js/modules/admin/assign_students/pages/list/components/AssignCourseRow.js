@@ -41,7 +41,7 @@ const AssignCourseRow = ({ index, assignCourse, openModel,pageNo, togglePublish}
                </Button >
             </Link> */}
 
-           <Button
+           {/* <Button
              size="small"
              variant="contained"
              color="secondary"
@@ -49,7 +49,7 @@ const AssignCourseRow = ({ index, assignCourse, openModel,pageNo, togglePublish}
              onClick={() => openModel(assignCourse.id)}
            >
              <i class="fa fa-trash-o mr-1" aria-hidden="true"></i> Remove Course
-            </Button>
+            </Button> */}
          </div>
        </td>
      </tr>
