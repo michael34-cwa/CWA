@@ -112,7 +112,7 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
               <a className="modalclose" onClick={handleClose}>
                 X
                </a>
-              <h3 id="transition-modal-title" className="text-center mb-0 blue-txt">Select The Course</h3>
+              <h3 id="transition-modal-title" className="text-center mb-0 blue-txt">Assign Student</h3>
             
               <form onSubmit={e => onSubmit(e)}>
                 <div className="row">
