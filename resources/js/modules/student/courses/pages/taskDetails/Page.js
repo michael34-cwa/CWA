@@ -91,7 +91,7 @@ class Page extends Component {
       
 
      
-    dispatch(courseEditRequest(id, sid))
+    dispatch(courseEditRequest(id))
     
  
     let schoolId = this.props.course.schoolId;
@@ -114,7 +114,7 @@ class Page extends Component {
     // this.interval = setInterval(() => dispatch(chatListRequest(this.props.course.id,this.props.course.schoolId,user.id))
     // , 2000);
     
-    dispatch( logsListRequest(tid,id) );
+    // dispatch( logsListRequest(tid,id) );
    
 
  
@@ -399,27 +399,27 @@ class Page extends Component {
   }
 
 
-  renderChat() {
-    const { chat, user, course } = this.props
-    let schoolId =  window.atob(course.schoolId);
-   let taskid =    window.atob(course.id);
-    var jwt = require('jwt-simple');
-  var payload = { usr:user.firstName,task:schoolId+'_'+taskid };
-   var secret = 'sddsd322343esfsfsdf233423efsdc';
+  // renderChat() {
+  //   const { chat, user, course } = this.props
+  //   let schoolId =  window.atob(course.schoolId);
+  //  let taskid =    window.atob(course.id);
+  //   var jwt = require('jwt-simple');
+  // var payload = { usr:user.firstName,task:schoolId+'_'+taskid };
+  //  var secret = 'sddsd322343esfsfsdf233423efsdc';
     
-    var token = jwt.encode(payload, secret);
-    return <ChatBox 
-    {...this.state}
-                        loading={this.state.loading} 
-                        token={token} 
-                        chats={chat} 
-                        school={this.props.course.schoolId}
-                        chatValue={this.state.chatVal}   
-                        user={user}  
-                        onChange={this.handleChangeChat  }
-                        onSubmit={this.handleSubmitChat}/>
+  //   var token = jwt.encode(payload, secret);
+  //   return <ChatBox 
+  //   {...this.state}
+  //                       loading={this.state.loading} 
+  //                       token={token} 
+  //                       chats={chat} 
+  //                       school={this.props.course.schoolId}
+  //                       chatValue={this.state.chatVal}   
+  //                       user={user}  
+  //                       onChange={this.handleChangeChat  }
+  //                       onSubmit={this.handleSubmitChat}/>
 
-  }
+  // }
 
   state = {
     url: null,
@@ -486,22 +486,22 @@ class Page extends Component {
   return ('0' + string).slice(-2)
 }
  
-renderLogs() {
+// renderLogs() {
 
-  return this.props.logData.map((logs, index) => {
-    return (
-      <LogsRow
-        key={index}
-        logs={logs} 
-        index={index+1}
-        editLog={this.editLog}
-        togglePublish={this.togglePublish}
-        openModel={this.openModel}
-        handleRemove={this.handleRemove}
-      />
-    );
-  });
-}
+//   return this.props.logData.map((logs, index) => {
+//     return (
+//       <LogsRow
+//         key={index}
+//         logs={logs} 
+//         index={index+1}
+//         editLog={this.editLog}
+//         togglePublish={this.togglePublish}
+//         openModel={this.openModel}
+//         handleRemove={this.handleRemove}
+//       />
+//     );
+//   });
+// }
 
   render() {
  
@@ -536,7 +536,7 @@ renderLogs() {
 
         />}
  
-{this.state.openCan &&   <RejectModel 
+{/* {this.state.openCan &&   <RejectModel 
                         {...this.state}
                         openCan={this.state.openCan}
                         openModelCan={this.openModelCan}
@@ -561,10 +561,10 @@ renderLogs() {
                 <span class="badge badge-primary">Completed</span>
 
               ) : ''
-        }
+        } */}
 
 
-        {
+        {/* {
           user.rolename == 'teacher' && course.status == 1 ? (
             <div class="panel-footer row"> 
               <div class="col-xs-6 text-left">
@@ -592,7 +592,7 @@ renderLogs() {
 
 
 
-        }
+        } */}
 
    { user.rolename == 'student' && course.description != null &&  course.description }
         {this.renderList()}
@@ -617,7 +617,7 @@ renderLogs() {
                  onProgress={this.handleProgress}
                  onPause={this.handlePause}
                     />
-                      <table>
+                      {/* <table>
             <tbody>
               <tr> 
          
@@ -636,7 +636,7 @@ renderLogs() {
                 <th>remaining</th>
                 <td><Duration seconds={duration * (1 - played)} /></td>
               </tr>
-                       </tbody></table>
+                       </tbody></table> */}
               </div>
               {/* <div className="row">
                 <div className="col-xs-12 col-sm-4">
@@ -655,8 +655,8 @@ renderLogs() {
               <div className="row">
                 <div className="col-xs-12">
                   <div className="completed-transcription-wrapper">
-                    <h4>4-Completed Transcription</h4>
-                    <div className="table-responsive">
+                    {/* <h4>4-Completed Transcription</h4> */}
+                    {/* <div className="table-responsive">
                <table className="table  table-striped">
                 <thead className="thead-inverse">
                   <tr>
@@ -670,11 +670,11 @@ renderLogs() {
                     <th> 
                     </th>
                   </tr>
-                </thead>
-                 {this.props.logData.length >= 1 ? this.renderLogs() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>} */}
-
+                </thead> */}
+                 {/* {this.props.logData.length >= 1 ? this.renderLogs() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>} */}
+{/* 
               </table>
-            </div>
+            </div> */}
 
 
 
@@ -700,7 +700,7 @@ renderLogs() {
                 </div> */}
               </div>  
             </div>
-            {this.renderChat()}
+            {/* {this.renderChat()} */}
           </div>
           </div>
     </main>

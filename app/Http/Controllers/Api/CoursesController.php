@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CoursesRequest;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Model\StudentsGroup;
 
 class CoursesController  extends Controller
 {
@@ -59,15 +60,26 @@ class CoursesController  extends Controller
            $id =  $user->id;
         }else{
             $id = base64_decode(urldecode($id));
-        }
-       
-        return StudentCourses::whereHas('getStudentCourse', function ($q) use ($dataSearch) {
-            if( $dataSearch){
-                $q->where('course_name', 'LIKE', "%{$dataSearch}%");
-            }
-            }) 
-        ->with(array('getCourseTasks','getCategory','getStudentCourse'))
+        } 
+
+        return StudentsGroup::whereHas('getStudentCourse', function ($q) use ($dataSearch) {
+                if( $dataSearch){
+                    $q->where('course_name', 'LIKE', "%{$dataSearch}%");
+                }
+                }) 
+            ->with(array('getStudentCourse','getCourseTasks','getCategory'))
         ->where('student_id',$id)->paginate();
+
+
+
+
+        // return StudentCourses::whereHas('getStudentCourse', function ($q) use ($dataSearch) {
+        //     if( $dataSearch){
+        //         $q->where('course_name', 'LIKE', "%{$dataSearch}%");
+        //     }
+        //     }) 
+        // ->with(array('getCourseTasks','getCategory','getStudentCourse'))
+        // ->where('student_id',$id)->paginate();
 
     }
 
@@ -159,12 +171,17 @@ class CoursesController  extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function courseTasks($id,$sid)
+    public function courseTasks($id,$sid = null)
     {
         // $user = \Auth::guard('api')->user();
         $id = base64_decode(urldecode($id));
         $sid = base64_decode(urldecode($sid));
-        return StudentCourses::with(array('getStudentCourse','getCourseTasks','getCategory','getStudentCourse'))->where('student_id', $sid)->find($id);
+        $user = \Auth::guard('api')->user();
+        $uid =  $user->id;
+        return StudentsGroup::with(array('getStudentCourse','getCourseTasks'))
+    ->where('student_id',$uid)->find($id);
+
+        // return StudentCourses::with(array('getStudentCourse','getCourseTasks','getCategory','getStudentCourse'))->where('student_id', $sid)->find($id);
  
         
     }

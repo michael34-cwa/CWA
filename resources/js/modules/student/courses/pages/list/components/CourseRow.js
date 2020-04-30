@@ -12,23 +12,29 @@ const propTypes = {
   handleRemove: PropTypes.func.isRequired,
 }
  
-const CourseRow = ({ course }) => { 
+const CourseRow = ({ course,cataroy }) => { 
  
-  return (
- 
+  return ( 
     <React.Fragment>
       <Grid item sm={6} xs={12} md={4} className="course-grid" >
       <div className="course-boxes">
         <Paper> {'Course Name: ' + course.courseName}</Paper>
          <div className="course-technology">
         <Paper>Technology: &nbsp; 
-        { course.catId.length >0 ? course.catId.map(function(item, index) {
-        return <span className="chip-course">{item.categoryName}</span>;
-          }).reduce((prev, curr) => [prev, ' ', curr]):''}  
+         <span className="chip-course">{'Laravel'}</span>
+        {
+      //   cataroy.length >0 ? cataroy.map(function(items, indexs) { 
+      //   course.catId.map(function(item, index) {
+      //     console.log(items.categoryName)
+      //     return  <div> {items.categoryName} </div>
+      // //  return <span className="chip-course">{items.categoryName}</span>;  
+      //     }) 
+      //   }) : ''
+          }  
         </Paper>
         </div>
         <Paper className="text-center button_bottom">
-          <Link className="btn btn-primary" to={`course_tasks/${course.id}/${course.studentId}`}>  View All Tasks </Link>
+          <Link className="btn btn-primary" to={`task_details/${course.id}`}>  View All Tasks </Link>
         </Paper>
         </div>
       </Grid> 
