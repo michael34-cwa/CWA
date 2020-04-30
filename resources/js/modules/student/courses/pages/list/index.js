@@ -13,7 +13,7 @@ const mapStateToProps = state => {
    return {
     courses: dataLists.map(courses => new Course(courses)), 
     meta: Object.assign({}, meta) ,
-   // cataroy : state.course_categories.data ?  state.course_categories.data : []
+    cataroy : state.course_categories.data ?  state.course_categories.data : []
   };
 }
 
