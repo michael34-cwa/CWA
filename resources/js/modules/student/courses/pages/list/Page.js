@@ -40,8 +40,9 @@ class Page extends Component {
 
   UNSAFE_componentWillMount() {
     const { dispatch } = this.props;
+    dispatch(courseCategotyRequest({}));
+
      dispatch(courseListRequest({}));
-   //  dispatch(courseCategotyRequest({}));
   }
 
  
@@ -90,7 +91,7 @@ class Page extends Component {
         <CourseRow
           key={index}
           course={course}
-     //     cataroy={this.props.cataroy}
+          cataroy={this.props.cataroy}
           index={index}
           togglePublish={this.togglePublish}
           handleRemove={this.handleRemove}

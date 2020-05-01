@@ -13,18 +13,22 @@ const propTypes = {
 }
  
 const CourseRow = ({ course,cataroy }) => { 
+ let concar = []
  
   return (
- 
+
     <React.Fragment>
       <Grid item sm={6} xs={12} md={4} className="course-grid" >
       <div className="course-boxes">
         <Paper> {'Course Name: ' + course.courseName}</Paper>
          <div className="course-technology">
         <Paper>Technology: &nbsp; 
-        {/* { course.catId.length >0 ? course.catId.map(function(item, index) { */}
-         <span className="chip-course">{'Laravel'}</span>
-          {/* }).reduce((prev, curr) => [prev, ' ', curr]):''}   */}
+        { course.catId.length >0 ? course.catId.map(function(item, index) {
+       concar = cataroy.find(cat => cat.id == item.catId)
+      
+      return <span className="chip-course">{concar.categoryName}</span>;
+
+          }).reduce((prev, curr) => [prev, ' ', curr]):''}  
         </Paper>
         </div>
         <Paper className="text-center button_bottom">
