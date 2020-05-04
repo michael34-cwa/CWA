@@ -1,5 +1,5 @@
-import moment from 'moment'
-import Model from '../../../utils/Model'
+// import moment from 'moment'
+ import Model from '../../../utils/Model'
 
 class Logs extends Model {
   constructor(props) {
@@ -11,12 +11,12 @@ class Logs extends Model {
   initialize(props) {   
  
     super.initialize(props)    
-    this.startTime = props.startTime || ""; 
-    this.endTime = props.endTime || ""; 
+    // this.startTime = props.startTime || ""; 
+    // this.endTime = props.endTime || ""; 
     this.vidDisc = props.vidDisc || ""; 
-    this.name = props.user ? props.user.firstName: ''; 
-    this.createdAt = props.createdAt ? moment(props.createdAt) : null;
-    this.updatedAt = props.updatedAt ? moment(props.updatedAt) : null; 
+     this.name = props.user ? props.user.firstName +' '+props.user.lastName: ''; 
+    // this.createdAt = props.createdAt ? moment(props.createdAt) : null;
+    // this.updatedAt = props.updatedAt ? moment(props.updatedAt) : null; 
     }
 }
 

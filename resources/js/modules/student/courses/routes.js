@@ -15,7 +15,7 @@ export default [
     component: lazy(() => import("./pages/taskList/index"))
   },
   {
-  path: "/task_details/:cid",
+  path: "/task_details/:cid/:tid",
   exact: true,
   auth: true,
   component: lazy(() => import("./pages/taskDetails/index"))

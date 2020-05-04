@@ -1,40 +1,43 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Button } from '@material-ui/core';
+ import { TextField, Button, FormHelperText, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 const displayName = 'LogsRow'
 const propTypes = {
-  index: PropTypes.number.isRequired,
-  logs: PropTypes.object.isRequired,
-  togglePublish: PropTypes.func.isRequired,
-  openModel: PropTypes.func.isRequired,
-}
+   logs: PropTypes.object.isRequired,
+  }
+ 
+const LogsRow = ({  index,logs, onChange }) => {
 
-const LogsRow = ({ index, logs, togglePublish, editLog, pageNo }) => {
-  return (
-    <tr key={index}>
-      <th scope="row">{index++}</th>  
-      <td>{logs.name}</td>  
-      <td>{logs.startTime}</td>  
-      <td>{logs.endTime}</td>  
-      <td>{logs.vidDisc}</td>  
-      <td>{logs.createdAt && logs.createdAt.format("MMMM, DD YYYY")}</td>
-      <td>{logs.updatedAt && logs.updatedAt.format("MMMM, DD YYYY")}</td>
-      <td className="btn-right">
-         <div className="btn-group" role="group" aria-label="Actions">
-         <Button
-            size="small"
-            variant="contained"
-            color="secondary"
-            className="text-capitalize mx-1"
-            onClick={() => editLog(logs.id)}
-          >
-           Edit
-          </Button> 
-        </div> 
-      </td>
-    </tr>
+   
+
+  function handleChangeTimeUp(name, value) {
+    if (value !== logs[name]) {
+     onChange(name, value);
+   }
+ }
+   return (
+ <div>
+   {logs.name}
+<FormControl className="w-100 mb-3" >
+          <TextField
+            // error={errors.has("vid_disc")}
+            label="Multiline"
+            multiline
+            rows={5}  
+             variant="outlined"
+            label="Video Description"
+            //  helperText={`${errors.has("vid_disc") ? errors.first("vid_disc").replace("_", "video description") : ''}`}
+            value={logs.vidDisc }
+            id="vidDisc"
+            name={'vidDisc'}
+            onChange={e => handleChangeTimeUp(  logs.id, e.target.value)}
+          />
+          
+        </FormControl> 
+      </div> 
+  
   );
 }
 

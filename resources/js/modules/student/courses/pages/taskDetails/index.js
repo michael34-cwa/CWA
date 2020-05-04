@@ -17,17 +17,17 @@ const mapStateToProps = (state, router) => {
    // let chats = state.students.data.length > 0 ? state.students.data : [];
    
    taskDils = state.courses.data.find(course => course.id == window.atob(params.cid))
-   console.log(taskDils)
+   
    
    let  taskCorse= taskDils ? taskDils :"";
    let  taskSig= taskDils ? taskDils.getCourseTasks :"";
-  
+ 
    return {
     course: taskSig ? new Task(taskSig) : new Task({}),
     courseOne: taskCorse ? new Course(taskCorse) : new Course({}),
     user: state.admin_user,
   //  chat: chats.map(chat => new Chat(chat)),
-   //  logData: data.map(logData => new Logs(logData)), 
+    logTime: data.map(logData => new Logs(logData)), 
     meta: Object.assign({}, meta)
   
    }
