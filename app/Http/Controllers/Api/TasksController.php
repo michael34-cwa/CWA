@@ -7,6 +7,11 @@ use App\Model\Courses;
 use App\Model\CourseTasks;
 use App\Model\CourseCategories;
 use App\Model\StudentCourses;
+use App\Model\StudentsGroup;
+use App\Model\GroupStudents;
+use App\Model\StudentProfiles;
+
+use App\Model\Groups;
 use App\Model\Chats;
  use Illuminate\Support\Facades\Request; 
 use Illuminate\Support\Str;
@@ -222,17 +227,63 @@ class TasksController  extends Controller
      }
 
 
-     public function getLogs($tid,$sid)
+     public function getLogs($tid,$sid= null)
      { 
-  
-         $id = base64_decode(urldecode($tid)); 
-         $scholid = base64_decode(urldecode($sid));
-         $scholid =  StudentCourses::find($scholid); 
+
+      $id = base64_decode(urldecode($tid));  
+      //  $scholid =  StudentProfiles::where('student_id',$user->id)->first(); 
      
-         $logs = TaskLogs::with(['User'])->where('school_id',$scholid->school_id)->where('task_id',$id)->get();
+         $logs = TaskLogs::with(['User'])->where('group_student_id',$id)->get();
        return response()->json(['data' => $logs], 201);
      }
      
+
+     public function taskLogs(Request $request, $id)
+     { 
+     $id = base64_decode(urldecode($id));
+     $start_time  = Request::post('start_time'); 
+     $end_time  = Request::post('end_time'); 
+     $vid_disc  = Request::post('vid_disc'); 
+      
+ 
+
+$user = \Auth::guard('api')->user();
+
+ $details =  $start_time.' - '.$end_time.' 
+ 
+ '.$vid_disc;
+ 
+         $task = new TaskLogs(); 
+         $task->group_student_id = $id;
+         $task->start_time =  $start_time;  
+         $task->status = '0';  
+         $task->end_time = $end_time;  
+         $task->vid_disc = $details;  
+         $task->student_id = $user->id;  
+         $task->save(); 
+         return response()->json($task, 201);
+     }
+
+
+     public function logsUpdate(Request $request, $id)
+     { 
+     $id = base64_decode(urldecode($id)); 
+     $vid_disc  = Request::post(); 
+     
+
+     
+    foreach($vid_disc as $vid_dis){
+
+       $id = base64_decode(urldecode($vid_dis['id'])); 
+         $task =  TaskLogs::find($id);  
+         $task->vid_disc = $vid_dis['vid_disc'];  
+         $task->save(); 
+        }
+        return response()->json('', 201);
+
+     }
+
+
 
      public function categoryGet()
      { 

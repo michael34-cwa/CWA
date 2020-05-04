@@ -14,7 +14,7 @@ const propTypes = {
  
 const CourseRow = ({ course,cataroy }) => { 
  let concar = []
- 
+
   return (
 
     <React.Fragment>
@@ -32,7 +32,7 @@ const CourseRow = ({ course,cataroy }) => {
         </Paper>
         </div>
         <Paper className="text-center button_bottom">
-          <Link className="btn btn-primary" to={`task_details/${course.id}`}>  View Task </Link>
+          <Link className="btn btn-primary" to={`task_details/${course.id}/${course.groupId}`}>  View Task </Link>
         </Paper>
         </div>
       </Grid> 

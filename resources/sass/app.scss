@@ -522,6 +522,82 @@ ul.navbar-nav.my-account {
 	}	
 }
 
+.maintasksec {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.taskdescripsec {
+    border: 1px solid #d2d2d2;
+    padding: 10px;
+    min-height: 40px;
+    text-align: center;
+display: -webkit-box; 
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex; 
+display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.threblocksec {
+    overflow: hidden;
+    margin: 0 -15px;
+}
+
+.blocksec1,.blocksec2, .blocksec3 {
+    width: 33.3%;
+    float: left;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.block1videosec {
+    border: 1px solid #d2d2d2;
+    padding: 10px;
+    margin: 0 0 20px 0;
+    min-height: 200px;
+ display: -webkit-box; 
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex; 
+display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.translationadd {
+    border: 1px solid #d2d2d2;
+    padding: 10px;
+    margin: 0 0 20px 0;
+    min-height: 200px;
+    display: -webkit-box; 
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex; 
+display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.completed-translation {
+    border: 1px solid #d2d2d2;
+    padding: 10px;
+    margin: 0 0 20px 0;
+    min-height: 600px;
+    display: -webkit-box; 
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex; 
+display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.block1videosec {
+    margin-top: 70px;
+}
 
 .categories-list {
 	.card {

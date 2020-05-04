@@ -1,11 +1,12 @@
 // import libs
 import React, { Component } from 'react'
-import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest,chatAddRequest,taskTimeRequest ,logsListRequest} from '../../service'
+import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest,chatAddRequest,taskTimeRequest ,logsListRequest,taskTimeUpdate} from '../../service'
 import { Button } from '@material-ui/core';
 import StatusModel from '../../../../../common/model/StatusModel'
 import RejectModel from '../../../../../common/model/RejectModel'
 import LoadingComponent from '../../../../../common/loader'
 import ChatBox from '../../../../../common/model/ChatBox'
+import TaskTab from '../../../../../common/model/TaskTab'
 import ReactPlayer from 'react-player'
 import Duration from './Duration'
 // import components
@@ -39,18 +40,18 @@ class Page extends Component {
     });  
     const course = this.props.course.toJson()
  
-  //  const logData = this.props.logData.toJson()
+     const logTime = this.props.logTime
     const chat = this.props.chat
     this.state = {
       errors: this.validator.errors,
       errorst: this.validatorT.errorst,
        loading: false,
-      taskDis: { description:''},
       chatVal: { chat:''},
       logeid: '',
       course,
-      logData: { start_time:'' , end_time: ''},
+      logData: { start_time:'' , end_time: '',vid_disc:''},
       chat,
+      logTime,
       status : '',
       openAss: false 
       ,openCan: false
@@ -70,6 +71,11 @@ class Page extends Component {
      this.handleChangeTime = this.handleChangeTime.bind(this);
      this.handleSubmitTime = this.handleSubmitTime.bind(this);
 
+     this.handleChangeTimeUp = this.handleChangeTimeUp.bind(this);
+     
+     this.handleSubmitTimeUp = this.handleSubmitTimeUp.bind(this);
+
+     
      this.editLog = this.editLog.bind(this);
   }
 
@@ -104,7 +110,7 @@ class Page extends Component {
     const { match, course, dispatch,chat,user } = this.props 
     let id = match.params.cid
     let sid = match.params.sid
-    let tid = match.params.id  
+    let tid = match.params.tid  
     let schoolId = this.props.course.schoolId;
     let taskid = this.props.course.id;
  
@@ -113,10 +119,11 @@ class Page extends Component {
     // alert(window.atob(tid))
     // this.interval = setInterval(() => dispatch(chatListRequest(this.props.course.id,this.props.course.schoolId,user.id))
     // , 2000);
-    
-    // dispatch( logsListRequest(tid,id) );
+   // let tid = this.props.course.taskId; 
+    dispatch( logsListRequest(tid) );
    
-
+   
+ 
  
   }
  
@@ -124,6 +131,16 @@ class Page extends Component {
     logsListRequest(this.props.course.id,this.props.course.schoolId);
   }
   
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const logTime = nextProps.logTime
+    console.log('nextProps')
+    console.log(nextProps)
+
+   // if (!_.isEqual(this.state.logTime, logTime)) {
+      this.setState({ logTime })
+  //  }
+
+  }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     const course = nextProps.course.toJson()
@@ -191,6 +208,63 @@ class Page extends Component {
     
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { logTime } = this.props
+      if (nextProps.logTime !== logTime) {
+   let dee = nextProps.logTime
+       this.setState({ logTime:dee })
+     }
+ 
+    }
+
+  handleChangeTimeUp(name, value) { 
+    const elementsIndex = this.state.logTime.findIndex(element => element.id == name )
+    let newArray = [...this.state.logTime]
+   
+    newArray[elementsIndex] = {...newArray[elementsIndex], vidDisc: value}
+
+    this.setState({
+      logTime: newArray,
+      }); 
+   }
+
+   handleSubmitTimeUp = function (e) {
+    
+    e.preventDefault();
+    const logData = this.state.logTime;
+
+    this.submitTimeUp(logData);
+
+}
+
+ 
+
+
+submitTimeUp(logData) { 
+    this.setState({ loading: true })
+    const { match , dispatch } = this.props
+    let id = match.params.tid;  
+      this.props
+       .dispatch(taskTimeUpdate(logData, id)) 
+       .then(res => {  
+    //   dispatch(logsListRequest(tid))
+   
+       this.setState({ loading: false})   
+       })
+      .catch(({ error, statusCode }) => {
+     
+        this.setState({ loading: false })
+        const { errors } = this.validator;
+
+        if (statusCode === 422) {
+          _.forOwn(error, (message, field) => {
+            errors.add(field, message);
+          });
+        }
+
+        this.setState({ errors });
+      });
+  }
 
   handleChangeTime(name, value) { 
    
@@ -201,44 +275,63 @@ class Page extends Component {
 
    errors.remove(name)
     
-    this.validator.validate(name, value)
-      .then(() => {
-       
-        this.setState({ errors })
-      })
+   if(name === 'start_time'){ 
+  
+    this.setState({ logData: { ...this.state.logData, ['start_time']: value} })
+  
+    if(! value.match(/^(0?[1-9]|1[0-2]):[0-5][0-9]$/)){
+     this.validator.errors.add(name, 'Start time not valid'); 
+  } 
+}else if(name === 'end_time'){
+
+  this.setState({ logData: { ...this.state.logData, ['end_time']: value} })
+  
+    if(! value.match(/^(0?[1-9]|1[0-2]):[0-5][0-9]$/)){
+     this.validator.errors.add(name, 'End time not valid'); 
+    }
+} else {  
+  this.validator.validate(name, value)
+    .then(() => {
+      this.setState({ errors })
+    })
+} 
+
+
+ 
   }
 
 
   handleSubmitTime(e) {  
     e.preventDefault();
    
-    const course = this.state.course;
+    const logData = this.state.logData;
      const { errors } = this.validator;
- 
-   //  this.validator.validateAll() 
-   this.submitTime(course);
-    // this.validator.validateAll(course).then(success => {
-    //   if (success) {  
-    //    this.submitTime(course);
-    //   } else {
-    //     this.setState({ errors });
-    //   }
-    // });
+  
+    this.validator.validateAll() 
+  //  this.submitTime(course);
+    this.validator.validateAll(logData).then(success => {
+      if (success) {  
+       this.submitTime(logData);
+      } else {
+        this.setState({ errors });
+      }
+    });
   }
 
 
 
-  submitTime(course) { 
+  submitTime(logData) { 
     this.setState({ loading: true })
     const { match , dispatch } = this.props
-    let id = match.params.cid;  
-    let sid = match.params.sid;  
-     this.props
-       .dispatch(taskTimeRequest(course, id)) 
+    let id = match.params.tid;  
+  //  let tid = this.props.course.taskId; 
+    let tid = match.params.tid  
+      this.props
+       .dispatch(taskTimeRequest(logData, id)) 
        .then(res => {  
-    //    dispatch(courseEditRequest(id, sid))
+       dispatch(logsListRequest(tid))
       
-         this.setState({ loading: false })   
+         this.setState({ loading: false,logData: { start_time:'' , end_time: '',vid_disc:''}  })   
        })
       .catch(({ error, statusCode }) => {
      
@@ -282,7 +375,7 @@ class Page extends Component {
     // this.validator.validateAll(chatVal)
 
     this.validator.validateAll(chatVal).then(success => {
-      if (success) {  
+      if (success) {  handleChangeTime
        this.submitChat(chatVal);
       } else {
         this.setState({ errors });
@@ -472,6 +565,13 @@ class Page extends Component {
       
   }
 
+//   componentWillUnmount(prevProps, prevState,snapshot){
+//     console.log(snapshot);
+//  if(prevProps.logTime.length > 0){
+//  // this.setState({ logsAll:  this.props.logTime })  
+//  }
+//   };
+
 
   myTime (seconds) {
   const date = new Date(seconds * 1000)
@@ -488,29 +588,30 @@ class Page extends Component {
   return ('0' + string).slice(-2)
 }
  
-// renderLogs() {
 
-//   return this.props.logData.map((logs, index) => {
-//     return (
-//       <LogsRow
-//         key={index}
-//         logs={logs} 
-//         index={index+1}
-//         editLog={this.editLog}
-//         togglePublish={this.togglePublish}
-//         openModel={this.openModel}
-//         handleRemove={this.handleRemove}
-//       />
-//     );
-//   });
-// }
+renderLogs() {
+
+  return this.state.logTime.map((logs, index) => {
+    return (
+      <LogsRow
+      {...this.state.logTime}
+      index={index}
+        logs={logs}  
+        editLog={this.editLog} 
+        onChange={this.handleChangeTimeUp} 
+        togglePublish={this.togglePublish} 
+      />
+    );
+  });
+}
 
   render() {
  
     const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state
 
-    const { course, user ,chat} = this.props
-    
+    const { course, user ,chat,logTime} = this.props
+   
+    console.log(this.state.logsAll);
      return <main className="dashboard-right" role="main">
       <Button
                     onClick={this.backBtn}
@@ -519,7 +620,11 @@ class Page extends Component {
         </Button > 
       <div class="card"><div class="card-body bg-white">
     
-        <h1>Course Details</h1>
+        <h1>Task Details</h1>
+
+        {
+          <TaskTab />
+        }
         {/* <a target="_blank" href={"/file_manager/"+course.id}>
 
         <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1" onClick={this.pageChange}  >
@@ -673,20 +778,39 @@ class Page extends Component {
                     </th>
                   </tr>
                 </thead> */}
-                 {/* {this.props.logData.length >= 1 ? this.renderLogs() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>} */}
 {/* 
               </table>
             </div> */}
 
+<form onSubmit={this.handleSubmitTimeUp}  >
+          {this.state.logTime.length >= 1 ? this.renderLogs() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}  
 
+        {/* {this.props.logTime.map((input, index) => <input type = "text" key={input.vidDisc} value={input.vidDisc}  placeholder='Enter something here' onChange={e => this.handleChangeTimeUp(index, e.target.value)}/>)} */}
+
+
+                 <div className="form-group row">
+        <div className="col-md-12 ml-auto">
+        <Button 
+          variant="contained"
+       //   disabled={errors.any()}
+          type="submit"
+          className="text-capitalize colorPrimary"
+          disableElevation
+        >
+          <i className="fa fa-plus mr-2" aria-hidden="true"></i>  Update Time
+        </Button>
+          
+     
+        </div>
+      </div>
+                 </form>
 
                <Form
           {...this.state} 
           onChange={this.handleChangeTime}
           onSubmit={this.handleSubmitTime}
-          course={this.state.logData}
-          logId={this.state.logId}
-        />
+          logData={this.state.logData}
+         />
                   </div>
                 </div>
                 {/* <div className="col-xs-12 col-md-5">

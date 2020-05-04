@@ -13,14 +13,15 @@ class CreateTaskLogsTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('task_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('school_id')->unsigned();
-            $table->foreign('school_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('student_id')->unsigned();
-            $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('task_id')->unsigned();
-            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->integer('group_student_id')->unsigned();
+            // $table->foreign('group_student_id')->references('id')->on('group_students')->onDelete('cascade');
+              $table->integer('student_id')->unsigned();
+            // $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->integer('task_id')->unsigned();
+            // $table->foreign('task_id')->references('id')->on('tasks');
             $table->string('start_time');
             $table->string('end_time');
             $table->text('vid_disc')->nullable();
