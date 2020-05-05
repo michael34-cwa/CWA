@@ -1,4 +1,6 @@
 // import modular routes 
 import webRoutes from "../modules/admin/web/routes"
 import authRoutes from "../modules/auth/routes" 
-export default [...authRoutes]
+import notFoundRoutes from "../modules/notFoundRoutes"; 
+
+export default [...authRoutes,...notFoundRoutes]

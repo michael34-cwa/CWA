@@ -145,7 +145,7 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
                     <FormControl className="w-100 mb-3" error={errors.has("task_name")}> 
                       <InputLabel id="task_name">Task List</InputLabel>
                       <Select
-                        labelId="course_name"
+                        labelId="task_name"
                         className={`${errors.has("task_name") && "is-invalid"}`}
                         id="task_name" 
                         //  value={personName}

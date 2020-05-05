@@ -88,19 +88,9 @@ import ReeValidate from 'ree-validate'
     });
   }
 
-  openModelAss() {  
+  openModelAss() {   
     const { errors } = this.validator;
-    this.setState({ courseData: { ...this.state.courseData, ['course_name']: '' } });
-     
-    this.validator.validate('course_name', '1').then(() => {
-      this.setState({ errors });
-    });
-    
-    // this.setState({ courseData: { ...this.state.courseData, ['course_name']: '' } });
-     
-    // this.validator.validate('course_name', '1').then(() => {
-    //   this.setState({ errors });
-    // });
+    this.setState({ courseData: { ...this.state.courseData, ['course_name']: '' ,['task_name']: '' ,['name']: '' } });
     
     this.setState({ openAss: !this.state.openAss })
   }

@@ -2,6 +2,8 @@
 import { lazy } from 'react'
 
 export default [
+  
+
   {
     path: "/admin/login",
     exact: true,
@@ -26,5 +28,5 @@ export default [
     path: "/reset",
     exact: true,
     component: lazy(() => import("./pages/forgot/index"))
-  }
+  } 
 ];

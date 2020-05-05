@@ -14,4 +14,5 @@ import groupsRoutes from "../modules/admin/groups/routes";
 import assinStuRoutes from "../modules/admin/assign_students/routes"; 
 import assinGrupRoutes from "../modules/admin/group_course/routes"; 
 import assignTaskRoutes from "../modules/admin/assign_task/routes"; 
-export default [...webRoutes, ...authRoutes, ...adminRoutes, ...courseCtegoriesRoutes, ...coursesRoutes, ...tasksRoutes, ...schoolAdminRoutes, ...schoolListsRoutes, ...assignCourseRoutes, ...studentsRoutes,...groupsRoutes,...assinStuRoutes,...assinGrupRoutes,...assignTaskRoutes]
+import notFoundRoutes from "../modules/notFoundRoutes"; 
+export default [...webRoutes, ...authRoutes, ...adminRoutes,...courseCtegoriesRoutes, ...coursesRoutes, ...tasksRoutes, ...schoolAdminRoutes, ...schoolListsRoutes, ...assignCourseRoutes, ...studentsRoutes,...groupsRoutes,...assinStuRoutes,...assinGrupRoutes,...assignTaskRoutes, ...notFoundRoutes]
