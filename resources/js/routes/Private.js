@@ -14,7 +14,7 @@ const PrivateRoute = ({ component: Component, isAuthenticated, roleId, ...rest }
   }
  
   return <Route {...rest} render={props => {
-
+ 
     return (
       <Suspense
         fallback={

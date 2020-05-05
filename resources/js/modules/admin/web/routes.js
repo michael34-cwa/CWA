@@ -6,7 +6,7 @@ const routes = [
     path: "/",
     exact: true,
     auth: true,
-    component: lazy(() => import("../../auth/routes"))
+    component: lazy(() => import("./dashbord/index"))
   },
 
   {
@@ -15,7 +15,12 @@ const routes = [
     auth: true,
     component: lazy(() => import("./dashbord/index"))
   },
-  
+  // {
+  //   path: "/*",  
+  //   exact: true,
+  //   auth: true,
+  //   component: lazy(() => import("../../NotFoundPage"))
+  // },
 ];
 
 export default routes

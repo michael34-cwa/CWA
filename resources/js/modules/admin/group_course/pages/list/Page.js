@@ -77,7 +77,7 @@ import ReeValidate from 'ree-validate'
     });
   }
 
-  openModelAss() {  
+  openModelAss() {
     const { errors } = this.validator;
     this.setState({ courseData: { ...this.state.courseData, ['name']: '' } });
      

@@ -8,6 +8,8 @@ export default [
     auth: true,
     component: lazy(() => import("./pages/list/index"))
   },
+
+ 
   // {
   //   path: "/admin/course_assign/create",
   //   exact: true,
