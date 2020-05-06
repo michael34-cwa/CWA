@@ -28,5 +28,6 @@ export default [
     path: "/reset",
     exact: true,
     component: lazy(() => import("./pages/forgot/index"))
-  } 
+  } ,
+  
 ];

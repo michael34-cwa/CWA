@@ -15,7 +15,7 @@ class CreateStudentsGroupsTable extends Migration
     {
         Schema::create('students_groups', function (Blueprint $table) {
             $table->bigIncrements('id'); 
-            $table->integer('group_students_id')->unsigned();
+            $table->integer('group_courses_id')->unsigned();
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

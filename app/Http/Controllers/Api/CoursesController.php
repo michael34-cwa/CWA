@@ -8,6 +8,7 @@ use App\Model\CategoryCourses;
 use App\Model\SchoolProfile;
  use Illuminate\Support\Facades\Request;
  use App\Model\StudentCourses;
+ use App\Model\GroupTasks;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CoursesRequest;
@@ -67,7 +68,7 @@ class CoursesController  extends Controller
                     $q->where('course_name', 'LIKE', "%{$dataSearch}%");
                 }
                 }) 
-            ->with(array('getStudentCourse','getCourseTasks','getCategory'))
+            ->with(array('getStudentCourse','getCategory'))
         ->where('student_id',$id)->paginate();
 
 
@@ -173,17 +174,16 @@ class CoursesController  extends Controller
      */
     public function courseTasks($id,$sid = null)
     {
-        // $user = \Auth::guard('api')->user();
-        $id = base64_decode(urldecode($id));
-        $sid = base64_decode(urldecode($sid));
+            $id = base64_decode(urldecode($id));  
+        // $sid = base64_decode(urldecode($sid));  
         $user = \Auth::guard('api')->user();
         $uid =  $user->id;
-        return StudentsGroup::with(array('getStudentCourse','getCourseTasks'))
-    ->where('student_id',$uid)->find($id);
-
-        // return StudentCourses::with(array('getStudentCourse','getCourseTasks','getCategory','getStudentCourse'))->where('student_id', $sid)->find($id);
- 
+        $task = GroupTasks::with('getTask')
+    ->where('group_course_id',$id)->get();
         
+    return response()->json(['data' => $task], 200);
+
+  
     }
 
         /**

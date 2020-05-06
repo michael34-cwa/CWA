@@ -6,6 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import ReactPlayer from 'react-player'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -48,7 +49,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ScrollableTabsButtonAuto() {
+const TaskTab = ({ tasks}) => {
+ 
+// export default function TaskTab(tasks) {
+ 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -68,25 +72,40 @@ export default function ScrollableTabsButtonAuto() {
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          <Tab label="Task One" {...a11yProps(0)} />
-          <Tab label="Task Two" {...a11yProps(1)} />
-          <Tab label="Task Three" {...a11yProps(2)} />
-          <Tab label="Task Four" {...a11yProps(3)} />
-          <Tab label="Task Five" {...a11yProps(4)} />
-          <Tab label="Task Six" {...a11yProps(5)} />
-          <Tab label="Task Seven" {...a11yProps(6)} />
+          
+   
+       {tasks.map((input, index) =>
+        
+        <Tab label={input.getTask.taskName} {...a11yProps(index)} />
+      
+        )}  
+
+         }
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
+      
+      {tasks.map((input, index) =>
+      <TabPanel value={value} index={index}>
       <div class="maintasksec">
 
 <div class="taskdescripsec">
-    Task Description 
-</div>
+<div dangerouslySetInnerHTML={{ __html: input.getTask.taskDescription }} />
+
+ </div>
 <div class="threblocksec">
     <div class="blocksec1">
         <div class="block1videosec">
-            Video
+        <ReactPlayer
+                 url={input.getTask.link}
+                className='react-player'
+                //  width='100%'
+                //  height='500%'
+                //  onPlay={this.handlePlay}
+                //  onDuration={this.handleDuration}
+                //  playing={playing}
+                //  onProgress={this.handleProgress}
+                //  onPause={this.handlePause}
+                    />
         </div>
         <div class="translationadd">
             Translation Add
@@ -105,309 +124,11 @@ export default function ScrollableTabsButtonAuto() {
 </div>
 </div>
       </TabPanel>
-      <TabPanel value={value} index={1}>
-      <div class="maintasksec">
+   )}  
 
-<div class="taskdescripsec">
-    Task Description 1
-</div>
-<div class="threblocksec">
-    <div class="blocksec1">
-        <div class="block1videosec">
-            Video
-        </div>
-        <div class="translationadd">
-            Translation Add
-        </div>
-    </div>
-    <div class="blocksec2">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-    <div class="blocksec3">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-</div>
-</div>    
-  </TabPanel>
-      <TabPanel value={value} index={2}>
-      <div class="maintasksec">
-
-<div class="taskdescripsec">
-    Task Description 2
-</div>
-<div class="threblocksec">
-    <div class="blocksec1">
-        <div class="block1videosec">
-            Video
-        </div>
-        <div class="translationadd">
-            Translation Add
-        </div>
-    </div>
-    <div class="blocksec2">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-    <div class="blocksec3">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-</div>
-</div>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-      <div class="maintasksec">
-
-<div class="taskdescripsec">
-    Task Description 3
-</div>
-<div class="threblocksec">
-    <div class="blocksec1">
-        <div class="block1videosec">
-            Video
-        </div>
-        <div class="translationadd">
-            Translation Add
-        </div>
-    </div>
-    <div class="blocksec2">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-    <div class="blocksec3">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-</div>
-</div>          </TabPanel>
-      <TabPanel value={value} index={3}>
-      <div class="maintasksec">
-
-<div class="taskdescripsec">
-    Task Description 4
-</div>
-<div class="threblocksec">
-    <div class="blocksec1">
-        <div class="block1videosec">
-            Video
-        </div>
-        <div class="translationadd">
-            Translation Add
-        </div>
-    </div>
-    <div class="blocksec2">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-    <div class="blocksec3">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-</div>
-</div>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-      <div class="maintasksec">
-
-<div class="taskdescripsec">
-    Task Description 5
-</div>
-<div class="threblocksec">
-    <div class="blocksec1">
-        <div class="block1videosec">
-            Video
-        </div>
-        <div class="translationadd">
-            Translation Add
-        </div>
-    </div>
-    <div class="blocksec2">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-    <div class="blocksec3">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-</div>
-</div>          </TabPanel>
-      <TabPanel value={value} index={4}>
-      <div class="maintasksec">
-
-<div class="taskdescripsec">
-    Task Description 6
-</div>
-<div class="threblocksec">
-    <div class="blocksec1">
-        <div class="block1videosec">
-            Video
-        </div>
-        <div class="translationadd">
-            Translation Add
-        </div>
-    </div>
-    <div class="blocksec2">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-    <div class="blocksec3">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-</div>
-</div>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-      <div class="maintasksec">
-
-<div class="taskdescripsec">
-    Task Description 7
-</div>
-<div class="threblocksec">
-    <div class="blocksec1">
-        <div class="block1videosec">
-            Video
-        </div>
-        <div class="translationadd">
-            Translation Add
-        </div>
-    </div>
-    <div class="blocksec2">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-    <div class="blocksec3">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-</div>
-</div>          </TabPanel>
-      <TabPanel value={value} index={5}>
-      <div class="maintasksec">
-
-<div class="taskdescripsec">
-    Task Description 8
-</div>
-<div class="threblocksec">
-    <div class="blocksec1">
-        <div class="block1videosec">
-            Video
-        </div>
-        <div class="translationadd">
-            Translation Add
-        </div>
-    </div>
-    <div class="blocksec2">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-    <div class="blocksec3">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-</div>
-</div>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-      <div class="maintasksec">
-
-<div class="taskdescripsec">
-    Task Description 9
-</div>
-<div class="threblocksec">
-    <div class="blocksec1">
-        <div class="block1videosec">
-            Video
-        </div>
-        <div class="translationadd">
-            Translation Add
-        </div>
-    </div>
-    <div class="blocksec2">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-    <div class="blocksec3">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-</div>
-</div>          </TabPanel>
-      <TabPanel value={value} index={6}>
-      <div class="maintasksec">
-
-<div class="taskdescripsec">
-    Task Description 10
-</div>
-<div class="threblocksec">
-    <div class="blocksec1">
-        <div class="block1videosec">
-            Video
-        </div>
-        <div class="translationadd">
-            Translation Add
-        </div>
-    </div>
-    <div class="blocksec2">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-    <div class="blocksec3">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-</div>
-</div>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-      <div class="maintasksec">
-
-<div class="taskdescripsec">
-    Task Description 
-</div>
-<div class="threblocksec">
-    <div class="blocksec1">
-        <div class="block1videosec">
-            Video
-        </div>
-        <div class="translationadd">
-            Translation Add
-        </div>
-    </div>
-    <div class="blocksec2">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-    <div class="blocksec3">
-        <div class="completed-translation">
-            Completed Translation
-        </div>
-    </div>
-</div>
-</div>          </TabPanel>
+  }
+  
     </div>
   );
 }
+ export default TaskTab;

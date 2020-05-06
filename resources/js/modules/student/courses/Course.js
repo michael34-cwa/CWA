@@ -8,11 +8,12 @@ class Course extends Model {
   }
   
   initialize(props) { 
+  
      super.initialize(props)   
     this.courseName = props.getStudentCourse ? props.getStudentCourse.courseName : "";
     this.courseDescription = props.getStudentCourse ? props.getStudentCourse.courseDescription : "";
     this.getTasks = props.getCourseTasks || "";
-    this.groupId = window.btoa(props.groupStudentsId) || "";
+    this.groupId = window.btoa(props.groupCoursesId) || "";
     this.studentId = window.btoa(props.studentId) || "";
     this.catId = props.getCategory ? props.getCategory: [];
     this.status = props.status || ""; 

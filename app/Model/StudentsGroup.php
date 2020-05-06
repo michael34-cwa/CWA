@@ -13,12 +13,19 @@ class StudentsGroup extends Model
     {
         return $this->hasOneThrough(
         'App\Model\Courses',
-        'App\Model\GroupStudents',
+        'App\Model\GroupCourses',
         'id',
         'id',
-        'group_students_id',
+        'group_courses_id',
         'course_id');
     }
+
+    // public function getStudentCourse()
+    // {
+    //     return $this->hasOne(
+    //     'App\Model\Courses', 
+    // }
+
 
     
     public function getCourseTasks()
@@ -37,10 +44,10 @@ class StudentsGroup extends Model
     {
         return $this->hasManyThrough(
         'App\Model\CategoryCourses',
-        'App\Model\GroupStudents',
+        'App\Model\GroupCourses',
         'id',
         'course_id',
-        'group_students_id',
+        'group_courses_id',
         'course_id');
     }
 
