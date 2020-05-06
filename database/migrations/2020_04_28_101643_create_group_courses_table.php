@@ -16,7 +16,7 @@ class CreateGroupCoursesTable extends Migration
         Schema::create('group_courses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('course_id')->unsigned(); 
-            $table->integer('group_student_id')->unsigned();
+            $table->integer('group_id')->unsigned();
          
             $table->timestamps();
         });

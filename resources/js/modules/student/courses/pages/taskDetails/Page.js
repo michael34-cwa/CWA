@@ -38,7 +38,7 @@ class Page extends Component {
       end_time: "required", 
       vid_disc: "min:2|max:800", 
     });  
-    const course = this.props.course.toJson()
+    // const course = this.props.course.toJson()
  
      const logTime = this.props.logTime
     const chat = this.props.chat
@@ -48,8 +48,7 @@ class Page extends Component {
        loading: false,
       chatVal: { chat:''},
       logeid: '',
-      course,
-      logData: { start_time:'' , end_time: '',vid_disc:''},
+       logData: { start_time:'' , end_time: '',vid_disc:''},
       chat,
       logTime,
       status : '',
@@ -91,17 +90,17 @@ class Page extends Component {
 
   loadCourse() {
     const { match, course, dispatch,chat } = this.props 
-    let id = match.params.cid
+    let id = match.params.tid
     let sid = match.params.sid
     let tid = match.params.id  
       
 
      
-    dispatch(courseEditRequest(id))
+    dispatch(courseEditRequest(id,sid))
     
  
-    let schoolId = this.props.course.schoolId;
-    let taskid = this.props.course.id;
+    // let schoolId = this.props.course.schoolId;
+    // let taskid = this.props.course.id;
     //dispatch(chatListRequest(tid,id));
   }
 
@@ -111,8 +110,8 @@ class Page extends Component {
     let id = match.params.cid
     let sid = match.params.sid
     let tid = match.params.tid  
-    let schoolId = this.props.course.schoolId;
-    let taskid = this.props.course.id;
+    // let schoolId = this.props.course.schoolId;
+    // let taskid = this.props.course.id;
  
     // alert(window.atob(id))
     // alert(window.atob(sid))
@@ -128,7 +127,7 @@ class Page extends Component {
   }
  
   componentWillUnmount() { 
-    logsListRequest(this.props.course.id,this.props.course.schoolId);
+   // logsListRequest(this.props.course.id,this.props.course.schoolId);
   }
   
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -143,11 +142,11 @@ class Page extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const course = nextProps.course.toJson()
+    // const course = nextProps.course.toJson()
 
-    if (!_.isEqual(this.state.course, course)) {
-      this.setState({ course })
-    }
+    // if (!_.isEqual(this.state.course, course)) {
+    //   this.setState({ course })
+    // }
 
   }
 
@@ -481,17 +480,17 @@ submitTimeUp(logData) {
   }
 
 
-  renderList() {
+  // renderList() {
     
-    const { course ,courseOne} = this.props
+  //   const { course ,courseOne} = this.props
 
-    if (course.id) {
-      return <TaskRow
-        course={course}
-        courseOne={courseOne}
-      />
-    }
-  }
+  //   if (course.id) {
+  //     return <TaskRow
+  //       course={course}
+  //       courseOne={courseOne}
+  //     />
+  //   }
+  // }
 
 
   // renderChat() {
@@ -606,13 +605,12 @@ renderLogs() {
 }
 
   render() {
- 
+
     const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state
 
     const { course, user ,chat,logTime} = this.props
    
-    console.log(this.state.logsAll);
-     return <main className="dashboard-right" role="main">
+      return <main className="dashboard-right" role="main">
       <Button
                     onClick={this.backBtn}
                     size="small" variant="contained" className="colorPrimary text-capitalize mb-2"  >
@@ -623,7 +621,12 @@ renderLogs() {
         <h1>Task Details</h1>
 
         {
-          <TaskTab />
+          this.props.tasks ? 
+          <TaskTab 
+          tasks={this.props.tasks}
+          /> 
+         
+          : "No Task Found"
         }
         {/* <a target="_blank" href={"/file_manager/"+course.id}>
 
@@ -701,9 +704,9 @@ renderLogs() {
 
         } */}
 
-   { user.rolename == 'student' && course.description != null &&  course.description }
-        {this.renderList()}
-      </div>
+   {/* { user.rolename == 'student' && course.description != null &&  course.description }
+        {/* {this.renderList()} */}
+      </div> 
 
     
       </div>
@@ -714,7 +717,7 @@ renderLogs() {
               <div className="embedded-video-wrapper">
                 <h4>1-Embedded Video</h4>
                 <ReactPlayer
-                 url={course.link}
+              //   url={course.link}
                 //  className='react-player'
                 //  width='100%'
                 //  height='500%'
@@ -805,12 +808,12 @@ renderLogs() {
       </div>
                  </form>
 
-               <Form
+               {/* <Form
           {...this.state} 
           onChange={this.handleChangeTime}
           onSubmit={this.handleSubmitTime}
           logData={this.state.logData}
-         />
+         /> */}
                   </div>
                 </div>
                 {/* <div className="col-xs-12 col-md-5">

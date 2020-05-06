@@ -14,7 +14,7 @@ const propTypes = {
  
 const CourseRow = ({ course,cataroy }) => { 
  let concar = []
-
+ 
   return (
 
     <React.Fragment>
@@ -26,7 +26,7 @@ const CourseRow = ({ course,cataroy }) => {
         { course.catId.length >0 ? course.catId.map(function(item, index) {
        concar = cataroy.find(cat => cat.id == item.catId)
       
-      return <span className="chip-course">{concar.categoryName}</span>;
+      return <span className="chip-course">{concar ? concar.categoryName : ''}</span>;
 
           }).reduce((prev, curr) => [prev, ' ', curr]):''}  
         </Paper>

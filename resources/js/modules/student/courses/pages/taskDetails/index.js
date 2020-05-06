@@ -16,15 +16,36 @@ const mapStateToProps = (state, router) => {
 //     }
    // let chats = state.students.data.length > 0 ? state.students.data : [];
    
-   taskDils = state.courses.data.find(course => course.id == window.atob(params.cid))
+  //  taskDils = state.courses.data.find(course => course.id == window.atob(params.cid))
    
    
-   let  taskCorse= taskDils ? taskDils :"";
-   let  taskSig= taskDils ? taskDils.getCourseTasks :"";
+  //  let  taskCorse= taskDils ? taskDils :"";
+  //  let  taskSig= taskDils ? taskDils.getCourseTasks :"";
+
+  console.log('this.props.course')
+  console.log(state)
+ 
+  var dataLists = [];
+  if(JSON.stringify(state.tasks) === '{}') { //This will check if the object is empty
+    dataLists = []
+  
+ }
+ 
+ if(dataLists == 'undefined'){
+  dataLists = []
+ 
+ }else{
+  dataLists = state.tasks.data
+ }
+  
+  console.log('dataLists')
+  console.log(dataLists)
+
  
    return {
-    course: taskSig ? new Task(taskSig) : new Task({}),
-    courseOne: taskCorse ? new Course(taskCorse) : new Course({}),
+    tasks: dataLists, 
+
+     // courseOne: taskCorse ? new Course(taskCorse) : new Course({}),
     user: state.admin_user,
   //  chat: chats.map(chat => new Chat(chat)),
     logTime: data.map(logData => new Logs(logData)), 

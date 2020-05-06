@@ -1,6 +1,7 @@
 import Http from '../../../utils/Http'
 import Transformer from '../../../utils/Transformer'
 import * as courseActions from './store/actions'
+import * as taskDetails from '../../admin/tasks/store/actions'
 import * as taskActions from '../../school/students/store/actions'
 import * as logActions from '../../admin/school_lists/store/actions'
 import * as catActions from '../../admin/course_categories/store/actions'
@@ -142,6 +143,8 @@ export function courseListRequest({ pageNumber = 1, value = '', url = "/courses/
     Http.get(url)
       .then(res => {
         dispatch(courseActions.list(transformResponse(res.data)));
+        dispatch(taskDetails.list(transformResponse())); 
+
       })
       .catch(err => {
         // TODO: handle err
@@ -245,13 +248,14 @@ export function chatAddRequest(params, taskid,schoolId) {
 }
 
 
-export function courseEditRequest(id,sid) {
+export function courseEditRequest(id,sid) { 
   return dispatch => {
-    dispatch(courseActions.spinerAdd(transformResponse()));
+    dispatch(taskDetails.spinerAdd(transformResponse()));
     Http.get(`courses/course_tasks/${id}/${sid}`)
       .then(res => {
-        dispatch(courseActions.add(transformResponse(res.data)));
-      })
+        dispatch(taskDetails.list(transformResponse(res.data))); 
+
+       })
       .catch(err => {
         // TODO: handle err
         console.error(err.response);
