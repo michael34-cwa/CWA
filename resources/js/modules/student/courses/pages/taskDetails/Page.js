@@ -141,22 +141,34 @@ class Page extends Component {
     const logTime = nextProps.logTime
     this.setState({ logTime })
 
-   console.log(this.state.taskData)
-   console.log(nextProps.tasks)
+   
 
-   if(this.state.taskData   && nextProps.tasks){
+   if(this.state. taskData  && nextProps.tasks){   
+
     let taskOne = nextProps.tasks.find(course => course.id == this.state.taskData.id)
 
-    if (!_.isEqual(this.state.taskData, taskOne )) {
-      const taskOne = nextProps.tasks ? nextProps.tasks[0] : '';
-      let tid = this.state.taskData.id
-      this.props.dispatch( logsListRequest(tid) ); 
-      this.setState({ taskData:taskOne })
-      this.setState({ logTime })
- }
+      //   let tid = nextProps.tasks ? nextProps.tasks[0].id : '';
+      //  this.props.dispatch( logsListRequest(tid) ); 
+//     if (!_.isEqual(this.state.taskData, taskOne )) {      console.log('bb')
+
+//       const taskOne = nextProps.tasks ? nextProps.tasks[0] : '';
+//       let tid = this.state.taskData.id
+//       this.props.dispatch( logsListRequest(tid) ); 
+//       this.setState({ taskData:taskOne })
+//       this.setState({ logTime })
+//  }
    }else{
+   
+ 
+     
    const taskOne = nextProps.tasks ? nextProps.tasks[0] : '';
+   const logTime = nextProps.logTime
    this.setState({ taskData:taskOne })
+   if(taskOne){
+         let tid = taskOne.id
+     this.props.dispatch( logsListRequest(tid) ); 
+   }
+  //  this.setState({ logTime })
   }
 
 
@@ -709,9 +721,10 @@ renderLogs() {
 
 
 
-                <div className="form-group row">
+      
+          <div className="form-group row">
        <div className="col-md-12 ml-auto">
-       <Button 
+       {this.state.logTime.length >= 1 ?     <Button 
          variant="contained"
       //   disabled={errors.any()}
          type="submit"
@@ -719,7 +732,7 @@ renderLogs() {
          disableElevation
        >
          <i className="fa fa-plus mr-2" aria-hidden="true"></i>  Update Time
-       </Button>
+       </Button> : "" }
          
     
        </div>
