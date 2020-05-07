@@ -567,6 +567,95 @@ display: flex;
     align-items: center;
     justify-content: center;
 }
+.leftvideoandform {
+    float: left;
+    width: 65%;
+}
+
+.righttextarea {
+    float: left;
+    width: 35%;
+    padding-left: 20px;
+    box-sizing: border-box;
+ 
+}
+.formrightmanin{
+	   overflow-y: auto;
+    max-height: 600px;
+}
+.twocolumsec {
+    overflow: hidden;
+}
+
+.taskvideo iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 0;
+}
+
+.taskvideo {
+    height: 0;
+    position: relative;
+    padding-top: 55%;
+}
+
+.mainrowtask {
+    overflow: hidden;
+    margin: 0 -15px 10px;
+}
+
+.halfrow {
+    float: left;
+    width: 50%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.mainrowtask input {
+    border: 0;
+    border-bottom: 1px solid #a5a5a5;
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.mainrowtask textarea {
+    resize: none;
+    border: 1px solid;
+}
+
+.formgroupsec textarea {
+    border: 1px solid #a5a5a5;
+    resize: none;
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+}
+.bluebtn {
+    border: 0;
+    color: #fff;
+    background-color: #19cfd4;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.bluebtn:hover {
+background-color: #15bbbf;
+}
+.formgroupsec {
+    margin-top: 20px;
+}
+.taskdetailssec h2 {
+    font-size: 22px;
+    color: #19cfd4;
+}
 .error-template {padding: 40px 15px;text-align: center;}
 .error-actions {margin-top:15px;margin-bottom:15px;}
 .error-actions .btn { margin-right:10px; }

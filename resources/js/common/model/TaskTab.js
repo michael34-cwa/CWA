@@ -49,14 +49,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TaskTab = ({ tasks}) => {
- 
-// export default function TaskTab(tasks) {
+const TaskTab = ({ tasks,handleChangeTab}) => {
+ let fist = tasks[0] ? tasks[0].id : 1;
+ // export default function TaskTab(tasks) {
  
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(fist);
 
   const handleChange = (event, newValue) => {
+    handleChangeTab(newValue)
     setValue(newValue);
   };
 
@@ -76,7 +77,7 @@ const TaskTab = ({ tasks}) => {
    
        {tasks.map((input, index) =>
         
-        <Tab label={input.getTask.taskName} {...a11yProps(index)} />
+        <Tab label={input.getTask.taskName}  value={input.id} />
       
         )}  
 
@@ -84,7 +85,7 @@ const TaskTab = ({ tasks}) => {
         </Tabs>
       </AppBar>
       
-      {tasks.map((input, index) =>
+      {/* {tasks.map((input, index) =>
       <TabPanel value={value} index={index}>
       <div class="maintasksec">
 
@@ -124,9 +125,9 @@ const TaskTab = ({ tasks}) => {
 </div>
 </div>
       </TabPanel>
-   )}  
+   )}   */}
 
-  }
+  
   
     </div>
   );

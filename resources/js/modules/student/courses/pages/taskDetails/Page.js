@@ -15,6 +15,10 @@ import Form from './components/Form'
 import LogsRow from './components/LogsRow'
 
 import ReeValidate from 'ree-validate'  
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+
 
 class Page extends Component {
 
@@ -52,6 +56,7 @@ class Page extends Component {
       chat,
       logTime,
       status : '',
+      taskData: '',
       openAss: false 
       ,openCan: false
     };
@@ -73,6 +78,8 @@ class Page extends Component {
      this.handleChangeTimeUp = this.handleChangeTimeUp.bind(this);
      
      this.handleSubmitTimeUp = this.handleSubmitTimeUp.bind(this);
+
+     this.handleChangeTab = this.handleChangeTab.bind(this);
 
      
      this.editLog = this.editLog.bind(this);
@@ -132,23 +139,43 @@ class Page extends Component {
   
   UNSAFE_componentWillReceiveProps(nextProps) {
     const logTime = nextProps.logTime
-    console.log('nextProps')
-    console.log(nextProps)
+    this.setState({ logTime })
+
+   console.log(this.state.taskData)
+   console.log(nextProps.tasks)
+
+   if(this.state.taskData   && nextProps.tasks){
+    let taskOne = nextProps.tasks.find(course => course.id == this.state.taskData.id)
+
+    if (!_.isEqual(this.state.taskData, taskOne )) {
+      const taskOne = nextProps.tasks ? nextProps.tasks[0] : '';
+      let tid = this.state.taskData.id
+      this.props.dispatch( logsListRequest(tid) ); 
+      this.setState({ taskData:taskOne })
+      this.setState({ logTime })
+ }
+   }else{
+   const taskOne = nextProps.tasks ? nextProps.tasks[0] : '';
+   this.setState({ taskData:taskOne })
+  }
+
+
+
+  
 
    // if (!_.isEqual(this.state.logTime, logTime)) {
-      this.setState({ logTime })
   //  }
 
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    // const course = nextProps.course.toJson()
+  // UNSAFE_componentWillReceiveProps(nextProps) {
+  //   // const course = nextProps.course.toJson()
 
-    // if (!_.isEqual(this.state.course, course)) {
-    //   this.setState({ course })
-    // }
+  //   // if (!_.isEqual(this.state.course, course)) {
+  //   //   this.setState({ course })
+  //   // }
 
-  }
+  // }
 
 
 
@@ -322,13 +349,13 @@ submitTimeUp(logData) {
   submitTime(logData) { 
     this.setState({ loading: true })
     const { match , dispatch } = this.props
-    let id = match.params.tid;  
-  //  let tid = this.props.course.taskId; 
-    let tid = match.params.tid  
+    let id =  this.state.taskData.id;  
+    let tid =  this.state.taskData.id;  
+ 
       this.props
        .dispatch(taskTimeRequest(logData, id)) 
        .then(res => {  
-       dispatch(logsListRequest(tid))
+      dispatch(logsListRequest(tid))
       
          this.setState({ loading: false,logData: { start_time:'' , end_time: '',vid_disc:''}  })   
        })
@@ -482,12 +509,11 @@ submitTimeUp(logData) {
 
   // renderList() {
     
-  //   const { course ,courseOne} = this.props
+  //   const { taskDatas} = this.props
 
-  //   if (course.id) {
+  //   if (taskDatas.id) {
   //     return <TaskRow
-  //       course={course}
-  //       courseOne={courseOne}
+  //       course={taskDatas} 
   //     />
   //   }
   // }
@@ -587,6 +613,18 @@ submitTimeUp(logData) {
   return ('0' + string).slice(-2)
 }
  
+handleChangeTab(newValue){
+   const {  dispatch ,tasks} = this.props 
+  //  dispatch(taskDetailsRequest(newValue))
+  let taksDataLis = tasks.find(task => task.id == newValue)
+ 
+  this.setState({ taskData:taksDataLis ,    
+        logData: { start_time:'' , end_time: '',vid_disc:''},
+})
+let tid= newValue;
+dispatch( logsListRequest(tid) );
+  
+}
 
 renderLogs() {
 
@@ -609,7 +647,7 @@ renderLogs() {
     const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state
 
     const { course, user ,chat,logTime} = this.props
-   
+    const {taskData } = this.state
       return <main className="dashboard-right" role="main">
       <Button
                     onClick={this.backBtn}
@@ -618,16 +656,150 @@ renderLogs() {
         </Button > 
       <div class="card"><div class="card-body bg-white">
     
-        <h1>Task Details</h1>
-
+ 
         {
           this.props.tasks ? 
           <TaskTab 
           tasks={this.props.tasks}
+          handleChangeTab={this.handleChangeTab}
           /> 
          
           : "No Task Found"
         }
+
+<div class="taskdetailssec">
+	<div class="top-contentsection">
+	<h2>Task details</h2>
+  <p dangerouslySetInnerHTML={{ __html:  taskData ?  taskData.getTask.taskDescription : '' }} /> 
+
+ </div>
+<div class="twocolumsec">
+	<div class="leftvideoandform">
+		<div class="taskvideo">
+    { taskData ?  <ReactPlayer
+                  url={taskData.getTask.link}
+                className='react-player'
+                //  width='100%'
+                //  height='500%'
+                 onPlay={this.handlePlay}
+                 onDuration={this.handleDuration}
+                 playing={playing}
+                 onProgress={this.handleProgress}
+                 onPause={this.handlePause}
+     />  : ''}
+ 	</div>
+	<div class="taskform">
+  <Form
+          {...this.state} 
+          onChange={this.handleChangeTime}
+          onSubmit={this.handleSubmitTime}
+          logData={this.state.logData}
+         />
+	</div>
+
+	</div>
+	<div class="righttextarea">
+		<h2>Completed Transcription</h2>
+ 
+				<div  class="formrightmanin">
+
+        <form onSubmit={this.handleSubmitTimeUp}  >
+         
+         {this.state.logTime.length >= 1 ? this.renderLogs() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}  
+
+
+
+                <div className="form-group row">
+       <div className="col-md-12 ml-auto">
+       <Button 
+         variant="contained"
+      //   disabled={errors.any()}
+         type="submit"
+         className="text-capitalize colorPrimary"
+         disableElevation
+       >
+         <i className="fa fa-plus mr-2" aria-hidden="true"></i>  Update Time
+       </Button>
+         
+    
+       </div>
+     </div>
+                </form>
+
+		 
+			</div>
+		 
+	</div>
+</div>
+</div>
+
+
+{/* <div class="maintasksec">
+
+<div class="taskdescripsec">
+  <div dangerouslySetInnerHTML={{ __html:  taskData ?  taskData.getTask.taskDescription : '' }} /> 
+
+ </div>
+
+
+ 
+<div class="threblocksec">
+    <div class="blocksec1">
+        <div class="block1videosec">
+     { taskData ?  <ReactPlayer
+                  url={taskData.getTask.link}
+                className='react-player'
+                //  width='100%'
+                //  height='500%'
+                 onPlay={this.handlePlay}
+                 onDuration={this.handleDuration}
+                 playing={playing}
+                 onProgress={this.handleProgress}
+                 onPause={this.handlePause}
+     />  : ''}
+        </div>
+        <div class="translationadd">
+        <Form
+          {...this.state} 
+          onChange={this.handleChangeTime}
+          onSubmit={this.handleSubmitTime}
+          logData={this.state.logData}
+         />
+        </div>
+    </div>
+    <div class="blocksec2">
+        <div class="completed-translation">
+        <form onSubmit={this.handleSubmitTimeUp}  >
+         
+          {this.state.logTime.length >= 1 ? this.renderLogs() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}  
+
+ 
+
+                 <div className="form-group row">
+        <div className="col-md-12 ml-auto">
+        <Button 
+          variant="contained"
+       //   disabled={errors.any()}
+          type="submit"
+          className="text-capitalize colorPrimary"
+          disableElevation
+        >
+          <i className="fa fa-plus mr-2" aria-hidden="true"></i>  Update Time
+        </Button>
+          
+     
+        </div>
+      </div>
+                 </form>
+        </div>
+    </div>
+    <div class="blocksec3">
+        <div class="completed-translation">
+            Completed Translation
+        </div>
+    </div>
+</div>
+</div> */}
         {/* <a target="_blank" href={"/file_manager/"+course.id}>
 
         <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1" onClick={this.pageChange}  >
@@ -715,118 +887,23 @@ renderLogs() {
 <div className="row">
             <div className="col-xs-12">
               <div className="embedded-video-wrapper">
-                <h4>1-Embedded Video</h4>
-                <ReactPlayer
-              //   url={course.link}
-                //  className='react-player'
-                //  width='100%'
-                //  height='500%'
-                 onPlay={this.handlePlay}
-                 onDuration={this.handleDuration}
-                 playing={playing}
-                 onProgress={this.handleProgress}
-                 onPause={this.handlePause}
-                    />
-                      {/* <table>
-            <tbody>
-              <tr> 
-         
-                       <td>{playing ? 'true' : 'false'}</td>
-                       </tr>
-                       
-                       <tr>
-                <th>duration</th>
-                <td><Duration seconds={duration} /></td>
-              </tr>
-              <tr>
-                <th>elapsed</th>
-                <td><Duration seconds={ this.state.duration *  this.state.played} /></td>
-              </tr>
-              <tr>
-                <th>remaining</th>
-                <td><Duration seconds={duration * (1 - played)} /></td>
-              </tr>
-                       </tbody></table> */}
+              
+                   
               </div>
-              {/* <div className="row">
-                <div className="col-xs-12 col-sm-4">
-                  <div className="timer-wrapper">
-                    <h4>2-Timer</h4>
-                  </div>
-                </div>
-                <div className="col-xs-12 col-sm-8">                  
-                  <div className="timer-editor-wrapper">
-                    <h4>3-Transcriber-Editing box with timer</h4>
-                  </div>
-                </div>
-              </div> */}
+      
             </div>
             <div className="col-xs-12">
               <div className="row">
                 <div className="col-xs-12">
                   <div className="completed-transcription-wrapper">
-                    {/* <h4>4-Completed Transcription</h4> */}
-                    {/* <div className="table-responsive">
-               <table className="table  table-striped">
-                <thead className="thead-inverse">
-                  <tr>
-                    <th width="70px">Sr. No.</th>
-                    <th width="150px">Student Name</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                    <th>Details</th>
-                    <th width="140px">Created Date</th>
-                    <th width="140px">Updated Date</th>
-                    <th> 
-                    </th>
-                  </tr>
-                </thead> */}
-{/* 
-              </table>
-            </div> */}
-
-<form onSubmit={this.handleSubmitTimeUp}  >
-          {this.state.logTime.length >= 1 ? this.renderLogs() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}  
-
-        {/* {this.props.logTime.map((input, index) => <input type = "text" key={input.vidDisc} value={input.vidDisc}  placeholder='Enter something here' onChange={e => this.handleChangeTimeUp(index, e.target.value)}/>)} */}
+            
 
 
-                 <div className="form-group row">
-        <div className="col-md-12 ml-auto">
-        <Button 
-          variant="contained"
-       //   disabled={errors.any()}
-          type="submit"
-          className="text-capitalize colorPrimary"
-          disableElevation
-        >
-          <i className="fa fa-plus mr-2" aria-hidden="true"></i>  Update Time
-        </Button>
-          
-     
-        </div>
-      </div>
-                 </form>
 
-               {/* <Form
-          {...this.state} 
-          onChange={this.handleChangeTime}
-          onSubmit={this.handleSubmitTime}
-          logData={this.state.logData}
-         /> */}
+  
                   </div>
                 </div>
-                {/* <div className="col-xs-12 col-md-5">
-                  <div className="twillo-videochat-1-wrapper">
-                    <h4>Twillo Video Chat 1</h4>
-                  </div>
-                  <div className="twillo-videochat-2-wrapper">
-                    <h4>Twillo Video Chat 2</h4>
-                  </div>
-                  <div className="mainChat-wrapper">
-                  
-                  </div>
-                </div> */}
+                
               </div>  
             </div>
             {/* {this.renderChat()} */}
