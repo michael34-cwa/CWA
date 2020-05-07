@@ -186,6 +186,20 @@ class CoursesController  extends Controller
   
     }
 
+    public function taskData($id)
+    {
+        //    $id = base64_decode(urldecode($id));  
+        // $sid = base64_decode(urldecode($sid));  
+        $user = \Auth::guard('api')->user();
+        $uid =  $user->id;
+        return     $task = GroupTasks::with('getTask')->find($id);
+        
+  //  return response()->json(['data' => $task], 200);
+
+  
+    }
+
+    
         /**
      * Show the form for editing the specified resource.
      *

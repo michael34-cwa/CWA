@@ -22,28 +22,24 @@ const mapStateToProps = (state, router) => {
   //  let  taskCorse= taskDils ? taskDils :"";
   //  let  taskSig= taskDils ? taskDils.getCourseTasks :"";
 
-  console.log('this.props.course')
-  console.log(state)
+
  
   var dataLists = [];
   if(JSON.stringify(state.tasks) === '{}') { //This will check if the object is empty
     dataLists = []
   
- }
- 
- if(dataLists == 'undefined'){
+ } else if(state.tasks == 'undefined'){
   dataLists = []
  
  }else{
   dataLists = state.tasks.data
  }
-  
-  console.log('dataLists')
-  console.log(dataLists)
-
+ 
+//  let taskDatas = state.assign_course ? state.assign_course : '';
  
    return {
     tasks: dataLists, 
+   // taskData : taskDatas ? new Task(taskDatas) : new Task({}),
 
      // courseOne: taskCorse ? new Course(taskCorse) : new Course({}),
     user: state.admin_user,

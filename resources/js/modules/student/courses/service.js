@@ -5,6 +5,7 @@ import * as taskDetails from '../../admin/tasks/store/actions'
 import * as taskActions from '../../school/students/store/actions'
 import * as logActions from '../../admin/school_lists/store/actions'
 import * as catActions from '../../admin/course_categories/store/actions'
+import * as taskSingle from '../../project_admin/assign_course/store/actions'
 import { toast } from "react-toastify";
 function transformRequest(parms) {
   return Transformer.send(parms)
@@ -265,9 +266,11 @@ export function courseEditRequest(id,sid) {
 
 export function taskDetailsRequest(id) {
   return dispatch => {
-    Http.get(`tasks/student/${id}`)
-      .then(res => {
-        dispatch(courseActions.add(transformResponse(res.data)));
+    dispatch(taskSingle.spinerAdd(transformResponse())); 
+    Http.get(`courses/task_data/${id}`)
+      .then(res => {    
+     
+        dispatch(taskSingle.add(transformResponse(res.data)));
       })
       .catch(err => {
         // TODO: handle err
@@ -364,7 +367,7 @@ export function taskDisRequest(params,id) {
 
 
 export function taskTimeRequest(params,id) {    
-
+ 
   return dispatch => (
     new Promise((resolve, reject) => {
       Http.post(`/tasks/task_logs/${id}`, transformRequest(params))
