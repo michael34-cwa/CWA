@@ -19,7 +19,7 @@ const LogsRow = ({  index,logs, onChange }) => {
  }
    return (
  <div>
-   {logs.name}
+   <label>{logs.name}</label>
 <FormControl className="w-100 mb-3" >
           <TextField
             // error={errors.has("vid_disc")}

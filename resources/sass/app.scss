@@ -568,15 +568,15 @@ display: flex;
     justify-content: center;
 }
 .leftvideoandform {
-    float: left;
+    // float: left;
     width: 65%;
 }
 
 .righttextarea {
-    float: left;
-    width: 35%;
-    padding-left: 20px;
-    box-sizing: border-box;
+    // float: left;
+    // width: 35%;
+    // padding-left: 20px;
+    // box-sizing: border-box;
  
 }
 .formrightmanin{
@@ -584,7 +584,7 @@ display: flex;
     max-height: 600px;
 }
 .twocolumsec {
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 .taskvideo iframe {
@@ -600,7 +600,8 @@ display: flex;
 .taskvideo {
     height: 0;
     position: relative;
-    padding-top: 55%;
+	padding-top: 55%;
+	margin: 0 0 20px 0;
 }
 
 .mainrowtask {
@@ -868,4 +869,21 @@ button.colorPrimary:hover, a.colorPrimary:hover {
 	main.dashbard-area .dashbard-inner .side-menu {
 		display: none;
 	}
+}
+
+
+.card-body{
+	&.card-tabs-page{
+		header {
+			padding: 0;
+			margin: 0 0 0px 0;
+			box-shadow: none;
+			background: transparent;
+			border-bottom: 1px solid #e2e2e2;
+		}
+		.taskdetailssec {
+			padding: 20px;
+			background: #fafafa;
+		}
+	} 
 }

@@ -666,7 +666,7 @@ renderLogs() {
                     size="small" variant="contained" className="colorPrimary text-capitalize mb-2"  >
                     Back
         </Button > 
-      <div class="card"><div class="card-body bg-white">
+      <div class="card"><div class="card-body bg-white card-tabs-page">
     
  
         {
@@ -685,8 +685,8 @@ renderLogs() {
   <p dangerouslySetInnerHTML={{ __html:  taskData ?  taskData.getTask.taskDescription : '' }} /> 
 
  </div>
-<div class="twocolumsec">
-	<div class="leftvideoandform">
+<div class="twocolumsec row">
+	<div class="leftvideoandform col-md-7">
 		<div class="taskvideo">
     { taskData ?  <ReactPlayer
                   url={taskData.getTask.link}
@@ -710,20 +710,20 @@ renderLogs() {
 	</div>
 
 	</div>
-	<div class="righttextarea">
+	<div class="righttextarea col-md-5">
 		<h2>Completed Transcription</h2>
  
 				<div  class="formrightmanin">
 
         <form onSubmit={this.handleSubmitTimeUp}  >
          
-         {this.state.logTime.length >= 1 ? this.renderLogs() : <tr> <td colspan="5" className="text-center"><div className='nodata'>No Data Found</div></td> </tr>}  
+         {this.state.logTime.length >= 1 ? this.renderLogs() :<div className='nodata'>No Data Found</div>}  
 
 
 
       
-          <div className="form-group row">
-       <div className="col-md-12 ml-auto">
+          <div className="form-group">
+       <div className="ml-auto">
        {this.state.logTime.length >= 1 ?     <Button 
          variant="contained"
       //   disabled={errors.any()}
