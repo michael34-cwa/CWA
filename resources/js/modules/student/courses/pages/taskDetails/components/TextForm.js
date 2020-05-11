@@ -27,15 +27,29 @@ const TextForm = ({translate, errors, onChange, onSubmit }) => {
     <form onSubmit={e => onSubmit(e)}>
 
       <div className="row">
-       
-      <div className="mb-3">
+      <TextField
+            // error={errors.has("vid_disc")}
+            label="Multiline"
+            multiline
+            rows={5}  
+             variant="outlined"
+            label="Translaton"
+            //  helperText={`${errors.has("vid_disc") ? errors.first("vid_disc").replace("_", "video description") : ''}`}
+            value={translate }
+            id="translate"
+            name={'translate'}
+            onChange={e => handleChangeTrans(e.target.name, e.target.value)}
+          />
+          
+
+      {/* <div className="mb-3">
          <div className="editor-wrap p-2">
           <MyEditor id="translate" name="translate" value={translate|| ''} onChange={e => handleChangeTrans('translation', e)} />
       </div>
         {errors.has("translate") && (
           <div className="MuiFormHelperText-root Mui-error"> {errors.first("translate").replace("translate", "TextForm")} </div>
         )}
-      </div>
+      </div> */}
       </div>
  
    
