@@ -191,7 +191,7 @@ p.logintext {
 		a {
 			display: block;
 			padding: 8px 20px;
-			font-size: 1rem;
+			font-size: 14px;
 			font-weight: 400;
 			line-height: 1.5;
 			border-bottom: 1px dashed #9fcdff;
@@ -886,4 +886,10 @@ button.colorPrimary:hover, a.colorPrimary:hover {
 			background: #fafafa;
 		}
 	} 
+}
+
+
+.MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover {
+    background-color: rgb(37, 149, 217) !important;
+    color: #fff !important;
 }

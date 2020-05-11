@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
     Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/category', 'TasksController@categoryGet');
     Route::post('logs_update/{id}', 'TasksController@logsUpdate');
+    Route::post('translation_update/{id}', 'TasksController@translationUpdate');
     Route::get('chat/{id}/{sid}', 'TasksController@getChat');
     Route::post('chat/{taskid}/{schoolId}/{id?}/{read?}', 'TasksController@addChat');
     Route::get('student/{id}', 'TasksController@studentTask');

@@ -22,6 +22,8 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
  
   const [personName, setPersonName] = React.useState([]);
 
+  const [taskName, setTaskName] = React.useState([]);
+
 
   function handleChange(name, value) { 
     if(name == 'name'){
@@ -29,7 +31,11 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
       toast.success("Only 2 students can be assigned to a group."); 
     }else{
     setPersonName(value); 
+   
     }
+  }
+  if(name == 'task_name'){
+    setTaskName(value); 
   }
     onChange(name, value); 
   }
@@ -72,11 +78,13 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
     openModelAss()  
     setOpen(false); 
     setPersonName([]);
+    setTaskName([]);
   };
 
   const handleOpen = () => {
     setOpen(true); 
     setPersonName([]);
+    setTaskName([]);
   };
  
 
@@ -145,14 +153,15 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
                     <FormControl className="w-100 mb-3" error={errors.has("task_name")}> 
                       <InputLabel id="task_name">Task List</InputLabel>
                       <Select
+                      multiple
                         labelId="task_name"
                         className={`${errors.has("task_name") && "is-invalid"}`}
                         id="task_name" 
-                        //  value={personName}
+                         value={taskName}
  
                         name="task_name"
                         onChange={e => handleChange(e.target.name, e.target.value)}
-                      //  MenuProps={MenuProps}
+                        MenuProps={MenuProps}
                       >
                         {task.map(name => (
                           <MenuItem key={name.taskId} value={name.taskId}>

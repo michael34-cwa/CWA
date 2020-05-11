@@ -17,6 +17,7 @@ class Task extends Model {
     this.link = props.getTask  ? props.getTask.link  : "";
     this.mainId = props.id || "";  
     this.taskId = props.taskId || ""; 
+    this.translate = props.translate || "";  
     this.status = props.pivot ? props.pivot.status : "";
     
      // relate user model

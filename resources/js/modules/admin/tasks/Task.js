@@ -14,6 +14,7 @@ class Task extends Model {
     this.courseId = props.getCourse ? props.getCourse.id :[]; 
     this.courseName = props.getCourse || "";
     this.link = props.link || "";
+    this.translate = props.translate || "";
     this.isActive = props.isActive || "";
     // relate user model
   }

@@ -1,6 +1,6 @@
 // import libs
 import React, { Component } from 'react'
-import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest,chatAddRequest,taskTimeRequest ,logsListRequest,taskTimeUpdate} from '../../service'
+import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest,chatAddRequest,taskTimeRequest ,logsListRequest,taskTimeUpdate,taskTransRequest} from '../../service'
 import { Button } from '@material-ui/core';
 import StatusModel from '../../../../../common/model/StatusModel'
 import RejectModel from '../../../../../common/model/RejectModel'
@@ -13,6 +13,7 @@ import Duration from './Duration'
 import TaskRow from './components/TaskRow'
 import Form from './components/Form'
 import LogsRow from './components/LogsRow'
+import TextForm from './components/TextForm'
 
 import ReeValidate from 'ree-validate'  
 import Paper from '@material-ui/core/Paper';
@@ -80,6 +81,10 @@ class Page extends Component {
      this.handleSubmitTimeUp = this.handleSubmitTimeUp.bind(this);
 
      this.handleChangeTab = this.handleChangeTab.bind(this);
+
+     this.handleChangeTrans = this.handleChangeTrans.bind(this);
+
+     this.handleSubmitTrans = this.handleSubmitTrans.bind(this);
 
      
      this.editLog = this.editLog.bind(this);
@@ -303,6 +308,46 @@ submitTimeUp(logData) {
         this.setState({ errors });
       });
   }
+
+
+  handleChangeTrans(name, value) { 
+   
+    console.log(this.state.taskData)
+    this.setState({ taskData: { ...this.state.taskData, ['translate']: value} })
+
+   }
+
+   handleSubmitTrans(e) {  
+    e.preventDefault(); 
+    const taskData = this.state.taskData;
+    this.setState({ loading: true })
+    const { match , dispatch } = this.props
+    let id =  this.state.taskData.id;  
+    let tid =  this.state.taskData.id;  
+ 
+      this.props
+       .dispatch(taskTransRequest(taskData, id)) 
+       .then(res => {  
+       
+         this.setState({ loading: false})   
+       })
+      .catch(({ error, statusCode }) => {
+     
+        this.setState({ loading: false })
+        const { errors } = this.validator;
+
+        if (statusCode === 422) {
+          _.forOwn(error, (message, field) => {
+            errors.add(field, message);
+          });
+        }
+
+        this.setState({ errors });
+      });
+
+
+}
+
 
   handleChangeTime(name, value) { 
    
@@ -660,6 +705,9 @@ renderLogs() {
 
     const { course, user ,chat,logTime} = this.props
     const {taskData } = this.state
+ 
+console.log(this.state.taskData)
+ 
       return <main className="dashboard-right" role="main">
       <Button
                     onClick={this.backBtn}
@@ -741,6 +789,19 @@ renderLogs() {
 
 		 
 			</div>
+		  
+		<h2>Completed Transcription</h2>
+ 
+                
+			{this.state.taskData ?	<div  class="formrightmanin">
+        <TextForm
+          {...this.state} 
+          onChange={this.handleChangeTrans}
+          onSubmit={this.handleSubmitTrans}
+          translate={ this.state.taskData.translate}
+         />
+		 
+			</div> : ''}
 		 
 	</div>
 </div>

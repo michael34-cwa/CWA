@@ -434,3 +434,37 @@ export function taskTimeUpdate(params,id) {
     })
   )
 }
+
+export function taskTransRequest(params,id) {    
+
+  return dispatch => (
+    new Promise((resolve, reject) => {
+      Http.post(`/tasks/translation_update/${id}`, transformRequest(params))
+        .then(res => {
+          toast.success("Updated Successfully");
+         //  dispatch(courseActions.add(transformResponse(res.data)));
+          return resolve(res);
+        })
+        .catch(err => {
+          const statusCode = err.response.status;
+          const data = {
+            error: null,
+            statusCode
+          };
+
+          if (statusCode === 422) {
+            const resetErrors = {
+              errors: err.response.data,
+              replace: false,
+              searchStr: "",
+              replaceStr: ""
+            };
+            data.error = Transformer.resetValidationFields(resetErrors);
+          } else if (statusCode === 401) {
+            data.error = err.response.data.message;
+          }
+          return reject(data);
+        });
+    })
+  )
+}

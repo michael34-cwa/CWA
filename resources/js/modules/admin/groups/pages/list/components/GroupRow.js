@@ -30,7 +30,7 @@ const GroupRow = ({ index, group, openModel, pageNo, handleRemove }) => {
             </Link>
             
             
-            <Button
+            {/* <Button
               size="small"
               variant="contained"
               color = "secondary"
@@ -38,7 +38,7 @@ const GroupRow = ({ index, group, openModel, pageNo, handleRemove }) => {
              onClick={() => openModel(group.id )}
             >
             <i class="fa fa-trash-o mr-1" aria-hidden="true"></i> Delete
-            </Button>
+            </Button> */}
       
             <Link to={`/admin/group_students/${group.id}/${group.schoolId}`} >
               <Button size="small" variant="contained" className="colorPrimary text-capitalize mx-1"  >

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Tasks extends Model
 {
  
-protected $fillable = ['task_name','task_description','course_id','is_active'];
+protected $fillable = ['task_name','task_description','course_id','is_active','translate'];
         /**
      * Load all for admin and paginate
      *

@@ -10,6 +10,7 @@ use App\Model\StudentCourses;
 use App\Model\StudentsGroup;
 use App\Model\GroupStudents;
 use App\Model\StudentProfiles;
+use App\Model\GroupTasks;
 
 use App\Model\Groups;
 use App\Model\Chats;
@@ -82,13 +83,13 @@ class TasksController  extends Controller
      */
     public function store(TasksRequest $request)
     { 
-        
-        $task = new Tasks($request->validated());
+         $task = new Tasks($request->validated());
         $task->task_name = $request->task_name; 
         $task->task_description = $request->task_description; 
         $task->course_id = $request->course_id; 
         $task->is_active = $request->is_active; 
         $task->link = $request->link; 
+        $task->translate = $request->translate; 
         $task->save(); 
       return response()->json($task, 201);
     }
@@ -176,6 +177,17 @@ class TasksController  extends Controller
         return response()->json($task, 200);
     }
 
+    public function translationUpdate(Request $request, $id)
+    {   
+      $translate  = Request::post('translate'); 
+
+       echo $id =  $id;   
+        $task = GroupTasks::findOrFail($id);
+        $task->translate = $translate;  
+        $task->save(); 
+        return response()->json($task, 200);
+    }
+    
     /**
      * Remove the specified resource from storage.
      *

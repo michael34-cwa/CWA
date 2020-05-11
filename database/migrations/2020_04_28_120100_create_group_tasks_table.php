@@ -17,6 +17,8 @@ class CreateGroupTasksTable extends Migration
             $table->bigIncrements('id');
             $table->integer('group_course_id')->unsigned(); 
             $table->integer('task_id')->unsigned();
+            $table->text('translate')->nullable();
+
             $table->timestamps();
         });
     }
