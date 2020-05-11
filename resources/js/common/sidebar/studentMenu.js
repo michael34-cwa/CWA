@@ -10,18 +10,18 @@ const StudentSideMenu = props => {
   const toggle = () => setDropdownOpen(!dropdownOpen);
 
   return (
-    <div className="side-menu">
+    <div className="side-menu student-side-menu">
       <div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <NavLink tag={RRNavLink} to="/" activeClassName="active">  <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</NavLink>
+            <NavLink tag={RRNavLink} to="/" activeClassName="active">  <i class="fa fa-tachometer" aria-hidden="true"></i></NavLink>
           </div>
         </div>
  
 
         <div class="panel panel-default">
           <div class="panel-heading">
-          <NavLink tag={RRNavLink} to="/courses" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i> Courses</NavLink>
+          <NavLink tag={RRNavLink} to="/courses" activeClassName="active"><i class="fa fa-th-list" aria-hidden="true"></i></NavLink>
           </div>
         </div>
  

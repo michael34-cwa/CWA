@@ -224,7 +224,9 @@ p.logintext {
 		}
 	}
 }
-
+.student-side-menu{
+	width : 60px;
+}
 .panel-body {
 	a.nav-link {
 		padding-left: 20px;
@@ -270,6 +272,9 @@ span.toggleicon {
 			vertical-align: middle;
 		}
 	}
+}
+.student-dash-right{
+	margin-left: 60px;
 }
 .gradient-1 {
 	background-image: linear-gradient(230deg, #759bff, #843cf6);

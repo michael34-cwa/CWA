@@ -102,7 +102,7 @@ class Page extends Component {
 
   render() {
     return (
-      <main className="dashboard-right" role="main">
+      <main className="dashboard-right student-dash-right" role="main">
             <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
         <div className="card">
         <div className="card-body">

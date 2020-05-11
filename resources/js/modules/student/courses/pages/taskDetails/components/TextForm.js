@@ -26,7 +26,7 @@ const TextForm = ({translate, errors, onChange, onSubmit }) => {
   return (
     <form onSubmit={e => onSubmit(e)}>
 
-      <div className="row">
+    
       <TextField
             // error={errors.has("vid_disc")}
             label="Multiline"
@@ -38,6 +38,7 @@ const TextForm = ({translate, errors, onChange, onSubmit }) => {
             value={translate }
             id="translate"
             name={'translate'}
+            className="w-100"
             onChange={e => handleChangeTrans(e.target.name, e.target.value)}
           />
           
@@ -50,14 +51,14 @@ const TextForm = ({translate, errors, onChange, onSubmit }) => {
           <div className="MuiFormHelperText-root Mui-error"> {errors.first("translate").replace("translate", "TextForm")} </div>
         )}
       </div> */}
-      </div>
+      
  
    
  
 
 
-      <div className="form-group row">
-        <div className="col-md-12 ml-auto">
+      <div className="form-group">
+        <div className="ml-auto mt-2">
           <Button
             variant="contained"
             disabled={errors.any()}

@@ -708,7 +708,7 @@ renderLogs() {
  
 console.log(this.state.taskData)
  
-      return <main className="dashboard-right" role="main">
+      return <main className="dashboard-right student-dash-right" role="main">
       <Button
                     onClick={this.backBtn}
                     size="small" variant="contained" className="colorPrimary text-capitalize mb-2"  >
@@ -734,7 +734,7 @@ console.log(this.state.taskData)
 
  </div>
 <div class="twocolumsec row">
-	<div class="leftvideoandform col-md-7">
+	<div class="leftvideoandform col-md-8">
 		<div class="taskvideo">
     { taskData ?  <ReactPlayer
                   url={taskData.getTask.link}
@@ -758,10 +758,10 @@ console.log(this.state.taskData)
 	</div>
 
 	</div>
-	<div class="righttextarea col-md-5">
+	<div class="righttextarea col-md-4">
 		<h2>Completed Transcription</h2>
  
-				<div  class="formrightmanin">
+				<div  class="formrightmanin pt-2">
 
         <form onSubmit={this.handleSubmitTimeUp}  >
          
@@ -790,10 +790,10 @@ console.log(this.state.taskData)
 		 
 			</div>
 		  
-		<h2>Completed Transcription</h2>
+		<h2>Completed Translation</h2>
  
                 
-			{this.state.taskData ?	<div  class="formrightmanin">
+			{this.state.taskData ?	<div  class="formrightmanin pt-2">
         <TextForm
           {...this.state} 
           onChange={this.handleChangeTrans}
