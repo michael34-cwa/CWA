@@ -17,11 +17,16 @@ const AssignCourseRow = ({ index, assignCourse, openModel,pageNo, togglePublish}
      <tr key={index}>
        <th scope="row">{pageNo}</th>     
        <td>{assignCourse.courseName}</td> 
-       <td>{assignCourse.taskName}</td> 
+       {/* <td>{assignCourse.taskName}</td>  */}
 
-       {assignCourse.user.length > 0  ? assignCourse.user.map(function (item, index) {
+       <td> {assignCourse.getTask.length > 0  ? assignCourse.getTask.map(function (item, index) {
+          return <span className="chip-course">{item.taskName}</span>;
+        }).reduce((prev, curr) => [prev, ' ', curr]) : ''} </td>
+
+<td>  {assignCourse.user.length > 0  ? assignCourse.user.map(function (item, index) {
           return <span className="chip-course">{item.firstName+' '+item.lastName}</span>;
-        }).reduce((prev, curr) => [prev, ' ', curr]) : ''}
+        }).reduce((prev, curr) => [prev, ' ', curr]) : ''} </td>
+        
 
        <td>{assignCourse.createdAt && assignCourse.createdAt.format("MMMM, DD YYYY")}</td>
        <td>{assignCourse.updatedAt && assignCourse.updatedAt.format("MMMM, DD YYYY")}</td>

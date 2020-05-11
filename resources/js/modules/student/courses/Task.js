@@ -9,10 +9,9 @@ class Task extends Model {
   }
   
   initialize(props) {
-    console.log('tprops')
-    console.log(props)
+
        
-     super.initialize(props)    
+    super.initialize(props)    
     this.taskName = props.getTask ? props.getTask.taskName  : "";
     this.taskDescription = props.getTask   ? props.getTask.taskDescription  : "";
     this.link = props.getTask  ? props.getTask.link  : "";

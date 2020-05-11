@@ -10,7 +10,7 @@ use App\Model\GroupTasks;
 use App\Model\Tasks;
 use App\Model\Courses;
 use App\Model\StudentsGroup;
-
+ 
 //use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -50,7 +50,7 @@ class GroupsController  extends Controller
        $id = base64_decode(urldecode($id));  
         $dataSearch   =   Request::get('search'); 
    
-            $students =   GroupStudents::where('group_id',$id)->latest();
+            $students =   GroupCourses::where('group_id',$id)->latest();
 
             if($dataSearch){
             $students->whereHas('getCourse', function($q) use ($dataSearch) { 
@@ -58,24 +58,21 @@ class GroupsController  extends Controller
                 });
             }
 
-            if($dataSearch){
-                $students->orWhereHas('getTask', function($q) use ($dataSearch) {
-                      $q->where('task_name', 'LIKE', "%{$dataSearch}%");
+            // if($dataSearch){
+            //     $students->orWhereHas('getTask', function($q) use ($dataSearch) {
+            //           $q->where('task_name', 'LIKE', "%{$dataSearch}%");
                    
-                    }) ;
-                }
+            //         }) ;
+            //     }
 
-                if($dataSearch){
-                    $students->orWhereHas('User', function($qu) use ($dataSearch) {
-                        $qu->where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
+            //     if($dataSearch){
+            //         $students->orWhereHas('User', function($qu) use ($dataSearch) {
+            //             $qu->where('first_name', 'LIKE', "%{$dataSearch}%")->orWhere('last_name', 'LIKE', "%{$dataSearch}%");
                        
-                        }) ;
-                    }
+            //             }) ;
+            //         }
     
-          
-             
-                $students =     $students->with(['getCourse','getTask','User'])->paginate();
-
+                    $students =     $students->with(['getCourse','getTask','User'])->paginate();
         return response()->json($students, 201);
     }
 

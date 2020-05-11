@@ -142,7 +142,7 @@ p.logintext {
 	position: absolute;
 	left: 0;
 	top: 0;
-	width: 280px;
+	width: 220px;
 	box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.1);
 	height: 100%;
 	background-color: #fff;
@@ -156,7 +156,7 @@ p.logintext {
 					text-decoration: none;
 				}
 				display: block;
-				padding: 8px 20px;
+				padding: 8px 30px 8px 10px;
 				color: #000;
 				text-transform: capitalize;
 				background-color: #fff;
@@ -227,10 +227,10 @@ p.logintext {
 
 .panel-body {
 	a.nav-link {
-		padding-left: 40px;
+		padding-left: 20px;
 		color: #3e3e3e;
 		border-bottom: 1px dashed #9fcdff;
-		font-size: 15px;
+		font-size: 14px;
 	}
 }
 .card-body {
@@ -238,7 +238,7 @@ p.logintext {
   }
 span.toggleicon {
 	position: absolute;
-	right: 20px;
+	right: 10px;
 	background-color: #fff;
 	width: 18px;
 	height: 18px;
@@ -250,7 +250,7 @@ span.toggleicon {
 	top: 11px;
 }
 .dashboard-right {
-	margin-left: 280px;
+	margin-left: 220px;
 	padding: 30px;
 	min-height: 768px;
 	.card {

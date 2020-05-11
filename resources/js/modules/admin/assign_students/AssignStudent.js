@@ -15,7 +15,8 @@ class AssignStudent extends Model {
     this.studentId = props.user ? window.btoa(props.user.id) : "";
     // this.studentName = props.user ? props.user.firstName+' '+props.user.lastName :""; 
     this.courseName = props.getCourse ? props.getCourse.courseName:"";
-    this.taskName = props.getTask ? props.getTask.taskName:"";
+  //  this.taskName = props.getTask ? props.getTask.taskName:"";
+    this.getTask = props.getTask ? props.getTask: [];
     this.user = props.user ? props.user: [];
     // relate user model
    }
