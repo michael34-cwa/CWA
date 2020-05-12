@@ -27,7 +27,7 @@ const AssignCourseRow = ({ index, assignCourse, openModel,pageNo, togglePublish}
           >
             <i class="fa fa-colorPrimary-o mr-1" aria-hidden="true"></i> View
           </Button>
-     </td>  : '' }
+     </td>  : <td>No data found</td>  }
 
      { assignCourse.getLogs.length >0 ? <td>   <Button
             size="small"
@@ -38,7 +38,7 @@ const AssignCourseRow = ({ index, assignCourse, openModel,pageNo, togglePublish}
           >
             <i class="fa fa-colorPrimary-o mr-1" aria-hidden="true"></i> View
           </Button>
-     </td>  : <td></td> }
+     </td>  : <td>No data found</td> }
        <td>{assignCourse.createdAt && assignCourse.createdAt.format("MMMM, DD YYYY")}</td>
        <td>{assignCourse.updatedAt && assignCourse.updatedAt.format("MMMM, DD YYYY")}</td>
        <td>
