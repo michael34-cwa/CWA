@@ -794,8 +794,7 @@ console.log(this.state.taskData)
                 
 			{this.state.taskData ? this.state.taskData.getTask.isActive == 1 ?	<div  class="formrightmanin pt-2">
       <h2>Completed Translation</h2>
-      { this.state.taskData.translate}
-        <TextForm
+         <TextForm
           {...this.state} 
           onChange={this.handleChangeTrans}
           onSubmit={this.handleSubmitTrans}
