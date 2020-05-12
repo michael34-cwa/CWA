@@ -61,7 +61,7 @@ const TextForm = ({translate, errors, onChange, onSubmit }) => {
         <div className="ml-auto mt-2">
           <Button
             variant="contained"
-            disabled={errors.any()}
+           // disabled={errors.any()}
             type="submit"
             className="text-capitalize colorPrimary"
             disableElevation
