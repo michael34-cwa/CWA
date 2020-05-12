@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class GroupTasks extends Model
 {
+  public $timestamps = true;
+
     public function getTask()
     {
       return $this->hasOne('App\Model\Tasks', 'id', 'task_id');

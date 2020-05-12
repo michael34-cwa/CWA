@@ -123,7 +123,7 @@ const Form = ({ loading, dataList, types, task, errors, onChange, onSubmit }) =>
 
           <FormControl className="w-100 mb-3">
 
-            <InputLabel id="translate"> Translate Status</InputLabel>
+            <InputLabel id="translate"> Translation</InputLabel>
 
             <Select
               labelId="translate"
@@ -132,8 +132,9 @@ const Form = ({ loading, dataList, types, task, errors, onChange, onSubmit }) =>
               placeholder="Translate Status"
               onChange={e => handleChange(e.target.name, e.target.value)}
             >
-              <MenuItem value={0}>In Active</MenuItem>
-              <MenuItem value={1}>Active</MenuItem>
+                 <MenuItem value={1}>Yes</MenuItem>
+                <MenuItem value={0}>No</MenuItem>
+           
             </Select>
           </FormControl>
         </div>

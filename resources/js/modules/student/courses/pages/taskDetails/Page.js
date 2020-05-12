@@ -641,9 +641,9 @@ submitTimeUp(logData) {
 
   handlePause = () => {
     var timestamp = this.state.duration *  this.state.played;
- 
+   
    var time = this.myTime(timestamp);
- this.setState({ playing: false ,logData: { start_time:'0.00' , end_time:  time}})
+ this.setState({ playing: false ,logData: { start_time:'0.00' , end_time:  time, vid_disc:this.state.logData.vid_disc}})
       
   }
 
@@ -675,12 +675,13 @@ handleChangeTab(newValue){
   //  dispatch(taskDetailsRequest(newValue))
   let taksDataLis = tasks.find(task => task.id == newValue)
  
-  this.setState({ taskData:taksDataLis ,    
-        logData: { start_time:'' , end_time: '',vid_disc:''},
-})
+//   this.setState({ taskData:taksDataLis ,    
+//         logData: { start_time:'' , end_time: '',vid_disc:''},
+// })
 let tid= newValue;
 dispatch( logsListRequest(tid) );
-  
+this.setState({  logData: { start_time:'0.00' , end_time:  '0.00', vid_disc:''}})
+
 }
 
 renderLogs() {
@@ -790,10 +791,12 @@ console.log(this.state.taskData)
 		 
 			</div>
 		  
-		<h2>Completed Translation</h2>
+      
+		
  
                 
-			{this.state.taskData ?	<div  class="formrightmanin pt-2">
+			{this.state.taskData ? this.state.taskData.getTask.isActive == 1 ?	<div  class="formrightmanin pt-2">
+      <h2>Completed Translation</h2>
         <TextForm
           {...this.state} 
           onChange={this.handleChangeTrans}
@@ -801,7 +804,7 @@ console.log(this.state.taskData)
           translate={ this.state.taskData.translate}
          />
 		 
-			</div> : ''}
+			</div> : '' : ''}
 		 
 	</div>
 </div>
