@@ -73,15 +73,6 @@ class CoursesController  extends Controller
 
 
 
-
-        // return StudentCourses::whereHas('getStudentCourse', function ($q) use ($dataSearch) {
-        //     if( $dataSearch){
-        //         $q->where('course_name', 'LIKE', "%{$dataSearch}%");
-        //     }
-        //     }) 
-        // ->with(array('getCourseTasks','getCategory','getStudentCourse'))
-        // ->where('student_id',$id)->paginate();
-
     }
 
 

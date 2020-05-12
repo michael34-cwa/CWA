@@ -14,10 +14,10 @@ const propTypes = {
  
 const CourseRow = ({ course,cataroy }) => { 
  let concar = []
- 
+ if(course.id){
   return (
-
-    <React.Fragment>
+ 
+<React.Fragment>
       <Grid item sm={6} xs={12} md={4} className="course-grid" >
       <div className="course-boxes">
         <Paper> {'Course Name: ' + course.courseName}</Paper>
@@ -37,8 +37,13 @@ const CourseRow = ({ course,cataroy }) => {
         </div>
       </Grid> 
     </React.Fragment>
-  
+     
   );
+        }else{
+          return (
+<div></div>
+          );
+        }
 }
 
 CourseRow.displayName = displayName

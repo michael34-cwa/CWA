@@ -10,4 +10,9 @@ class GroupTasks extends Model
     {
       return $this->hasOne('App\Model\Tasks', 'id', 'task_id');
     }
+
+    public function getLogs()
+    {
+      return $this->hasMany('App\Model\TaskLogs', 'group_task_id', 'id');
+    }
 }

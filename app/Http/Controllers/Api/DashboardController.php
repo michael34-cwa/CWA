@@ -8,6 +8,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use App\Model\CourseCategories;
 use App\Model\Courses;
 use App\Model\Tasks;
+use App\Model\StudentsGroup;
 use App\Model\SchoolProfile;
 use App\Model\TeacherProfiles;
 use App\Model\StudentProfile;
@@ -96,11 +97,12 @@ class DashboardController extends Controller
     {
       $user = \Auth::guard('api')->user();
   
-        $student = StudentCourses::where('student_id',$user->id)->count();
+        $student = StudentsGroup::where('student_id',$user->id)->count();
      
        $student = $this->thousandsCurrencyFormat($student);
        return response()->json(['student'=>$student], 201);
     }
+
 
     public function teacherDashboard(Request $request)
     {

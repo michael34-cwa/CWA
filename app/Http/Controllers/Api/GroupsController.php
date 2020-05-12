@@ -76,7 +76,25 @@ class GroupsController  extends Controller
         return response()->json($students, 201);
     }
 
-    
+
+
+    public function logsTime(Request $request,$id)
+    {  
+       $id = base64_decode(urldecode($id));  
+        $dataSearch   =   Request::get('search');  
+         $tasks =   GroupTasks::where('group_course_id',$id);
+
+         if($dataSearch){
+            $tasks->whereHas('getTask', function($q) use ($dataSearch) { 
+                 $q->where('task_name', 'LIKE', "%{$dataSearch}%"); 
+                });
+            }
+
+         $tasks =     $tasks->with([ 'getTask','getLogs' ])->where('group_course_id',$id)->latest()->paginate();
+ 
+         return response()->json( $tasks , 201);
+    }
+     
     /**
      * get all published articles
      *

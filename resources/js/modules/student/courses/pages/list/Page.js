@@ -40,7 +40,7 @@ class Page extends Component {
 
   UNSAFE_componentWillMount() {
     const { dispatch } = this.props;
-    dispatch(courseCategotyRequest({}));
+     dispatch(courseCategotyRequest({}));
 
      dispatch(courseListRequest({}));
   }
@@ -85,16 +85,15 @@ class Page extends Component {
   //   });
   // }
   renderCourses() {
+    console.log(this.props.courses)
+       console.log(this.props.courses)
     //return  this.props.courses.slice(0, this.state.visible).map((course, index) => {
     return this.props.courses.map((course, index) => {
       return (
         <CourseRow
           key={index}
           course={course}
-          cataroy={this.props.cataroy}
-          index={index}
-          togglePublish={this.togglePublish}
-          handleRemove={this.handleRemove}
+      cataroy={this.props.cataroy}
         />
       );
     });
@@ -103,7 +102,7 @@ class Page extends Component {
   render() {
     return (
       <main className="dashboard-right student-dash-right" role="main">
-            <LoadingComponent isLoading={this.props.meta.loading} error={''} /> 
+            {/* <LoadingComponent isLoading={this.props.meta.loading} error={''} />  */}
         <div className="card">
         <div className="card-body">
         <Grid item container>

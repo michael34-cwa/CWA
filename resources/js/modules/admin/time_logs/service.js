@@ -163,27 +163,8 @@ export function  AssignCourseEditRequest(id) {
         });
     };
 
-  }
-
-    export function LogsListRequest({ id,pageNumber = 1, value = '', url = "/groups/logs_time" }) {  
-      return dispatch => {
-        dispatch(TaskActions.spinerAdd(transformResponse()));
-        url = url + '/' + id;
-        if (pageNumber > 1 || value.length >= 2) {
-          url = url + `?page=${pageNumber}&search=${value}`;
-        }
-    
-        Http.get(url)
-          .then(res => { 
-            dispatch(TaskActions.list(transformResponse(res.data)));
-           })
-          .catch(err => {
-            // TODO: handle err
-            console.error(err.response);
-          });
-      };
-    }
 
   
+}
 
  

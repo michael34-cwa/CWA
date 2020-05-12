@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/course_list', 'GroupsController@courseList'); 
     Route::get('/task_by_id/{id}', 'GroupsController@taskById'); 
+    Route::get('/logs_time/{id}', 'GroupsController@logsTime');  
     Route::post('/task_add/{id}', 'GroupsController@addTask'); 
     Route::get('/assign_tasks/{id}', 'GroupsController@assignTasks'); 
     Route::get('/course_assign/{id}', 'GroupsController@courseAssign'); 

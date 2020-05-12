@@ -22,7 +22,6 @@ const mapStateToProps = (state, router) => {
   //  let  taskCorse= taskDils ? taskDils :"";
   //  let  taskSig= taskDils ? taskDils.getCourseTasks :"";
 
-
  
   var dataLists = [];
   if(JSON.stringify(state.tasks) === '{}') { //This will check if the object is empty
