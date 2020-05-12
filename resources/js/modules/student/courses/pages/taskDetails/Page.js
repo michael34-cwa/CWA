@@ -325,10 +325,14 @@ submitTimeUp(logData) {
     let id =  this.state.taskData.id;  
     let tid =  this.state.taskData.id;  
  
-      this.props
+       this.props
        .dispatch(taskTransRequest(taskData, id)) 
-       .then(res => {  
-       
+       .then(res => {   
+    let id = match.params.tid
+    let sid = match.params.sid
+        this.props
+        .dispatch(courseEditRequest(id,sid))
+        
          this.setState({ loading: false})   
        })
       .catch(({ error, statusCode }) => {
