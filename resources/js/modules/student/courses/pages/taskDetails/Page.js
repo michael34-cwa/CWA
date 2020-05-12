@@ -675,13 +675,10 @@ handleChangeTab(newValue){
   //  dispatch(taskDetailsRequest(newValue))
   let taksDataLis = tasks.find(task => task.id == newValue)
  
-//   this.setState({ taskData:taksDataLis ,    
-//         logData: { start_time:'' , end_time: '',vid_disc:''},
-// })
+  this.setState({ taskData:taksDataLis })
 let tid= newValue;
 dispatch( logsListRequest(tid) );
-this.setState({  logData: { start_time:'0.00' , end_time:  '0.00', vid_disc:''}})
-
+ 
 }
 
 renderLogs() {
@@ -797,6 +794,7 @@ console.log(this.state.taskData)
                 
 			{this.state.taskData ? this.state.taskData.getTask.isActive == 1 ?	<div  class="formrightmanin pt-2">
       <h2>Completed Translation</h2>
+      { this.state.taskData.translate}
         <TextForm
           {...this.state} 
           onChange={this.handleChangeTrans}
