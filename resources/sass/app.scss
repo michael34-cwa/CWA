@@ -407,7 +407,7 @@ a.accordion-toggle.collapsed {
 	}
 }
 .dashbard-area {
-	padding-top: 31px;
+	padding-top: 15px;
 }
 .course-boxes {
 	background: #fff;
@@ -586,7 +586,7 @@ display: flex;
 }
 .formrightmanin{
 	   overflow-y: auto;
-    max-height: 600px;
+    max-height: 565px;
 }
 .twocolumsec {
     // overflow: hidden;
@@ -887,7 +887,7 @@ button.colorPrimary:hover, a.colorPrimary:hover {
 			border-bottom: 1px solid #e2e2e2;
 		}
 		.taskdetailssec {
-			padding: 20px;
+			padding: 10px 20px;
 			background: #fafafa;
 		}
 	} 
@@ -897,4 +897,40 @@ button.colorPrimary:hover, a.colorPrimary:hover {
 .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover {
     background-color: rgb(37, 149, 217) !important;
     color: #fff !important;
+}
+
+main.dashboard-right.student-dash-right.studenttaskpage {
+    padding-top: 0;
+    .card-body.bg-white.card-tabs-page {
+    padding-top: 0;
+   		 .formrightmanin {
+			.MuiOutlinedInput-inputMultiline {
+   			
+  				  height: 60px;
+}
+.MuiOutlinedInput-multiline {
+    padding: 5px 14px;
+}
+}
+}
+}
+
+nav.navbar.navbar-expand-md.bg-white.fixed-top.navbar > img {
+    max-height: 45px;
+}
+
+nav.navbar.navbar-expand-md.bg-white.fixed-top.navbar {
+.dropdown{
+	 a {
+    padding: 0;
+}
+a.dropdown-item {
+    padding: 5px 20px;
+}
+}
+}
+
+
+main.dashboard-right.student-dash-right {
+    padding-top: 0;
 }

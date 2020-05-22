@@ -710,13 +710,9 @@ renderLogs() {
  
 console.log(this.state.taskData)
  
-      return <main className="dashboard-right student-dash-right" role="main">
-      <Button
-                    onClick={this.backBtn}
-                    size="small" variant="contained" className="colorPrimary text-capitalize mb-2"  >
-                    Back
-        </Button > 
-      <div class="card"><div class="card-body bg-white card-tabs-page">
+      return <main className="dashboard-right student-dash-right studenttaskpage" role="main">
+     
+      <div class="card"><div class="card-body bg-white card-tabs-page ">
     
  
         {
@@ -731,7 +727,6 @@ console.log(this.state.taskData)
 
 <div class="taskdetailssec">
 	<div class="top-contentsection">
-	<h2>Task details</h2>
   <p dangerouslySetInnerHTML={{ __html:  taskData ?  taskData.getTask.taskDescription : '' }} /> 
 
  </div>
@@ -956,11 +951,20 @@ console.log(this.state.taskData)
 
    {/* { user.rolename == 'student' && course.description != null &&  course.description }
         {/* {this.renderList()} */}
+
+
+ <Button
+                    onClick={this.backBtn}
+                    size="small" variant="contained" className="colorPrimary mt-3 text-capitalize mb-2"  >
+                    Back
+        </Button > 
+
       </div> 
 
     
       </div>
       
+
       <div className="container-fluid">
 <div className="row">
             <div className="col-xs-12">

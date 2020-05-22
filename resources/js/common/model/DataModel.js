@@ -76,7 +76,7 @@ const DataModel = ({ openModel,opens,type, data }) => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <div className="modal-inner-div" >
+            <div className="modal-inner-div datial" >
               <a className="modalclose" onClick={handleClose}>
                 X
                </a>
