@@ -12,7 +12,7 @@ const propTypes = {
   onSubmit: PropTypes.func.isRequired
 };
 
-const TextForm = ({translate, errors, onChange, onSubmit }) => {
+const TextForm = ({translate, errors, onChange, onSubmit,permision }) => {
  
   function handleChangeTrans(name, value) {
 
@@ -24,9 +24,9 @@ const TextForm = ({translate, errors, onChange, onSubmit }) => {
  
 
   return (
-    <form onSubmit={e => onSubmit(e)}>
-
-    
+    permision == 1 ? 
+      
+      <form onSubmit={e => onSubmit(e)}> 
       <TextField
             // error={errors.has("vid_disc")}
             label="Multiline"
@@ -73,7 +73,7 @@ const TextForm = ({translate, errors, onChange, onSubmit }) => {
 
         </div>
      
-    </form>
+    </form> : translate
   );
 };
 

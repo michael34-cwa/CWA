@@ -22,7 +22,7 @@ const mapStateToProps = (state, router) => {
   //  let  taskCorse= taskDils ? taskDils :"";
   //  let  taskSig= taskDils ? taskDils.getCourseTasks :"";
 
- 
+  var permision = [];
   var dataLists = [];
   if(JSON.stringify(state.tasks) === '{}') { //This will check if the object is empty
     dataLists = []
@@ -32,12 +32,14 @@ const mapStateToProps = (state, router) => {
  
  }else{
   dataLists = state.tasks.data
+  permision = state.tasks.permision
  }
- 
+ console.log(state)
 //  let taskDatas = state.assign_course ? state.assign_course : '';
  
    return {
     tasks: dataLists, 
+    permision: permision ? permision:[], 
    // taskData : taskDatas ? new Task(taskDatas) : new Task({}),
 
      // courseOne: taskCorse ? new Course(taskCorse) : new Course({}),

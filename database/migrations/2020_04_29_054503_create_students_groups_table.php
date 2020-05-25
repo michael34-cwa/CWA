@@ -18,10 +18,11 @@ class CreateStudentsGroupsTable extends Migration
             $table->integer('group_courses_id')->unsigned();
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('permission')->unsigned();
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *

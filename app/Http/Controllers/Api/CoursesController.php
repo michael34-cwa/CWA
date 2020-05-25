@@ -75,6 +75,13 @@ class CoursesController  extends Controller
 
     }
 
+    public function getpPermisssion($id)
+    {
+        $id = base64_decode(urldecode($id));
+
+        return StudentsGroup::select('id','permission')->find($id);
+    }
+
 
     /**
      * get all published articles
@@ -166,13 +173,16 @@ class CoursesController  extends Controller
     public function courseTasks($id,$sid = null)
     {
             $id = base64_decode(urldecode($id));  
-        // $sid = base64_decode(urldecode($sid));  
+           $sid = base64_decode(urldecode($sid));  
         $user = \Auth::guard('api')->user();
         $uid =  $user->id;
         $task = GroupTasks::with('getTask')
     ->where('group_course_id',$id)->get();
         
-    return response()->json(['data' => $task], 200);
+    $permision = StudentsGroup::select('id','permission')->find($sid);
+
+
+    return response()->json(['data' => $task,'permision'=>$permision], 200);
 
   
     }

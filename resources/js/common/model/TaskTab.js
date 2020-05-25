@@ -6,8 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import ReactPlayer from 'react-player'
-
+ 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -50,11 +49,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TaskTab = ({ tasks,handleChangeTab}) => {
- let fist = tasks[0] ? tasks[0].id : 1;
+ 
+ let fist = tasks[0] ? tasks[0].id : 0;
+
+ 
  // export default function TaskTab(tasks) {
  
   const classes = useStyles();
-  const [value, setValue] = React.useState(fist);
+  const [value, setValue] = React.useState('1');
 
   const handleChange = (event, newValue) => {
     handleChangeTab(newValue)
@@ -75,12 +77,13 @@ const TaskTab = ({ tasks,handleChangeTab}) => {
         >
           
    
-       {tasks.map((input, index) =>
+       {/* {tasks.map((input, index) =>
         
         <Tab label={input.getTask.taskName}  value={input.id} />
       
-        )}  
-
+        )}   */}
+    <Tab label={'Step 1'}  value={'1'} />
+    <Tab label={'Step 2'} value={'2'} />
          }
         </Tabs>
       </AppBar>

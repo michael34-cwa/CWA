@@ -6,6 +6,8 @@ import * as taskActions from '../../school/students/store/actions'
 import * as logActions from '../../admin/school_lists/store/actions'
 import * as catActions from '../../admin/course_categories/store/actions'
 import * as taskSingle from '../../project_admin/assign_course/store/actions'
+import * as permisonSingle from '../../student/courses/store/actions'
+
 import { toast } from "react-toastify";
 function transformRequest(parms) {
   return Transformer.send(parms)
@@ -189,6 +191,26 @@ export function logsListRequest(taskid) {
       });
   };
 }
+
+export function permissionRequest(cid) {
+ 
+  return dispatch => {
+    Http.get(`courses/get_permisssion/${cid}`)
+      .then(res => {
+   
+          dispatch(permisonSingle.list(transformResponse(res.data))); 
+          return resolve(res);
+
+      })
+      .catch(err => {
+        // TODO: handle err
+        console.error(err.response);
+      });
+  };
+}
+
+
+
 
 export function chatListRequest(taskid,schoolId,uid) {
  

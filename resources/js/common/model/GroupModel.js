@@ -6,6 +6,8 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import LoadingComponent from '../loader'
 import { toast } from "react-toastify";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 import { TextField, Button, FormHelperText, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 const propTypes = {
@@ -18,22 +20,34 @@ const propTypes = {
 
 
 const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task,errors, onChange, onSubmit }) => {
- 
- 
-  const [personName, setPersonName] = React.useState([]);
-
+  
+  const [personName, setPersonName] = React.useState([]); 
   const [taskName, setTaskName] = React.useState([]);
+
+  const [state, setState] = React.useState({
+    student1: true,
+    student2: false, 
+  });
+
+  const handleChangeS = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
 
 
   function handleChange(name, value) { 
-    if(name == 'name'){
-    if(value.length > 2){ 
-      toast.success("Only 2 students can be assigned to a group."); 
-    }else{
-    setPersonName(value); 
-   
+    if(name == 'student1' || name == 'student2'){
+    setState({ ...state, [name]: value });
     }
-  }
+ 
+
+  //   if(name == 'name'){
+  //   if(value.length > 2){ 
+  //     toast.success("Only 2 students can be assigned to a group."); 
+  //   }else{
+  //   setPersonName(value); 
+   
+  //   }
+  // }
   if(name == 'task_name'){
     setTaskName(value); 
   }
@@ -153,7 +167,7 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
                     <FormControl className="w-100 mb-3" error={errors.has("task_name")}> 
                       <InputLabel id="task_name">Task List</InputLabel>
                       <Select
-                      multiple
+                      //multiple
                         labelId="task_name"
                         className={`${errors.has("task_name") && "is-invalid"}`}
                         id="task_name" 
@@ -180,12 +194,10 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
                         labelId="name"
                         className={`${errors.has("name") && "is-invalid"}`}
                         id="name" 
-                         value={personName}
-                        multiple
-
+                    //     value={personName} 
                         name="name"
                         onChange={e => handleChange(e.target.name, e.target.value)}
-                       MenuProps={MenuProps}
+                     //  MenuProps={MenuProps}
                       >
                         {modelData.map(name => (
                           <MenuItem key={name.useId} value={name.useId}>
@@ -198,12 +210,47 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
                       )}
                     </FormControl>
 
+                    <FormControlLabel
+        control={<Checkbox 
+          checked={state.student1} 
+      //  onChange={handleChange}
+        onChange={e => handleChange(e.target.name, e.target.checked)}
 
-                    
+        name="student1" />}
+        label="Click to given edit permission "
+      />
+      
+                    <FormControl className="w-100 mb-3"  > 
+                      <InputLabel id="name">{name} List 1</InputLabel>
+                      <Select
+                        labelId="name1"
+                      //  className={`${errors.has("name") && "is-invalid"}`}
+                        id="name1" 
+                    //     value={personName} 
+                        name="name1"
+                        onChange={e => handleChange(e.target.name, e.target.value)}
+                     //  MenuProps={MenuProps}
+                      >
+                        {modelData.map(name => (
+                          <MenuItem key={name.useId} value={name.useId}>
+                            {name.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      {/* {errors.has("name") && (
+                        <FormHelperText>{errors.first("name").replace("name",  name  )}</FormHelperText>
+                      )} */}
+                    </FormControl>
                   </div>
                   {<LoadingComponent isLoading={loading} error={''} />}
                 </div>
 
+                <FormControlLabel
+        control={<Checkbox checked={state.student2} 
+        onChange={e => handleChange(e.target.name, e.target.checked)} 
+         name="student2" />}
+        label="Click to given edit permission"
+      />
 
                 <div className="row">
                   <div className="col-md-12 ml-auto">

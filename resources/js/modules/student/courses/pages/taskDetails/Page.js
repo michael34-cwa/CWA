@@ -1,6 +1,6 @@
 // import libs
 import React, { Component } from 'react'
-import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest,chatAddRequest,taskTimeRequest ,logsListRequest,taskTimeUpdate,taskTransRequest} from '../../service'
+import { taskDetailsRequest, courseEditRequest, taskStatusRequest,taskDisRequest,chatListRequest,chatAddRequest,taskTimeRequest ,logsListRequest,taskTimeUpdate,taskTransRequest,permissionRequest} from '../../service'
 import { Button } from '@material-ui/core';
 import StatusModel from '../../../../../common/model/StatusModel'
 import RejectModel from '../../../../../common/model/RejectModel'
@@ -19,6 +19,7 @@ import ReeValidate from 'ree-validate'
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import ContentEditable from 'react-contenteditable'
 
 
 class Page extends Component {
@@ -58,6 +59,8 @@ class Page extends Component {
       logTime,
       status : '',
       taskData: '',
+      permision: '',
+      check : 1,
       openAss: false 
       ,openCan: false
     };
@@ -88,6 +91,11 @@ class Page extends Component {
 
      
      this.editLog = this.editLog.bind(this);
+ 
+     this.handleChangec = this.handleChangec.bind(this);
+
+     this.handleBlurc = this.handleBlurc.bind(this);
+
   }
 
   UNSAFE_componentWillMount() {
@@ -103,14 +111,13 @@ class Page extends Component {
   loadCourse() {
     const { match, course, dispatch,chat } = this.props 
     let id = match.params.tid
-    let sid = match.params.sid
-    let tid = match.params.id  
+    //let sid = match.params.sid
+    let sid = match.params.cid 
       
-
      
     dispatch(courseEditRequest(id,sid))
     
- 
+
     // let schoolId = this.props.course.schoolId;
     // let taskid = this.props.course.id;
     //dispatch(chatListRequest(tid,id));
@@ -119,22 +126,25 @@ class Page extends Component {
   componentDidMount() {
   
     const { match, course, dispatch,chat,user } = this.props 
-    let id = match.params.cid
     let sid = match.params.sid
     let tid = match.params.tid  
+    let cid = match.params.cid
     // let schoolId = this.props.course.schoolId;
     // let taskid = this.props.course.id;
  
-    // alert(window.atob(id))
+   //   alert(window.atob(id))
     // alert(window.atob(sid))
     // alert(window.atob(tid))
     // this.interval = setInterval(() => dispatch(chatListRequest(this.props.course.id,this.props.course.schoolId,user.id))
     // , 2000);
    // let tid = this.props.course.taskId; 
-    dispatch( logsListRequest(tid) );
+  // dispatch( permissionRequest(id) );
+
+   dispatch( logsListRequest(tid) );
+
    
-   
- 
+   //dispatch( permissionRequest(cid) );
+
  
   }
  
@@ -167,8 +177,9 @@ class Page extends Component {
  
      
    const taskOne = nextProps.tasks ? nextProps.tasks[0] : '';
+   const permis = nextProps.permision ? nextProps.permision : '';
    const logTime = nextProps.logTime
-   this.setState({ taskData:taskOne })
+   this.setState({ taskData:taskOne,permision:permis })
    if(taskOne){
          let tid = taskOne.id
      this.props.dispatch( logsListRequest(tid) ); 
@@ -260,7 +271,7 @@ class Page extends Component {
  
     }
 
-  handleChangeTimeUp(name, value) { 
+  handleChangeTimeUp(name, value) {  
     const elementsIndex = this.state.logTime.findIndex(element => element.id == name )
     let newArray = [...this.state.logTime]
    
@@ -269,14 +280,16 @@ class Page extends Component {
     this.setState({
       logTime: newArray,
       }); 
+
+    //  this.submitTimeUp(logData);
    }
 
-   handleSubmitTimeUp = function (e) {
+   handleSubmitTimeUp = function () {
     
-    e.preventDefault();
+   
     const logData = this.state.logTime;
-
-    this.submitTimeUp(logData);
+ 
+   this.submitTimeUp(logData);
 
 }
 
@@ -312,8 +325,7 @@ submitTimeUp(logData) {
 
   handleChangeTrans(name, value) { 
    
-    console.log(this.state.taskData)
-    this.setState({ taskData: { ...this.state.taskData, ['translate']: value} })
+     this.setState({ taskData: { ...this.state.taskData, ['translate']: value} })
 
    }
 
@@ -451,7 +463,7 @@ submitTimeUp(logData) {
        
         this.setState({ errors })
       })
-  }
+  }  
 
   handleSubmitChat(e) {
     e.preventDefault();
@@ -625,17 +637,14 @@ submitTimeUp(logData) {
     })
   }
   handlePlay = () => {
-    console.log('onPlay')
-    this.setState({ playing: true })
+     this.setState({ playing: true })
   }
 
-  handleDuration = (duration) => {
-    console.log('onDuration', duration)
+  handleDuration = (duration) => { 
     this.setState({ duration })
   }
 
-  handleProgress = state => {
-    console.log('onProgress', state)
+  handleProgress = state => { 
     // We only want to update time slider if we are not currently seeking
     if (!this.state.seeking) {
       this.setState(state)
@@ -675,15 +684,24 @@ submitTimeUp(logData) {
 }
  
 handleChangeTab(newValue){
-   const {  dispatch ,tasks} = this.props 
-  //  dispatch(taskDetailsRequest(newValue))
-  let taksDataLis = tasks.find(task => task.id == newValue)
+//    const {  dispatch ,tasks} = this.props 
+//   //  dispatch(taskDetailsRequest(newValue))
+//   let taksDataLis = tasks.find(task => task.id == newValue)
  
-  this.setState({ taskData:taksDataLis })
-let tid= newValue;
-dispatch( logsListRequest(tid) );
+//   this.setState({ taskData:taksDataLis })
+// let tid= newValue;
+// dispatch( logsListRequest(tid) );
+this.setState({ check:newValue ==1 ? 1:2 })
  
 }
+
+ handleChangec = evt => {
+  text.current = evt.target.value;
+};
+
+ handleBlurc = () => {
+  console.log(text.current);
+};
 
 renderLogs() {
 
@@ -693,7 +711,9 @@ renderLogs() {
       {...this.state.logTime}
       index={index}
         logs={logs}  
+        permision={ this.state.permision.permission}
         editLog={this.editLog} 
+        onBlur={this.handleSubmitTimeUp} 
         onChange={this.handleChangeTimeUp} 
         togglePublish={this.togglePublish} 
       />
@@ -706,10 +726,9 @@ renderLogs() {
     const { url, playing, controls, light, volume, muted, loop, played, loaded, duration, playbackRate, pip } = this.state
 
     const { course, user ,chat,logTime} = this.props
-    const {taskData } = this.state
- 
-console.log(this.state.taskData)
- 
+    const {taskData,permision} = this.state
+   
+   
       return <main className="dashboard-right student-dash-right studenttaskpage" role="main">
      
       <div class="card"><div class="card-body bg-white card-tabs-page ">
@@ -724,6 +743,7 @@ console.log(this.state.taskData)
          
           : "No Task Found"
         }
+
 
 <div class="taskdetailssec">
 	<div class="top-contentsection">
@@ -745,6 +765,8 @@ console.log(this.state.taskData)
                  onPause={this.handlePause}
      />  : ''}
  	</div>
+  
+{permision.permission == 1 ?
 	<div class="taskform">
   <Form
           {...this.state} 
@@ -752,8 +774,7 @@ console.log(this.state.taskData)
           onSubmit={this.handleSubmitTime}
           logData={this.state.logData}
          />
-	</div>
-
+	</div> :''}
 	</div>
 	<div class="righttextarea col-md-4">
 		<h2>Completed Transcription</h2>
@@ -767,7 +788,7 @@ console.log(this.state.taskData)
 
 
       
-          <div className="form-group">
+          {/* <div className="form-group">
        <div className="ml-auto">
        {this.state.logTime.length >= 1 ?     <Button 
          variant="contained"
@@ -781,7 +802,7 @@ console.log(this.state.taskData)
          
     
        </div>
-     </div>
+     </div> */}
                 </form>
 
 		 
@@ -790,17 +811,18 @@ console.log(this.state.taskData)
       
 		
  
-                
-			{this.state.taskData ? this.state.taskData.getTask.isActive == 1 ?	<div  class="formrightmanin pt-2">
+      {this.state.taskData ? this.state.taskData.getTask.isActive == 1 ?
+      this.state.check == 2 ?	<div  class="formrightmanin pt-2">
       <h2>Completed Translation</h2>
          <TextForm
           {...this.state} 
-          onChange={this.handleChangeTrans}
           onSubmit={this.handleSubmitTrans}
+          onChange={this.handleChangeTrans}
+          permision={permision.permission}
           translate={ this.state.taskData.translate}
          />
 		 
-			</div> : '' : ''}
+			</div> : '' : '':''}
 		 
 	</div>
 </div>
