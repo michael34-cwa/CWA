@@ -25,7 +25,7 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
   const [taskName, setTaskName] = React.useState([]);
 
   const [state, setState] = React.useState({
-    student1: true,
+    student1: false,
     student2: false, 
   });
 

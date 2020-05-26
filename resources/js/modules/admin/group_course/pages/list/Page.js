@@ -40,7 +40,7 @@ import ReeValidate from 'ree-validate'
     });
  
     this.state = {
-      courseData: { name:'', student1:true ,student2:false},
+      courseData: { name:'', name_1:'',student1:false ,student2:false},
       errors: this.validator.errors,
       loading: false
     };

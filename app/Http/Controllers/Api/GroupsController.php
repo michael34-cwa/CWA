@@ -213,50 +213,76 @@ class GroupsController  extends Controller
           $id = base64_decode(urldecode($id));   
 
               $stuId =    $request::post('name');
+              $student_1 =    $request::post('student_1') == true ? 1: 0;
+              $stuId1 =    $request::post('name_1');
+              $student_2 =    $request::post('student_2')  == true ? 1: 0;
               $corsId =   base64_decode($request::post('course_name'));
               $tskId =    $request::post('task_name');
          
-              $courseVal =   GroupCourses::where('course_id', $corsId)->where('group_id', $id)->first();
+              if($stuId1 === $stuId){
+                return response()->json(['message' => 'Please select different student.', 'status' => 0], 422);             
+                }
 
-               if(empty($courseVal)){
+            //   $courseVal =   GroupCourses::where('course_id', $corsId)->where('group_id', $id)->first();
+
+            //    if(empty($courseVal)){
+   
 
                 $courseVal = new GroupCourses();
                     $courseVal->course_id = $corsId; 
                     $courseVal->group_id = $id; 
                     $courseVal->save();
                     $courseVal->getTask()->attach($tskId);
-                    $courseVal->User()->attach($stuId);
-                     
-                } else{
+                   // $courseVal->User()->attach($stuId);
+              
+
+                   $stuGrup = new StudentsGroup();
+                   $stuGrup->group_courses_id =  $courseVal->id ; 
+                   $stuGrup->student_id = $stuId ; 
+                   $stuGrup->permission =   $student_1; 
+                   $stuGrup->save();
+
+
+if( $request::post('name_1')){
+
+   
+
+$stuGrup = new StudentsGroup();
+$stuGrup->group_courses_id =  $courseVal->id ; 
+$stuGrup->student_id = $stuId1 ; 
+$stuGrup->permission =   $student_2; 
+$stuGrup->save();
+}
+            //     } else{
                     
-                   // $courseVal->getTask()->sync($tskId); 
+            //        // $courseVal->getTask()->sync($tskId); 
 
-                    $tasks =  GroupTasks::where('group_course_id',$courseVal->id)->pluck('task_id')->toArray();
-                    $result = array_intersect( $tasks, $tskId); 
-                   if(empty($result)){ 
-                     $courseVal->getTask()->attach($tskId); 
-                  //   return response()->json($courseVal, 201);
+            //         $tasks =  GroupTasks::where('group_course_id',$courseVal->id)->pluck('task_id')->toArray();
+            //         $result = array_intersect( $tasks, $tskId); 
+            //        if(empty($result)){ 
+            //          $courseVal->getTask()->attach($tskId); 
+            //       //   return response()->json($courseVal, 201);
 
-                   } 
+            //        } 
             
       
 
-               $student =   StudentsGroup::where('group_courses_id',$courseVal->id)->pluck('student_id')->toArray();
-                 $result = array_intersect( $student, $stuId); 
-                if(empty($result)){
-                    if(count($student) >=2){
-               return response()->json(['message' => 'Only 2 students can be assigned to a group.', 'status' => 0], 422);             
+            //    $student =   StudentsGroup::where('group_courses_id',$courseVal->id)->pluck('student_id')->toArray();
+            //      $result = array_intersect( $student, $stuId); 
+            //     if(empty($result)){
+            //         if(count($student) >=2){
+            //    return response()->json(['message' => 'Only 2 students can be assigned to a group.', 'status' => 0], 422);             
  
-                      }  else{
-                  $courseVal->User()->attach($stuId);
-                  return response()->json($courseVal, 201);
+            //           }  else{
+            //       $courseVal->User()->attach($stuId);
+            //       return response()->json($courseVal, 201);
 
-                        }
+            //             }
             
-                }else{
-             //       return response()->json(['message' => 'Student already assigned with this group.', 'status' => 0], 422);             
-                }
-            }
+            //     }else{
+            //  //       return response()->json(['message' => 'Student already assigned with this group.', 'status' => 0], 422);             
+            //     }
+            // }
 
             
             return response()->json($courseVal, 201);
