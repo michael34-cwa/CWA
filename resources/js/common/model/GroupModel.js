@@ -217,7 +217,7 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
         onChange={e => handleChange(e.target.name, e.target.checked)}
 
         name="student1" />}
-        label="Click to given edit permission "
+        label="Provide edit permissions"
       />
       
                     <FormControl className="w-100 mb-3"  > 
@@ -249,7 +249,7 @@ const GroupModel = ({ openModelAss, name,openAss, loading,modelData, course,task
         control={<Checkbox checked={state.student2} 
         onChange={e => handleChange(e.target.name, e.target.checked)} 
          name="student2" />}
-        label="Click to given edit permission"
+        label="Provide edit permissions"
       />
 
                 <div className="row">
