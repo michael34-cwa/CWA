@@ -261,9 +261,7 @@ class TasksController  extends Controller
 
 $user = \Auth::guard('api')->user();
 
- $details =  $start_time.' - '.$end_time.' 
- 
- '.$vid_disc;
+ $details =  $start_time.' - '.$end_time.': '.$vid_disc;
  
          $task = new TaskLogs(); 
          $task->group_task_id	 = $id;

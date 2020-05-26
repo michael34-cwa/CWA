@@ -25,7 +25,7 @@ const LogsRow = ({  index,logs, onChange,onBlur,permision }) => {
 }
    return (
  <div>
-   <label>{logs.name}</label>
+   {/* <label>{logs.name}</label> */}
    { permision == 1 ? 
 <FormControl className="w-100 mb-3" >
 

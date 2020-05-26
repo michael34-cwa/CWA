@@ -813,7 +813,7 @@ renderLogs() {
  
       {this.state.taskData ? this.state.taskData.getTask.isActive == 1 ?
       this.state.check == 2 ?	<div  class="formrightmanin pt-2">
-      <h2>Completed Translation</h2>
+      <h2>Translation</h2>
          <TextForm
           {...this.state} 
           onSubmit={this.handleSubmitTrans}
