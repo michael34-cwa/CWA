@@ -766,15 +766,7 @@ renderLogs() {
      />  : ''}
  	</div>
   
-{permision.permission == 1 ?
-	<div class="taskform">
-  <Form
-          {...this.state} 
-          onChange={this.handleChangeTime}
-          onSubmit={this.handleSubmitTime}
-          logData={this.state.logData}
-         />
-	</div> :''}
+
 	</div>
 	<div class="righttextarea col-md-4">
 		<h2>Completed Transcription</h2>
@@ -804,7 +796,15 @@ renderLogs() {
        </div>
      </div> */}
                 </form>
-
+                {permision.permission == 1 ?
+	<div class="taskform">
+  <Form
+          {...this.state} 
+          onChange={this.handleChangeTime}
+          onSubmit={this.handleSubmitTime}
+          logData={this.state.logData}
+         />
+	</div> :''}
 		 
 			</div>
 		  
